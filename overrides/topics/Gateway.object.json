@@ -1,0 +1,10 @@
+{
+  "Identify": {
+    "properties": {
+      "type": "++IdentifyConnectionProperties"
+    },
+    "shard": {
+      "type": "++std::array<int, 2>"
+    }
+  }
+}

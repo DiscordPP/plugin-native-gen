@@ -1,0 +1,3 @@
+[submodule "discord-api-parser"]
+	path = discord-api-parser
+	url = https://github.com/UndarkAido/discord-api-parser.git

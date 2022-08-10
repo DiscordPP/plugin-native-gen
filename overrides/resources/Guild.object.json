@@ -1,0 +1,7 @@
+{
+  "Integration": {
+    "expire_behavior": {
+      "type": "++IntegrationExpireBehavior"
+    }
+  }
+}

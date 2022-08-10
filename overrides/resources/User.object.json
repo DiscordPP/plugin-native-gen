@@ -1,0 +1,7 @@
+{
+  "Connection": {
+    "integrations": {
+      "type": "++std::vector<ServerIntegration>"
+    }
+  }
+}

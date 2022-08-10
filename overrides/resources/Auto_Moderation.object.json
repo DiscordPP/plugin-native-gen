@@ -1,0 +1,12 @@
+{
+  "Auto Moderation Rule": {
+    "trigger_metadata": {
+      "type": "++TriggerMetadata"
+    }
+  },
+  "Auto Moderation Action": {
+    "metadata": {
+      "type": "++ActionMetadata"
+    }
+  }
+}

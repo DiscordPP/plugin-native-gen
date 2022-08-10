@@ -1,0 +1,7 @@
+{
+  "Guild Application Command Permissions": {
+    "permissions": {
+      "type": "++std::vector<ApplicationCommandPermissions>"
+    }
+  }
+}

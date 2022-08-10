@@ -1,0 +1,10 @@
+{
+  "Audit Log": {
+    "threads": "++std::vector<Channel>"
+  },
+  "Audit Log Entry": {
+    "options": {
+      "type": "++OptionalAuditEntryInfo"
+    }
+  }
+}
