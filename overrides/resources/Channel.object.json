@@ -1,4 +1,12 @@
 {
+  "Message": {
+    "components": {
+      "type": "++std::vector<Component>"
+    },
+    "sticker_items": {
+      "type": "++std::vector<StickerItem>"
+    }
+  },
   "Embed Field": {
     "inline": {
       "name": "display_inline"

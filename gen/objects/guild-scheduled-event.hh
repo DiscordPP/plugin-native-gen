@@ -4,6 +4,7 @@
 
 #include "../field.hh"
 
+// https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object
 class GuildScheduledEvent{
   public:
     GuildScheduledEvent(
@@ -19,7 +20,7 @@ class GuildScheduledEvent{
         field<EventStatus> status = uninitialized,
         field<ScheduledEntityType> entity_type = uninitialized,
         nullable_field<Snowflake> entity_id = uninitialized,
-        nullable_field<EntityMetadata> entity_metadata = uninitialized,
+        nullable_field<GuildScheduledEventEntityMetadata> entity_metadata = uninitialized,
         omittable_field<User> creator = omitted,
         omittable_field<int> user_count = omitted,
         nullable_omittable_field<std::string> image = omitted
@@ -54,7 +55,7 @@ class GuildScheduledEvent{
     field<EventStatus> status;
     field<ScheduledEntityType> entity_type;
     nullable_field<Snowflake> entity_id;
-    nullable_field<EntityMetadata> entity_metadata;
+    nullable_field<GuildScheduledEventEntityMetadata> entity_metadata;
     omittable_field<User> creator;
     omittable_field<int> user_count;
     nullable_omittable_field<std::string> image;
@@ -79,6 +80,7 @@ class GuildScheduledEvent{
         if(!t.image.is_omitted()) {j["image"] = t.image;}
     }
 };
+// https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-user-object
 class GuildScheduledEventUser{
   public:
     GuildScheduledEventUser(

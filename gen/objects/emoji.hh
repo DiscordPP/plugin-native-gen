@@ -4,6 +4,7 @@
 
 #include "../field.hh"
 
+// https://discord.com/developers/docs/resources/emoji#emoji-object
 class Emoji{
   public:
     Emoji(

@@ -4,6 +4,7 @@
 
 #include "../field.hh"
 
+// https://discord.com/developers/docs/topics/gateway#payloads
 class GatewayPayload{
   public:
     GatewayPayload(
@@ -31,6 +32,7 @@ class GatewayPayload{
         if(!t.t.is_omitted()) {j["t"] = t.t;}
     }
 };
+// https://discord.com/developers/docs/topics/gateway#identify
 class Identify{
   public:
     Identify(
@@ -38,8 +40,8 @@ class Identify{
         field<IdentifyConnectionProperties> properties = uninitialized,
         omittable_field<bool> compress = omitted,
         omittable_field<int> large_threshold = omitted,
-        omittable_field<std::array<int, 2>> shard = omitted,
-        omittable_field<UpdatePresence> presence = omitted,
+        omittable_field<std::array<int, 2> > shard = omitted,
+        omittable_field<GatewayPresenceUpdate> presence = omitted,
         field<int> intents = uninitialized
     ): 
         token(token),
@@ -55,8 +57,8 @@ class Identify{
     field<IdentifyConnectionProperties> properties;
     omittable_field<bool> compress;
     omittable_field<int> large_threshold;
-    omittable_field<std::array<int, 2>> shard;
-    omittable_field<UpdatePresence> presence;
+    omittable_field<std::array<int, 2> > shard;
+    omittable_field<GatewayPresenceUpdate> presence;
     field<int> intents;
 
     friend void to_json(nlohmann::json &j, const Identify &t) {
@@ -70,6 +72,7 @@ class Identify{
         if(!t.intents.is_omitted()) {j["intents"] = t.intents;}
     }
 };
+// https://discord.com/developers/docs/topics/gateway#resume
 class Resume{
   public:
     Resume(
@@ -93,6 +96,7 @@ class Resume{
         if(!t.seq.is_omitted()) {j["seq"] = t.seq;}
     }
 };
+// https://discord.com/developers/docs/topics/gateway#request-guild-members
 class GuildRequestMembers{
   public:
     GuildRequestMembers(
@@ -128,6 +132,7 @@ class GuildRequestMembers{
         if(!t.nonce.is_omitted()) {j["nonce"] = t.nonce;}
     }
 };
+// https://discord.com/developers/docs/topics/gateway#update-voice-state
 class GatewayVoiceStateUpdate{
   public:
     GatewayVoiceStateUpdate(
@@ -155,6 +160,7 @@ class GatewayVoiceStateUpdate{
         if(!t.self_deaf.is_omitted()) {j["self_deaf"] = t.self_deaf;}
     }
 };
+// https://discord.com/developers/docs/topics/gateway#update-presence
 class GatewayPresenceUpdate{
   public:
     GatewayPresenceUpdate(
@@ -182,6 +188,7 @@ class GatewayPresenceUpdate{
         if(!t.afk.is_omitted()) {j["afk"] = t.afk;}
     }
 };
+// https://discord.com/developers/docs/topics/gateway#hello
 class Hello{
   public:
     Hello(
@@ -197,6 +204,7 @@ class Hello{
         if(!t.heartbeat_interval.is_omitted()) {j["heartbeat_interval"] = t.heartbeat_interval;}
     }
 };
+// https://discord.com/developers/docs/topics/gateway#activity-object
 class Activity{
   public:
     Activity(
@@ -204,14 +212,14 @@ class Activity{
         field<int> type = uninitialized,
         nullable_omittable_field<std::string> url = omitted,
         field<int> created_at = uninitialized,
-        omittable_field<Timestamps> timestamps = omitted,
+        omittable_field<ActivityTimestamps> timestamps = omitted,
         omittable_field<Snowflake> application_id = omitted,
         nullable_omittable_field<std::string> details = omitted,
         nullable_omittable_field<std::string> state = omitted,
         nullable_omittable_field<Emoji> emoji = omitted,
-        omittable_field<Party> party = omitted,
-        omittable_field<Assets> assets = omitted,
-        omittable_field<Secrets> secrets = omitted,
+        omittable_field<ActivityParty> party = omitted,
+        omittable_field<ActivityAssets> assets = omitted,
+        omittable_field<ActivitySecrets> secrets = omitted,
         omittable_field<bool> instance = omitted,
         omittable_field<int> flags = omitted,
         omittable_field<std::vector<Button> > buttons = omitted
@@ -237,14 +245,14 @@ class Activity{
     field<int> type;
     nullable_omittable_field<std::string> url;
     field<int> created_at;
-    omittable_field<Timestamps> timestamps;
+    omittable_field<ActivityTimestamps> timestamps;
     omittable_field<Snowflake> application_id;
     nullable_omittable_field<std::string> details;
     nullable_omittable_field<std::string> state;
     nullable_omittable_field<Emoji> emoji;
-    omittable_field<Party> party;
-    omittable_field<Assets> assets;
-    omittable_field<Secrets> secrets;
+    omittable_field<ActivityParty> party;
+    omittable_field<ActivityAssets> assets;
+    omittable_field<ActivitySecrets> secrets;
     omittable_field<bool> instance;
     omittable_field<int> flags;
     omittable_field<std::vector<Button> > buttons;
@@ -268,6 +276,7 @@ class Activity{
         if(!t.buttons.is_omitted()) {j["buttons"] = t.buttons;}
     }
 };
+// https://discord.com/developers/docs/topics/gateway#session-start-limit-object
 class SessionStartLimit{
   public:
     SessionStartLimit(

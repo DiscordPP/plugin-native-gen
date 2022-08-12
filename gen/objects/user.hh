@@ -4,6 +4,7 @@
 
 #include "../field.hh"
 
+// https://discord.com/developers/docs/resources/user#user-object
 class User{
   public:
     User(
@@ -75,6 +76,7 @@ class User{
         if(!t.public_flags.is_omitted()) {j["public_flags"] = t.public_flags;}
     }
 };
+// https://discord.com/developers/docs/resources/user#connection-object
 class Connection{
   public:
     Connection(
@@ -82,7 +84,7 @@ class Connection{
         field<std::string> name = uninitialized,
         field<std::string> type = uninitialized,
         omittable_field<bool> revoked = omitted,
-        omittable_field<std::vector<ServerIntegration>> integrations = omitted,
+        omittable_field<std::vector<Integration> > integrations = omitted,
         field<bool> verified = uninitialized,
         field<bool> friend_sync = uninitialized,
         field<bool> show_activity = uninitialized,
@@ -103,7 +105,7 @@ class Connection{
     field<std::string> name;
     field<std::string> type;
     omittable_field<bool> revoked;
-    omittable_field<std::vector<ServerIntegration>> integrations;
+    omittable_field<std::vector<Integration> > integrations;
     field<bool> verified;
     field<bool> friend_sync;
     field<bool> show_activity;

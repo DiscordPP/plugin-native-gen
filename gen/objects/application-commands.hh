@@ -4,6 +4,7 @@
 
 #include "../field.hh"
 
+// https://discord.com/developers/docs/interactions/application-commands#application-command-object
 class ApplicationCommand{
   public:
     ApplicationCommand(
@@ -67,6 +68,7 @@ class ApplicationCommand{
         if(!t.version.is_omitted()) {j["version"] = t.version;}
     }
 };
+// https://discord.com/developers/docs/interactions/application-commands#application-command-object
 class ApplicationCommandOption{
   public:
     ApplicationCommandOption(
@@ -134,6 +136,7 @@ class ApplicationCommandOption{
         if(!t.autocomplete.is_omitted()) {j["autocomplete"] = t.autocomplete;}
     }
 };
+// https://discord.com/developers/docs/interactions/application-commands#application-command-object
 class ApplicationCommandOptionChoice{
   public:
     ApplicationCommandOptionChoice(
@@ -157,6 +160,7 @@ class ApplicationCommandOptionChoice{
         if(!t.value.is_omitted()) {j["value"] = t.value;}
     }
 };
+// https://discord.com/developers/docs/interactions/application-commands#application-command-object
 class ApplicationCommandInteractionDataOption{
   public:
     ApplicationCommandInteractionDataOption(
@@ -188,13 +192,14 @@ class ApplicationCommandInteractionDataOption{
         if(!t.focused.is_omitted()) {j["focused"] = t.focused;}
     }
 };
+// https://discord.com/developers/docs/interactions/application-commands#application-command-permissions-object
 class GuildApplicationCommandPermissions{
   public:
     GuildApplicationCommandPermissions(
         field<Snowflake> id = uninitialized,
         field<Snowflake> application_id = uninitialized,
         field<Snowflake> guild_id = uninitialized,
-        field<std::vector<ApplicationCommandPermissions>> permissions = uninitialized
+        field<std::vector<ApplicationCommandPermissions> > permissions = uninitialized
     ): 
         id(id),
         application_id(application_id),
@@ -205,7 +210,7 @@ class GuildApplicationCommandPermissions{
     field<Snowflake> id;
     field<Snowflake> application_id;
     field<Snowflake> guild_id;
-    field<std::vector<ApplicationCommandPermissions>> permissions;
+    field<std::vector<ApplicationCommandPermissions> > permissions;
 
     friend void to_json(nlohmann::json &j, const GuildApplicationCommandPermissions &t) {
         //ToJsonExtra
@@ -215,6 +220,7 @@ class GuildApplicationCommandPermissions{
         if(!t.permissions.is_omitted()) {j["permissions"] = t.permissions;}
     }
 };
+// https://discord.com/developers/docs/interactions/application-commands#application-command-permissions-object
 class ApplicationCommandPermissions{
   public:
     ApplicationCommandPermissions(

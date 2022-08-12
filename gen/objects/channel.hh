@@ -4,6 +4,7 @@
 
 #include "../field.hh"
 
+// https://discord.com/developers/docs/resources/channel#channel-object
 class Channel{
   public:
     Channel(
@@ -29,8 +30,8 @@ class Channel{
         omittable_field<int> video_quality_mode = omitted,
         omittable_field<int> message_count = omitted,
         omittable_field<int> member_count = omitted,
-        omittable_field<AThreadMetadata> thread_metadata = omitted,
-        omittable_field<AThreadMember> member = omitted,
+        omittable_field<ThreadMetadata> thread_metadata = omitted,
+        omittable_field<ThreadMember> member = omitted,
         omittable_field<int> default_auto_archive_duration = omitted,
         omittable_field<std::string> permissions = omitted,
         omittable_field<int> flags = omitted,
@@ -88,8 +89,8 @@ class Channel{
     omittable_field<int> video_quality_mode;
     omittable_field<int> message_count;
     omittable_field<int> member_count;
-    omittable_field<AThreadMetadata> thread_metadata;
-    omittable_field<AThreadMember> member;
+    omittable_field<ThreadMetadata> thread_metadata;
+    omittable_field<ThreadMember> member;
     omittable_field<int> default_auto_archive_duration;
     omittable_field<std::string> permissions;
     omittable_field<int> flags;
@@ -127,6 +128,7 @@ class Channel{
         if(!t.total_message_sent.is_omitted()) {j["total_message_sent"] = t.total_message_sent;}
     }
 };
+// https://discord.com/developers/docs/resources/channel#message-object
 class Message{
   public:
     Message(
@@ -156,8 +158,8 @@ class Message{
         nullable_omittable_field<Message> referenced_message = omitted,
         omittable_field<MessageInteraction> interaction = omitted,
         omittable_field<Channel> thread = omitted,
-        omittable_field<std::vector<MessageComponent> > components = omitted,
-        omittable_field<std::vector<MessageStickerItem> > sticker_items = omitted,
+        omittable_field<std::vector<Component> > components = omitted,
+        omittable_field<std::vector<StickerItem> > sticker_items = omitted,
         omittable_field<std::vector<Sticker> > stickers = omitted,
         omittable_field<int> position = omitted
     ): 
@@ -219,8 +221,8 @@ class Message{
     nullable_omittable_field<Message> referenced_message;
     omittable_field<MessageInteraction> interaction;
     omittable_field<Channel> thread;
-    omittable_field<std::vector<MessageComponent> > components;
-    omittable_field<std::vector<MessageStickerItem> > sticker_items;
+    omittable_field<std::vector<Component> > components;
+    omittable_field<std::vector<StickerItem> > sticker_items;
     omittable_field<std::vector<Sticker> > stickers;
     omittable_field<int> position;
 
@@ -258,6 +260,7 @@ class Message{
         if(!t.position.is_omitted()) {j["position"] = t.position;}
     }
 };
+// https://discord.com/developers/docs/resources/channel#message-object
 class MessageActivity{
   public:
     MessageActivity(
@@ -277,6 +280,7 @@ class MessageActivity{
         if(!t.party_id.is_omitted()) {j["party_id"] = t.party_id;}
     }
 };
+// https://discord.com/developers/docs/resources/channel#message-reference-object
 class MessageReference{
   public:
     MessageReference(
@@ -304,6 +308,7 @@ class MessageReference{
         if(!t.fail_if_not_exists.is_omitted()) {j["fail_if_not_exists"] = t.fail_if_not_exists;}
     }
 };
+// https://discord.com/developers/docs/resources/channel#followed-channel-object
 class FollowedChannel{
   public:
     FollowedChannel(
@@ -323,6 +328,7 @@ class FollowedChannel{
         if(!t.webhook_id.is_omitted()) {j["webhook_id"] = t.webhook_id;}
     }
 };
+// https://discord.com/developers/docs/resources/channel#reaction-object
 class Reaction{
   public:
     Reaction(
@@ -346,6 +352,7 @@ class Reaction{
         if(!t.emoji.is_omitted()) {j["emoji"] = t.emoji;}
     }
 };
+// https://discord.com/developers/docs/resources/channel#overwrite-object
 class Overwrite{
   public:
     Overwrite(
@@ -373,6 +380,7 @@ class Overwrite{
         if(!t.deny.is_omitted()) {j["deny"] = t.deny;}
     }
 };
+// https://discord.com/developers/docs/resources/channel#thread-metadata-object
 class ThreadMetadata{
   public:
     ThreadMetadata(
@@ -408,6 +416,7 @@ class ThreadMetadata{
         if(!t.create_timestamp.is_omitted()) {j["create_timestamp"] = t.create_timestamp;}
     }
 };
+// https://discord.com/developers/docs/resources/channel#thread-member-object
 class ThreadMember{
   public:
     ThreadMember(
@@ -435,6 +444,7 @@ class ThreadMember{
         if(!t.flags.is_omitted()) {j["flags"] = t.flags;}
     }
 };
+// https://discord.com/developers/docs/resources/channel#embed-object
 class Embed{
   public:
     Embed(
@@ -498,6 +508,7 @@ class Embed{
         if(!t.fields.is_omitted()) {j["fields"] = t.fields;}
     }
 };
+// https://discord.com/developers/docs/resources/channel#embed-object
 class EmbedThumbnail{
   public:
     EmbedThumbnail(
@@ -525,6 +536,7 @@ class EmbedThumbnail{
         if(!t.width.is_omitted()) {j["width"] = t.width;}
     }
 };
+// https://discord.com/developers/docs/resources/channel#embed-object
 class EmbedVideo{
   public:
     EmbedVideo(
@@ -552,6 +564,7 @@ class EmbedVideo{
         if(!t.width.is_omitted()) {j["width"] = t.width;}
     }
 };
+// https://discord.com/developers/docs/resources/channel#embed-object
 class EmbedImage{
   public:
     EmbedImage(
@@ -579,6 +592,7 @@ class EmbedImage{
         if(!t.width.is_omitted()) {j["width"] = t.width;}
     }
 };
+// https://discord.com/developers/docs/resources/channel#embed-object
 class EmbedProvider{
   public:
     EmbedProvider(
@@ -598,6 +612,7 @@ class EmbedProvider{
         if(!t.url.is_omitted()) {j["url"] = t.url;}
     }
 };
+// https://discord.com/developers/docs/resources/channel#embed-object
 class EmbedAuthor{
   public:
     EmbedAuthor(
@@ -625,6 +640,7 @@ class EmbedAuthor{
         if(!t.proxy_icon_url.is_omitted()) {j["proxy_icon_url"] = t.proxy_icon_url;}
     }
 };
+// https://discord.com/developers/docs/resources/channel#embed-object
 class EmbedFooter{
   public:
     EmbedFooter(
@@ -648,6 +664,7 @@ class EmbedFooter{
         if(!t.proxy_icon_url.is_omitted()) {j["proxy_icon_url"] = t.proxy_icon_url;}
     }
 };
+// https://discord.com/developers/docs/resources/channel#embed-object
 class EmbedField{
   public:
     EmbedField(
@@ -671,6 +688,7 @@ class EmbedField{
         if(!t.display_inline.is_omitted()) {j["inline"] = t.display_inline;}
     }
 };
+// https://discord.com/developers/docs/resources/channel#attachment-object
 class Attachment{
   public:
     Attachment(
@@ -722,6 +740,7 @@ class Attachment{
         if(!t.ephemeral.is_omitted()) {j["ephemeral"] = t.ephemeral;}
     }
 };
+// https://discord.com/developers/docs/resources/channel#channel-mention-object
 class ChannelMention{
   public:
     ChannelMention(
@@ -749,6 +768,7 @@ class ChannelMention{
         if(!t.name.is_omitted()) {j["name"] = t.name;}
     }
 };
+// https://discord.com/developers/docs/resources/channel#allowed-mentions-object
 class AllowedMentions{
   public:
     AllowedMentions(

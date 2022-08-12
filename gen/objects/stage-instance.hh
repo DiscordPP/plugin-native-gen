@@ -4,6 +4,7 @@
 
 #include "../field.hh"
 
+// https://discord.com/developers/docs/resources/stage-instance#stage-instance-object
 class StageInstance{
   public:
     StageInstance(

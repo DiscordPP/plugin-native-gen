@@ -5,6 +5,23 @@
     },
     "shard": {
       "type": "++std::array<int, 2>"
+    },
+    "presence": {
+      "type": "++GatewayPresenceUpdate"
+    }
+  },
+  "Activity": {
+    "timestamps": {
+      "type": "++ActivityTimestamps"
+    },
+    "party": {
+      "type": "++ActivityParty"
+    },
+    "assets": {
+      "type": "++ActivityAssets"
+    },
+    "secrets": {
+      "type": "++ActivitySecrets"
     }
   }
 }

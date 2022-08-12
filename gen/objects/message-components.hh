@@ -4,6 +4,7 @@
 
 #include "../field.hh"
 
+// https://discord.com/developers/docs/interactions/message-components#button-object
 class Button{
   public:
     Button(
@@ -43,6 +44,7 @@ class Button{
         if(!t.disabled.is_omitted()) {j["disabled"] = t.disabled;}
     }
 };
+// https://discord.com/developers/docs/interactions/message-components#select-menu-object
 class SelectMenu{
   public:
     SelectMenu(
@@ -82,6 +84,7 @@ class SelectMenu{
         if(!t.disabled.is_omitted()) {j["disabled"] = t.disabled;}
     }
 };
+// https://discord.com/developers/docs/interactions/message-components#select-menu-object
 class SelectOption{
   public:
     SelectOption(

@@ -4,6 +4,7 @@
 
 #include "../field.hh"
 
+// https://discord.com/developers/docs/resources/application#application-object
 class Application{
   public:
     Application(
@@ -99,6 +100,7 @@ class Application{
         if(!t.custom_install_url.is_omitted()) {j["custom_install_url"] = t.custom_install_url;}
     }
 };
+// https://discord.com/developers/docs/resources/application#install-params-object
 class InstallParams{
   public:
     InstallParams(

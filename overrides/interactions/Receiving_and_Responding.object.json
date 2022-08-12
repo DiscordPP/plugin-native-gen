@@ -1,0 +1,15 @@
+{
+  "Interaction": {
+    "parser-data": {
+      "requeue": 1
+    },
+    "data": {
+      "type": "++std::variant<ApplicationCommandData, MessageComponentData, ModalSubmitData, ResolvedData>"
+    }
+  },
+  "Resolved Data": {
+    "messages": {
+      "type": "++std::map<Snowflake, Message>"
+    }
+  }
+}

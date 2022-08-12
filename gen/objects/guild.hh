@@ -4,6 +4,7 @@
 
 #include "../field.hh"
 
+// https://discord.com/developers/docs/resources/guild#guild-object
 class Guild{
   public:
     Guild(
@@ -179,6 +180,7 @@ class Guild{
         if(!t.premium_progress_bar_enabled.is_omitted()) {j["premium_progress_bar_enabled"] = t.premium_progress_bar_enabled;}
     }
 };
+// https://discord.com/developers/docs/resources/guild#guild-preview-object
 class GuildPreview{
   public:
     GuildPreview(
@@ -234,6 +236,7 @@ class GuildPreview{
         if(!t.stickers.is_omitted()) {j["stickers"] = t.stickers;}
     }
 };
+// https://discord.com/developers/docs/resources/guild#guild-widget-settings-object
 class GuildWidgetSettings{
   public:
     GuildWidgetSettings(
@@ -253,6 +256,7 @@ class GuildWidgetSettings{
         if(!t.channel_id.is_omitted()) {j["channel_id"] = t.channel_id;}
     }
 };
+// https://discord.com/developers/docs/resources/guild#guild-widget-object
 class GuildWidget{
   public:
     GuildWidget(
@@ -288,6 +292,7 @@ class GuildWidget{
         if(!t.presence_count.is_omitted()) {j["presence_count"] = t.presence_count;}
     }
 };
+// https://discord.com/developers/docs/resources/guild#guild-member-object
 class GuildMember{
   public:
     GuildMember(
@@ -343,6 +348,7 @@ class GuildMember{
         if(!t.communication_disabled_until.is_omitted()) {j["communication_disabled_until"] = t.communication_disabled_until;}
     }
 };
+// https://discord.com/developers/docs/resources/guild#integration-object
 class Integration{
   public:
     Integration(
@@ -356,7 +362,7 @@ class Integration{
         omittable_field<IntegrationExpireBehavior> expire_behavior = omitted,
         omittable_field<int> expire_grace_period = omitted,
         omittable_field<User> user = omitted,
-        field<Account> account = uninitialized,
+        field<IntegrationAccount> account = uninitialized,
         omittable_field<Timestamp> synced_at = omitted,
         omittable_field<int> subscriber_count = omitted,
         omittable_field<bool> revoked = omitted,
@@ -389,7 +395,7 @@ class Integration{
     omittable_field<IntegrationExpireBehavior> expire_behavior;
     omittable_field<int> expire_grace_period;
     omittable_field<User> user;
-    field<Account> account;
+    field<IntegrationAccount> account;
     omittable_field<Timestamp> synced_at;
     omittable_field<int> subscriber_count;
     omittable_field<bool> revoked;
@@ -414,6 +420,7 @@ class Integration{
         if(!t.application.is_omitted()) {j["application"] = t.application;}
     }
 };
+// https://discord.com/developers/docs/resources/guild#integration-account-object
 class IntegrationAccount{
   public:
     IntegrationAccount(
@@ -433,6 +440,7 @@ class IntegrationAccount{
         if(!t.name.is_omitted()) {j["name"] = t.name;}
     }
 };
+// https://discord.com/developers/docs/resources/guild#integration-application-object
 class IntegrationApplication{
   public:
     IntegrationApplication(
@@ -464,6 +472,7 @@ class IntegrationApplication{
         if(!t.bot.is_omitted()) {j["bot"] = t.bot;}
     }
 };
+// https://discord.com/developers/docs/resources/guild#ban-object
 class Ban{
   public:
     Ban(
@@ -483,6 +492,7 @@ class Ban{
         if(!t.user.is_omitted()) {j["user"] = t.user;}
     }
 };
+// https://discord.com/developers/docs/resources/guild#welcome-screen-object
 class WelcomeScreen{
   public:
     WelcomeScreen(
@@ -502,6 +512,7 @@ class WelcomeScreen{
         if(!t.welcome_channels.is_omitted()) {j["welcome_channels"] = t.welcome_channels;}
     }
 };
+// https://discord.com/developers/docs/resources/guild#welcome-screen-object
 class WelcomeScreenChannel{
   public:
     WelcomeScreenChannel(

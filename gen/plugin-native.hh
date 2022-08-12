@@ -34,10 +34,43 @@ inline std::string url_encode(const std::string &value) {
 } // namespace util
 
 #define OBJECT_BREAKOUTS
-//#define Bot PluginObjects
+// https://discord.com/developers/docs/reference#iso8601-datetime
 using Timestamp = std::string;
+// https://discord.com/developers/docs/reference#image-data
 using ImageData = std::string;
+// https://discord.com/developers/docs/reference#locales
 using Locale = std::string;
+// https://discord.com/developers/docs/topics/teams#data-models-team-object
+using Team = json;
+// https://discord.com/developers/docs/resources/audit-log#audit-log-entry-object-optional-audit-entry-info
+using OptionalAuditEntryInfo = json;
+// https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-rule-object-trigger-metadata
+using TriggerMetadata = json;
+// https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-action-object
+using Action = json;
+// https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-action-object-action-types
+using ActionType = int;
+// https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-action-object-action-metadata
+using ActionMetadata = json;
+// https://discord.com/developers/docs/interactions/message-components#component-object
+using Component = json;
+// https://discord.com/developers/docs/resources/guild#integration-account-object
+using Action = json;
+// https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object-guild-scheduled-event-privacy-level
+using PrivacyLevel = int;
+// https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object-guild-scheduled-event-status
+using EventStatus = int;
+// https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object-guild-scheduled-event-entity-types
+using ScheduledEntityType = int;
+// https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object-guild-scheduled-event-entity-metadata
+using GuildScheduledEventEntityMetadata = json;
+// https://discord.com/developers/docs/topics/gateway#identify-identify-connection-properties
+using IdentifyConnectionProperties = json;
+// https://discord.com/developers/docs/topics/gateway#activity-object
+using ActivityTimestamps = json;
+using ActivityParty = json;
+using ActivityAssets = json;
+using ActivitySecrets = json;
 /* This space intentionally left blank */
 #include "objects_fwd/application-commands_fwd.hh"
 #include "objects_fwd/message-components_fwd.hh"
@@ -80,7 +113,6 @@ using Locale = std::string;
 #include "objects/permissions.hh"
 /* This space intentionally left blank */
 #include "objects/receiving-and-responding.hh"
-//#undef Bot
 #undef OBJECT_BREAKOUTS
 
 template <class BASE> class PluginNative : public BASE, virtual BotStruct {

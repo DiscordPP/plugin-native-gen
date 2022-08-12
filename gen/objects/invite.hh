@@ -4,6 +4,7 @@
 
 #include "../field.hh"
 
+// https://discord.com/developers/docs/resources/invite#invite-object
 class Invite{
   public:
     Invite(
@@ -63,6 +64,7 @@ class Invite{
         if(!t.guild_scheduled_event.is_omitted()) {j["guild_scheduled_event"] = t.guild_scheduled_event;}
     }
 };
+// https://discord.com/developers/docs/resources/invite#invite-metadata-object
 class InviteMetadata{
   public:
     InviteMetadata(
@@ -94,6 +96,7 @@ class InviteMetadata{
         if(!t.created_at.is_omitted()) {j["created_at"] = t.created_at;}
     }
 };
+// https://discord.com/developers/docs/resources/invite#invite-stage-instance-object
 class InviteStageInstance{
   public:
     InviteStageInstance(

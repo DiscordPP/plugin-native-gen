@@ -4,73 +4,7 @@
 
 #include "../field.hh"
 
-class Interaction{
-  public:
-    Interaction(
-        field<Snowflake> id = uninitialized,
-        field<Snowflake> application_id = uninitialized,
-        field<InteractionType> type = uninitialized,
-        omittable_field<InteractionData> data = omitted,
-        omittable_field<Snowflake> guild_id = omitted,
-        omittable_field<Snowflake> channel_id = omitted,
-        omittable_field<GuildMember> member = omitted,
-        omittable_field<User> user = omitted,
-        field<std::string> token = uninitialized,
-        field<int> version = uninitialized,
-        omittable_field<Message> message = omitted,
-        omittable_field<std::string> app_permissions = omitted,
-        omittable_field<std::string> locale = omitted,
-        omittable_field<std::string> guild_locale = omitted
-    ): 
-        id(id),
-        application_id(application_id),
-        type(type),
-        data(data),
-        guild_id(guild_id),
-        channel_id(channel_id),
-        member(member),
-        user(user),
-        token(token),
-        version(version),
-        message(message),
-        app_permissions(app_permissions),
-        locale(locale),
-        guild_locale(guild_locale)
-    {}
-    
-    field<Snowflake> id;
-    field<Snowflake> application_id;
-    field<InteractionType> type;
-    omittable_field<InteractionData> data;
-    omittable_field<Snowflake> guild_id;
-    omittable_field<Snowflake> channel_id;
-    omittable_field<GuildMember> member;
-    omittable_field<User> user;
-    field<std::string> token;
-    field<int> version;
-    omittable_field<Message> message;
-    omittable_field<std::string> app_permissions;
-    omittable_field<std::string> locale;
-    omittable_field<std::string> guild_locale;
-
-    friend void to_json(nlohmann::json &j, const Interaction &t) {
-        //ToJsonExtra
-        if(!t.id.is_omitted()) {j["id"] = t.id;}
-        if(!t.application_id.is_omitted()) {j["application_id"] = t.application_id;}
-        if(!t.type.is_omitted()) {j["type"] = t.type;}
-        if(!t.data.is_omitted()) {j["data"] = t.data;}
-        if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
-        if(!t.channel_id.is_omitted()) {j["channel_id"] = t.channel_id;}
-        if(!t.member.is_omitted()) {j["member"] = t.member;}
-        if(!t.user.is_omitted()) {j["user"] = t.user;}
-        if(!t.token.is_omitted()) {j["token"] = t.token;}
-        if(!t.version.is_omitted()) {j["version"] = t.version;}
-        if(!t.message.is_omitted()) {j["message"] = t.message;}
-        if(!t.app_permissions.is_omitted()) {j["app_permissions"] = t.app_permissions;}
-        if(!t.locale.is_omitted()) {j["locale"] = t.locale;}
-        if(!t.guild_locale.is_omitted()) {j["guild_locale"] = t.guild_locale;}
-    }
-};
+// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object
 class ApplicationCommandData{
   public:
     ApplicationCommandData(
@@ -110,6 +44,7 @@ class ApplicationCommandData{
         if(!t.target_id.is_omitted()) {j["target_id"] = t.target_id;}
     }
 };
+// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object
 class MessageComponentData{
   public:
     MessageComponentData(
@@ -133,6 +68,7 @@ class MessageComponentData{
         if(!t.values.is_omitted()) {j["values"] = t.values;}
     }
 };
+// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object
 class ModalSubmitData{
   public:
     ModalSubmitData(
@@ -152,14 +88,15 @@ class ModalSubmitData{
         if(!t.components.is_omitted()) {j["components"] = t.components;}
     }
 };
+// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object
 class ResolvedData{
   public:
     ResolvedData(
         omittable_field<std::map<Snowflake, User> > users = omitted,
-        omittable_field<std::map<Snowflake, Member> > members = omitted,
+        omittable_field<std::map<Snowflake, GuildMember> > members = omitted,
         omittable_field<std::map<Snowflake, Role> > roles = omitted,
         omittable_field<std::map<Snowflake, Channel> > channels = omitted,
-        omittable_field<std::map<Snowflake, Messages> > messages = omitted,
+        omittable_field<std::map<Snowflake, Message> > messages = omitted,
         omittable_field<std::map<Snowflake, Attachment> > attachments = omitted
     ): 
         users(users),
@@ -171,10 +108,10 @@ class ResolvedData{
     {}
     
     omittable_field<std::map<Snowflake, User> > users;
-    omittable_field<std::map<Snowflake, Member> > members;
+    omittable_field<std::map<Snowflake, GuildMember> > members;
     omittable_field<std::map<Snowflake, Role> > roles;
     omittable_field<std::map<Snowflake, Channel> > channels;
-    omittable_field<std::map<Snowflake, Messages> > messages;
+    omittable_field<std::map<Snowflake, Message> > messages;
     omittable_field<std::map<Snowflake, Attachment> > attachments;
 
     friend void to_json(nlohmann::json &j, const ResolvedData &t) {
@@ -187,6 +124,7 @@ class ResolvedData{
         if(!t.attachments.is_omitted()) {j["attachments"] = t.attachments;}
     }
 };
+// https://discord.com/developers/docs/interactions/receiving-and-responding#message-interaction-object
 class MessageInteraction{
   public:
     MessageInteraction(
@@ -194,7 +132,7 @@ class MessageInteraction{
         field<InteractionType> type = uninitialized,
         field<std::string> name = uninitialized,
         field<User> user = uninitialized,
-        omittable_field<Member> member = omitted
+        omittable_field<GuildMember> member = omitted
     ): 
         id(id),
         type(type),
@@ -207,7 +145,7 @@ class MessageInteraction{
     field<InteractionType> type;
     field<std::string> name;
     field<User> user;
-    omittable_field<Member> member;
+    omittable_field<GuildMember> member;
 
     friend void to_json(nlohmann::json &j, const MessageInteraction &t) {
         //ToJsonExtra
@@ -218,6 +156,7 @@ class MessageInteraction{
         if(!t.member.is_omitted()) {j["member"] = t.member;}
     }
 };
+// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object
 class InteractionResponse{
   public:
     InteractionResponse(
@@ -235,5 +174,73 @@ class InteractionResponse{
         //ToJsonExtra
         if(!t.type.is_omitted()) {j["type"] = t.type;}
         if(!t.data.is_omitted()) {j["data"] = t.data;}
+    }
+};
+// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object
+class Interaction{
+  public:
+    Interaction(
+        field<Snowflake> id = uninitialized,
+        field<Snowflake> application_id = uninitialized,
+        field<InteractionType> type = uninitialized,
+        omittable_field<std::variant<ApplicationCommandData, MessageComponentData, ModalSubmitData, ResolvedData> > data = omitted,
+        omittable_field<Snowflake> guild_id = omitted,
+        omittable_field<Snowflake> channel_id = omitted,
+        omittable_field<GuildMember> member = omitted,
+        omittable_field<User> user = omitted,
+        field<std::string> token = uninitialized,
+        field<int> version = uninitialized,
+        omittable_field<Message> message = omitted,
+        omittable_field<std::string> app_permissions = omitted,
+        omittable_field<std::string> locale = omitted,
+        omittable_field<std::string> guild_locale = omitted
+    ): 
+        id(id),
+        application_id(application_id),
+        type(type),
+        data(data),
+        guild_id(guild_id),
+        channel_id(channel_id),
+        member(member),
+        user(user),
+        token(token),
+        version(version),
+        message(message),
+        app_permissions(app_permissions),
+        locale(locale),
+        guild_locale(guild_locale)
+    {}
+    
+    field<Snowflake> id;
+    field<Snowflake> application_id;
+    field<InteractionType> type;
+    omittable_field<std::variant<ApplicationCommandData, MessageComponentData, ModalSubmitData, ResolvedData> > data;
+    omittable_field<Snowflake> guild_id;
+    omittable_field<Snowflake> channel_id;
+    omittable_field<GuildMember> member;
+    omittable_field<User> user;
+    field<std::string> token;
+    field<int> version;
+    omittable_field<Message> message;
+    omittable_field<std::string> app_permissions;
+    omittable_field<std::string> locale;
+    omittable_field<std::string> guild_locale;
+
+    friend void to_json(nlohmann::json &j, const Interaction &t) {
+        //ToJsonExtra
+        if(!t.id.is_omitted()) {j["id"] = t.id;}
+        if(!t.application_id.is_omitted()) {j["application_id"] = t.application_id;}
+        if(!t.type.is_omitted()) {j["type"] = t.type;}
+        if(!t.data.is_omitted()) {j["data"] = t.data;}
+        if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
+        if(!t.channel_id.is_omitted()) {j["channel_id"] = t.channel_id;}
+        if(!t.member.is_omitted()) {j["member"] = t.member;}
+        if(!t.user.is_omitted()) {j["user"] = t.user;}
+        if(!t.token.is_omitted()) {j["token"] = t.token;}
+        if(!t.version.is_omitted()) {j["version"] = t.version;}
+        if(!t.message.is_omitted()) {j["message"] = t.message;}
+        if(!t.app_permissions.is_omitted()) {j["app_permissions"] = t.app_permissions;}
+        if(!t.locale.is_omitted()) {j["locale"] = t.locale;}
+        if(!t.guild_locale.is_omitted()) {j["guild_locale"] = t.guild_locale;}
     }
 };

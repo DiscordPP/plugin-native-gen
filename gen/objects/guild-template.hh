@@ -4,6 +4,7 @@
 
 #include "../field.hh"
 
+// https://discord.com/developers/docs/resources/guild-template#guild-template-object
 class GuildTemplate{
   public:
     GuildTemplate(

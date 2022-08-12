@@ -4,6 +4,7 @@
 
 #include "../field.hh"
 
+// https://discord.com/developers/docs/resources/sticker#sticker-object
 class Sticker{
   public:
     Sticker(
@@ -63,6 +64,7 @@ class Sticker{
         if(!t.sort_value.is_omitted()) {j["sort_value"] = t.sort_value;}
     }
 };
+// https://discord.com/developers/docs/resources/sticker#sticker-item-object
 class StickerItem{
   public:
     StickerItem(
@@ -86,6 +88,7 @@ class StickerItem{
         if(!t.format_type.is_omitted()) {j["format_type"] = t.format_type;}
     }
 };
+// https://discord.com/developers/docs/resources/sticker#sticker-pack-object
 class StickerPack{
   public:
     StickerPack(

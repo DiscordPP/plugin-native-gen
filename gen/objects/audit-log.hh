@@ -4,6 +4,7 @@
 
 #include "../field.hh"
 
+// https://discord.com/developers/docs/resources/audit-log#audit-log-object
 class AuditLog{
   public:
     AuditLog(
@@ -11,7 +12,7 @@ class AuditLog{
         field<std::vector<AutoModerationRule> > auto_moderation_rules = uninitialized,
         field<std::vector<GuildScheduledEvent> > guild_scheduled_events = uninitialized,
         field<std::vector<Integration> > integrations = uninitialized,
-        field<std::vector<ThreadSpecificChannel> > threads = uninitialized,
+        field<std::vector<Channel> > threads = uninitialized,
         field<std::vector<User> > users = uninitialized,
         field<std::vector<Webhook> > webhooks = uninitialized
     ): 
@@ -28,7 +29,7 @@ class AuditLog{
     field<std::vector<AutoModerationRule> > auto_moderation_rules;
     field<std::vector<GuildScheduledEvent> > guild_scheduled_events;
     field<std::vector<Integration> > integrations;
-    field<std::vector<ThreadSpecificChannel> > threads;
+    field<std::vector<Channel> > threads;
     field<std::vector<User> > users;
     field<std::vector<Webhook> > webhooks;
 
@@ -43,6 +44,7 @@ class AuditLog{
         if(!t.webhooks.is_omitted()) {j["webhooks"] = t.webhooks;}
     }
 };
+// https://discord.com/developers/docs/resources/audit-log#audit-log-entry-object
 class AuditLogEntry{
   public:
     AuditLogEntry(
@@ -82,6 +84,7 @@ class AuditLogEntry{
         if(!t.reason.is_omitted()) {j["reason"] = t.reason;}
     }
 };
+// https://discord.com/developers/docs/resources/audit-log#audit-log-change-object
 class AuditLogChange{
   public:
     AuditLogChange(

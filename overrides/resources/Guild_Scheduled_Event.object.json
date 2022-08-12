@@ -1,0 +1,7 @@
+{
+  "Guild Scheduled Event": {
+    "entity_metadata": {
+      "type": "++GuildScheduledEventEntityMetadata"
+    }
+  }
+}

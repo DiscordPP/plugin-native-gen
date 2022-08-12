@@ -33,7 +33,8 @@ TYPES: Dict[str, str] = {
     'dictionary with keys in available locales': 'std::map<Locale, std::string>',
     'integer for integer options, double for number options': 'std::variant<int, double>',
     'mixed': 'json',
-    'null': 'std::nullptr_t'
+    'null': 'std::nullptr_t',
+    'member': 'GuildMember'
 }
 
 NL = '\n'
@@ -67,7 +68,7 @@ def warn_reserved(s):
 
 def parse_type(src: str):
     if src.startswith('++'):
-        return src[2:]
+        return src[2:] + (' ' if src.endswith('>') else '')
     src = src.lower().strip()
     opening = src.find('(')
     if opening >= 0:
@@ -76,6 +77,8 @@ def parse_type(src: str):
         return TYPES[src]
     if ' or ' in src:
         return f'std::variant<{", ".join([parse_type(s) for s in re.split(", or |, | or ", src)])}> '
+    if src.startswith('a '):
+        return parse_type(src.removeprefix("a "))
     if src.startswith('array of ') or src.startswith('list of '):
         return f'std::vector<{parse_type(src.removeprefix("array of ").removeprefix("list of ").removesuffix("s"))}> '
     if src.startswith('map of '):
@@ -92,7 +95,7 @@ def parse_type(src: str):
     back_split = src.rsplit(' ', 1)
     if len(back_split) == 2:
         if back_split[1] in ['object', 'string', 'value']:
-            return make_pascal_case(back_split[0])
+            return parse_type(back_split[0])
     fallback = make_pascal_case(src)
     print(f'{bcolors.OKCYAN}INFO: unknown type `{src}`, falling back to `{fallback}`{bcolors.ENDC}')
     return fallback
@@ -137,11 +140,28 @@ def run():
 
 '''
             # @formatter:on
+            i = 0
+            while i < len(objects):
+                name, fields = list(objects.items())[i]
+                metadata = fields.get("parser-data")
+                if metadata:
+                    requeue = metadata.get("requeue")
+                    if requeue:
+                        metadata["requeue"] -= 1
+                        print(objects.keys())
+                        objects[name] = objects.pop(name)
+                        print(objects.keys())
+                        continue
+                i += 1
             for name, fields in objects.items():
                 name = make_pascal_case(name)
                 print("Processing", name, "in", str(filepath).replace(str(PARSED_PATH), ""))
                 # TODO Load exceptions from some file
+                metadata = {}
                 for field_name, field in fields.items():
+                    if field_name == "parser-data":
+                        metadata = field
+                        continue
                     warn_reserved(field.get("name") or field_name)
                     field["type"] = parse_type(field["type"])
                     field["container_type"] = f'{"nullable_" if field["nullable"] else ""}' + \
@@ -149,8 +169,10 @@ def run():
                         f'field<{field["type"]}>'
                     # print('                                 ', field["type"])
                     # print('                             : ', parse_type(field["type"]))
+                fields.pop("parser-data")
                 # @formatter:off
                 render += f'''\
+// {metadata.get("docs_url")}
 class {name}{{
   public:
     {name}(
@@ -239,19 +261,49 @@ inline std::string url_encode(const std::string &value) {{
 }} // namespace util
 
 #define OBJECT_BREAKOUTS
-//#define Bot PluginObjects
+// https://discord.com/developers/docs/reference#iso8601-datetime
 using Timestamp = std::string;
+// https://discord.com/developers/docs/reference#image-data
 using ImageData = std::string;
+// https://discord.com/developers/docs/reference#locales
 using Locale = std::string;
+// https://discord.com/developers/docs/topics/teams#data-models-team-object
 using Team = json;
+// https://discord.com/developers/docs/resources/audit-log#audit-log-entry-object-optional-audit-entry-info
 using OptionalAuditEntryInfo = json;
+// https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-rule-object-trigger-metadata
+using TriggerMetadata = json;
+// https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-action-object
+using Action = json;
+// https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-action-object-action-types
+using ActionType = int;
+// https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-action-object-action-metadata
+using ActionMetadata = json;
+// https://discord.com/developers/docs/interactions/message-components#component-object
+using Component = json;
+// https://discord.com/developers/docs/resources/guild#integration-account-object
+using Action = json;
+// https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object-guild-scheduled-event-privacy-level
+using PrivacyLevel = int;
+// https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object-guild-scheduled-event-status
+using EventStatus = int;
+// https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object-guild-scheduled-event-entity-types
+using ScheduledEntityType = int;
+// https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object-guild-scheduled-event-entity-metadata
+using GuildScheduledEventEntityMetadata = json;
+// https://discord.com/developers/docs/topics/gateway#identify-identify-connection-properties
+using IdentifyConnectionProperties = json;
+// https://discord.com/developers/docs/topics/gateway#activity-object
+using ActivityTimestamps = json;
+using ActivityParty = json;
+using ActivityAssets = json;
+using ActivitySecrets = json;
 /* This space intentionally left blank */
 {f'{NL}/* This space intentionally left blank */{NL}'.join([
     NL.join([f'#include "{include}"' for include in includes])
     for includes in
     [object_fwd_includes, object_fwd_final_includes, object_includes, object_final_includes]
 ])}
-//#undef Bot
 #undef OBJECT_BREAKOUTS
 
 template <class BASE> class PluginNative : public BASE, virtual BotStruct {{

@@ -1,6 +1,8 @@
 {
   "Audit Log": {
-    "threads": "++std::vector<Channel>"
+    "threads": {
+      "type": "++std::vector<Channel>"
+    }
   },
   "Audit Log Entry": {
     "options": {

@@ -2,6 +2,9 @@
   "Integration": {
     "expire_behavior": {
       "type": "++IntegrationExpireBehavior"
+    },
+    "account": {
+      "type": "++IntegrationAccount"
     }
   }
 }

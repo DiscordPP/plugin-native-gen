@@ -4,6 +4,7 @@
 
 #include "../field.hh"
 
+// https://discord.com/developers/docs/topics/permissions#role-object
 class Role{
   public:
     Role(
@@ -59,6 +60,7 @@ class Role{
         if(!t.tags.is_omitted()) {j["tags"] = t.tags;}
     }
 };
+// https://discord.com/developers/docs/topics/permissions#role-object
 class RoleTags{
   public:
     RoleTags(

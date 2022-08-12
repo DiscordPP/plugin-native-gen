@@ -4,6 +4,7 @@
 
 #include "../field.hh"
 
+// https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-rule-object
 class AutoModerationRule{
   public:
     AutoModerationRule(
@@ -59,6 +60,7 @@ class AutoModerationRule{
         if(!t.exempt_channels.is_omitted()) {j["exempt_channels"] = t.exempt_channels;}
     }
 };
+// https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-action-object
 class AutoModerationAction{
   public:
     AutoModerationAction(

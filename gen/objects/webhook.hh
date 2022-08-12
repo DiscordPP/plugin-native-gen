@@ -4,6 +4,7 @@
 
 #include "../field.hh"
 
+// https://discord.com/developers/docs/resources/webhook#webhook-object
 class Webhook{
   public:
     Webhook(
