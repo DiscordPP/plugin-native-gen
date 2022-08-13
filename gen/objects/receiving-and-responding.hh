@@ -73,14 +73,14 @@ class ModalSubmitData{
   public:
     ModalSubmitData(
         field<std::string> custom_id = uninitialized,
-        field<std::vector<MessageComponent> > components = uninitialized
+        field<std::vector<Component> > components = uninitialized
     ): 
         custom_id(custom_id),
         components(components)
     {}
     
     field<std::string> custom_id;
-    field<std::vector<MessageComponent> > components;
+    field<std::vector<Component> > components;
 
     friend void to_json(nlohmann::json &j, const ModalSubmitData &t) {
         //ToJsonExtra

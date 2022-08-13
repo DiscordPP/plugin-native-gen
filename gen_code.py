@@ -260,7 +260,6 @@ inline std::string url_encode(const std::string &value) {{
 }}
 }} // namespace util
 
-#define OBJECT_BREAKOUTS
 // https://discord.com/developers/docs/reference#iso8601-datetime
 using Timestamp = std::string;
 // https://discord.com/developers/docs/reference#image-data
@@ -298,6 +297,10 @@ using ActivityTimestamps = json;
 using ActivityParty = json;
 using ActivityAssets = json;
 using ActivitySecrets = json;
+// Missing? https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-interaction-callback-data-structure
+using InteractionCallbackData = json;
+
+#define OBJECT_BREAKOUTS
 /* This space intentionally left blank */
 {f'{NL}/* This space intentionally left blank */{NL}'.join([
     NL.join([f'#include "{include}"' for include in includes])
@@ -305,6 +308,8 @@ using ActivitySecrets = json;
     [object_fwd_includes, object_fwd_final_includes, object_includes, object_final_includes]
 ])}
 #undef OBJECT_BREAKOUTS
+
+using ApplicationCommandPermission = GuildApplicationCommandPermissions;
 
 template <class BASE> class PluginNative : public BASE, virtual BotStruct {{
 #define ENDPOINT_BREAKOUTS

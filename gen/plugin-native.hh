@@ -33,7 +33,6 @@ inline std::string url_encode(const std::string &value) {
 }
 } // namespace util
 
-#define OBJECT_BREAKOUTS
 // https://discord.com/developers/docs/reference#iso8601-datetime
 using Timestamp = std::string;
 // https://discord.com/developers/docs/reference#image-data
@@ -71,6 +70,10 @@ using ActivityTimestamps = json;
 using ActivityParty = json;
 using ActivityAssets = json;
 using ActivitySecrets = json;
+// Missing? https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-interaction-callback-data-structure
+using InteractionCallbackData = json;
+
+#define OBJECT_BREAKOUTS
 /* This space intentionally left blank */
 #include "objects_fwd/application-commands_fwd.hh"
 #include "objects_fwd/message-components_fwd.hh"
@@ -114,6 +117,8 @@ using ActivitySecrets = json;
 /* This space intentionally left blank */
 #include "objects/receiving-and-responding.hh"
 #undef OBJECT_BREAKOUTS
+
+using ApplicationCommandPermission = GuildApplicationCommandPermission;
 
 template <class BASE> class PluginNative : public BASE, virtual BotStruct {
 #define ENDPOINT_BREAKOUTS
