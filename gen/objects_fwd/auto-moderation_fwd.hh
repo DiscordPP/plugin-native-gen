@@ -3,4 +3,6 @@
 #endif
 
 class AutoModerationRule;
+class TriggerMetadata;
 class AutoModerationAction;
+class ActionMetadata;

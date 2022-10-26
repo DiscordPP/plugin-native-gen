@@ -13,3 +13,4 @@ class IntegrationApplication;
 class Ban;
 class WelcomeScreen;
 class WelcomeScreenChannel;
+class ListActiveGuildThreadsResponse;

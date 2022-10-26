@@ -4,7 +4,7 @@
 
 #include "../field.hh"
 
-// https://discord.com/developers/docs/resources/webhook#webhook-object
+// https://discord.com/developers/docs/resources/webhook#webhook-object-webhook-structure
 class Webhook{
   public:
     Webhook(

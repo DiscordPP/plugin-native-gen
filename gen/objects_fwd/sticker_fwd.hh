@@ -5,3 +5,4 @@
 class Sticker;
 class StickerItem;
 class StickerPack;
+class ListNitroStickerPacksResponse;

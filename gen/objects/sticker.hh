@@ -4,7 +4,7 @@
 
 #include "../field.hh"
 
-// https://discord.com/developers/docs/resources/sticker#sticker-object
+// https://discord.com/developers/docs/resources/sticker#sticker-object-sticker-structure
 class Sticker{
   public:
     Sticker(
@@ -64,7 +64,7 @@ class Sticker{
         if(!t.sort_value.is_omitted()) {j["sort_value"] = t.sort_value;}
     }
 };
-// https://discord.com/developers/docs/resources/sticker#sticker-item-object
+// https://discord.com/developers/docs/resources/sticker#sticker-item-object-sticker-item-structure
 class StickerItem{
   public:
     StickerItem(
@@ -88,7 +88,7 @@ class StickerItem{
         if(!t.format_type.is_omitted()) {j["format_type"] = t.format_type;}
     }
 };
-// https://discord.com/developers/docs/resources/sticker#sticker-pack-object
+// https://discord.com/developers/docs/resources/sticker#sticker-pack-object-sticker-pack-structure
 class StickerPack{
   public:
     StickerPack(
@@ -126,5 +126,21 @@ class StickerPack{
         if(!t.cover_sticker_id.is_omitted()) {j["cover_sticker_id"] = t.cover_sticker_id;}
         if(!t.description.is_omitted()) {j["description"] = t.description;}
         if(!t.banner_asset_id.is_omitted()) {j["banner_asset_id"] = t.banner_asset_id;}
+    }
+};
+// https://discord.com/developers/docs/resources/sticker#list-nitro-sticker-packs-response-structure
+class ListNitroStickerPacksResponse{
+  public:
+    ListNitroStickerPacksResponse(
+        field<std::vector<StickerPack> > sticker_packs = uninitialized
+    ): 
+        sticker_packs(sticker_packs)
+    {}
+    
+    field<std::vector<StickerPack> > sticker_packs;
+
+    friend void to_json(nlohmann::json &j, const ListNitroStickerPacksResponse &t) {
+        //ToJsonExtra
+        if(!t.sticker_packs.is_omitted()) {j["sticker_packs"] = t.sticker_packs;}
     }
 };

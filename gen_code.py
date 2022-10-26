@@ -28,13 +28,15 @@ TYPES: Dict[str, str] = {
     'boolean': 'bool',
     'integer': 'int',
     'int': 'int',
+    'float': 'float',
     'double': 'double',
     'iso8601 timestamp': 'Timestamp',
     'dictionary with keys in available locales': 'std::map<Locale, std::string>',
     'integer for integer options, double for number options': 'std::variant<int, double>',
     'mixed': 'json',
     'null': 'std::nullptr_t',
-    'member': 'GuildMember'
+    'member': 'GuildMember',
+    'array of two integers': 'std::Array<int, 2>'
 }
 
 NL = '\n'
@@ -117,7 +119,7 @@ def run():
         overridepath = Path(str(filepath).replace(str(PARSED_PATH), str(OVERRIDE_PATH)))
         with \
                 filepath.open(mode="r") as file, \
-                (overridepath.open(mode="r") if overridepath.is_file() else nullcontext()) as override_file:
+                (overridepath.open(mode="r") if overridepath.is_file() else nullcontext())as override_file:
             objects: Dict[str, Dict[str, Dict[str, Any]]] = json.loads(file.read())
             if override_file:
                 overrides: Dict[str, Dict[str, Dict[str, Any]]] = json.loads(override_file.read())
@@ -156,14 +158,21 @@ def run():
             for name, fields in objects.items():
                 name = make_pascal_case(name)
                 print("Processing", name, "in", str(filepath).replace(str(PARSED_PATH), ""))
-                # TODO Load exceptions from some file
                 metadata = {}
                 for field_name, field in fields.items():
                     if field_name == "parser-data":
                         metadata = field
                         continue
-                    warn_reserved(field.get("name") or field_name)
-                    field["type"] = parse_type(field["type"])
+                    if '(' in field.get("name", field_name):
+                        field["name"] = field.get("name", field_name).split('(', 1)[0].rstrip()
+                    if '(' in field_name:
+                        field["field_name"] = field_name.split('(', 1)[0].rstrip()
+                    warn_reserved(field.get("name", field_name))
+                    field["type"] = parse_type(
+                        # Some fields in /topics/gateway have the type in the description
+                        field["comments"]["Description"] if field["type"] == "array"
+                        else field["type"].replace('_', ' ')
+                    )
                     field["container_type"] = f'{"nullable_" if field["nullable"] else ""}' + \
                         f'{"omittable_" if field["optional"] else ""}' + \
                         f'field<{field["type"]}>'
@@ -177,19 +186,19 @@ class {name}{{
   public:
     {name}(
 {f',{NL}'.join([
-    f'        {field["container_type"]} {field.get("name") or field_name} = {"omitted" if field["optional"] else "uninitialized"}'
+    f'        {field["container_type"]} {field.get("name", field_name)} = {"omitted" if field["optional"] else "uninitialized"}'
     for field_name, field in fields.items()
 ])}
     ): 
 {f',{NL}'.join([
-    f'        {field.get("name") or field_name}({field.get("name") or field_name})'
+    f'        {field.get("name", field_name)}({field.get("name", field_name)})'
     for field_name, field in fields.items()
 ])}
     {{}}
     
 {NL.join([
     '    ' +
-    f'{field["container_type"]} {field.get("name") or field_name};'
+    f'{field["container_type"]} {field.get("name", field_name)};'
     for field_name, field in fields.items()
 ])}
 
@@ -197,8 +206,8 @@ class {name}{{
         //ToJsonExtra
 {NL.join([
     field.get("to_json") or
-    f'        if(!t.{field.get("name") or field_name}.is_omitted()) ' +
-    f'{{j["{field_name}"] = t.{field.get("name") or field_name};}}'
+    f'        if(!t.{field.get("name", field_name)}.is_omitted()) ' +
+    f'{{j["{field.get("field_name", field_name)}"] = t.{field.get("name", field_name)};}}'
     for field_name, field in fields.items()
 ])}
     }}
@@ -266,18 +275,10 @@ using Timestamp = std::string;
 using ImageData = std::string;
 // https://discord.com/developers/docs/reference#locales
 using Locale = std::string;
-// https://discord.com/developers/docs/topics/teams#data-models-team-object
-using Team = json;
-// https://discord.com/developers/docs/resources/audit-log#audit-log-entry-object-optional-audit-entry-info
-using OptionalAuditEntryInfo = json;
-// https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-rule-object-trigger-metadata
-using TriggerMetadata = json;
 // https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-action-object
 using Action = json;
 // https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-action-object-action-types
 using ActionType = int;
-// https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-action-object-action-metadata
-using ActionMetadata = json;
 // https://discord.com/developers/docs/interactions/message-components#component-object
 using Component = json;
 // https://discord.com/developers/docs/resources/guild#integration-account-object
@@ -288,15 +289,6 @@ using PrivacyLevel = int;
 using EventStatus = int;
 // https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object-guild-scheduled-event-entity-types
 using ScheduledEntityType = int;
-// https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object-guild-scheduled-event-entity-metadata
-using GuildScheduledEventEntityMetadata = json;
-// https://discord.com/developers/docs/topics/gateway#identify-identify-connection-properties
-using IdentifyConnectionProperties = json;
-// https://discord.com/developers/docs/topics/gateway#activity-object
-using ActivityTimestamps = json;
-using ActivityParty = json;
-using ActivityAssets = json;
-using ActivitySecrets = json;
 // Missing? https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-interaction-callback-data-structure
 using InteractionCallbackData = json;
 

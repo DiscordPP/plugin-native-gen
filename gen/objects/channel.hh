@@ -4,7 +4,7 @@
 
 #include "../field.hh"
 
-// https://discord.com/developers/docs/resources/channel#channel-object
+// https://discord.com/developers/docs/resources/channel#channel-object-channel-structure
 class Channel{
   public:
     Channel(
@@ -35,7 +35,12 @@ class Channel{
         omittable_field<int> default_auto_archive_duration = omitted,
         omittable_field<std::string> permissions = omitted,
         omittable_field<int> flags = omitted,
-        omittable_field<int> total_message_sent = omitted
+        omittable_field<int> total_message_sent = omitted,
+        omittable_field<std::vector<Tag> > available_tags = omitted,
+        omittable_field<std::vector<Snowflake> > applied_tags = omitted,
+        nullable_omittable_field<DefaultReaction> default_reaction_emoji = omitted,
+        omittable_field<int> default_thread_rate_limit_per_user = omitted,
+        nullable_omittable_field<int> default_sort_order = omitted
     ): 
         id(id),
         type(type),
@@ -64,7 +69,12 @@ class Channel{
         default_auto_archive_duration(default_auto_archive_duration),
         permissions(permissions),
         flags(flags),
-        total_message_sent(total_message_sent)
+        total_message_sent(total_message_sent),
+        available_tags(available_tags),
+        applied_tags(applied_tags),
+        default_reaction_emoji(default_reaction_emoji),
+        default_thread_rate_limit_per_user(default_thread_rate_limit_per_user),
+        default_sort_order(default_sort_order)
     {}
     
     field<Snowflake> id;
@@ -95,6 +105,11 @@ class Channel{
     omittable_field<std::string> permissions;
     omittable_field<int> flags;
     omittable_field<int> total_message_sent;
+    omittable_field<std::vector<Tag> > available_tags;
+    omittable_field<std::vector<Snowflake> > applied_tags;
+    nullable_omittable_field<DefaultReaction> default_reaction_emoji;
+    omittable_field<int> default_thread_rate_limit_per_user;
+    nullable_omittable_field<int> default_sort_order;
 
     friend void to_json(nlohmann::json &j, const Channel &t) {
         //ToJsonExtra
@@ -126,9 +141,14 @@ class Channel{
         if(!t.permissions.is_omitted()) {j["permissions"] = t.permissions;}
         if(!t.flags.is_omitted()) {j["flags"] = t.flags;}
         if(!t.total_message_sent.is_omitted()) {j["total_message_sent"] = t.total_message_sent;}
+        if(!t.available_tags.is_omitted()) {j["available_tags"] = t.available_tags;}
+        if(!t.applied_tags.is_omitted()) {j["applied_tags"] = t.applied_tags;}
+        if(!t.default_reaction_emoji.is_omitted()) {j["default_reaction_emoji"] = t.default_reaction_emoji;}
+        if(!t.default_thread_rate_limit_per_user.is_omitted()) {j["default_thread_rate_limit_per_user"] = t.default_thread_rate_limit_per_user;}
+        if(!t.default_sort_order.is_omitted()) {j["default_sort_order"] = t.default_sort_order;}
     }
 };
-// https://discord.com/developers/docs/resources/channel#message-object
+// https://discord.com/developers/docs/resources/channel#message-object-message-structure
 class Message{
   public:
     Message(
@@ -260,7 +280,7 @@ class Message{
         if(!t.position.is_omitted()) {j["position"] = t.position;}
     }
 };
-// https://discord.com/developers/docs/resources/channel#message-object
+// https://discord.com/developers/docs/resources/channel#message-object-message-activity-structure
 class MessageActivity{
   public:
     MessageActivity(
@@ -280,7 +300,7 @@ class MessageActivity{
         if(!t.party_id.is_omitted()) {j["party_id"] = t.party_id;}
     }
 };
-// https://discord.com/developers/docs/resources/channel#message-reference-object
+// https://discord.com/developers/docs/resources/channel#message-reference-object-message-reference-structure
 class MessageReference{
   public:
     MessageReference(
@@ -308,7 +328,7 @@ class MessageReference{
         if(!t.fail_if_not_exists.is_omitted()) {j["fail_if_not_exists"] = t.fail_if_not_exists;}
     }
 };
-// https://discord.com/developers/docs/resources/channel#followed-channel-object
+// https://discord.com/developers/docs/resources/channel#followed-channel-object-followed-channel-structure
 class FollowedChannel{
   public:
     FollowedChannel(
@@ -328,7 +348,7 @@ class FollowedChannel{
         if(!t.webhook_id.is_omitted()) {j["webhook_id"] = t.webhook_id;}
     }
 };
-// https://discord.com/developers/docs/resources/channel#reaction-object
+// https://discord.com/developers/docs/resources/channel#reaction-object-reaction-structure
 class Reaction{
   public:
     Reaction(
@@ -352,7 +372,7 @@ class Reaction{
         if(!t.emoji.is_omitted()) {j["emoji"] = t.emoji;}
     }
 };
-// https://discord.com/developers/docs/resources/channel#overwrite-object
+// https://discord.com/developers/docs/resources/channel#overwrite-object-overwrite-structure
 class Overwrite{
   public:
     Overwrite(
@@ -380,7 +400,7 @@ class Overwrite{
         if(!t.deny.is_omitted()) {j["deny"] = t.deny;}
     }
 };
-// https://discord.com/developers/docs/resources/channel#thread-metadata-object
+// https://discord.com/developers/docs/resources/channel#thread-metadata-object-thread-metadata-structure
 class ThreadMetadata{
   public:
     ThreadMetadata(
@@ -416,7 +436,7 @@ class ThreadMetadata{
         if(!t.create_timestamp.is_omitted()) {j["create_timestamp"] = t.create_timestamp;}
     }
 };
-// https://discord.com/developers/docs/resources/channel#thread-member-object
+// https://discord.com/developers/docs/resources/channel#thread-member-object-thread-member-structure
 class ThreadMember{
   public:
     ThreadMember(
@@ -444,7 +464,59 @@ class ThreadMember{
         if(!t.flags.is_omitted()) {j["flags"] = t.flags;}
     }
 };
-// https://discord.com/developers/docs/resources/channel#embed-object
+// https://discord.com/developers/docs/resources/channel#default-reaction-object-default-reaction-structure
+class DefaultReaction{
+  public:
+    DefaultReaction(
+        nullable_field<Snowflake> emoji_id = uninitialized,
+        nullable_field<std::string> emoji_name = uninitialized
+    ): 
+        emoji_id(emoji_id),
+        emoji_name(emoji_name)
+    {}
+    
+    nullable_field<Snowflake> emoji_id;
+    nullable_field<std::string> emoji_name;
+
+    friend void to_json(nlohmann::json &j, const DefaultReaction &t) {
+        //ToJsonExtra
+        if(!t.emoji_id.is_omitted()) {j["emoji_id"] = t.emoji_id;}
+        if(!t.emoji_name.is_omitted()) {j["emoji_name"] = t.emoji_name;}
+    }
+};
+// https://discord.com/developers/docs/resources/channel#forum-tag-object-forum-tag-structure
+class ForumTag{
+  public:
+    ForumTag(
+        field<Snowflake> id = uninitialized,
+        field<std::string> name = uninitialized,
+        field<bool> moderated = uninitialized,
+        field<Snowflake> emoji_id = uninitialized,
+        nullable_field<std::string> emoji_name = uninitialized
+    ): 
+        id(id),
+        name(name),
+        moderated(moderated),
+        emoji_id(emoji_id),
+        emoji_name(emoji_name)
+    {}
+    
+    field<Snowflake> id;
+    field<std::string> name;
+    field<bool> moderated;
+    field<Snowflake> emoji_id;
+    nullable_field<std::string> emoji_name;
+
+    friend void to_json(nlohmann::json &j, const ForumTag &t) {
+        //ToJsonExtra
+        if(!t.id.is_omitted()) {j["id"] = t.id;}
+        if(!t.name.is_omitted()) {j["name"] = t.name;}
+        if(!t.moderated.is_omitted()) {j["moderated"] = t.moderated;}
+        if(!t.emoji_id.is_omitted()) {j["emoji_id"] = t.emoji_id;}
+        if(!t.emoji_name.is_omitted()) {j["emoji_name"] = t.emoji_name;}
+    }
+};
+// https://discord.com/developers/docs/resources/channel#embed-object-embed-structure
 class Embed{
   public:
     Embed(
@@ -508,7 +580,7 @@ class Embed{
         if(!t.fields.is_omitted()) {j["fields"] = t.fields;}
     }
 };
-// https://discord.com/developers/docs/resources/channel#embed-object
+// https://discord.com/developers/docs/resources/channel#embed-object-embed-thumbnail-structure
 class EmbedThumbnail{
   public:
     EmbedThumbnail(
@@ -536,7 +608,7 @@ class EmbedThumbnail{
         if(!t.width.is_omitted()) {j["width"] = t.width;}
     }
 };
-// https://discord.com/developers/docs/resources/channel#embed-object
+// https://discord.com/developers/docs/resources/channel#embed-object-embed-video-structure
 class EmbedVideo{
   public:
     EmbedVideo(
@@ -564,7 +636,7 @@ class EmbedVideo{
         if(!t.width.is_omitted()) {j["width"] = t.width;}
     }
 };
-// https://discord.com/developers/docs/resources/channel#embed-object
+// https://discord.com/developers/docs/resources/channel#embed-object-embed-image-structure
 class EmbedImage{
   public:
     EmbedImage(
@@ -592,7 +664,7 @@ class EmbedImage{
         if(!t.width.is_omitted()) {j["width"] = t.width;}
     }
 };
-// https://discord.com/developers/docs/resources/channel#embed-object
+// https://discord.com/developers/docs/resources/channel#embed-object-embed-provider-structure
 class EmbedProvider{
   public:
     EmbedProvider(
@@ -612,7 +684,7 @@ class EmbedProvider{
         if(!t.url.is_omitted()) {j["url"] = t.url;}
     }
 };
-// https://discord.com/developers/docs/resources/channel#embed-object
+// https://discord.com/developers/docs/resources/channel#embed-object-embed-author-structure
 class EmbedAuthor{
   public:
     EmbedAuthor(
@@ -640,7 +712,7 @@ class EmbedAuthor{
         if(!t.proxy_icon_url.is_omitted()) {j["proxy_icon_url"] = t.proxy_icon_url;}
     }
 };
-// https://discord.com/developers/docs/resources/channel#embed-object
+// https://discord.com/developers/docs/resources/channel#embed-object-embed-footer-structure
 class EmbedFooter{
   public:
     EmbedFooter(
@@ -664,7 +736,7 @@ class EmbedFooter{
         if(!t.proxy_icon_url.is_omitted()) {j["proxy_icon_url"] = t.proxy_icon_url;}
     }
 };
-// https://discord.com/developers/docs/resources/channel#embed-object
+// https://discord.com/developers/docs/resources/channel#embed-object-embed-field-structure
 class EmbedField{
   public:
     EmbedField(
@@ -688,7 +760,7 @@ class EmbedField{
         if(!t.display_inline.is_omitted()) {j["inline"] = t.display_inline;}
     }
 };
-// https://discord.com/developers/docs/resources/channel#attachment-object
+// https://discord.com/developers/docs/resources/channel#attachment-object-attachment-structure
 class Attachment{
   public:
     Attachment(
@@ -740,7 +812,7 @@ class Attachment{
         if(!t.ephemeral.is_omitted()) {j["ephemeral"] = t.ephemeral;}
     }
 };
-// https://discord.com/developers/docs/resources/channel#channel-mention-object
+// https://discord.com/developers/docs/resources/channel#channel-mention-object-channel-mention-structure
 class ChannelMention{
   public:
     ChannelMention(
@@ -768,7 +840,7 @@ class ChannelMention{
         if(!t.name.is_omitted()) {j["name"] = t.name;}
     }
 };
-// https://discord.com/developers/docs/resources/channel#allowed-mentions-object
+// https://discord.com/developers/docs/resources/channel#allowed-mentions-object-allowed-mentions-structure
 class AllowedMentions{
   public:
     AllowedMentions(
@@ -794,5 +866,273 @@ class AllowedMentions{
         if(!t.roles.is_omitted()) {j["roles"] = t.roles;}
         if(!t.users.is_omitted()) {j["users"] = t.users;}
         if(!t.replied_user.is_omitted()) {j["replied_user"] = t.replied_user;}
+    }
+};
+// https://discord.com/developers/docs/resources/channel#modify-channel-json-params-(group-dm)
+class JsonParams(GroupDm){
+  public:
+    JsonParams(GroupDm)(
+        field<std::string> name = uninitialized,
+        field<Binary> icon = uninitialized
+    ): 
+        name(name),
+        icon(icon)
+    {}
+    
+    field<std::string> name;
+    field<Binary> icon;
+
+    friend void to_json(nlohmann::json &j, const JsonParams(GroupDm) &t) {
+        //ToJsonExtra
+        if(!t.name.is_omitted()) {j["name"] = t.name;}
+        if(!t.icon.is_omitted()) {j["icon"] = t.icon;}
+    }
+};
+// https://discord.com/developers/docs/resources/channel#modify-channel-json-params-(guild-channel)
+class JsonParams(GuildChannel){
+  public:
+    JsonParams(GuildChannel)(
+        field<std::string> name = uninitialized,
+        field<int> type = uninitialized,
+        nullable_field<int> position = uninitialized,
+        nullable_field<std::string> topic = uninitialized,
+        nullable_field<bool> nsfw = uninitialized,
+        nullable_field<int> rate_limit_per_user = uninitialized,
+        nullable_field<int> bitrate = uninitialized,
+        nullable_field<int> user_limit = uninitialized,
+        nullable_field<std::vector<Overwrite> > permission_overwrites = uninitialized,
+        nullable_field<Snowflake> parent_id = uninitialized,
+        nullable_field<std::string> rtc_region = uninitialized,
+        nullable_field<int> video_quality_mode = uninitialized,
+        nullable_field<int> default_auto_archive_duration = uninitialized,
+        omittable_field<int> flags = omitted,
+        omittable_field<std::vector<Tag> > available_tags = omitted,
+        nullable_omittable_field<DefaultReaction> default_reaction_emoji = omitted,
+        omittable_field<int> default_thread_rate_limit_per_user = omitted,
+        nullable_omittable_field<int> default_sort_order = omitted
+    ): 
+        name(name),
+        type(type),
+        position(position),
+        topic(topic),
+        nsfw(nsfw),
+        rate_limit_per_user(rate_limit_per_user),
+        bitrate(bitrate),
+        user_limit(user_limit),
+        permission_overwrites(permission_overwrites),
+        parent_id(parent_id),
+        rtc_region(rtc_region),
+        video_quality_mode(video_quality_mode),
+        default_auto_archive_duration(default_auto_archive_duration),
+        flags(flags),
+        available_tags(available_tags),
+        default_reaction_emoji(default_reaction_emoji),
+        default_thread_rate_limit_per_user(default_thread_rate_limit_per_user),
+        default_sort_order(default_sort_order)
+    {}
+    
+    field<std::string> name;
+    field<int> type;
+    nullable_field<int> position;
+    nullable_field<std::string> topic;
+    nullable_field<bool> nsfw;
+    nullable_field<int> rate_limit_per_user;
+    nullable_field<int> bitrate;
+    nullable_field<int> user_limit;
+    nullable_field<std::vector<Overwrite> > permission_overwrites;
+    nullable_field<Snowflake> parent_id;
+    nullable_field<std::string> rtc_region;
+    nullable_field<int> video_quality_mode;
+    nullable_field<int> default_auto_archive_duration;
+    omittable_field<int> flags;
+    omittable_field<std::vector<Tag> > available_tags;
+    nullable_omittable_field<DefaultReaction> default_reaction_emoji;
+    omittable_field<int> default_thread_rate_limit_per_user;
+    nullable_omittable_field<int> default_sort_order;
+
+    friend void to_json(nlohmann::json &j, const JsonParams(GuildChannel) &t) {
+        //ToJsonExtra
+        if(!t.name.is_omitted()) {j["name"] = t.name;}
+        if(!t.type.is_omitted()) {j["type"] = t.type;}
+        if(!t.position.is_omitted()) {j["position"] = t.position;}
+        if(!t.topic.is_omitted()) {j["topic"] = t.topic;}
+        if(!t.nsfw.is_omitted()) {j["nsfw"] = t.nsfw;}
+        if(!t.rate_limit_per_user.is_omitted()) {j["rate_limit_per_user"] = t.rate_limit_per_user;}
+        if(!t.bitrate.is_omitted()) {j["bitrate"] = t.bitrate;}
+        if(!t.user_limit.is_omitted()) {j["user_limit"] = t.user_limit;}
+        if(!t.permission_overwrites.is_omitted()) {j["permission_overwrites"] = t.permission_overwrites;}
+        if(!t.parent_id.is_omitted()) {j["parent_id"] = t.parent_id;}
+        if(!t.rtc_region.is_omitted()) {j["rtc_region"] = t.rtc_region;}
+        if(!t.video_quality_mode.is_omitted()) {j["video_quality_mode"] = t.video_quality_mode;}
+        if(!t.default_auto_archive_duration.is_omitted()) {j["default_auto_archive_duration"] = t.default_auto_archive_duration;}
+        if(!t.flags.is_omitted()) {j["flags"] = t.flags;}
+        if(!t.available_tags.is_omitted()) {j["available_tags"] = t.available_tags;}
+        if(!t.default_reaction_emoji.is_omitted()) {j["default_reaction_emoji"] = t.default_reaction_emoji;}
+        if(!t.default_thread_rate_limit_per_user.is_omitted()) {j["default_thread_rate_limit_per_user"] = t.default_thread_rate_limit_per_user;}
+        if(!t.default_sort_order.is_omitted()) {j["default_sort_order"] = t.default_sort_order;}
+    }
+};
+// https://discord.com/developers/docs/resources/channel#modify-channel-json-params-(thread)
+class JsonParams(Thread){
+  public:
+    JsonParams(Thread)(
+        field<std::string> name = uninitialized,
+        field<bool> archived = uninitialized,
+        field<int> auto_archive_duration = uninitialized,
+        field<bool> locked = uninitialized,
+        field<bool> invitable = uninitialized,
+        nullable_field<int> rate_limit_per_user = uninitialized,
+        omittable_field<int> flags = omitted,
+        omittable_field<std::vector<Snowflake> > applied_tags = omitted
+    ): 
+        name(name),
+        archived(archived),
+        auto_archive_duration(auto_archive_duration),
+        locked(locked),
+        invitable(invitable),
+        rate_limit_per_user(rate_limit_per_user),
+        flags(flags),
+        applied_tags(applied_tags)
+    {}
+    
+    field<std::string> name;
+    field<bool> archived;
+    field<int> auto_archive_duration;
+    field<bool> locked;
+    field<bool> invitable;
+    nullable_field<int> rate_limit_per_user;
+    omittable_field<int> flags;
+    omittable_field<std::vector<Snowflake> > applied_tags;
+
+    friend void to_json(nlohmann::json &j, const JsonParams(Thread) &t) {
+        //ToJsonExtra
+        if(!t.name.is_omitted()) {j["name"] = t.name;}
+        if(!t.archived.is_omitted()) {j["archived"] = t.archived;}
+        if(!t.auto_archive_duration.is_omitted()) {j["auto_archive_duration"] = t.auto_archive_duration;}
+        if(!t.locked.is_omitted()) {j["locked"] = t.locked;}
+        if(!t.invitable.is_omitted()) {j["invitable"] = t.invitable;}
+        if(!t.rate_limit_per_user.is_omitted()) {j["rate_limit_per_user"] = t.rate_limit_per_user;}
+        if(!t.flags.is_omitted()) {j["flags"] = t.flags;}
+        if(!t.applied_tags.is_omitted()) {j["applied_tags"] = t.applied_tags;}
+    }
+};
+// https://discord.com/developers/docs/resources/channel#start-thread-in-forum-channel-forum-thread-message-params-object
+class ForumThreadMessageParams{
+  public:
+    ForumThreadMessageParams(
+        omittable_field<std::string> content = omitted,
+        omittable_field<std::vector<Embed> > embeds = omitted,
+        omittable_field<AllowedMention> allowed_mentions = omitted,
+        omittable_field<std::vector<MessageComponent> > components = omitted,
+        omittable_field<std::vector<Snowflake> > sticker_ids = omitted,
+        field<FileContents> files[n] = uninitialized,
+        omittable_field<std::string> payload_json = omitted,
+        omittable_field<std::vector<Attachment> > attachments = omitted,
+        omittable_field<int> flags = omitted
+    ): 
+        content(content),
+        embeds(embeds),
+        allowed_mentions(allowed_mentions),
+        components(components),
+        sticker_ids(sticker_ids),
+        files[n](files[n]),
+        payload_json(payload_json),
+        attachments(attachments),
+        flags(flags)
+    {}
+    
+    omittable_field<std::string> content;
+    omittable_field<std::vector<Embed> > embeds;
+    omittable_field<AllowedMention> allowed_mentions;
+    omittable_field<std::vector<MessageComponent> > components;
+    omittable_field<std::vector<Snowflake> > sticker_ids;
+    field<FileContents> files[n];
+    omittable_field<std::string> payload_json;
+    omittable_field<std::vector<Attachment> > attachments;
+    omittable_field<int> flags;
+
+    friend void to_json(nlohmann::json &j, const ForumThreadMessageParams &t) {
+        //ToJsonExtra
+        if(!t.content.is_omitted()) {j["content"] = t.content;}
+        if(!t.embeds.is_omitted()) {j["embeds"] = t.embeds;}
+        if(!t.allowed_mentions.is_omitted()) {j["allowed_mentions"] = t.allowed_mentions;}
+        if(!t.components.is_omitted()) {j["components"] = t.components;}
+        if(!t.sticker_ids.is_omitted()) {j["sticker_ids"] = t.sticker_ids;}
+        if(!t.files[n].is_omitted()) {j["files[n]"] = t.files[n];}
+        if(!t.payload_json.is_omitted()) {j["payload_json"] = t.payload_json;}
+        if(!t.attachments.is_omitted()) {j["attachments"] = t.attachments;}
+        if(!t.flags.is_omitted()) {j["flags"] = t.flags;}
+    }
+};
+// https://discord.com/developers/docs/resources/channel#list-public-archived-threads-response-body
+class ListPublicArchivedThreadsResponse{
+  public:
+    ListPublicArchivedThreadsResponse(
+        field<std::vector<Channel> > threads = uninitialized,
+        field<std::vector<ThreadMembers> > members = uninitialized,
+        field<bool> has_more = uninitialized
+    ): 
+        threads(threads),
+        members(members),
+        has_more(has_more)
+    {}
+    
+    field<std::vector<Channel> > threads;
+    field<std::vector<ThreadMembers> > members;
+    field<bool> has_more;
+
+    friend void to_json(nlohmann::json &j, const ListPublicArchivedThreadsResponse &t) {
+        //ToJsonExtra
+        if(!t.threads.is_omitted()) {j["threads"] = t.threads;}
+        if(!t.members.is_omitted()) {j["members"] = t.members;}
+        if(!t.has_more.is_omitted()) {j["has_more"] = t.has_more;}
+    }
+};
+// https://discord.com/developers/docs/resources/channel#list-private-archived-threads-response-body
+class ListPrivateArchivedThreadsResponse{
+  public:
+    ListPrivateArchivedThreadsResponse(
+        field<std::vector<Channel> > threads = uninitialized,
+        field<std::vector<ThreadMembers> > members = uninitialized,
+        field<bool> has_more = uninitialized
+    ): 
+        threads(threads),
+        members(members),
+        has_more(has_more)
+    {}
+    
+    field<std::vector<Channel> > threads;
+    field<std::vector<ThreadMembers> > members;
+    field<bool> has_more;
+
+    friend void to_json(nlohmann::json &j, const ListPrivateArchivedThreadsResponse &t) {
+        //ToJsonExtra
+        if(!t.threads.is_omitted()) {j["threads"] = t.threads;}
+        if(!t.members.is_omitted()) {j["members"] = t.members;}
+        if(!t.has_more.is_omitted()) {j["has_more"] = t.has_more;}
+    }
+};
+// https://discord.com/developers/docs/resources/channel#list-joined-private-archived-threads-response-body
+class ListJoinedPrivateArchivedThreadsResponse{
+  public:
+    ListJoinedPrivateArchivedThreadsResponse(
+        field<std::vector<Channel> > threads = uninitialized,
+        field<std::vector<ThreadMembers> > members = uninitialized,
+        field<bool> has_more = uninitialized
+    ): 
+        threads(threads),
+        members(members),
+        has_more(has_more)
+    {}
+    
+    field<std::vector<Channel> > threads;
+    field<std::vector<ThreadMembers> > members;
+    field<bool> has_more;
+
+    friend void to_json(nlohmann::json &j, const ListJoinedPrivateArchivedThreadsResponse &t) {
+        //ToJsonExtra
+        if(!t.threads.is_omitted()) {j["threads"] = t.threads;}
+        if(!t.members.is_omitted()) {j["members"] = t.members;}
+        if(!t.has_more.is_omitted()) {j["has_more"] = t.has_more;}
     }
 };

@@ -39,18 +39,10 @@ using Timestamp = std::string;
 using ImageData = std::string;
 // https://discord.com/developers/docs/reference#locales
 using Locale = std::string;
-// https://discord.com/developers/docs/topics/teams#data-models-team-object
-using Team = json;
-// https://discord.com/developers/docs/resources/audit-log#audit-log-entry-object-optional-audit-entry-info
-using OptionalAuditEntryInfo = json;
-// https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-rule-object-trigger-metadata
-using TriggerMetadata = json;
 // https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-action-object
 using Action = json;
 // https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-action-object-action-types
 using ActionType = int;
-// https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-action-object-action-metadata
-using ActionMetadata = json;
 // https://discord.com/developers/docs/interactions/message-components#component-object
 using Component = json;
 // https://discord.com/developers/docs/resources/guild#integration-account-object
@@ -61,15 +53,6 @@ using PrivacyLevel = int;
 using EventStatus = int;
 // https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object-guild-scheduled-event-entity-types
 using ScheduledEntityType = int;
-// https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object-guild-scheduled-event-entity-metadata
-using GuildScheduledEventEntityMetadata = json;
-// https://discord.com/developers/docs/topics/gateway#identify-identify-connection-properties
-using IdentifyConnectionProperties = json;
-// https://discord.com/developers/docs/topics/gateway#activity-object
-using ActivityTimestamps = json;
-using ActivityParty = json;
-using ActivityAssets = json;
-using ActivitySecrets = json;
 // Missing? https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-interaction-callback-data-structure
 using InteractionCallbackData = json;
 
@@ -92,7 +75,11 @@ using InteractionCallbackData = json;
 #include "objects_fwd/user_fwd.hh"
 #include "objects_fwd/voice_fwd.hh"
 #include "objects_fwd/webhook_fwd.hh"
+#include "objects_fwd/gateway-events_fwd.hh"
+#include "objects_fwd/oauth2_fwd.hh"
 #include "objects_fwd/permissions_fwd.hh"
+#include "objects_fwd/rate-limits_fwd.hh"
+#include "objects_fwd/teams_fwd.hh"
 /* This space intentionally left blank */
 #include "objects_fwd/gateway_fwd.hh"
 /* This space intentionally left blank */
@@ -113,12 +100,16 @@ using InteractionCallbackData = json;
 #include "objects/voice.hh"
 #include "objects/webhook.hh"
 #include "objects/gateway.hh"
+#include "objects/gateway-events.hh"
+#include "objects/oauth2.hh"
 #include "objects/permissions.hh"
+#include "objects/rate-limits.hh"
+#include "objects/teams.hh"
 /* This space intentionally left blank */
 #include "objects/receiving-and-responding.hh"
 #undef OBJECT_BREAKOUTS
 
-using ApplicationCommandPermission = GuildApplicationCommandPermission;
+using ApplicationCommandPermission = GuildApplicationCommandPermissions;
 
 template <class BASE> class PluginNative : public BASE, virtual BotStruct {
 #define ENDPOINT_BREAKOUTS

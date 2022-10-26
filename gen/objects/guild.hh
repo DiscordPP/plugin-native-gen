@@ -4,7 +4,7 @@
 
 #include "../field.hh"
 
-// https://discord.com/developers/docs/resources/guild#guild-object
+// https://discord.com/developers/docs/resources/guild#guild-object-guild-structure
 class Guild{
   public:
     Guild(
@@ -180,7 +180,7 @@ class Guild{
         if(!t.premium_progress_bar_enabled.is_omitted()) {j["premium_progress_bar_enabled"] = t.premium_progress_bar_enabled;}
     }
 };
-// https://discord.com/developers/docs/resources/guild#guild-preview-object
+// https://discord.com/developers/docs/resources/guild#guild-preview-object-guild-preview-structure
 class GuildPreview{
   public:
     GuildPreview(
@@ -236,7 +236,7 @@ class GuildPreview{
         if(!t.stickers.is_omitted()) {j["stickers"] = t.stickers;}
     }
 };
-// https://discord.com/developers/docs/resources/guild#guild-widget-settings-object
+// https://discord.com/developers/docs/resources/guild#guild-widget-settings-object-guild-widget-settings-structure
 class GuildWidgetSettings{
   public:
     GuildWidgetSettings(
@@ -256,7 +256,7 @@ class GuildWidgetSettings{
         if(!t.channel_id.is_omitted()) {j["channel_id"] = t.channel_id;}
     }
 };
-// https://discord.com/developers/docs/resources/guild#guild-widget-object
+// https://discord.com/developers/docs/resources/guild#guild-widget-object-guild-widget-structure
 class GuildWidget{
   public:
     GuildWidget(
@@ -292,7 +292,7 @@ class GuildWidget{
         if(!t.presence_count.is_omitted()) {j["presence_count"] = t.presence_count;}
     }
 };
-// https://discord.com/developers/docs/resources/guild#guild-member-object
+// https://discord.com/developers/docs/resources/guild#guild-member-object-guild-member-structure
 class GuildMember{
   public:
     GuildMember(
@@ -348,7 +348,7 @@ class GuildMember{
         if(!t.communication_disabled_until.is_omitted()) {j["communication_disabled_until"] = t.communication_disabled_until;}
     }
 };
-// https://discord.com/developers/docs/resources/guild#integration-object
+// https://discord.com/developers/docs/resources/guild#integration-object-integration-structure
 class Integration{
   public:
     Integration(
@@ -366,7 +366,8 @@ class Integration{
         omittable_field<Timestamp> synced_at = omitted,
         omittable_field<int> subscriber_count = omitted,
         omittable_field<bool> revoked = omitted,
-        omittable_field<Application> application = omitted
+        omittable_field<Application> application = omitted,
+        omittable_field<std::vector<Oauth2Scope> > scopes = omitted
     ): 
         id(id),
         name(name),
@@ -382,7 +383,8 @@ class Integration{
         synced_at(synced_at),
         subscriber_count(subscriber_count),
         revoked(revoked),
-        application(application)
+        application(application),
+        scopes(scopes)
     {}
     
     field<Snowflake> id;
@@ -400,6 +402,7 @@ class Integration{
     omittable_field<int> subscriber_count;
     omittable_field<bool> revoked;
     omittable_field<Application> application;
+    omittable_field<std::vector<Oauth2Scope> > scopes;
 
     friend void to_json(nlohmann::json &j, const Integration &t) {
         //ToJsonExtra
@@ -418,9 +421,10 @@ class Integration{
         if(!t.subscriber_count.is_omitted()) {j["subscriber_count"] = t.subscriber_count;}
         if(!t.revoked.is_omitted()) {j["revoked"] = t.revoked;}
         if(!t.application.is_omitted()) {j["application"] = t.application;}
+        if(!t.scopes.is_omitted()) {j["scopes"] = t.scopes;}
     }
 };
-// https://discord.com/developers/docs/resources/guild#integration-account-object
+// https://discord.com/developers/docs/resources/guild#integration-account-object-integration-account-structure
 class IntegrationAccount{
   public:
     IntegrationAccount(
@@ -440,7 +444,7 @@ class IntegrationAccount{
         if(!t.name.is_omitted()) {j["name"] = t.name;}
     }
 };
-// https://discord.com/developers/docs/resources/guild#integration-application-object
+// https://discord.com/developers/docs/resources/guild#integration-application-object-integration-application-structure
 class IntegrationApplication{
   public:
     IntegrationApplication(
@@ -472,7 +476,7 @@ class IntegrationApplication{
         if(!t.bot.is_omitted()) {j["bot"] = t.bot;}
     }
 };
-// https://discord.com/developers/docs/resources/guild#ban-object
+// https://discord.com/developers/docs/resources/guild#ban-object-ban-structure
 class Ban{
   public:
     Ban(
@@ -492,7 +496,7 @@ class Ban{
         if(!t.user.is_omitted()) {j["user"] = t.user;}
     }
 };
-// https://discord.com/developers/docs/resources/guild#welcome-screen-object
+// https://discord.com/developers/docs/resources/guild#welcome-screen-object-welcome-screen-structure
 class WelcomeScreen{
   public:
     WelcomeScreen(
@@ -512,7 +516,7 @@ class WelcomeScreen{
         if(!t.welcome_channels.is_omitted()) {j["welcome_channels"] = t.welcome_channels;}
     }
 };
-// https://discord.com/developers/docs/resources/guild#welcome-screen-object
+// https://discord.com/developers/docs/resources/guild#welcome-screen-object-welcome-screen-channel-structure
 class WelcomeScreenChannel{
   public:
     WelcomeScreenChannel(
@@ -538,5 +542,25 @@ class WelcomeScreenChannel{
         if(!t.description.is_omitted()) {j["description"] = t.description;}
         if(!t.emoji_id.is_omitted()) {j["emoji_id"] = t.emoji_id;}
         if(!t.emoji_name.is_omitted()) {j["emoji_name"] = t.emoji_name;}
+    }
+};
+// https://discord.com/developers/docs/resources/guild#list-active-guild-threads-response-body
+class ListActiveGuildThreadsResponse{
+  public:
+    ListActiveGuildThreadsResponse(
+        field<std::vector<Channel> > threads = uninitialized,
+        field<std::vector<ThreadMembers> > members = uninitialized
+    ): 
+        threads(threads),
+        members(members)
+    {}
+    
+    field<std::vector<Channel> > threads;
+    field<std::vector<ThreadMembers> > members;
+
+    friend void to_json(nlohmann::json &j, const ListActiveGuildThreadsResponse &t) {
+        //ToJsonExtra
+        if(!t.threads.is_omitted()) {j["threads"] = t.threads;}
+        if(!t.members.is_omitted()) {j["members"] = t.members;}
     }
 };

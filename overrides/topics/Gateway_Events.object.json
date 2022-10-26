@@ -23,5 +23,10 @@
     "secrets": {
       "type": "++ActivitySecrets"
     }
+  },
+  "Guild Members Chunk Event": {
+    "not_found": {
+      "type": "++std::vector<Snowflake>"
+    }
   }
 }

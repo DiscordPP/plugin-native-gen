@@ -4,7 +4,7 @@
 
 #include "../field.hh"
 
-// https://discord.com/developers/docs/interactions/application-commands#application-command-object
+// https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-structure
 class ApplicationCommand{
   public:
     ApplicationCommand(
@@ -68,7 +68,7 @@ class ApplicationCommand{
         if(!t.version.is_omitted()) {j["version"] = t.version;}
     }
 };
-// https://discord.com/developers/docs/interactions/application-commands#application-command-object
+// https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-structure
 class ApplicationCommandOption{
   public:
     ApplicationCommandOption(
@@ -136,7 +136,7 @@ class ApplicationCommandOption{
         if(!t.autocomplete.is_omitted()) {j["autocomplete"] = t.autocomplete;}
     }
 };
-// https://discord.com/developers/docs/interactions/application-commands#application-command-object
+// https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-choice-structure
 class ApplicationCommandOptionChoice{
   public:
     ApplicationCommandOptionChoice(
@@ -160,39 +160,7 @@ class ApplicationCommandOptionChoice{
         if(!t.value.is_omitted()) {j["value"] = t.value;}
     }
 };
-// https://discord.com/developers/docs/interactions/application-commands#application-command-object
-class ApplicationCommandInteractionDataOption{
-  public:
-    ApplicationCommandInteractionDataOption(
-        field<std::string> name = uninitialized,
-        field<int> type = uninitialized,
-        omittable_field<std::variant<std::string, int, double> > value = omitted,
-        omittable_field<std::vector<ApplicationCommandInteractionDataOption> > options = omitted,
-        omittable_field<bool> focused = omitted
-    ): 
-        name(name),
-        type(type),
-        value(value),
-        options(options),
-        focused(focused)
-    {}
-    
-    field<std::string> name;
-    field<int> type;
-    omittable_field<std::variant<std::string, int, double> > value;
-    omittable_field<std::vector<ApplicationCommandInteractionDataOption> > options;
-    omittable_field<bool> focused;
-
-    friend void to_json(nlohmann::json &j, const ApplicationCommandInteractionDataOption &t) {
-        //ToJsonExtra
-        if(!t.name.is_omitted()) {j["name"] = t.name;}
-        if(!t.type.is_omitted()) {j["type"] = t.type;}
-        if(!t.value.is_omitted()) {j["value"] = t.value;}
-        if(!t.options.is_omitted()) {j["options"] = t.options;}
-        if(!t.focused.is_omitted()) {j["focused"] = t.focused;}
-    }
-};
-// https://discord.com/developers/docs/interactions/application-commands#application-command-permissions-object
+// https://discord.com/developers/docs/interactions/application-commands#application-command-permissions-object-guild-application-command-permissions-structure
 class GuildApplicationCommandPermissions{
   public:
     GuildApplicationCommandPermissions(
@@ -220,7 +188,7 @@ class GuildApplicationCommandPermissions{
         if(!t.permissions.is_omitted()) {j["permissions"] = t.permissions;}
     }
 };
-// https://discord.com/developers/docs/interactions/application-commands#application-command-permissions-object
+// https://discord.com/developers/docs/interactions/application-commands#application-command-permissions-object-application-command-permissions-structure
 class ApplicationCommandPermissions{
   public:
     ApplicationCommandPermissions(

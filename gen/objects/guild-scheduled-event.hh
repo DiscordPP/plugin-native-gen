@@ -4,7 +4,7 @@
 
 #include "../field.hh"
 
-// https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object
+// https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object-guild-scheduled-event-structure
 class GuildScheduledEvent{
   public:
     GuildScheduledEvent(
@@ -80,7 +80,23 @@ class GuildScheduledEvent{
         if(!t.image.is_omitted()) {j["image"] = t.image;}
     }
 };
-// https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-user-object
+// https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object-guild-scheduled-event-entity-metadata
+class GuildScheduledEventEntityMetadata{
+  public:
+    GuildScheduledEventEntityMetadata(
+        omittable_field<std::string> location = omitted
+    ): 
+        location(location)
+    {}
+    
+    omittable_field<std::string> location;
+
+    friend void to_json(nlohmann::json &j, const GuildScheduledEventEntityMetadata &t) {
+        //ToJsonExtra
+        if(!t.location.is_omitted()) {j["location"] = t.location;}
+    }
+};
+// https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-user-object-guild-scheduled-event-user-structure
 class GuildScheduledEventUser{
   public:
     GuildScheduledEventUser(

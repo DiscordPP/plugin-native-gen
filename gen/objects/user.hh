@@ -4,7 +4,7 @@
 
 #include "../field.hh"
 
-// https://discord.com/developers/docs/resources/user#user-object
+// https://discord.com/developers/docs/resources/user#user-object-user-structure
 class User{
   public:
     User(
@@ -76,7 +76,7 @@ class User{
         if(!t.public_flags.is_omitted()) {j["public_flags"] = t.public_flags;}
     }
 };
-// https://discord.com/developers/docs/resources/user#connection-object
+// https://discord.com/developers/docs/resources/user#connection-object-connection-structure
 class Connection{
   public:
     Connection(
@@ -88,6 +88,7 @@ class Connection{
         field<bool> verified = uninitialized,
         field<bool> friend_sync = uninitialized,
         field<bool> show_activity = uninitialized,
+        field<bool> two_way_link = uninitialized,
         field<int> visibility = uninitialized
     ): 
         id(id),
@@ -98,6 +99,7 @@ class Connection{
         verified(verified),
         friend_sync(friend_sync),
         show_activity(show_activity),
+        two_way_link(two_way_link),
         visibility(visibility)
     {}
     
@@ -109,6 +111,7 @@ class Connection{
     field<bool> verified;
     field<bool> friend_sync;
     field<bool> show_activity;
+    field<bool> two_way_link;
     field<int> visibility;
 
     friend void to_json(nlohmann::json &j, const Connection &t) {
@@ -121,6 +124,7 @@ class Connection{
         if(!t.verified.is_omitted()) {j["verified"] = t.verified;}
         if(!t.friend_sync.is_omitted()) {j["friend_sync"] = t.friend_sync;}
         if(!t.show_activity.is_omitted()) {j["show_activity"] = t.show_activity;}
+        if(!t.two_way_link.is_omitted()) {j["two_way_link"] = t.two_way_link;}
         if(!t.visibility.is_omitted()) {j["visibility"] = t.visibility;}
     }
 };

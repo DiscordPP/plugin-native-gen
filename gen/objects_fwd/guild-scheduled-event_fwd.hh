@@ -3,4 +3,5 @@
 #endif
 
 class GuildScheduledEvent;
+class GuildScheduledEventEntityMetadata;
 class GuildScheduledEventUser;

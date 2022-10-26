@@ -4,7 +4,7 @@
 
 #include "../field.hh"
 
-// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object
+// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-application-command-data-structure
 class ApplicationCommandData{
   public:
     ApplicationCommandData(
@@ -44,7 +44,7 @@ class ApplicationCommandData{
         if(!t.target_id.is_omitted()) {j["target_id"] = t.target_id;}
     }
 };
-// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object
+// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-message-component-data-structure
 class MessageComponentData{
   public:
     MessageComponentData(
@@ -68,7 +68,7 @@ class MessageComponentData{
         if(!t.values.is_omitted()) {j["values"] = t.values;}
     }
 };
-// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object
+// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-modal-submit-data-structure
 class ModalSubmitData{
   public:
     ModalSubmitData(
@@ -88,7 +88,7 @@ class ModalSubmitData{
         if(!t.components.is_omitted()) {j["components"] = t.components;}
     }
 };
-// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object
+// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-resolved-data-structure
 class ResolvedData{
   public:
     ResolvedData(
@@ -124,7 +124,39 @@ class ResolvedData{
         if(!t.attachments.is_omitted()) {j["attachments"] = t.attachments;}
     }
 };
-// https://discord.com/developers/docs/interactions/receiving-and-responding#message-interaction-object
+// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-application-command-interaction-data-option-structure
+class ApplicationCommandInteractionDataOption{
+  public:
+    ApplicationCommandInteractionDataOption(
+        field<std::string> name = uninitialized,
+        field<int> type = uninitialized,
+        omittable_field<std::variant<std::string, int, double> > value = omitted,
+        omittable_field<std::vector<ApplicationCommandInteractionDataOption> > options = omitted,
+        omittable_field<bool> focused = omitted
+    ): 
+        name(name),
+        type(type),
+        value(value),
+        options(options),
+        focused(focused)
+    {}
+    
+    field<std::string> name;
+    field<int> type;
+    omittable_field<std::variant<std::string, int, double> > value;
+    omittable_field<std::vector<ApplicationCommandInteractionDataOption> > options;
+    omittable_field<bool> focused;
+
+    friend void to_json(nlohmann::json &j, const ApplicationCommandInteractionDataOption &t) {
+        //ToJsonExtra
+        if(!t.name.is_omitted()) {j["name"] = t.name;}
+        if(!t.type.is_omitted()) {j["type"] = t.type;}
+        if(!t.value.is_omitted()) {j["value"] = t.value;}
+        if(!t.options.is_omitted()) {j["options"] = t.options;}
+        if(!t.focused.is_omitted()) {j["focused"] = t.focused;}
+    }
+};
+// https://discord.com/developers/docs/interactions/receiving-and-responding#message-interaction-object-message-interaction-structure
 class MessageInteraction{
   public:
     MessageInteraction(
@@ -156,7 +188,7 @@ class MessageInteraction{
         if(!t.member.is_omitted()) {j["member"] = t.member;}
     }
 };
-// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object
+// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-interaction-response-structure
 class InteractionResponse{
   public:
     InteractionResponse(
@@ -176,7 +208,87 @@ class InteractionResponse{
         if(!t.data.is_omitted()) {j["data"] = t.data;}
     }
 };
-// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object
+// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-messages
+class Messages{
+  public:
+    Messages(
+        omittable_field<bool> tts = omitted,
+        omittable_field<std::string> content = omitted,
+        omittable_field<std::vector<Embed> > embeds = omitted,
+        omittable_field<AllowedMentions> allowed_mentions = omitted,
+        omittable_field<int> flags = omitted,
+        omittable_field<std::vector<Component> > components = omitted,
+        omittable_field<std::vector<Attachment> > attachments = omitted
+    ): 
+        tts(tts),
+        content(content),
+        embeds(embeds),
+        allowed_mentions(allowed_mentions),
+        flags(flags),
+        components(components),
+        attachments(attachments)
+    {}
+    
+    omittable_field<bool> tts;
+    omittable_field<std::string> content;
+    omittable_field<std::vector<Embed> > embeds;
+    omittable_field<AllowedMentions> allowed_mentions;
+    omittable_field<int> flags;
+    omittable_field<std::vector<Component> > components;
+    omittable_field<std::vector<Attachment> > attachments;
+
+    friend void to_json(nlohmann::json &j, const Messages &t) {
+        //ToJsonExtra
+        if(!t.tts.is_omitted()) {j["tts"] = t.tts;}
+        if(!t.content.is_omitted()) {j["content"] = t.content;}
+        if(!t.embeds.is_omitted()) {j["embeds"] = t.embeds;}
+        if(!t.allowed_mentions.is_omitted()) {j["allowed_mentions"] = t.allowed_mentions;}
+        if(!t.flags.is_omitted()) {j["flags"] = t.flags;}
+        if(!t.components.is_omitted()) {j["components"] = t.components;}
+        if(!t.attachments.is_omitted()) {j["attachments"] = t.attachments;}
+    }
+};
+// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-autocomplete
+class Autocomplete{
+  public:
+    Autocomplete(
+        field<std::vector<Choice> > choices = uninitialized
+    ): 
+        choices(choices)
+    {}
+    
+    field<std::vector<Choice> > choices;
+
+    friend void to_json(nlohmann::json &j, const Autocomplete &t) {
+        //ToJsonExtra
+        if(!t.choices.is_omitted()) {j["choices"] = t.choices;}
+    }
+};
+// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-modal
+class Modal{
+  public:
+    Modal(
+        field<std::string> custom_id = uninitialized,
+        field<std::string> title = uninitialized,
+        field<std::vector<Component> > components = uninitialized
+    ): 
+        custom_id(custom_id),
+        title(title),
+        components(components)
+    {}
+    
+    field<std::string> custom_id;
+    field<std::string> title;
+    field<std::vector<Component> > components;
+
+    friend void to_json(nlohmann::json &j, const Modal &t) {
+        //ToJsonExtra
+        if(!t.custom_id.is_omitted()) {j["custom_id"] = t.custom_id;}
+        if(!t.title.is_omitted()) {j["title"] = t.title;}
+        if(!t.components.is_omitted()) {j["components"] = t.components;}
+    }
+};
+// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-interaction-structure
 class Interaction{
   public:
     Interaction(

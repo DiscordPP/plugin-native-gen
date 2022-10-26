@@ -2,7 +2,5 @@
 #error This header should only be included in plugin-native.hh
 #endif
 
-class AuditLog;
-class AuditLogEntry;
-class OptionalAuditEntryInfo;
-class AuditLogChange;
+class Team;
+class TeamMember;

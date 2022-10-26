@@ -4,7 +4,7 @@
 
 #include "../field.hh"
 
-// https://discord.com/developers/docs/resources/voice#voice-state-object
+// https://discord.com/developers/docs/resources/voice#voice-state-object-voice-state-structure
 class VoiceState{
   public:
     VoiceState(
@@ -68,7 +68,7 @@ class VoiceState{
         if(!t.request_to_speak_timestamp.is_omitted()) {j["request_to_speak_timestamp"] = t.request_to_speak_timestamp;}
     }
 };
-// https://discord.com/developers/docs/resources/voice#voice-region-object
+// https://discord.com/developers/docs/resources/voice#voice-region-object-voice-region-structure
 class VoiceRegion{
   public:
     VoiceRegion(

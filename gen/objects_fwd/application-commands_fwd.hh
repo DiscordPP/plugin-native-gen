@@ -5,6 +5,5 @@
 class ApplicationCommand;
 class ApplicationCommandOption;
 class ApplicationCommandOptionChoice;
-class ApplicationCommandInteractionDataOption;
 class GuildApplicationCommandPermissions;
 class ApplicationCommandPermissions;

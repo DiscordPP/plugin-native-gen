@@ -5,3 +5,4 @@
 class Button;
 class SelectMenu;
 class SelectOption;
+class TextInput;

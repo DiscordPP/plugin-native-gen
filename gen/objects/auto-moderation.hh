@@ -4,7 +4,7 @@
 
 #include "../field.hh"
 
-// https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-rule-object
+// https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-rule-object-auto-moderation-rule-structure
 class AutoModerationRule{
   public:
     AutoModerationRule(
@@ -60,7 +60,35 @@ class AutoModerationRule{
         if(!t.exempt_channels.is_omitted()) {j["exempt_channels"] = t.exempt_channels;}
     }
 };
-// https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-action-object
+// https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-rule-object-trigger-metadata
+class TriggerMetadata{
+  public:
+    TriggerMetadata(
+        field<std::vector<std::string> > keyword_filter = uninitialized,
+        field<std::vector<KeywordPresetType> > presets = uninitialized,
+        field<std::vector<std::string> > allow_list = uninitialized,
+        field<int> mention_total_limit = uninitialized
+    ): 
+        keyword_filter(keyword_filter),
+        presets(presets),
+        allow_list(allow_list),
+        mention_total_limit(mention_total_limit)
+    {}
+    
+    field<std::vector<std::string> > keyword_filter;
+    field<std::vector<KeywordPresetType> > presets;
+    field<std::vector<std::string> > allow_list;
+    field<int> mention_total_limit;
+
+    friend void to_json(nlohmann::json &j, const TriggerMetadata &t) {
+        //ToJsonExtra
+        if(!t.keyword_filter.is_omitted()) {j["keyword_filter"] = t.keyword_filter;}
+        if(!t.presets.is_omitted()) {j["presets"] = t.presets;}
+        if(!t.allow_list.is_omitted()) {j["allow_list"] = t.allow_list;}
+        if(!t.mention_total_limit.is_omitted()) {j["mention_total_limit"] = t.mention_total_limit;}
+    }
+};
+// https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-action-object-auto-moderation-action-structure
 class AutoModerationAction{
   public:
     AutoModerationAction(
@@ -78,5 +106,25 @@ class AutoModerationAction{
         //ToJsonExtra
         if(!t.type.is_omitted()) {j["type"] = t.type;}
         if(!t.metadata.is_omitted()) {j["metadata"] = t.metadata;}
+    }
+};
+// https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-action-object-action-metadata
+class ActionMetadata{
+  public:
+    ActionMetadata(
+        field<Snowflake> channel_id = uninitialized,
+        field<int> duration_seconds = uninitialized
+    ): 
+        channel_id(channel_id),
+        duration_seconds(duration_seconds)
+    {}
+    
+    field<Snowflake> channel_id;
+    field<int> duration_seconds;
+
+    friend void to_json(nlohmann::json &j, const ActionMetadata &t) {
+        //ToJsonExtra
+        if(!t.channel_id.is_omitted()) {j["channel_id"] = t.channel_id;}
+        if(!t.duration_seconds.is_omitted()) {j["duration_seconds"] = t.duration_seconds;}
     }
 };
