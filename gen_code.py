@@ -34,7 +34,94 @@ TYPES: Dict[str, str] = {
     'mixed': 'json',
     'null': 'std::nullptr_t',
     'member': 'GuildMember',
-    'array of two integers': 'std::Array<int, 2>'
+    'array of two integers': 'std::Array<int, 2>',
+
+    # Generated: may not be correct
+    'action type': 'ActionType',
+    'action': 'Action',
+    'activity': 'Activity',
+    'allowed mention type': 'AllowedMentionType',
+    'allowed mention': 'AllowedMention',
+    'allowed mentions': 'AllowedMentions',
+    'application command interaction data option': 'ApplicationCommandInteractionDataOption',
+    'application command option choice': 'ApplicationCommandOptionChoice',
+    'application command option type': 'ApplicationCommandOptionType',
+    'application command option': 'ApplicationCommandOption',
+    'application command permission type': 'ApplicationCommandPermissionType',
+    'application command type': 'ApplicationCommandType',
+    'application commands': 'ApplicationCommands',
+    'application': 'Application',
+    'attachment': 'Attachment',
+    'audit log change': 'AuditLogChange',
+    'audit log entry': 'AuditLogEntry',
+    'audit log event': 'AuditLogEvent',
+    'auto moderation action': 'AutoModerationAction',
+    'auto moderation rule': 'AutoModerationRule',
+    'binary': 'Binary',
+    'button': 'Button',
+    'channel mention': 'ChannelMention',
+    'channel type': 'ChannelType',
+    'channel': 'Channel',
+    'choice': 'Choice',
+    'client status': 'ClientStatus',
+    'component': 'Component',
+    'default reaction': 'DefaultReaction',
+    'embed author': 'EmbedAuthor',
+    'embed field': 'EmbedField',
+    'embed footer': 'EmbedFooter',
+    'embed image': 'EmbedImage',
+    'embed provider': 'EmbedProvider',
+    'embed thumbnail': 'EmbedThumbnail',
+    'embed video': 'EmbedVideo',
+    'embed': 'Embed',
+    'emoji': 'Emoji',
+    'event status': 'EventStatus',
+    'file contents': 'FileContents',
+    'guild feature': 'GuildFeature',
+    'guild member': 'GuildMember',
+    'guild scheduled event': 'GuildScheduledEvent',
+    'guild': 'Guild',
+    'install params': 'InstallParams',
+    'integration': 'Integration',
+    'interaction callback data': 'InteractionCallbackData',
+    'interaction callback type': 'InteractionCallbackType',
+    'interaction type': 'InteractionType',
+    'invite stage instance': 'InviteStageInstance',
+    'keyword preset type': 'KeywordPresetType',
+    'message activity': 'MessageActivity',
+    'message component': 'MessageComponent',
+    'message interaction': 'MessageInteraction',
+    'message reference': 'MessageReference',
+    'message': 'Message',
+    'oauth2 scope': 'Oauth2Scope',
+    'overwrite': 'Overwrite',
+    'presence update': 'PresenceUpdate',
+    'presence': 'Presence',
+    'privacy level': 'PrivacyLevel',
+    'reaction': 'Reaction',
+    'resolved data': 'ResolvedData',
+    'role tags': 'RoleTags',
+    'role': 'Role',
+    'scheduled entity type': 'ScheduledEntityType',
+    'select option': 'SelectOption',
+    'session start limit': 'SessionStartLimit',
+    'stage instance': 'StageInstance',
+    'sticker pack': 'StickerPack',
+    'sticker': 'Sticker',
+    'tag': 'Tag',
+    'team member': 'TeamMember',
+    'team': 'Team',
+    'thread member': 'ThreadMember',
+    'thread members': 'ThreadMembers',
+    'thread metadata': 'ThreadMetadata',
+    'trigger type': 'TriggerType',
+    'unavailable guild': 'UnavailableGuild',
+    'user objects, with an additional partial member field': 'UserObjects,WithAnAdditionalPartialMemberField',
+    'user': 'User',
+    'voice state': 'VoiceState',
+    'webhook': 'Webhook',
+    'welcome screen channel': 'WelcomeScreenChannel',
+    'welcome screen': 'WelcomeScreen'
 }
 
 NL = '\n'
@@ -98,6 +185,7 @@ def parse_type(src: str):
             return parse_type(back_split[0])
     fallback = make_pascal_case(src)
     print(f'{bcolors.OKCYAN}INFO: unknown type `{src}`, falling back to `{fallback}`{bcolors.ENDC}')
+    # print(f"'{src}': '{fallback}',")
     return fallback
 
 
@@ -117,7 +205,7 @@ def run():
         overridepath = Path(str(filepath).replace(str(PARSED_PATH), str(OVERRIDE_PATH)))
         with \
                 filepath.open(mode="r") as file, \
-                (overridepath.open(mode="r") if overridepath.is_file() else nullcontext())as override_file:
+                (overridepath.open(mode="r") if overridepath.is_file() else nullcontext()) as override_file:
             objects: Dict[str, Dict[str, Dict[str, Any]]] = json.loads(file.read())
             if override_file:
                 overrides: Dict[str, Dict[str, Dict[str, Any]]] = json.loads(override_file.read())
@@ -171,7 +259,8 @@ def run():
                         field["comments"]["Description"] if field["type"] == "array"
                         else field["type"].replace('_', ' ')
                     )
-                    field["container_type"] = f'{"nullable_" if field["nullable"] else ""}' + \
+                    field["container_type"] = \
+                        f'{"nullable_" if field["nullable"] else ""}' + \
                         f'{"omittable_" if field["optional"] else ""}' + \
                         f'field<{field["type"]}>'
                     # print('                                 ', field["type"])
