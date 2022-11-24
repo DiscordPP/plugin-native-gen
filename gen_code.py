@@ -1,8 +1,6 @@
+import json
 import re
 from contextlib import nullcontext
-import json
-import sys
-from copy import copy
 from pathlib import Path
 from typing import Any, Dict, List
 
