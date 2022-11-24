@@ -65,17 +65,20 @@ class TriggerMetadata{
   public:
     TriggerMetadata(
         field<std::vector<std::string> > keyword_filter = uninitialized,
+        field<std::vector<std::string> > regex_patterns = uninitialized,
         field<std::vector<KeywordPresetType> > presets = uninitialized,
         field<std::vector<std::string> > allow_list = uninitialized,
         field<int> mention_total_limit = uninitialized
     ): 
         keyword_filter(keyword_filter),
+        regex_patterns(regex_patterns),
         presets(presets),
         allow_list(allow_list),
         mention_total_limit(mention_total_limit)
     {}
     
     field<std::vector<std::string> > keyword_filter;
+    field<std::vector<std::string> > regex_patterns;
     field<std::vector<KeywordPresetType> > presets;
     field<std::vector<std::string> > allow_list;
     field<int> mention_total_limit;
@@ -83,6 +86,7 @@ class TriggerMetadata{
     friend void to_json(nlohmann::json &j, const TriggerMetadata &t) {
         //ToJsonExtra
         if(!t.keyword_filter.is_omitted()) {j["keyword_filter"] = t.keyword_filter;}
+        if(!t.regex_patterns.is_omitted()) {j["regex_patterns"] = t.regex_patterns;}
         if(!t.presets.is_omitted()) {j["presets"] = t.presets;}
         if(!t.allow_list.is_omitted()) {j["allow_list"] = t.allow_list;}
         if(!t.mention_total_limit.is_omitted()) {j["mention_total_limit"] = t.mention_total_limit;}
