@@ -194,7 +194,12 @@ def run():
     object_final_includes = []
     object_fwd_includes = []
     object_fwd_final_includes = []
-    for filepath in Path(PARSED_PATH).rglob("*.object.json"):  # TODO use *
+    for filepath in Path(PARSED_PATH).rglob("*.enum.json"):
+        if "game_sdk" in str(filepath):
+            continue
+        print(filepath)
+    print()
+    for filepath in Path(PARSED_PATH).rglob("*.object.json"):
         if "game_sdk" in str(filepath):
             continue
         target = Path(TARGET_PATH)
@@ -414,6 +419,11 @@ template <class BASE> class PluginNative : public BASE, virtual BotStruct {{
 }} // namespace discordpp
 ''')
     # @formatter:on
+    print()
+    for filepath in Path(PARSED_PATH).rglob("*.endpoint.json"):
+        if "game_sdk" in str(filepath):
+            continue
+        print(filepath)
 
 
 # Press the green button in the gutter to run the script.
