@@ -324,6 +324,27 @@ class {name};
                 object_fwd_final_includes
             ).append(f'objects_fwd/{stem}_fwd.hh')
     # print(object_fwd_includes, object_fwd_final_includes, object_includes, object_final_includes)
+
+    print()
+    for filepath in []:#Path(PARSED_PATH).rglob("*.endpoint.json"):
+        if "game_sdk" in str(filepath):
+            continue
+        print(filepath)
+        overridepath = Path(str(filepath).replace(str(PARSED_PATH), str(OVERRIDE_PATH)))
+        with \
+                filepath.open(mode="r") as file:#, \
+                #(overridepath.open(mode="r") if overridepath.is_file() else nullcontext()) as override_file:
+            endpoints: Dict[str, Dict[str, Any]] = json.loads(file.read())
+            # @formatter:off
+            render = '''\
+#ifndef ENDPOINT_BREAKOUTS
+#error This header should only be included in plugin-native.hh
+#endif
+
+'''
+            # @formatter:on
+
+
     # @formatter:off
     TARGET_PATH.joinpath('plugin-native.hh').write_text(f'''\
 #pragma once
@@ -419,11 +440,6 @@ template <class BASE> class PluginNative : public BASE, virtual BotStruct {{
 }} // namespace discordpp
 ''')
     # @formatter:on
-    print()
-    for filepath in Path(PARSED_PATH).rglob("*.endpoint.json"):
-        if "game_sdk" in str(filepath):
-            continue
-        print(filepath)
 
 
 # Press the green button in the gutter to run the script.
