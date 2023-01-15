@@ -355,7 +355,7 @@ class Integration{
         field<Snowflake> id = uninitialized,
         field<std::string> name = uninitialized,
         field<std::string> type = uninitialized,
-        omittable_field<bool> enabled = omitted,
+        field<bool> enabled = uninitialized,
         omittable_field<bool> syncing = omitted,
         omittable_field<Snowflake> role_id = omitted,
         omittable_field<bool> enable_emoticons = omitted,
@@ -390,7 +390,7 @@ class Integration{
     field<Snowflake> id;
     field<std::string> name;
     field<std::string> type;
-    omittable_field<bool> enabled;
+    field<bool> enabled;
     omittable_field<bool> syncing;
     omittable_field<Snowflake> role_id;
     omittable_field<bool> enable_emoticons;

@@ -128,3 +128,27 @@ class Connection{
         if(!t.visibility.is_omitted()) {j["visibility"] = t.visibility;}
     }
 };
+// https://discord.com/developers/docs/resources/user#application-role-connection-object-application-role-connection-structure
+class ApplicationRoleConnection{
+  public:
+    ApplicationRoleConnection(
+        nullable_field<std::string> platform_name = uninitialized,
+        nullable_field<std::string> platform_username = uninitialized,
+        field<Object> metadata = uninitialized
+    ): 
+        platform_name(platform_name),
+        platform_username(platform_username),
+        metadata(metadata)
+    {}
+    
+    nullable_field<std::string> platform_name;
+    nullable_field<std::string> platform_username;
+    field<Object> metadata;
+
+    friend void to_json(nlohmann::json &j, const ApplicationRoleConnection &t) {
+        //ToJsonExtra
+        if(!t.platform_name.is_omitted()) {j["platform_name"] = t.platform_name;}
+        if(!t.platform_username.is_omitted()) {j["platform_username"] = t.platform_username;}
+        if(!t.metadata.is_omitted()) {j["metadata"] = t.metadata;}
+    }
+};

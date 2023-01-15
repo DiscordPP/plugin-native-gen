@@ -130,7 +130,7 @@ class ApplicationCommandInteractionDataOption{
     ApplicationCommandInteractionDataOption(
         field<std::string> name = uninitialized,
         field<int> type = uninitialized,
-        omittable_field<std::variant<std::string, int, double> > value = omitted,
+        omittable_field<std::variant<std::string, int, double, bool> > value = omitted,
         omittable_field<std::vector<ApplicationCommandInteractionDataOption> > options = omitted,
         omittable_field<bool> focused = omitted
     ): 
@@ -143,7 +143,7 @@ class ApplicationCommandInteractionDataOption{
     
     field<std::string> name;
     field<int> type;
-    omittable_field<std::variant<std::string, int, double> > value;
+    omittable_field<std::variant<std::string, int, double, bool> > value;
     omittable_field<std::vector<ApplicationCommandInteractionDataOption> > options;
     omittable_field<bool> focused;
 

@@ -66,21 +66,33 @@ class RoleTags{
     RoleTags(
         omittable_field<Snowflake> bot_id = omitted,
         omittable_field<Snowflake> integration_id = omitted,
-        omittable_field<std::nullptr_t> premium_subscriber = omitted
+        omittable_field<std::nullptr_t> premium_subscriber = omitted,
+        omittable_field<Snowflake> subscription_listing_id = omitted,
+        omittable_field<std::nullptr_t> available_for_purchase = omitted,
+        omittable_field<std::nullptr_t> guild_connections = omitted
     ): 
         bot_id(bot_id),
         integration_id(integration_id),
-        premium_subscriber(premium_subscriber)
+        premium_subscriber(premium_subscriber),
+        subscription_listing_id(subscription_listing_id),
+        available_for_purchase(available_for_purchase),
+        guild_connections(guild_connections)
     {}
     
     omittable_field<Snowflake> bot_id;
     omittable_field<Snowflake> integration_id;
     omittable_field<std::nullptr_t> premium_subscriber;
+    omittable_field<Snowflake> subscription_listing_id;
+    omittable_field<std::nullptr_t> available_for_purchase;
+    omittable_field<std::nullptr_t> guild_connections;
 
     friend void to_json(nlohmann::json &j, const RoleTags &t) {
         //ToJsonExtra
         if(!t.bot_id.is_omitted()) {j["bot_id"] = t.bot_id;}
         if(!t.integration_id.is_omitted()) {j["integration_id"] = t.integration_id;}
         if(!t.premium_subscriber.is_omitted()) {j["premium_subscriber"] = t.premium_subscriber;}
+        if(!t.subscription_listing_id.is_omitted()) {j["subscription_listing_id"] = t.subscription_listing_id;}
+        if(!t.available_for_purchase.is_omitted()) {j["available_for_purchase"] = t.available_for_purchase;}
+        if(!t.guild_connections.is_omitted()) {j["guild_connections"] = t.guild_connections;}
     }
 };

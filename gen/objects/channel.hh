@@ -40,7 +40,8 @@ class Channel{
         omittable_field<std::vector<Snowflake> > applied_tags = omitted,
         nullable_omittable_field<DefaultReaction> default_reaction_emoji = omitted,
         omittable_field<int> default_thread_rate_limit_per_user = omitted,
-        nullable_omittable_field<int> default_sort_order = omitted
+        nullable_omittable_field<int> default_sort_order = omitted,
+        omittable_field<int> default_forum_layout = omitted
     ): 
         id(id),
         type(type),
@@ -74,7 +75,8 @@ class Channel{
         applied_tags(applied_tags),
         default_reaction_emoji(default_reaction_emoji),
         default_thread_rate_limit_per_user(default_thread_rate_limit_per_user),
-        default_sort_order(default_sort_order)
+        default_sort_order(default_sort_order),
+        default_forum_layout(default_forum_layout)
     {}
     
     field<Snowflake> id;
@@ -110,6 +112,7 @@ class Channel{
     nullable_omittable_field<DefaultReaction> default_reaction_emoji;
     omittable_field<int> default_thread_rate_limit_per_user;
     nullable_omittable_field<int> default_sort_order;
+    omittable_field<int> default_forum_layout;
 
     friend void to_json(nlohmann::json &j, const Channel &t) {
         //ToJsonExtra
@@ -146,6 +149,7 @@ class Channel{
         if(!t.default_reaction_emoji.is_omitted()) {j["default_reaction_emoji"] = t.default_reaction_emoji;}
         if(!t.default_thread_rate_limit_per_user.is_omitted()) {j["default_thread_rate_limit_per_user"] = t.default_thread_rate_limit_per_user;}
         if(!t.default_sort_order.is_omitted()) {j["default_sort_order"] = t.default_sort_order;}
+        if(!t.default_forum_layout.is_omitted()) {j["default_forum_layout"] = t.default_forum_layout;}
     }
 };
 // https://discord.com/developers/docs/resources/channel#message-object-message-structure
@@ -181,7 +185,8 @@ class Message{
         omittable_field<std::vector<Component> > components = omitted,
         omittable_field<std::vector<StickerItem> > sticker_items = omitted,
         omittable_field<std::vector<Sticker> > stickers = omitted,
-        omittable_field<int> position = omitted
+        omittable_field<int> position = omitted,
+        omittable_field<RoleSubscriptionData> role_subscription_data = omitted
     ): 
         id(id),
         channel_id(channel_id),
@@ -212,7 +217,8 @@ class Message{
         components(components),
         sticker_items(sticker_items),
         stickers(stickers),
-        position(position)
+        position(position),
+        role_subscription_data(role_subscription_data)
     {}
     
     field<Snowflake> id;
@@ -245,6 +251,7 @@ class Message{
     omittable_field<std::vector<StickerItem> > sticker_items;
     omittable_field<std::vector<Sticker> > stickers;
     omittable_field<int> position;
+    omittable_field<RoleSubscriptionData> role_subscription_data;
 
     friend void to_json(nlohmann::json &j, const Message &t) {
         //ToJsonExtra
@@ -278,6 +285,7 @@ class Message{
         if(!t.sticker_items.is_omitted()) {j["sticker_items"] = t.sticker_items;}
         if(!t.stickers.is_omitted()) {j["stickers"] = t.stickers;}
         if(!t.position.is_omitted()) {j["position"] = t.position;}
+        if(!t.role_subscription_data.is_omitted()) {j["role_subscription_data"] = t.role_subscription_data;}
     }
 };
 // https://discord.com/developers/docs/resources/channel#message-object-message-activity-structure
@@ -443,18 +451,21 @@ class ThreadMember{
         omittable_field<Snowflake> id = omitted,
         omittable_field<Snowflake> user_id = omitted,
         field<Timestamp> join_timestamp = uninitialized,
-        field<int> flags = uninitialized
+        field<int> flags = uninitialized,
+        omittable_field<GuildMember> member = omitted
     ): 
         id(id),
         user_id(user_id),
         join_timestamp(join_timestamp),
-        flags(flags)
+        flags(flags),
+        member(member)
     {}
     
     omittable_field<Snowflake> id;
     omittable_field<Snowflake> user_id;
     field<Timestamp> join_timestamp;
     field<int> flags;
+    omittable_field<GuildMember> member;
 
     friend void to_json(nlohmann::json &j, const ThreadMember &t) {
         //ToJsonExtra
@@ -462,6 +473,7 @@ class ThreadMember{
         if(!t.user_id.is_omitted()) {j["user_id"] = t.user_id;}
         if(!t.join_timestamp.is_omitted()) {j["join_timestamp"] = t.join_timestamp;}
         if(!t.flags.is_omitted()) {j["flags"] = t.flags;}
+        if(!t.member.is_omitted()) {j["member"] = t.member;}
     }
 };
 // https://discord.com/developers/docs/resources/channel#default-reaction-object-default-reaction-structure
@@ -491,7 +503,7 @@ class ForumTag{
         field<Snowflake> id = uninitialized,
         field<std::string> name = uninitialized,
         field<bool> moderated = uninitialized,
-        field<Snowflake> emoji_id = uninitialized,
+        nullable_field<Snowflake> emoji_id = uninitialized,
         nullable_field<std::string> emoji_name = uninitialized
     ): 
         id(id),
@@ -504,7 +516,7 @@ class ForumTag{
     field<Snowflake> id;
     field<std::string> name;
     field<bool> moderated;
-    field<Snowflake> emoji_id;
+    nullable_field<Snowflake> emoji_id;
     nullable_field<std::string> emoji_name;
 
     friend void to_json(nlohmann::json &j, const ForumTag &t) {
@@ -868,6 +880,34 @@ class AllowedMentions{
         if(!t.replied_user.is_omitted()) {j["replied_user"] = t.replied_user;}
     }
 };
+// https://discord.com/developers/docs/resources/channel#role-subscription-data-object-role-subscription-data-object-structure
+class RoleSubscriptionData{
+  public:
+    RoleSubscriptionData(
+        field<Snowflake> role_subscription_listing_id = uninitialized,
+        field<std::string> tier_name = uninitialized,
+        field<int> total_months_subscribed = uninitialized,
+        field<bool> is_renewal = uninitialized
+    ): 
+        role_subscription_listing_id(role_subscription_listing_id),
+        tier_name(tier_name),
+        total_months_subscribed(total_months_subscribed),
+        is_renewal(is_renewal)
+    {}
+    
+    field<Snowflake> role_subscription_listing_id;
+    field<std::string> tier_name;
+    field<int> total_months_subscribed;
+    field<bool> is_renewal;
+
+    friend void to_json(nlohmann::json &j, const RoleSubscriptionData &t) {
+        //ToJsonExtra
+        if(!t.role_subscription_listing_id.is_omitted()) {j["role_subscription_listing_id"] = t.role_subscription_listing_id;}
+        if(!t.tier_name.is_omitted()) {j["tier_name"] = t.tier_name;}
+        if(!t.total_months_subscribed.is_omitted()) {j["total_months_subscribed"] = t.total_months_subscribed;}
+        if(!t.is_renewal.is_omitted()) {j["is_renewal"] = t.is_renewal;}
+    }
+};
 // https://discord.com/developers/docs/resources/channel#modify-channel-json-params-(group-dm)
 class JsonParams(GroupDm){
   public:
@@ -909,7 +949,8 @@ class JsonParams(GuildChannel){
         omittable_field<std::vector<Tag> > available_tags = omitted,
         nullable_omittable_field<DefaultReaction> default_reaction_emoji = omitted,
         omittable_field<int> default_thread_rate_limit_per_user = omitted,
-        nullable_omittable_field<int> default_sort_order = omitted
+        nullable_omittable_field<int> default_sort_order = omitted,
+        omittable_field<int> default_forum_layout = omitted
     ): 
         name(name),
         type(type),
@@ -928,7 +969,8 @@ class JsonParams(GuildChannel){
         available_tags(available_tags),
         default_reaction_emoji(default_reaction_emoji),
         default_thread_rate_limit_per_user(default_thread_rate_limit_per_user),
-        default_sort_order(default_sort_order)
+        default_sort_order(default_sort_order),
+        default_forum_layout(default_forum_layout)
     {}
     
     field<std::string> name;
@@ -949,6 +991,7 @@ class JsonParams(GuildChannel){
     nullable_omittable_field<DefaultReaction> default_reaction_emoji;
     omittable_field<int> default_thread_rate_limit_per_user;
     nullable_omittable_field<int> default_sort_order;
+    omittable_field<int> default_forum_layout;
 
     friend void to_json(nlohmann::json &j, const JsonParams(GuildChannel) &t) {
         //ToJsonExtra
@@ -970,6 +1013,7 @@ class JsonParams(GuildChannel){
         if(!t.default_reaction_emoji.is_omitted()) {j["default_reaction_emoji"] = t.default_reaction_emoji;}
         if(!t.default_thread_rate_limit_per_user.is_omitted()) {j["default_thread_rate_limit_per_user"] = t.default_thread_rate_limit_per_user;}
         if(!t.default_sort_order.is_omitted()) {j["default_sort_order"] = t.default_sort_order;}
+        if(!t.default_forum_layout.is_omitted()) {j["default_forum_layout"] = t.default_forum_layout;}
     }
 };
 // https://discord.com/developers/docs/resources/channel#modify-channel-json-params-(thread)

@@ -2,6 +2,4 @@
 #error This header should only be included in plugin-native.hh
 #endif
 
-class User;
-class Connection;
-class ApplicationRoleConnection;
+class ApplicationRoleConnectionMetadata;

@@ -20,6 +20,7 @@ class ApplicationCommand{
         nullable_field<std::string> default_member_permissions = uninitialized,
         omittable_field<bool> dm_permission = omitted,
         nullable_omittable_field<bool> default_permission = omitted,
+        omittable_field<bool> nsfw = omitted,
         field<Snowflake> version = uninitialized
     ): 
         id(id),
@@ -34,6 +35,7 @@ class ApplicationCommand{
         default_member_permissions(default_member_permissions),
         dm_permission(dm_permission),
         default_permission(default_permission),
+        nsfw(nsfw),
         version(version)
     {}
     
@@ -49,6 +51,7 @@ class ApplicationCommand{
     nullable_field<std::string> default_member_permissions;
     omittable_field<bool> dm_permission;
     nullable_omittable_field<bool> default_permission;
+    omittable_field<bool> nsfw;
     field<Snowflake> version;
 
     friend void to_json(nlohmann::json &j, const ApplicationCommand &t) {
@@ -65,6 +68,7 @@ class ApplicationCommand{
         if(!t.default_member_permissions.is_omitted()) {j["default_member_permissions"] = t.default_member_permissions;}
         if(!t.dm_permission.is_omitted()) {j["dm_permission"] = t.dm_permission;}
         if(!t.default_permission.is_omitted()) {j["default_permission"] = t.default_permission;}
+        if(!t.nsfw.is_omitted()) {j["nsfw"] = t.nsfw;}
         if(!t.version.is_omitted()) {j["version"] = t.version;}
     }
 };

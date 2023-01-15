@@ -28,7 +28,8 @@ class Application{
         omittable_field<int> flags = omitted,
         omittable_field<std::vector<std::string> > tags = omitted,
         omittable_field<InstallParams> install_params = omitted,
-        omittable_field<std::string> custom_install_url = omitted
+        omittable_field<std::string> custom_install_url = omitted,
+        omittable_field<std::string> role_connections_verification_url = omitted
     ): 
         id(id),
         name(name),
@@ -50,7 +51,8 @@ class Application{
         flags(flags),
         tags(tags),
         install_params(install_params),
-        custom_install_url(custom_install_url)
+        custom_install_url(custom_install_url),
+        role_connections_verification_url(role_connections_verification_url)
     {}
     
     field<Snowflake> id;
@@ -74,6 +76,7 @@ class Application{
     omittable_field<std::vector<std::string> > tags;
     omittable_field<InstallParams> install_params;
     omittable_field<std::string> custom_install_url;
+    omittable_field<std::string> role_connections_verification_url;
 
     friend void to_json(nlohmann::json &j, const Application &t) {
         //ToJsonExtra
@@ -98,6 +101,7 @@ class Application{
         if(!t.tags.is_omitted()) {j["tags"] = t.tags;}
         if(!t.install_params.is_omitted()) {j["install_params"] = t.install_params;}
         if(!t.custom_install_url.is_omitted()) {j["custom_install_url"] = t.custom_install_url;}
+        if(!t.role_connections_verification_url.is_omitted()) {j["role_connections_verification_url"] = t.role_connections_verification_url;}
     }
 };
 // https://discord.com/developers/docs/resources/application#install-params-object-install-params-structure

@@ -24,6 +24,7 @@ class EmbedField;
 class Attachment;
 class ChannelMention;
 class AllowedMentions;
+class RoleSubscriptionData;
 class JsonParams(GroupDm);
 class JsonParams(GuildChannel);
 class JsonParams(Thread);
