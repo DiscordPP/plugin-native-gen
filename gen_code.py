@@ -194,6 +194,11 @@ def run():
     object_final_includes = []
     object_fwd_includes = []
     object_fwd_final_includes = []
+    target = Path(TARGET_PATH)
+    target.mkdir(parents=True, exist_ok=True)
+    target.joinpath('endpoints').mkdir(exist_ok=True)
+    target.joinpath('objects').mkdir(exist_ok=True)
+    target.joinpath('objects_fwd').mkdir(exist_ok=True)
     for filepath in Path(PARSED_PATH).rglob("*.enum.json"):
         if "game_sdk" in str(filepath):
             continue
@@ -202,11 +207,6 @@ def run():
     for filepath in Path(PARSED_PATH).rglob("*.object.json"):
         if "game_sdk" in str(filepath):
             continue
-        target = Path(TARGET_PATH)
-        target.mkdir(parents=True, exist_ok=True)
-        target.joinpath('endpoints').mkdir(exist_ok=True)
-        target.joinpath('objects').mkdir(exist_ok=True)
-        target.joinpath('objects_fwd').mkdir(exist_ok=True)
         overridepath = Path(str(filepath).replace(str(PARSED_PATH), str(OVERRIDE_PATH)))
         with \
                 filepath.open(mode="r") as file, \
