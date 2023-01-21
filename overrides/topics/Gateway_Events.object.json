@@ -24,6 +24,11 @@
       "type": "++ActivitySecrets"
     }
   },
+  "Guild Create Extra": {
+    "parser-data": {
+      "name": "GuildCreateEvent",
+    }
+  },
   "Guild Members Chunk Event": {
     "not_found": {
       "type": "++std::vector<Snowflake>"

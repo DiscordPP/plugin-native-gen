@@ -281,6 +281,9 @@ def run():
                     # print('                                 ', field["type"])
                     # print('                             : ', parse_type(field["type"]))
                 fields.pop("parser-data")
+                if 'name' in metadata:
+                    name = metadata['name']
+                    print(f"Actually named {name}")
                 # @formatter:off
                 render += f'''\
 // {metadata.get("docs_url")}
