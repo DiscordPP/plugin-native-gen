@@ -1,8 +1,9 @@
+import collections
 import json
 import re
 from contextlib import nullcontext
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, List, OrderedDict
 
 PARSED_PATH = Path('discord-api-parser/discord-api-json')
 OVERRIDE_PATH = Path('overrides')
@@ -204,7 +205,11 @@ def run():
             continue
         print(filepath)
     print()
+
+    all_objects: OrderedDict[str, Dict[str, Dict[str, Dict[str, Any]]]] = collections.OrderedDict()
+    all_objects['children'] = {}
     for filepath in Path(PARSED_PATH).rglob("*.object.json"):
+        stem = filepath.stem.split('.')[0].lower().replace('_', '-')
         if "game_sdk" in str(filepath):
             continue
         overridepath = Path(str(filepath).replace(str(PARSED_PATH), str(OVERRIDE_PATH)))
@@ -217,6 +222,11 @@ def run():
                 for name, fields in overrides.items():
                     for field_name, field in fields.items():
                         objects[name][field_name].update(field)
+            all_objects[stem] = {}
+            for name, object in objects.items():
+                all_objects['children' if 'parent' in object['parser-data'] else stem][name] = object
+    all_objects.move_to_end('children')
+    for stem, objects in all_objects.items():
             # @formatter:off
             render = '''\
 #ifndef OBJECT_BREAKOUTS
@@ -248,7 +258,7 @@ def run():
                 i += 1
             for name, fields in objects.items():
                 name = make_pascal_case(name)
-                print("Processing", name, "in", str(filepath).replace(str(PARSED_PATH), ""))
+                print("Processing", name, "in", stem)
                 metadata = {}
                 for field_name, field in fields.items():
                     if field_name == "parser-data":
@@ -310,7 +320,6 @@ class {name};
 '''
                 # @formatter:on
                 print()
-            stem = filepath.stem.split('.')[0].lower().replace('_', '-')
             target.joinpath('objects', stem + '.hh').write_text(render)
             target.joinpath('objects_fwd', stem + '_fwd.hh').write_text(render_fwd)
             (
