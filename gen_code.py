@@ -302,19 +302,23 @@ class {name}{{
     {{}}
     
 {NL.join([
-    '    ' +
+    '    '
     f'{field["container_type"]} {field.get("name", field_name)};'
     for field_name, field in fields.items()
 ])}
 
     friend void to_json(nlohmann::json &j, const {name} &t) {{
-        //ToJsonExtra
-{NL.join([
-    field.get("to_json") or
-    f'        if(!t.{field.get("name", field_name)}.is_omitted()) ' +
+{NL.join([field.get("to_json",
+    f'        if(!t.{field.get("name", field_name)}.is_omitted()) '
     f'{{j["{field.get("field_name", field_name)}"] = t.{field.get("name", field_name)};}}'
-    for field_name, field in fields.items()
-])}
+) for field_name, field in fields.items()])}
+    }}
+    friend void from_json(const nlohmann::json &j, {name} &t {{
+{NL.join([field.get("from_json",
+f'    if(j.contains({field.get("field_name", field_name)})){{'
+f'        j.at({field.get("field_name", field_name)}).get_to(t.{field.get("name", field_name)});'
+f'    }}'
+) for field_name, field in fields.items()])}
     }}
 }};
 '''
