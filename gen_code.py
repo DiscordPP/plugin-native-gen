@@ -1,4 +1,6 @@
 import collections
+import copy
+import itertools
 import json
 import re
 from contextlib import nullcontext
@@ -220,85 +222,112 @@ def run():
             if override_file:
                 overrides: Dict[str, Dict[str, Dict[str, Any]]] = json.loads(override_file.read())
                 for name, fields in overrides.items():
-                    for field_name, field in fields.items():
-                        objects[name][field_name].update(field)
+                    if name in objects:
+                        for field_name, field in fields.items():
+                            objects[name][field_name].update(field)
+                    else:
+                        objects[name] = fields
             all_objects[stem] = {}
             for name, object in objects.items():
                 all_objects['children' if 'parent' in object['parser-data'] else stem][name] = object
     all_objects.move_to_end('children')
     for stem, objects in all_objects.items():
-            # @formatter:off
-            render = '''\
+        # @formatter:off
+        render = '''\
 #ifndef OBJECT_BREAKOUTS
 #error This header should only be included in plugin-native.hh
 #endif
 
 #include "../field.hh"
-
 '''
-            render_fwd = '''\
+        render_fwd = '''\
 #ifndef OBJECT_BREAKOUTS
 #error This header should only be included in plugin-native.hh
 #endif
 
 '''
             # @formatter:on
-            i = 0
-            while i < len(objects):
-                name, fields = list(objects.items())[i]
-                metadata = fields.get("parser-data")
-                if metadata:
-                    requeue = metadata.get("requeue")
-                    if requeue:
-                        metadata["requeue"] -= 1
-                        print(objects.keys())
-                        objects[name] = objects.pop(name)
-                        print(objects.keys())
-                        continue
-                i += 1
-            for name, fields in objects.items():
-                name = make_pascal_case(name)
-                print("Processing", name, "in", stem)
-                metadata = {}
-                for field_name, field in fields.items():
-                    if field_name == "parser-data":
-                        metadata = field
-                        continue
-                    if '(' in field.get("name", field_name):
-                        field["name"] = field.get("name", field_name).split('(', 1)[0].rstrip()
-                    if '(' in field_name:
-                        field["field_name"] = field_name.split('(', 1)[0].rstrip()
-                    warn_reserved(field.get("name", field_name))
-                    field["type"] = parse_type(
-                        # Some fields in /topics/gateway have the type in the description
-                        field["comments"]["Description"] if field["type"] == "array"
-                        else field["type"].replace('_', ' ')
+        i = 0
+        while i < len(objects):
+            name, fields = list(objects.items())[i]
+            metadata = fields.get("parser-data")
+            if metadata:
+                requeue = metadata.get("requeue")
+                if requeue:
+                    metadata["requeue"] -= 1
+                    print(objects.keys())
+                    objects[name] = objects.pop(name)
+                    print(objects.keys())
+                    continue
+            i += 1
+        for name, fields in copy.deepcopy(objects).items():
+            name = make_pascal_case(name)
+            print("Processing", name, "in", stem)
+            metadata = fields.pop("parser-data")
+            if 'name' in metadata:
+                name = metadata['name']
+                print(f"Actually named {name}")
+            parent = {}
+            parent_name = ''
+            parent_metadata = {}
+            if 'parent' in metadata:
+                i = 0
+                while not parent and i < len(all_objects):
+                    if metadata['parent'] in all_objects[list(all_objects.keys())[i]]:
+                        parent = copy.deepcopy(all_objects[list(all_objects.keys())[i]][metadata['parent']])
+                        parent_metadata = parent.pop("parser-data")
+                        parent_name = parent_metadata.get('name') or \
+                                      make_pascal_case(metadata['parent'])
+                    i += 1
+            for field_name, field in itertools.chain(fields.items(), parent.items()):
+                if '(' in field.get("name", field_name):
+                    field["name"] = field.get("name", field_name).split('(', 1)[0].rstrip()
+                if '(' in field_name:
+                    field["field_name"] = field_name.split('(', 1)[0].rstrip()
+                warn_reserved(field.get("name", field_name))
+                field["type"] = parse_type(
+                    # Some fields in /topics/gateway have the type in the description
+                    field["comments"]["Description"] if field["type"] == "array"
+                    else field["type"].replace('_', ' ')
+                )
+                field["container_type"] = \
+                    f'{"nullable_" if field["nullable"] else ""}' + \
+                    f'{"omittable_" if field["optional"] else ""}' + \
+                    f'field<{field["type"]}>'
+                # print('                                 ', field["type"])
+                # print('                             : ', parse_type(field["type"]))
+            render_parts = {
+                "constructor": {
+                    "parameters": ',\n        '.join([
+                        f'{field["container_type"]} {field.get("name", field_name)} = {"omitted" if field["optional"] else "uninitialized"}'
+                        for field_name, field
+                        in itertools.chain(parent.items() if parent else [], filter(lambda item: not parent or item[0] not in parent, fields.items()))
+                        if not 'static' in metadata or field_name not in metadata['static']
+                    ]),
+                    "initialisation": (
+                        f',{NL}'.join(
+                            ([
+                                 '        ' + parent_name + '(\n' + f",{NL}".join([
+                                     "            " + str(metadata["static"][field.get("name", field_name)]
+                                     if "static" in metadata and field_name in metadata["static"]
+                                     else field.get("name", field_name)) for field_name, field in parent.items()
+                                 ]) + '\n        )'
+                            ] if parent else []) + [
+                            f'        {field.get("name", field_name)}({metadata["static"][field.get("name", field_name)] if "static" in metadata and field_name in metadata["static"] else field.get("name", field_name)})'
+                            for field_name, field in fields.items() if not parent or field_name not in parent
+                        ])
                     )
-                    field["container_type"] = \
-                        f'{"nullable_" if field["nullable"] else ""}' + \
-                        f'{"omittable_" if field["optional"] else ""}' + \
-                        f'field<{field["type"]}>'
-                    # print('                                 ', field["type"])
-                    # print('                             : ', parse_type(field["type"]))
-                fields.pop("parser-data")
-                if 'name' in metadata:
-                    name = metadata['name']
-                    print(f"Actually named {name}")
-                # @formatter:off
-                render += f'''\
-// {metadata.get("docs_url")}
-class {name}{{
-  public:
+                }
+            }
+            # @formatter:off
+            render += f'''
+// {metadata.get('docs_url')}
+class {name}{f': public {parent_name}' if parent else ''}{{
+public:
     {name}(
-{f',{NL}'.join([
-    f'        {field["container_type"]} {field.get("name", field_name)} = {"omitted" if field["optional"] else "uninitialized"}'
-    for field_name, field in fields.items()
-])}
-    ): 
-{f',{NL}'.join([
-    f'        {field.get("name", field_name)}({field.get("name", field_name)})'
-    for field_name, field in fields.items()
-])}
+        {render_parts["constructor"]["parameters"]}
+    ):
+{render_parts["constructor"]["initialisation"]}
     {{}}
     
 {NL.join([
@@ -315,41 +344,40 @@ class {name}{{
     }}
     friend void from_json(const nlohmann::json &j, {name} &t {{
 {NL.join([field.get("from_json",
-f'    if(j.contains({field.get("field_name", field_name)})){{'
-f'        j.at({field.get("field_name", field_name)}).get_to(t.{field.get("name", field_name)});'
-f'    }}'
+f'        if(j.contains({field.get("field_name", field_name)})){{'
+f'j.at({field.get("field_name", field_name)}).get_to(t.{field.get("name", field_name)});}}'
 ) for field_name, field in fields.items()])}
     }}
 }};
 '''
-                render_fwd += f'''\
+            render_fwd += f'''\
 class {name};
 '''
-                # @formatter:on
-                print()
-            target.joinpath('objects', stem + '.hh').write_text(render)
-            target.joinpath('objects_fwd', stem + '_fwd.hh').write_text(render_fwd)
-            (
-                object_includes
-                if stem not in DELAY_OBJECTS else
-                object_final_includes
-            ).append(f'objects/{stem}.hh')
-            (
-                object_fwd_includes
-                if stem not in DELAY_OBJECTS_FWD else
-                object_fwd_final_includes
-            ).append(f'objects_fwd/{stem}_fwd.hh')
+            # @formatter:on
+            print()
+        target.joinpath('objects', stem + '.hh').write_text(render)
+        target.joinpath('objects_fwd', stem + '_fwd.hh').write_text(render_fwd)
+        (
+            object_includes
+            if stem not in DELAY_OBJECTS else
+            object_final_includes
+        ).append(f'objects/{stem}.hh')
+        (
+            object_fwd_includes
+            if stem not in DELAY_OBJECTS_FWD else
+            object_fwd_final_includes
+        ).append(f'objects_fwd/{stem}_fwd.hh')
     # print(object_fwd_includes, object_fwd_final_includes, object_includes, object_final_includes)
 
     print()
-    for filepath in []:#Path(PARSED_PATH).rglob("*.endpoint.json"):
+    for filepath in []:  # Path(PARSED_PATH).rglob("*.endpoint.json"):
         if "game_sdk" in str(filepath):
             continue
         print(filepath)
         overridepath = Path(str(filepath).replace(str(PARSED_PATH), str(OVERRIDE_PATH)))
         with \
-                filepath.open(mode="r") as file:#, \
-                #(overridepath.open(mode="r") if overridepath.is_file() else nullcontext()) as override_file:
+                filepath.open(mode="r") as file:  # , \
+            # (overridepath.open(mode="r") if overridepath.is_file() else nullcontext()) as override_file:
             endpoints: Dict[str, Dict[str, Any]] = json.loads(file.read())
             # @formatter:off
             render = '''\
@@ -359,7 +387,6 @@ class {name};
 
 '''
             # @formatter:on
-
 
     # @formatter:off
     TARGET_PATH.joinpath('plugin-native.hh').write_text(f'''\
