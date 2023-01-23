@@ -3,5 +3,10 @@
     "integrations": {
       "type": "++std::vector<Integration>"
     }
+  },
+  "Application Role Connection": {
+    "metadata": {
+      "type": "++ApplicationRoleConnectionMetadata"
+    }
   }
 }

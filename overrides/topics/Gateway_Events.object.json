@@ -24,14 +24,33 @@
       "type": "++ActivitySecrets"
     }
   },
+  "Thread Member Update Event Extra":{
+    "parser-data": {
+      "name": "ThreadMemberUpdateEvent",
+      "parent": "Thread Member"
+    }
+  },
   "Guild Create Extra": {
     "parser-data": {
       "name": "GuildCreateEvent",
+      "parent": "Guild"
+    }
+  },
+  "Guild Member Add Extra":{
+    "parser-data": {
+      "name": "GuildMemberAddEvent",
+      "parent": "Guild Member"
     }
   },
   "Guild Members Chunk Event": {
     "not_found": {
       "type": "++std::vector<Snowflake>"
+    }
+  },
+  "Message Create Extra":{
+    "parser-data": {
+      "name": "MessageCreateEvent",
+      "parent": "Message"
     }
   }
 }

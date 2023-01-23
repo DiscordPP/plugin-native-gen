@@ -39,6 +39,9 @@ TYPES: Dict[str, str] = {
     'member': 'GuildMember',
     'array of two integers': 'std::Array<int, 2>',
 
+    # TODO: temp enums
+    'applicationroleconnectionmetadatatype': 'int',
+
     # Generated: may not be correct
     'action type': 'ActionType',
     'action': 'Action',
@@ -103,8 +106,9 @@ TYPES: Dict[str, str] = {
     'privacy level': 'PrivacyLevel',
     'reaction': 'Reaction',
     'resolved data': 'ResolvedData',
-    'role tags': 'RoleTags',
     'role': 'Role',
+    'role subscription data': 'RoleSubscriptionData',
+    'role tags': 'RoleTags',
     'scheduled entity type': 'ScheduledEntityType',
     'select option': 'SelectOption',
     'session start limit': 'SessionStartLimit',
