@@ -248,7 +248,7 @@ def run():
 #endif
 
 '''
-            # @formatter:on
+        # @formatter:on
         i = 0
         while i < len(objects):
             name, fields = list(objects.items())[i]
@@ -307,7 +307,7 @@ def run():
                         if not 'static' in metadata or field_name not in metadata['static']
                     ]),
                     "initialisation": (
-                        f',{NL}'.join(
+                        f',\n'.join(
                             ([
                                  '        ' + parent_name + '(\n' + f",{NL}".join([
                                      "            " + str(metadata["static"][field.get("name", field_name)]
@@ -319,6 +319,23 @@ def run():
                             for field_name, field in fields.items() if not parent or field_name not in parent
                         ])
                     )
+                },
+                "variables": '\n'.join([
+                    '    '
+                    f'{field["container_type"]} {field.get("name", field_name)};'
+                    for field_name, field in fields.items() if not parent or field_name not in parent
+                ]),
+                "to_json": {
+                    "assignments": '\n'.join([field.get("to_json",
+                        f'        if(!t.{field.get("name", field_name)}.is_omitted()) '
+                        f'{{j["{field.get("field_name", field_name)}"] = t.{field.get("name", field_name)};}}'
+                    ) for field_name, field in fields.items()])
+                },
+                "from_json": {
+                    "assignments": '\n'.join([field.get("from_json",
+                        f'        if(j.contains({field.get("field_name", field_name)})){{'
+                        f'j.at({field.get("field_name", field_name)}).get_to(t.{field.get("name", field_name)});}}'
+                    ) for field_name, field in fields.items()])
                 }
             }
             # @formatter:off
@@ -332,23 +349,13 @@ public:
 {render_parts["constructor"]["initialisation"]}
     {{}}
     
-{NL.join([
-    '    '
-    f'{field["container_type"]} {field.get("name", field_name)};'
-    for field_name, field in fields.items()
-])}
+{render_parts["variables"]}
 
     friend void to_json(nlohmann::json &j, const {name} &t) {{
-{NL.join([field.get("to_json",
-    f'        if(!t.{field.get("name", field_name)}.is_omitted()) '
-    f'{{j["{field.get("field_name", field_name)}"] = t.{field.get("name", field_name)};}}'
-) for field_name, field in fields.items()])}
+{render_parts["to_json"]["assignments"]}
     }}
     friend void from_json(const nlohmann::json &j, {name} &t {{
-{NL.join([field.get("from_json",
-f'        if(j.contains({field.get("field_name", field_name)})){{'
-f'j.at({field.get("field_name", field_name)}).get_to(t.{field.get("name", field_name)});}}'
-) for field_name, field in fields.items()])}
+{render_parts["from_json"]["assignments"]}
     }}
 }};
 '''
@@ -437,6 +444,8 @@ using Locale = std::string;
 using Action = json;
 // https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-action-object-action-types
 using ActionType = int;
+// https://discord.com/developers/docs/resources/application-role-connection-metadata#application-role-connection-metadata-object-application-role-connection-metadata-type
+using ApplicationRoleConnectionMetadataType = int;
 // https://discord.com/developers/docs/interactions/message-components#component-object
 using Component = json;
 // https://discord.com/developers/docs/resources/guild#integration-account-object
@@ -487,8 +496,5 @@ template <class BASE> class PluginNative : public BASE, virtual BotStruct {{
     # @formatter:on
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     run()
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
