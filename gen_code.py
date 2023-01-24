@@ -342,7 +342,7 @@ def run():
             render += f'''
 // {metadata.get('docs_url')}
 class {name}{f': public {parent_name}' if parent else ''}{{
-public:
+  public:
     {name}(
         {render_parts["constructor"]["parameters"]}
     ):
