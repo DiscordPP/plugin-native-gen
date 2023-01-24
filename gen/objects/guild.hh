@@ -372,6 +372,7 @@ public:
         nullable_omittable_field<Timestamp> premium_since = omitted,
         field<bool> deaf = uninitialized,
         field<bool> mute = uninitialized,
+        field<int> flags = uninitialized,
         omittable_field<bool> pending = omitted,
         omittable_field<std::string> permissions = omitted,
         nullable_omittable_field<Timestamp> communication_disabled_until = omitted
@@ -384,6 +385,7 @@ public:
         premium_since(premium_since),
         deaf(deaf),
         mute(mute),
+        flags(flags),
         pending(pending),
         permissions(permissions),
         communication_disabled_until(communication_disabled_until)
@@ -397,6 +399,7 @@ public:
     nullable_omittable_field<Timestamp> premium_since;
     field<bool> deaf;
     field<bool> mute;
+    field<int> flags;
     omittable_field<bool> pending;
     omittable_field<std::string> permissions;
     nullable_omittable_field<Timestamp> communication_disabled_until;
@@ -410,6 +413,7 @@ public:
         if(!t.premium_since.is_omitted()) {j["premium_since"] = t.premium_since;}
         if(!t.deaf.is_omitted()) {j["deaf"] = t.deaf;}
         if(!t.mute.is_omitted()) {j["mute"] = t.mute;}
+        if(!t.flags.is_omitted()) {j["flags"] = t.flags;}
         if(!t.pending.is_omitted()) {j["pending"] = t.pending;}
         if(!t.permissions.is_omitted()) {j["permissions"] = t.permissions;}
         if(!t.communication_disabled_until.is_omitted()) {j["communication_disabled_until"] = t.communication_disabled_until;}
@@ -423,6 +427,7 @@ public:
         if(j.contains(premium_since)){j.at(premium_since).get_to(t.premium_since);}
         if(j.contains(deaf)){j.at(deaf).get_to(t.deaf);}
         if(j.contains(mute)){j.at(mute).get_to(t.mute);}
+        if(j.contains(flags)){j.at(flags).get_to(t.flags);}
         if(j.contains(pending)){j.at(pending).get_to(t.pending);}
         if(j.contains(permissions)){j.at(permissions).get_to(t.permissions);}
         if(j.contains(communication_disabled_until)){j.at(communication_disabled_until).get_to(t.communication_disabled_until);}

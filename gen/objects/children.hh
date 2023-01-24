@@ -385,6 +385,7 @@ public:
         nullable_omittable_field<Timestamp> premium_since = omitted,
         field<bool> deaf = uninitialized,
         field<bool> mute = uninitialized,
+        field<int> flags = uninitialized,
         omittable_field<bool> pending = omitted,
         omittable_field<std::string> permissions = omitted,
         nullable_omittable_field<Timestamp> communication_disabled_until = omitted,
@@ -399,6 +400,7 @@ public:
             premium_since,
             deaf,
             mute,
+            flags,
             pending,
             permissions,
             communication_disabled_until
