@@ -204,10 +204,54 @@ def run():
     target.joinpath('endpoints').mkdir(exist_ok=True)
     target.joinpath('objects').mkdir(exist_ok=True)
     target.joinpath('objects_fwd').mkdir(exist_ok=True)
+
+
     for filepath in Path(PARSED_PATH).rglob("*.enum.json"):
         if "game_sdk" in str(filepath):
             continue
         print(filepath)
+    print()
+
+    all_endpoints: Dict[str, Dict[str, Dict[str, Any]]] = {}
+    for filepath in Path(PARSED_PATH).rglob("*.endpoint.json"):
+        if "game_sdk" in str(filepath):
+            continue
+        print(filepath)
+        overridepath = Path(str(filepath).replace(str(PARSED_PATH), str(OVERRIDE_PATH)))
+        with \
+                filepath.open(mode="r") as file:  # , \
+                # (overridepath.open(mode="r") if overridepath.is_file() else nullcontext()) as override_file:
+            endpoints: Dict[str, Dict[str, Any]] = json.loads(file.read())
+
+    for endpoints in all_endpoints:
+        # @formatter:off
+        render = '''\
+#ifndef ENDPOINT_BREAKOUTS
+#error This header should only be included in plugin-native.hh
+#endif
+
+'''
+        # @formatter:on
+        for endpoint_name, endpoint in endpoints:
+            # @formatter:off
+            render_parts = {
+                "setters": '\n    '.join([])
+            }
+            render += f'''\
+class {name} : public {parent_name} {{
+    friend PluginNative;
+  protected:
+    explicit {name}(BotStruct *bot) : {parent_name}(bot) {{}}
+  public:
+    auto run() {{ return std::static_pointer_cast<{name}>({parent_name}::run()); }}
+    {render_parts["setters"]}
+}}
+
+auto {func_name}() {{ return sptr<{name}>(new {name}(this)); }}
+'''
+            # @formatter:on
+        # TODO save render to file
+
     print()
 
     all_objects: OrderedDict[str, Dict[str, Dict[str, Dict[str, Any]]]] = collections.OrderedDict()
@@ -377,25 +421,6 @@ class {name};
             object_fwd_final_includes
         ).append(f'objects_fwd/{stem}_fwd.hh')
     # print(object_fwd_includes, object_fwd_final_includes, object_includes, object_final_includes)
-
-    print()
-    for filepath in []:  # Path(PARSED_PATH).rglob("*.endpoint.json"):
-        if "game_sdk" in str(filepath):
-            continue
-        print(filepath)
-        overridepath = Path(str(filepath).replace(str(PARSED_PATH), str(OVERRIDE_PATH)))
-        with \
-                filepath.open(mode="r") as file:  # , \
-            # (overridepath.open(mode="r") if overridepath.is_file() else nullcontext()) as override_file:
-            endpoints: Dict[str, Dict[str, Any]] = json.loads(file.read())
-            # @formatter:off
-            render = '''\
-#ifndef ENDPOINT_BREAKOUTS
-#error This header should only be included in plugin-native.hh
-#endif
-
-'''
-            # @formatter:on
 
     # @formatter:off
     TARGET_PATH.joinpath('plugin-native.hh').write_text(f'''\
