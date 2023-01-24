@@ -39,9 +39,6 @@ TYPES: Dict[str, str] = {
     'member': 'GuildMember',
     'array of two integers': 'std::Array<int, 2>',
 
-    # TODO: temp enums
-    'applicationroleconnectionmetadatatype': 'int',
-
     # Generated: may not be correct
     'action type': 'ActionType',
     'action': 'Action',
@@ -54,6 +51,7 @@ TYPES: Dict[str, str] = {
     'application command option type': 'ApplicationCommandOptionType',
     'application command option': 'ApplicationCommandOption',
     'application command permission type': 'ApplicationCommandPermissionType',
+    'applicationroleconnectionmetadatatype': 'ApplicationRoleConnectionMetadataType',
     'application command type': 'ApplicationCommandType',
     'application commands': 'ApplicationCommands',
     'application': 'Application',
