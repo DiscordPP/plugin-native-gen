@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-structure
 class ApplicationCommand{
-  public:
+public:
     ApplicationCommand(
         field<Snowflake> id = uninitialized,
         omittable_field<ApplicationCommandType> type = omitted,
@@ -22,7 +22,7 @@ class ApplicationCommand{
         nullable_omittable_field<bool> default_permission = omitted,
         omittable_field<bool> nsfw = omitted,
         field<Snowflake> version = uninitialized
-    ): 
+    ):
         id(id),
         type(type),
         application_id(application_id),
@@ -55,7 +55,6 @@ class ApplicationCommand{
     field<Snowflake> version;
 
     friend void to_json(nlohmann::json &j, const ApplicationCommand &t) {
-        //ToJsonExtra
         if(!t.id.is_omitted()) {j["id"] = t.id;}
         if(!t.type.is_omitted()) {j["type"] = t.type;}
         if(!t.application_id.is_omitted()) {j["application_id"] = t.application_id;}
@@ -71,10 +70,27 @@ class ApplicationCommand{
         if(!t.nsfw.is_omitted()) {j["nsfw"] = t.nsfw;}
         if(!t.version.is_omitted()) {j["version"] = t.version;}
     }
+    friend void from_json(const nlohmann::json &j, ApplicationCommand &t {
+        if(j.contains(id)){j.at(id).get_to(t.id);}
+        if(j.contains(type)){j.at(type).get_to(t.type);}
+        if(j.contains(application_id)){j.at(application_id).get_to(t.application_id);}
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(name)){j.at(name).get_to(t.name);}
+        if(j.contains(name_localizations)){j.at(name_localizations).get_to(t.name_localizations);}
+        if(j.contains(description)){j.at(description).get_to(t.description);}
+        if(j.contains(description_localizations)){j.at(description_localizations).get_to(t.description_localizations);}
+        if(j.contains(options)){j.at(options).get_to(t.options);}
+        if(j.contains(default_member_permissions)){j.at(default_member_permissions).get_to(t.default_member_permissions);}
+        if(j.contains(dm_permission)){j.at(dm_permission).get_to(t.dm_permission);}
+        if(j.contains(default_permission)){j.at(default_permission).get_to(t.default_permission);}
+        if(j.contains(nsfw)){j.at(nsfw).get_to(t.nsfw);}
+        if(j.contains(version)){j.at(version).get_to(t.version);}
+    }
 };
+
 // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-structure
 class ApplicationCommandOption{
-  public:
+public:
     ApplicationCommandOption(
         field<ApplicationCommandOptionType> type = uninitialized,
         field<std::string> name = uninitialized,
@@ -90,7 +106,7 @@ class ApplicationCommandOption{
         omittable_field<int> min_length = omitted,
         omittable_field<int> max_length = omitted,
         omittable_field<bool> autocomplete = omitted
-    ): 
+    ):
         type(type),
         name(name),
         name_localizations(name_localizations),
@@ -123,7 +139,6 @@ class ApplicationCommandOption{
     omittable_field<bool> autocomplete;
 
     friend void to_json(nlohmann::json &j, const ApplicationCommandOption &t) {
-        //ToJsonExtra
         if(!t.type.is_omitted()) {j["type"] = t.type;}
         if(!t.name.is_omitted()) {j["name"] = t.name;}
         if(!t.name_localizations.is_omitted()) {j["name_localizations"] = t.name_localizations;}
@@ -139,15 +154,32 @@ class ApplicationCommandOption{
         if(!t.max_length.is_omitted()) {j["max_length"] = t.max_length;}
         if(!t.autocomplete.is_omitted()) {j["autocomplete"] = t.autocomplete;}
     }
+    friend void from_json(const nlohmann::json &j, ApplicationCommandOption &t {
+        if(j.contains(type)){j.at(type).get_to(t.type);}
+        if(j.contains(name)){j.at(name).get_to(t.name);}
+        if(j.contains(name_localizations)){j.at(name_localizations).get_to(t.name_localizations);}
+        if(j.contains(description)){j.at(description).get_to(t.description);}
+        if(j.contains(description_localizations)){j.at(description_localizations).get_to(t.description_localizations);}
+        if(j.contains(required)){j.at(required).get_to(t.required);}
+        if(j.contains(choices)){j.at(choices).get_to(t.choices);}
+        if(j.contains(options)){j.at(options).get_to(t.options);}
+        if(j.contains(channel_types)){j.at(channel_types).get_to(t.channel_types);}
+        if(j.contains(min_value)){j.at(min_value).get_to(t.min_value);}
+        if(j.contains(max_value)){j.at(max_value).get_to(t.max_value);}
+        if(j.contains(min_length)){j.at(min_length).get_to(t.min_length);}
+        if(j.contains(max_length)){j.at(max_length).get_to(t.max_length);}
+        if(j.contains(autocomplete)){j.at(autocomplete).get_to(t.autocomplete);}
+    }
 };
+
 // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-choice-structure
 class ApplicationCommandOptionChoice{
-  public:
+public:
     ApplicationCommandOptionChoice(
         field<std::string> name = uninitialized,
         nullable_omittable_field<std::map<Locale, std::string>> name_localizations = omitted,
         field<std::variant<std::string, int, double> > value = uninitialized
-    ): 
+    ):
         name(name),
         name_localizations(name_localizations),
         value(value)
@@ -158,21 +190,26 @@ class ApplicationCommandOptionChoice{
     field<std::variant<std::string, int, double> > value;
 
     friend void to_json(nlohmann::json &j, const ApplicationCommandOptionChoice &t) {
-        //ToJsonExtra
         if(!t.name.is_omitted()) {j["name"] = t.name;}
         if(!t.name_localizations.is_omitted()) {j["name_localizations"] = t.name_localizations;}
         if(!t.value.is_omitted()) {j["value"] = t.value;}
     }
+    friend void from_json(const nlohmann::json &j, ApplicationCommandOptionChoice &t {
+        if(j.contains(name)){j.at(name).get_to(t.name);}
+        if(j.contains(name_localizations)){j.at(name_localizations).get_to(t.name_localizations);}
+        if(j.contains(value)){j.at(value).get_to(t.value);}
+    }
 };
+
 // https://discord.com/developers/docs/interactions/application-commands#application-command-permissions-object-guild-application-command-permissions-structure
 class GuildApplicationCommandPermissions{
-  public:
+public:
     GuildApplicationCommandPermissions(
         field<Snowflake> id = uninitialized,
         field<Snowflake> application_id = uninitialized,
         field<Snowflake> guild_id = uninitialized,
         field<std::vector<ApplicationCommandPermissions> > permissions = uninitialized
-    ): 
+    ):
         id(id),
         application_id(application_id),
         guild_id(guild_id),
@@ -185,21 +222,27 @@ class GuildApplicationCommandPermissions{
     field<std::vector<ApplicationCommandPermissions> > permissions;
 
     friend void to_json(nlohmann::json &j, const GuildApplicationCommandPermissions &t) {
-        //ToJsonExtra
         if(!t.id.is_omitted()) {j["id"] = t.id;}
         if(!t.application_id.is_omitted()) {j["application_id"] = t.application_id;}
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.permissions.is_omitted()) {j["permissions"] = t.permissions;}
     }
+    friend void from_json(const nlohmann::json &j, GuildApplicationCommandPermissions &t {
+        if(j.contains(id)){j.at(id).get_to(t.id);}
+        if(j.contains(application_id)){j.at(application_id).get_to(t.application_id);}
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(permissions)){j.at(permissions).get_to(t.permissions);}
+    }
 };
+
 // https://discord.com/developers/docs/interactions/application-commands#application-command-permissions-object-application-command-permissions-structure
 class ApplicationCommandPermissions{
-  public:
+public:
     ApplicationCommandPermissions(
         field<Snowflake> id = uninitialized,
         field<ApplicationCommandPermissionType> type = uninitialized,
         field<bool> permission = uninitialized
-    ): 
+    ):
         id(id),
         type(type),
         permission(permission)
@@ -210,9 +253,13 @@ class ApplicationCommandPermissions{
     field<bool> permission;
 
     friend void to_json(nlohmann::json &j, const ApplicationCommandPermissions &t) {
-        //ToJsonExtra
         if(!t.id.is_omitted()) {j["id"] = t.id;}
         if(!t.type.is_omitted()) {j["type"] = t.type;}
         if(!t.permission.is_omitted()) {j["permission"] = t.permission;}
+    }
+    friend void from_json(const nlohmann::json &j, ApplicationCommandPermissions &t {
+        if(j.contains(id)){j.at(id).get_to(t.id);}
+        if(j.contains(type)){j.at(type).get_to(t.type);}
+        if(j.contains(permission)){j.at(permission).get_to(t.permission);}
     }
 };

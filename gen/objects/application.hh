@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/resources/application#application-object-application-structure
 class Application{
-  public:
+public:
     Application(
         field<Snowflake> id = uninitialized,
         field<std::string> name = uninitialized,
@@ -30,7 +30,7 @@ class Application{
         omittable_field<InstallParams> install_params = omitted,
         omittable_field<std::string> custom_install_url = omitted,
         omittable_field<std::string> role_connections_verification_url = omitted
-    ): 
+    ):
         id(id),
         name(name),
         icon(icon),
@@ -79,7 +79,6 @@ class Application{
     omittable_field<std::string> role_connections_verification_url;
 
     friend void to_json(nlohmann::json &j, const Application &t) {
-        //ToJsonExtra
         if(!t.id.is_omitted()) {j["id"] = t.id;}
         if(!t.name.is_omitted()) {j["name"] = t.name;}
         if(!t.icon.is_omitted()) {j["icon"] = t.icon;}
@@ -103,14 +102,39 @@ class Application{
         if(!t.custom_install_url.is_omitted()) {j["custom_install_url"] = t.custom_install_url;}
         if(!t.role_connections_verification_url.is_omitted()) {j["role_connections_verification_url"] = t.role_connections_verification_url;}
     }
+    friend void from_json(const nlohmann::json &j, Application &t {
+        if(j.contains(id)){j.at(id).get_to(t.id);}
+        if(j.contains(name)){j.at(name).get_to(t.name);}
+        if(j.contains(icon)){j.at(icon).get_to(t.icon);}
+        if(j.contains(description)){j.at(description).get_to(t.description);}
+        if(j.contains(rpc_origins)){j.at(rpc_origins).get_to(t.rpc_origins);}
+        if(j.contains(bot_public)){j.at(bot_public).get_to(t.bot_public);}
+        if(j.contains(bot_require_code_grant)){j.at(bot_require_code_grant).get_to(t.bot_require_code_grant);}
+        if(j.contains(terms_of_service_url)){j.at(terms_of_service_url).get_to(t.terms_of_service_url);}
+        if(j.contains(privacy_policy_url)){j.at(privacy_policy_url).get_to(t.privacy_policy_url);}
+        if(j.contains(owner)){j.at(owner).get_to(t.owner);}
+        if(j.contains(summary)){j.at(summary).get_to(t.summary);}
+        if(j.contains(verify_key)){j.at(verify_key).get_to(t.verify_key);}
+        if(j.contains(team)){j.at(team).get_to(t.team);}
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(primary_sku_id)){j.at(primary_sku_id).get_to(t.primary_sku_id);}
+        if(j.contains(slug)){j.at(slug).get_to(t.slug);}
+        if(j.contains(cover_image)){j.at(cover_image).get_to(t.cover_image);}
+        if(j.contains(flags)){j.at(flags).get_to(t.flags);}
+        if(j.contains(tags)){j.at(tags).get_to(t.tags);}
+        if(j.contains(install_params)){j.at(install_params).get_to(t.install_params);}
+        if(j.contains(custom_install_url)){j.at(custom_install_url).get_to(t.custom_install_url);}
+        if(j.contains(role_connections_verification_url)){j.at(role_connections_verification_url).get_to(t.role_connections_verification_url);}
+    }
 };
+
 // https://discord.com/developers/docs/resources/application#install-params-object-install-params-structure
 class InstallParams{
-  public:
+public:
     InstallParams(
         field<std::vector<std::string> > scopes = uninitialized,
         field<std::string> permissions = uninitialized
-    ): 
+    ):
         scopes(scopes),
         permissions(permissions)
     {}
@@ -119,8 +143,11 @@ class InstallParams{
     field<std::string> permissions;
 
     friend void to_json(nlohmann::json &j, const InstallParams &t) {
-        //ToJsonExtra
         if(!t.scopes.is_omitted()) {j["scopes"] = t.scopes;}
         if(!t.permissions.is_omitted()) {j["permissions"] = t.permissions;}
+    }
+    friend void from_json(const nlohmann::json &j, InstallParams &t {
+        if(j.contains(scopes)){j.at(scopes).get_to(t.scopes);}
+        if(j.contains(permissions)){j.at(permissions).get_to(t.permissions);}
     }
 };

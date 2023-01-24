@@ -6,13 +6,13 @@
 
 // https://discord.com/developers/docs/topics/gateway-events#payload-structure
 class Payload{
-  public:
+public:
     Payload(
         field<int> op = uninitialized,
         nullable_field<json> d = uninitialized,
         nullable_field<int> s = uninitialized,
         nullable_field<std::string> t = uninitialized
-    ): 
+    ):
         op(op),
         d(d),
         s(s),
@@ -25,16 +25,22 @@ class Payload{
     nullable_field<std::string> t;
 
     friend void to_json(nlohmann::json &j, const Payload &t) {
-        //ToJsonExtra
         if(!t.op.is_omitted()) {j["op"] = t.op;}
         if(!t.d.is_omitted()) {j["d"] = t.d;}
         if(!t.s.is_omitted()) {j["s"] = t.s;}
         if(!t.t.is_omitted()) {j["t"] = t.t;}
     }
+    friend void from_json(const nlohmann::json &j, Payload &t {
+        if(j.contains(op)){j.at(op).get_to(t.op);}
+        if(j.contains(d)){j.at(d).get_to(t.d);}
+        if(j.contains(s)){j.at(s).get_to(t.s);}
+        if(j.contains(t)){j.at(t).get_to(t.t);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#identify-identify-structure
 class Identify{
-  public:
+public:
     Identify(
         field<std::string> token = uninitialized,
         field<IdentifyConnectionProperties> properties = uninitialized,
@@ -43,7 +49,7 @@ class Identify{
         omittable_field<std::array<int, 2> > shard = omitted,
         omittable_field<GatewayPresenceUpdate> presence = omitted,
         field<int> intents = uninitialized
-    ): 
+    ):
         token(token),
         properties(properties),
         compress(compress),
@@ -62,7 +68,6 @@ class Identify{
     field<int> intents;
 
     friend void to_json(nlohmann::json &j, const Identify &t) {
-        //ToJsonExtra
         if(!t.token.is_omitted()) {j["token"] = t.token;}
         if(!t.properties.is_omitted()) {j["properties"] = t.properties;}
         if(!t.compress.is_omitted()) {j["compress"] = t.compress;}
@@ -71,15 +76,25 @@ class Identify{
         if(!t.presence.is_omitted()) {j["presence"] = t.presence;}
         if(!t.intents.is_omitted()) {j["intents"] = t.intents;}
     }
+    friend void from_json(const nlohmann::json &j, Identify &t {
+        if(j.contains(token)){j.at(token).get_to(t.token);}
+        if(j.contains(properties)){j.at(properties).get_to(t.properties);}
+        if(j.contains(compress)){j.at(compress).get_to(t.compress);}
+        if(j.contains(large_threshold)){j.at(large_threshold).get_to(t.large_threshold);}
+        if(j.contains(shard)){j.at(shard).get_to(t.shard);}
+        if(j.contains(presence)){j.at(presence).get_to(t.presence);}
+        if(j.contains(intents)){j.at(intents).get_to(t.intents);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#identify-identify-connection-properties
 class IdentifyConnectionProperties{
-  public:
+public:
     IdentifyConnectionProperties(
         field<std::string> os = uninitialized,
         field<std::string> browser = uninitialized,
         field<std::string> device = uninitialized
-    ): 
+    ):
         os(os),
         browser(browser),
         device(device)
@@ -90,20 +105,25 @@ class IdentifyConnectionProperties{
     field<std::string> device;
 
     friend void to_json(nlohmann::json &j, const IdentifyConnectionProperties &t) {
-        //ToJsonExtra
         if(!t.os.is_omitted()) {j["os"] = t.os;}
         if(!t.browser.is_omitted()) {j["browser"] = t.browser;}
         if(!t.device.is_omitted()) {j["device"] = t.device;}
     }
+    friend void from_json(const nlohmann::json &j, IdentifyConnectionProperties &t {
+        if(j.contains(os)){j.at(os).get_to(t.os);}
+        if(j.contains(browser)){j.at(browser).get_to(t.browser);}
+        if(j.contains(device)){j.at(device).get_to(t.device);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#resume-resume-structure
 class Resume{
-  public:
+public:
     Resume(
         field<std::string> token = uninitialized,
         field<std::string> session_id = uninitialized,
         field<int> seq = uninitialized
-    ): 
+    ):
         token(token),
         session_id(session_id),
         seq(seq)
@@ -114,15 +134,20 @@ class Resume{
     field<int> seq;
 
     friend void to_json(nlohmann::json &j, const Resume &t) {
-        //ToJsonExtra
         if(!t.token.is_omitted()) {j["token"] = t.token;}
         if(!t.session_id.is_omitted()) {j["session_id"] = t.session_id;}
         if(!t.seq.is_omitted()) {j["seq"] = t.seq;}
     }
+    friend void from_json(const nlohmann::json &j, Resume &t {
+        if(j.contains(token)){j.at(token).get_to(t.token);}
+        if(j.contains(session_id)){j.at(session_id).get_to(t.session_id);}
+        if(j.contains(seq)){j.at(seq).get_to(t.seq);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#request-guild-members-guild-request-members-structure
 class GuildRequestMembers{
-  public:
+public:
     GuildRequestMembers(
         field<Snowflake> guild_id = uninitialized,
         omittable_field<std::string> query = omitted,
@@ -130,7 +155,7 @@ class GuildRequestMembers{
         omittable_field<bool> presences = omitted,
         omittable_field<std::variant<Snowflake, std::vector<Snowflake> > > user_ids = omitted,
         omittable_field<std::string> nonce = omitted
-    ): 
+    ):
         guild_id(guild_id),
         query(query),
         limit(limit),
@@ -147,7 +172,6 @@ class GuildRequestMembers{
     omittable_field<std::string> nonce;
 
     friend void to_json(nlohmann::json &j, const GuildRequestMembers &t) {
-        //ToJsonExtra
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.query.is_omitted()) {j["query"] = t.query;}
         if(!t.limit.is_omitted()) {j["limit"] = t.limit;}
@@ -155,16 +179,25 @@ class GuildRequestMembers{
         if(!t.user_ids.is_omitted()) {j["user_ids"] = t.user_ids;}
         if(!t.nonce.is_omitted()) {j["nonce"] = t.nonce;}
     }
+    friend void from_json(const nlohmann::json &j, GuildRequestMembers &t {
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(query)){j.at(query).get_to(t.query);}
+        if(j.contains(limit)){j.at(limit).get_to(t.limit);}
+        if(j.contains(presences)){j.at(presences).get_to(t.presences);}
+        if(j.contains(user_ids)){j.at(user_ids).get_to(t.user_ids);}
+        if(j.contains(nonce)){j.at(nonce).get_to(t.nonce);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#update-voice-state-gateway-voice-state-update-structure
 class GatewayVoiceStateUpdate{
-  public:
+public:
     GatewayVoiceStateUpdate(
         field<Snowflake> guild_id = uninitialized,
         nullable_field<Snowflake> channel_id = uninitialized,
         field<bool> self_mute = uninitialized,
         field<bool> self_deaf = uninitialized
-    ): 
+    ):
         guild_id(guild_id),
         channel_id(channel_id),
         self_mute(self_mute),
@@ -177,22 +210,28 @@ class GatewayVoiceStateUpdate{
     field<bool> self_deaf;
 
     friend void to_json(nlohmann::json &j, const GatewayVoiceStateUpdate &t) {
-        //ToJsonExtra
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.channel_id.is_omitted()) {j["channel_id"] = t.channel_id;}
         if(!t.self_mute.is_omitted()) {j["self_mute"] = t.self_mute;}
         if(!t.self_deaf.is_omitted()) {j["self_deaf"] = t.self_deaf;}
     }
+    friend void from_json(const nlohmann::json &j, GatewayVoiceStateUpdate &t {
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
+        if(j.contains(self_mute)){j.at(self_mute).get_to(t.self_mute);}
+        if(j.contains(self_deaf)){j.at(self_deaf).get_to(t.self_deaf);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#update-presence-gateway-presence-update-structure
 class GatewayPresenceUpdate{
-  public:
+public:
     GatewayPresenceUpdate(
         nullable_field<int> since = uninitialized,
         field<std::vector<Activity> > activities = uninitialized,
         field<std::string> status = uninitialized,
         field<bool> afk = uninitialized
-    ): 
+    ):
         since(since),
         activities(activities),
         status(status),
@@ -205,32 +244,41 @@ class GatewayPresenceUpdate{
     field<bool> afk;
 
     friend void to_json(nlohmann::json &j, const GatewayPresenceUpdate &t) {
-        //ToJsonExtra
         if(!t.since.is_omitted()) {j["since"] = t.since;}
         if(!t.activities.is_omitted()) {j["activities"] = t.activities;}
         if(!t.status.is_omitted()) {j["status"] = t.status;}
         if(!t.afk.is_omitted()) {j["afk"] = t.afk;}
     }
+    friend void from_json(const nlohmann::json &j, GatewayPresenceUpdate &t {
+        if(j.contains(since)){j.at(since).get_to(t.since);}
+        if(j.contains(activities)){j.at(activities).get_to(t.activities);}
+        if(j.contains(status)){j.at(status).get_to(t.status);}
+        if(j.contains(afk)){j.at(afk).get_to(t.afk);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#hello-hello-structure
 class Hello{
-  public:
+public:
     Hello(
         field<int> heartbeat_interval = uninitialized
-    ): 
+    ):
         heartbeat_interval(heartbeat_interval)
     {}
     
     field<int> heartbeat_interval;
 
     friend void to_json(nlohmann::json &j, const Hello &t) {
-        //ToJsonExtra
         if(!t.heartbeat_interval.is_omitted()) {j["heartbeat_interval"] = t.heartbeat_interval;}
     }
+    friend void from_json(const nlohmann::json &j, Hello &t {
+        if(j.contains(heartbeat_interval)){j.at(heartbeat_interval).get_to(t.heartbeat_interval);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#ready-ready-event-fields
 class ReadyEvent{
-  public:
+public:
     ReadyEvent(
         field<int> v = uninitialized,
         field<User> user = uninitialized,
@@ -239,7 +287,7 @@ class ReadyEvent{
         field<std::string> resume_gateway_url = uninitialized,
         omittable_field<std::Array<int, 2>> shard = omitted,
         field<Application> application = uninitialized
-    ): 
+    ):
         v(v),
         user(user),
         guilds(guilds),
@@ -258,7 +306,6 @@ class ReadyEvent{
     field<Application> application;
 
     friend void to_json(nlohmann::json &j, const ReadyEvent &t) {
-        //ToJsonExtra
         if(!t.v.is_omitted()) {j["v"] = t.v;}
         if(!t.user.is_omitted()) {j["user"] = t.user;}
         if(!t.guilds.is_omitted()) {j["guilds"] = t.guilds;}
@@ -267,10 +314,20 @@ class ReadyEvent{
         if(!t.shard.is_omitted()) {j["shard"] = t.shard;}
         if(!t.application.is_omitted()) {j["application"] = t.application;}
     }
+    friend void from_json(const nlohmann::json &j, ReadyEvent &t {
+        if(j.contains(v)){j.at(v).get_to(t.v);}
+        if(j.contains(user)){j.at(user).get_to(t.user);}
+        if(j.contains(guilds)){j.at(guilds).get_to(t.guilds);}
+        if(j.contains(session_id)){j.at(session_id).get_to(t.session_id);}
+        if(j.contains(resume_gateway_url)){j.at(resume_gateway_url).get_to(t.resume_gateway_url);}
+        if(j.contains(shard)){j.at(shard).get_to(t.shard);}
+        if(j.contains(application)){j.at(application).get_to(t.application);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#auto-moderation-action-execution-auto-moderation-action-execution-event-fields
 class AutoModerationActionExecutionEvent{
-  public:
+public:
     AutoModerationActionExecutionEvent(
         field<Snowflake> guild_id = uninitialized,
         field<AutoModerationAction> action = uninitialized,
@@ -283,7 +340,7 @@ class AutoModerationActionExecutionEvent{
         field<std::string> content = uninitialized,
         nullable_field<std::string> matched_keyword = uninitialized,
         nullable_field<std::string> matched_content = uninitialized
-    ): 
+    ):
         guild_id(guild_id),
         action(action),
         rule_id(rule_id),
@@ -310,7 +367,6 @@ class AutoModerationActionExecutionEvent{
     nullable_field<std::string> matched_content;
 
     friend void to_json(nlohmann::json &j, const AutoModerationActionExecutionEvent &t) {
-        //ToJsonExtra
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.action.is_omitted()) {j["action"] = t.action;}
         if(!t.rule_id.is_omitted()) {j["rule_id"] = t.rule_id;}
@@ -323,16 +379,30 @@ class AutoModerationActionExecutionEvent{
         if(!t.matched_keyword.is_omitted()) {j["matched_keyword"] = t.matched_keyword;}
         if(!t.matched_content.is_omitted()) {j["matched_content"] = t.matched_content;}
     }
+    friend void from_json(const nlohmann::json &j, AutoModerationActionExecutionEvent &t {
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(action)){j.at(action).get_to(t.action);}
+        if(j.contains(rule_id)){j.at(rule_id).get_to(t.rule_id);}
+        if(j.contains(rule_trigger_type)){j.at(rule_trigger_type).get_to(t.rule_trigger_type);}
+        if(j.contains(user_id)){j.at(user_id).get_to(t.user_id);}
+        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
+        if(j.contains(message_id)){j.at(message_id).get_to(t.message_id);}
+        if(j.contains(alert_system_message_id)){j.at(alert_system_message_id).get_to(t.alert_system_message_id);}
+        if(j.contains(content)){j.at(content).get_to(t.content);}
+        if(j.contains(matched_keyword)){j.at(matched_keyword).get_to(t.matched_keyword);}
+        if(j.contains(matched_content)){j.at(matched_content).get_to(t.matched_content);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#thread-list-sync-thread-list-sync-event-fields
 class ThreadListSyncEvent{
-  public:
+public:
     ThreadListSyncEvent(
         field<Snowflake> guild_id = uninitialized,
         omittable_field<std::vector<Snowflake> > channel_ids = omitted,
         field<std::vector<Channel> > threads = uninitialized,
         field<std::vector<ThreadMember> > members = uninitialized
-    ): 
+    ):
         guild_id(guild_id),
         channel_ids(channel_ids),
         threads(threads),
@@ -345,39 +415,29 @@ class ThreadListSyncEvent{
     field<std::vector<ThreadMember> > members;
 
     friend void to_json(nlohmann::json &j, const ThreadListSyncEvent &t) {
-        //ToJsonExtra
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.channel_ids.is_omitted()) {j["channel_ids"] = t.channel_ids;}
         if(!t.threads.is_omitted()) {j["threads"] = t.threads;}
         if(!t.members.is_omitted()) {j["members"] = t.members;}
     }
-};
-// https://discord.com/developers/docs/topics/gateway-events#thread-member-update-thread-member-update-event-extra-fields
-class ThreadMemberUpdateEventExtra{
-  public:
-    ThreadMemberUpdateEventExtra(
-        field<Snowflake> guild_id = uninitialized
-    ): 
-        guild_id(guild_id)
-    {}
-    
-    field<Snowflake> guild_id;
-
-    friend void to_json(nlohmann::json &j, const ThreadMemberUpdateEventExtra &t) {
-        //ToJsonExtra
-        if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
+    friend void from_json(const nlohmann::json &j, ThreadListSyncEvent &t {
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(channel_ids)){j.at(channel_ids).get_to(t.channel_ids);}
+        if(j.contains(threads)){j.at(threads).get_to(t.threads);}
+        if(j.contains(members)){j.at(members).get_to(t.members);}
     }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#thread-members-update-thread-members-update-event-fields
 class ThreadMembersUpdateEvent{
-  public:
+public:
     ThreadMembersUpdateEvent(
         field<Snowflake> id = uninitialized,
         field<Snowflake> guild_id = uninitialized,
         field<int> member_count = uninitialized,
         omittable_field<std::vector<ThreadMember> > added_members = omitted,
         omittable_field<std::vector<Snowflake> > removed_member_ids = omitted
-    ): 
+    ):
         id(id),
         guild_id(guild_id),
         member_count(member_count),
@@ -392,22 +452,29 @@ class ThreadMembersUpdateEvent{
     omittable_field<std::vector<Snowflake> > removed_member_ids;
 
     friend void to_json(nlohmann::json &j, const ThreadMembersUpdateEvent &t) {
-        //ToJsonExtra
         if(!t.id.is_omitted()) {j["id"] = t.id;}
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.member_count.is_omitted()) {j["member_count"] = t.member_count;}
         if(!t.added_members.is_omitted()) {j["added_members"] = t.added_members;}
         if(!t.removed_member_ids.is_omitted()) {j["removed_member_ids"] = t.removed_member_ids;}
     }
+    friend void from_json(const nlohmann::json &j, ThreadMembersUpdateEvent &t {
+        if(j.contains(id)){j.at(id).get_to(t.id);}
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(member_count)){j.at(member_count).get_to(t.member_count);}
+        if(j.contains(added_members)){j.at(added_members).get_to(t.added_members);}
+        if(j.contains(removed_member_ids)){j.at(removed_member_ids).get_to(t.removed_member_ids);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#channel-pins-update-channel-pins-update-event-fields
 class ChannelPinsUpdateEvent{
-  public:
+public:
     ChannelPinsUpdateEvent(
         omittable_field<Snowflake> guild_id = omitted,
         field<Snowflake> channel_id = uninitialized,
         nullable_omittable_field<Timestamp> last_pin_timestamp = omitted
-    ): 
+    ):
         guild_id(guild_id),
         channel_id(channel_id),
         last_pin_timestamp(last_pin_timestamp)
@@ -418,75 +485,24 @@ class ChannelPinsUpdateEvent{
     nullable_omittable_field<Timestamp> last_pin_timestamp;
 
     friend void to_json(nlohmann::json &j, const ChannelPinsUpdateEvent &t) {
-        //ToJsonExtra
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.channel_id.is_omitted()) {j["channel_id"] = t.channel_id;}
         if(!t.last_pin_timestamp.is_omitted()) {j["last_pin_timestamp"] = t.last_pin_timestamp;}
     }
-};
-// https://discord.com/developers/docs/topics/gateway-events#guild-create-guild-create-extra-fields
-class GuildCreateExtra{
-  public:
-    GuildCreateExtra(
-        field<Timestamp> joined_at = uninitialized,
-        field<bool> large = uninitialized,
-        omittable_field<bool> unavailable = omitted,
-        field<int> member_count = uninitialized,
-        field<std::vector<VoiceState> > voice_states = uninitialized,
-        field<std::vector<GuildMember> > members = uninitialized,
-        field<std::vector<Channel> > channels = uninitialized,
-        field<std::vector<Channel> > threads = uninitialized,
-        field<std::vector<PresenceUpdate> > presences = uninitialized,
-        field<std::vector<StageInstance> > stage_instances = uninitialized,
-        field<std::vector<GuildScheduledEvent> > guild_scheduled_events = uninitialized
-    ): 
-        joined_at(joined_at),
-        large(large),
-        unavailable(unavailable),
-        member_count(member_count),
-        voice_states(voice_states),
-        members(members),
-        channels(channels),
-        threads(threads),
-        presences(presences),
-        stage_instances(stage_instances),
-        guild_scheduled_events(guild_scheduled_events)
-    {}
-    
-    field<Timestamp> joined_at;
-    field<bool> large;
-    omittable_field<bool> unavailable;
-    field<int> member_count;
-    field<std::vector<VoiceState> > voice_states;
-    field<std::vector<GuildMember> > members;
-    field<std::vector<Channel> > channels;
-    field<std::vector<Channel> > threads;
-    field<std::vector<PresenceUpdate> > presences;
-    field<std::vector<StageInstance> > stage_instances;
-    field<std::vector<GuildScheduledEvent> > guild_scheduled_events;
-
-    friend void to_json(nlohmann::json &j, const GuildCreateExtra &t) {
-        //ToJsonExtra
-        if(!t.joined_at.is_omitted()) {j["joined_at"] = t.joined_at;}
-        if(!t.large.is_omitted()) {j["large"] = t.large;}
-        if(!t.unavailable.is_omitted()) {j["unavailable"] = t.unavailable;}
-        if(!t.member_count.is_omitted()) {j["member_count"] = t.member_count;}
-        if(!t.voice_states.is_omitted()) {j["voice_states"] = t.voice_states;}
-        if(!t.members.is_omitted()) {j["members"] = t.members;}
-        if(!t.channels.is_omitted()) {j["channels"] = t.channels;}
-        if(!t.threads.is_omitted()) {j["threads"] = t.threads;}
-        if(!t.presences.is_omitted()) {j["presences"] = t.presences;}
-        if(!t.stage_instances.is_omitted()) {j["stage_instances"] = t.stage_instances;}
-        if(!t.guild_scheduled_events.is_omitted()) {j["guild_scheduled_events"] = t.guild_scheduled_events;}
+    friend void from_json(const nlohmann::json &j, ChannelPinsUpdateEvent &t {
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
+        if(j.contains(last_pin_timestamp)){j.at(last_pin_timestamp).get_to(t.last_pin_timestamp);}
     }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#guild-ban-add-guild-ban-add-event-fields
 class GuildBanAddEvent{
-  public:
+public:
     GuildBanAddEvent(
         field<Snowflake> guild_id = uninitialized,
         field<User> user = uninitialized
-    ): 
+    ):
         guild_id(guild_id),
         user(user)
     {}
@@ -495,18 +511,22 @@ class GuildBanAddEvent{
     field<User> user;
 
     friend void to_json(nlohmann::json &j, const GuildBanAddEvent &t) {
-        //ToJsonExtra
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.user.is_omitted()) {j["user"] = t.user;}
     }
+    friend void from_json(const nlohmann::json &j, GuildBanAddEvent &t {
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(user)){j.at(user).get_to(t.user);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#guild-ban-remove-guild-ban-remove-event-fields
 class GuildBanRemoveEvent{
-  public:
+public:
     GuildBanRemoveEvent(
         field<Snowflake> guild_id = uninitialized,
         field<User> user = uninitialized
-    ): 
+    ):
         guild_id(guild_id),
         user(user)
     {}
@@ -515,18 +535,22 @@ class GuildBanRemoveEvent{
     field<User> user;
 
     friend void to_json(nlohmann::json &j, const GuildBanRemoveEvent &t) {
-        //ToJsonExtra
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.user.is_omitted()) {j["user"] = t.user;}
     }
+    friend void from_json(const nlohmann::json &j, GuildBanRemoveEvent &t {
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(user)){j.at(user).get_to(t.user);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#guild-emojis-update-guild-emojis-update-event-fields
 class GuildEmojisUpdateEvent{
-  public:
+public:
     GuildEmojisUpdateEvent(
         field<Snowflake> guild_id = uninitialized,
         field<std::vector<Emoji> > emojis = uninitialized
-    ): 
+    ):
         guild_id(guild_id),
         emojis(emojis)
     {}
@@ -535,18 +559,22 @@ class GuildEmojisUpdateEvent{
     field<std::vector<Emoji> > emojis;
 
     friend void to_json(nlohmann::json &j, const GuildEmojisUpdateEvent &t) {
-        //ToJsonExtra
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.emojis.is_omitted()) {j["emojis"] = t.emojis;}
     }
+    friend void from_json(const nlohmann::json &j, GuildEmojisUpdateEvent &t {
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(emojis)){j.at(emojis).get_to(t.emojis);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#guild-stickers-update-guild-stickers-update-event-fields
 class GuildStickersUpdateEvent{
-  public:
+public:
     GuildStickersUpdateEvent(
         field<Snowflake> guild_id = uninitialized,
         field<std::vector<Sticker> > stickers = uninitialized
-    ): 
+    ):
         guild_id(guild_id),
         stickers(stickers)
     {}
@@ -555,50 +583,41 @@ class GuildStickersUpdateEvent{
     field<std::vector<Sticker> > stickers;
 
     friend void to_json(nlohmann::json &j, const GuildStickersUpdateEvent &t) {
-        //ToJsonExtra
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.stickers.is_omitted()) {j["stickers"] = t.stickers;}
     }
+    friend void from_json(const nlohmann::json &j, GuildStickersUpdateEvent &t {
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(stickers)){j.at(stickers).get_to(t.stickers);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#guild-integrations-update-guild-integrations-update-event-fields
 class GuildIntegrationsUpdateEvent{
-  public:
+public:
     GuildIntegrationsUpdateEvent(
         field<Snowflake> guild_id = uninitialized
-    ): 
+    ):
         guild_id(guild_id)
     {}
     
     field<Snowflake> guild_id;
 
     friend void to_json(nlohmann::json &j, const GuildIntegrationsUpdateEvent &t) {
-        //ToJsonExtra
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
     }
+    friend void from_json(const nlohmann::json &j, GuildIntegrationsUpdateEvent &t {
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+    }
 };
-// https://discord.com/developers/docs/topics/gateway-events#guild-member-add-guild-member-add-extra-fields
-class GuildMemberAddExtra{
-  public:
-    GuildMemberAddExtra(
-        field<Snowflake> guild_id = uninitialized
-    ): 
-        guild_id(guild_id)
-    {}
-    
-    field<Snowflake> guild_id;
 
-    friend void to_json(nlohmann::json &j, const GuildMemberAddExtra &t) {
-        //ToJsonExtra
-        if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
-    }
-};
 // https://discord.com/developers/docs/topics/gateway-events#guild-member-remove-guild-member-remove-event-fields
 class GuildMemberRemoveEvent{
-  public:
+public:
     GuildMemberRemoveEvent(
         field<Snowflake> guild_id = uninitialized,
         field<User> user = uninitialized
-    ): 
+    ):
         guild_id(guild_id),
         user(user)
     {}
@@ -607,14 +626,18 @@ class GuildMemberRemoveEvent{
     field<User> user;
 
     friend void to_json(nlohmann::json &j, const GuildMemberRemoveEvent &t) {
-        //ToJsonExtra
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.user.is_omitted()) {j["user"] = t.user;}
     }
+    friend void from_json(const nlohmann::json &j, GuildMemberRemoveEvent &t {
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(user)){j.at(user).get_to(t.user);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#guild-member-update-guild-member-update-event-fields
 class GuildMemberUpdateEvent{
-  public:
+public:
     GuildMemberUpdateEvent(
         field<Snowflake> guild_id = uninitialized,
         field<std::vector<Snowflake> > roles = uninitialized,
@@ -627,7 +650,7 @@ class GuildMemberUpdateEvent{
         omittable_field<bool> mute = omitted,
         omittable_field<bool> pending = omitted,
         nullable_omittable_field<Timestamp> communication_disabled_until = omitted
-    ): 
+    ):
         guild_id(guild_id),
         roles(roles),
         user(user),
@@ -654,7 +677,6 @@ class GuildMemberUpdateEvent{
     nullable_omittable_field<Timestamp> communication_disabled_until;
 
     friend void to_json(nlohmann::json &j, const GuildMemberUpdateEvent &t) {
-        //ToJsonExtra
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.roles.is_omitted()) {j["roles"] = t.roles;}
         if(!t.user.is_omitted()) {j["user"] = t.user;}
@@ -667,10 +689,24 @@ class GuildMemberUpdateEvent{
         if(!t.pending.is_omitted()) {j["pending"] = t.pending;}
         if(!t.communication_disabled_until.is_omitted()) {j["communication_disabled_until"] = t.communication_disabled_until;}
     }
+    friend void from_json(const nlohmann::json &j, GuildMemberUpdateEvent &t {
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(roles)){j.at(roles).get_to(t.roles);}
+        if(j.contains(user)){j.at(user).get_to(t.user);}
+        if(j.contains(nick)){j.at(nick).get_to(t.nick);}
+        if(j.contains(avatar)){j.at(avatar).get_to(t.avatar);}
+        if(j.contains(joined_at)){j.at(joined_at).get_to(t.joined_at);}
+        if(j.contains(premium_since)){j.at(premium_since).get_to(t.premium_since);}
+        if(j.contains(deaf)){j.at(deaf).get_to(t.deaf);}
+        if(j.contains(mute)){j.at(mute).get_to(t.mute);}
+        if(j.contains(pending)){j.at(pending).get_to(t.pending);}
+        if(j.contains(communication_disabled_until)){j.at(communication_disabled_until).get_to(t.communication_disabled_until);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#guild-members-chunk-guild-members-chunk-event-fields
 class GuildMembersChunkEvent{
-  public:
+public:
     GuildMembersChunkEvent(
         field<Snowflake> guild_id = uninitialized,
         field<std::vector<GuildMember> > members = uninitialized,
@@ -679,7 +715,7 @@ class GuildMembersChunkEvent{
         omittable_field<std::vector<Snowflake> > not_found = omitted,
         omittable_field<std::vector<Presence> > presences = omitted,
         omittable_field<std::string> nonce = omitted
-    ): 
+    ):
         guild_id(guild_id),
         members(members),
         chunk_index(chunk_index),
@@ -698,7 +734,6 @@ class GuildMembersChunkEvent{
     omittable_field<std::string> nonce;
 
     friend void to_json(nlohmann::json &j, const GuildMembersChunkEvent &t) {
-        //ToJsonExtra
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.members.is_omitted()) {j["members"] = t.members;}
         if(!t.chunk_index.is_omitted()) {j["chunk_index"] = t.chunk_index;}
@@ -707,14 +742,24 @@ class GuildMembersChunkEvent{
         if(!t.presences.is_omitted()) {j["presences"] = t.presences;}
         if(!t.nonce.is_omitted()) {j["nonce"] = t.nonce;}
     }
+    friend void from_json(const nlohmann::json &j, GuildMembersChunkEvent &t {
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(members)){j.at(members).get_to(t.members);}
+        if(j.contains(chunk_index)){j.at(chunk_index).get_to(t.chunk_index);}
+        if(j.contains(chunk_count)){j.at(chunk_count).get_to(t.chunk_count);}
+        if(j.contains(not_found)){j.at(not_found).get_to(t.not_found);}
+        if(j.contains(presences)){j.at(presences).get_to(t.presences);}
+        if(j.contains(nonce)){j.at(nonce).get_to(t.nonce);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#guild-role-create-guild-role-create-event-fields
 class GuildRoleCreateEvent{
-  public:
+public:
     GuildRoleCreateEvent(
         field<Snowflake> guild_id = uninitialized,
         field<Role> role = uninitialized
-    ): 
+    ):
         guild_id(guild_id),
         role(role)
     {}
@@ -723,18 +768,22 @@ class GuildRoleCreateEvent{
     field<Role> role;
 
     friend void to_json(nlohmann::json &j, const GuildRoleCreateEvent &t) {
-        //ToJsonExtra
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.role.is_omitted()) {j["role"] = t.role;}
     }
+    friend void from_json(const nlohmann::json &j, GuildRoleCreateEvent &t {
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(role)){j.at(role).get_to(t.role);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#guild-role-update-guild-role-update-event-fields
 class GuildRoleUpdateEvent{
-  public:
+public:
     GuildRoleUpdateEvent(
         field<Snowflake> guild_id = uninitialized,
         field<Role> role = uninitialized
-    ): 
+    ):
         guild_id(guild_id),
         role(role)
     {}
@@ -743,18 +792,22 @@ class GuildRoleUpdateEvent{
     field<Role> role;
 
     friend void to_json(nlohmann::json &j, const GuildRoleUpdateEvent &t) {
-        //ToJsonExtra
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.role.is_omitted()) {j["role"] = t.role;}
     }
+    friend void from_json(const nlohmann::json &j, GuildRoleUpdateEvent &t {
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(role)){j.at(role).get_to(t.role);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#guild-role-delete-guild-role-delete-event-fields
 class GuildRoleDeleteEvent{
-  public:
+public:
     GuildRoleDeleteEvent(
         field<Snowflake> guild_id = uninitialized,
         field<Snowflake> role_id = uninitialized
-    ): 
+    ):
         guild_id(guild_id),
         role_id(role_id)
     {}
@@ -763,19 +816,23 @@ class GuildRoleDeleteEvent{
     field<Snowflake> role_id;
 
     friend void to_json(nlohmann::json &j, const GuildRoleDeleteEvent &t) {
-        //ToJsonExtra
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.role_id.is_omitted()) {j["role_id"] = t.role_id;}
     }
+    friend void from_json(const nlohmann::json &j, GuildRoleDeleteEvent &t {
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(role_id)){j.at(role_id).get_to(t.role_id);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-user-add-guild-scheduled-event-user-add-event-fields
 class GuildScheduledEventUserAddEvent{
-  public:
+public:
     GuildScheduledEventUserAddEvent(
         field<Snowflake> guild_scheduled_event_id = uninitialized,
         field<Snowflake> user_id = uninitialized,
         field<Snowflake> guild_id = uninitialized
-    ): 
+    ):
         guild_scheduled_event_id(guild_scheduled_event_id),
         user_id(user_id),
         guild_id(guild_id)
@@ -786,20 +843,25 @@ class GuildScheduledEventUserAddEvent{
     field<Snowflake> guild_id;
 
     friend void to_json(nlohmann::json &j, const GuildScheduledEventUserAddEvent &t) {
-        //ToJsonExtra
         if(!t.guild_scheduled_event_id.is_omitted()) {j["guild_scheduled_event_id"] = t.guild_scheduled_event_id;}
         if(!t.user_id.is_omitted()) {j["user_id"] = t.user_id;}
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
     }
+    friend void from_json(const nlohmann::json &j, GuildScheduledEventUserAddEvent &t {
+        if(j.contains(guild_scheduled_event_id)){j.at(guild_scheduled_event_id).get_to(t.guild_scheduled_event_id);}
+        if(j.contains(user_id)){j.at(user_id).get_to(t.user_id);}
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-user-remove-guild-scheduled-event-user-remove-event-fields
 class GuildScheduledEventUserRemoveEvent{
-  public:
+public:
     GuildScheduledEventUserRemoveEvent(
         field<Snowflake> guild_scheduled_event_id = uninitialized,
         field<Snowflake> user_id = uninitialized,
         field<Snowflake> guild_id = uninitialized
-    ): 
+    ):
         guild_scheduled_event_id(guild_scheduled_event_id),
         user_id(user_id),
         guild_id(guild_id)
@@ -810,52 +872,63 @@ class GuildScheduledEventUserRemoveEvent{
     field<Snowflake> guild_id;
 
     friend void to_json(nlohmann::json &j, const GuildScheduledEventUserRemoveEvent &t) {
-        //ToJsonExtra
         if(!t.guild_scheduled_event_id.is_omitted()) {j["guild_scheduled_event_id"] = t.guild_scheduled_event_id;}
         if(!t.user_id.is_omitted()) {j["user_id"] = t.user_id;}
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
     }
+    friend void from_json(const nlohmann::json &j, GuildScheduledEventUserRemoveEvent &t {
+        if(j.contains(guild_scheduled_event_id)){j.at(guild_scheduled_event_id).get_to(t.guild_scheduled_event_id);}
+        if(j.contains(user_id)){j.at(user_id).get_to(t.user_id);}
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#integration-create-integration-create-event-additional-fields
 class IntegrationCreateEventAdditional{
-  public:
+public:
     IntegrationCreateEventAdditional(
         field<Snowflake> guild_id = uninitialized
-    ): 
+    ):
         guild_id(guild_id)
     {}
     
     field<Snowflake> guild_id;
 
     friend void to_json(nlohmann::json &j, const IntegrationCreateEventAdditional &t) {
-        //ToJsonExtra
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
     }
+    friend void from_json(const nlohmann::json &j, IntegrationCreateEventAdditional &t {
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#integration-update-integration-update-event-additional-fields
 class IntegrationUpdateEventAdditional{
-  public:
+public:
     IntegrationUpdateEventAdditional(
         field<Snowflake> guild_id = uninitialized
-    ): 
+    ):
         guild_id(guild_id)
     {}
     
     field<Snowflake> guild_id;
 
     friend void to_json(nlohmann::json &j, const IntegrationUpdateEventAdditional &t) {
-        //ToJsonExtra
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
     }
+    friend void from_json(const nlohmann::json &j, IntegrationUpdateEventAdditional &t {
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#integration-delete-integration-delete-event-fields
 class IntegrationDeleteEvent{
-  public:
+public:
     IntegrationDeleteEvent(
         field<Snowflake> id = uninitialized,
         field<Snowflake> guild_id = uninitialized,
         omittable_field<Snowflake> application_id = omitted
-    ): 
+    ):
         id(id),
         guild_id(guild_id),
         application_id(application_id)
@@ -866,15 +939,20 @@ class IntegrationDeleteEvent{
     omittable_field<Snowflake> application_id;
 
     friend void to_json(nlohmann::json &j, const IntegrationDeleteEvent &t) {
-        //ToJsonExtra
         if(!t.id.is_omitted()) {j["id"] = t.id;}
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.application_id.is_omitted()) {j["application_id"] = t.application_id;}
     }
+    friend void from_json(const nlohmann::json &j, IntegrationDeleteEvent &t {
+        if(j.contains(id)){j.at(id).get_to(t.id);}
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(application_id)){j.at(application_id).get_to(t.application_id);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#invite-create-invite-create-event-fields
 class InviteCreateEvent{
-  public:
+public:
     InviteCreateEvent(
         field<Snowflake> channel_id = uninitialized,
         field<std::string> code = uninitialized,
@@ -888,7 +966,7 @@ class InviteCreateEvent{
         omittable_field<Application> target_application = omitted,
         field<bool> temporary = uninitialized,
         field<int> uses = uninitialized
-    ): 
+    ):
         channel_id(channel_id),
         code(code),
         created_at(created_at),
@@ -917,7 +995,6 @@ class InviteCreateEvent{
     field<int> uses;
 
     friend void to_json(nlohmann::json &j, const InviteCreateEvent &t) {
-        //ToJsonExtra
         if(!t.channel_id.is_omitted()) {j["channel_id"] = t.channel_id;}
         if(!t.code.is_omitted()) {j["code"] = t.code;}
         if(!t.created_at.is_omitted()) {j["created_at"] = t.created_at;}
@@ -931,15 +1008,30 @@ class InviteCreateEvent{
         if(!t.temporary.is_omitted()) {j["temporary"] = t.temporary;}
         if(!t.uses.is_omitted()) {j["uses"] = t.uses;}
     }
+    friend void from_json(const nlohmann::json &j, InviteCreateEvent &t {
+        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
+        if(j.contains(code)){j.at(code).get_to(t.code);}
+        if(j.contains(created_at)){j.at(created_at).get_to(t.created_at);}
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(inviter)){j.at(inviter).get_to(t.inviter);}
+        if(j.contains(max_age)){j.at(max_age).get_to(t.max_age);}
+        if(j.contains(max_uses)){j.at(max_uses).get_to(t.max_uses);}
+        if(j.contains(target_type)){j.at(target_type).get_to(t.target_type);}
+        if(j.contains(target_user)){j.at(target_user).get_to(t.target_user);}
+        if(j.contains(target_application)){j.at(target_application).get_to(t.target_application);}
+        if(j.contains(temporary)){j.at(temporary).get_to(t.temporary);}
+        if(j.contains(uses)){j.at(uses).get_to(t.uses);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#invite-delete-invite-delete-event-fields
 class InviteDeleteEvent{
-  public:
+public:
     InviteDeleteEvent(
         field<Snowflake> channel_id = uninitialized,
         omittable_field<Snowflake> guild_id = omitted,
         field<std::string> code = uninitialized
-    ): 
+    ):
         channel_id(channel_id),
         guild_id(guild_id),
         code(code)
@@ -950,44 +1042,25 @@ class InviteDeleteEvent{
     field<std::string> code;
 
     friend void to_json(nlohmann::json &j, const InviteDeleteEvent &t) {
-        //ToJsonExtra
         if(!t.channel_id.is_omitted()) {j["channel_id"] = t.channel_id;}
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.code.is_omitted()) {j["code"] = t.code;}
     }
-};
-// https://discord.com/developers/docs/topics/gateway-events#message-create-message-create-extra-fields
-class MessageCreateExtra{
-  public:
-    MessageCreateExtra(
-        omittable_field<Snowflake> guild_id = omitted,
-        omittable_field<GuildMember> member = omitted,
-        field<std::vector<UserObjects,WithAnAdditionalPartialMemberField> > mentions = uninitialized
-    ): 
-        guild_id(guild_id),
-        member(member),
-        mentions(mentions)
-    {}
-    
-    omittable_field<Snowflake> guild_id;
-    omittable_field<GuildMember> member;
-    field<std::vector<UserObjects,WithAnAdditionalPartialMemberField> > mentions;
-
-    friend void to_json(nlohmann::json &j, const MessageCreateExtra &t) {
-        //ToJsonExtra
-        if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
-        if(!t.member.is_omitted()) {j["member"] = t.member;}
-        if(!t.mentions.is_omitted()) {j["mentions"] = t.mentions;}
+    friend void from_json(const nlohmann::json &j, InviteDeleteEvent &t {
+        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(code)){j.at(code).get_to(t.code);}
     }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#message-delete-message-delete-event-fields
 class MessageDeleteEvent{
-  public:
+public:
     MessageDeleteEvent(
         field<Snowflake> id = uninitialized,
         field<Snowflake> channel_id = uninitialized,
         omittable_field<Snowflake> guild_id = omitted
-    ): 
+    ):
         id(id),
         channel_id(channel_id),
         guild_id(guild_id)
@@ -998,20 +1071,25 @@ class MessageDeleteEvent{
     omittable_field<Snowflake> guild_id;
 
     friend void to_json(nlohmann::json &j, const MessageDeleteEvent &t) {
-        //ToJsonExtra
         if(!t.id.is_omitted()) {j["id"] = t.id;}
         if(!t.channel_id.is_omitted()) {j["channel_id"] = t.channel_id;}
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
     }
+    friend void from_json(const nlohmann::json &j, MessageDeleteEvent &t {
+        if(j.contains(id)){j.at(id).get_to(t.id);}
+        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#message-delete-bulk-message-delete-bulk-event-fields
 class MessageDeleteBulkEvent{
-  public:
+public:
     MessageDeleteBulkEvent(
         field<std::vector<Snowflake> > ids = uninitialized,
         field<Snowflake> channel_id = uninitialized,
         omittable_field<Snowflake> guild_id = omitted
-    ): 
+    ):
         ids(ids),
         channel_id(channel_id),
         guild_id(guild_id)
@@ -1022,15 +1100,20 @@ class MessageDeleteBulkEvent{
     omittable_field<Snowflake> guild_id;
 
     friend void to_json(nlohmann::json &j, const MessageDeleteBulkEvent &t) {
-        //ToJsonExtra
         if(!t.ids.is_omitted()) {j["ids"] = t.ids;}
         if(!t.channel_id.is_omitted()) {j["channel_id"] = t.channel_id;}
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
     }
+    friend void from_json(const nlohmann::json &j, MessageDeleteBulkEvent &t {
+        if(j.contains(ids)){j.at(ids).get_to(t.ids);}
+        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#message-reaction-add-message-reaction-add-event-fields
 class MessageReactionAddEvent{
-  public:
+public:
     MessageReactionAddEvent(
         field<Snowflake> user_id = uninitialized,
         field<Snowflake> channel_id = uninitialized,
@@ -1038,7 +1121,7 @@ class MessageReactionAddEvent{
         omittable_field<Snowflake> guild_id = omitted,
         omittable_field<GuildMember> member = omitted,
         field<Emoji> emoji = uninitialized
-    ): 
+    ):
         user_id(user_id),
         channel_id(channel_id),
         message_id(message_id),
@@ -1055,7 +1138,6 @@ class MessageReactionAddEvent{
     field<Emoji> emoji;
 
     friend void to_json(nlohmann::json &j, const MessageReactionAddEvent &t) {
-        //ToJsonExtra
         if(!t.user_id.is_omitted()) {j["user_id"] = t.user_id;}
         if(!t.channel_id.is_omitted()) {j["channel_id"] = t.channel_id;}
         if(!t.message_id.is_omitted()) {j["message_id"] = t.message_id;}
@@ -1063,17 +1145,26 @@ class MessageReactionAddEvent{
         if(!t.member.is_omitted()) {j["member"] = t.member;}
         if(!t.emoji.is_omitted()) {j["emoji"] = t.emoji;}
     }
+    friend void from_json(const nlohmann::json &j, MessageReactionAddEvent &t {
+        if(j.contains(user_id)){j.at(user_id).get_to(t.user_id);}
+        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
+        if(j.contains(message_id)){j.at(message_id).get_to(t.message_id);}
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(member)){j.at(member).get_to(t.member);}
+        if(j.contains(emoji)){j.at(emoji).get_to(t.emoji);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove-message-reaction-remove-event-fields
 class MessageReactionRemoveEvent{
-  public:
+public:
     MessageReactionRemoveEvent(
         field<Snowflake> user_id = uninitialized,
         field<Snowflake> channel_id = uninitialized,
         field<Snowflake> message_id = uninitialized,
         omittable_field<Snowflake> guild_id = omitted,
         field<Emoji> emoji = uninitialized
-    ): 
+    ):
         user_id(user_id),
         channel_id(channel_id),
         message_id(message_id),
@@ -1088,22 +1179,29 @@ class MessageReactionRemoveEvent{
     field<Emoji> emoji;
 
     friend void to_json(nlohmann::json &j, const MessageReactionRemoveEvent &t) {
-        //ToJsonExtra
         if(!t.user_id.is_omitted()) {j["user_id"] = t.user_id;}
         if(!t.channel_id.is_omitted()) {j["channel_id"] = t.channel_id;}
         if(!t.message_id.is_omitted()) {j["message_id"] = t.message_id;}
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.emoji.is_omitted()) {j["emoji"] = t.emoji;}
     }
+    friend void from_json(const nlohmann::json &j, MessageReactionRemoveEvent &t {
+        if(j.contains(user_id)){j.at(user_id).get_to(t.user_id);}
+        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
+        if(j.contains(message_id)){j.at(message_id).get_to(t.message_id);}
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(emoji)){j.at(emoji).get_to(t.emoji);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove-all-message-reaction-remove-all-event-fields
 class MessageReactionRemoveAllEvent{
-  public:
+public:
     MessageReactionRemoveAllEvent(
         field<Snowflake> channel_id = uninitialized,
         field<Snowflake> message_id = uninitialized,
         omittable_field<Snowflake> guild_id = omitted
-    ): 
+    ):
         channel_id(channel_id),
         message_id(message_id),
         guild_id(guild_id)
@@ -1114,21 +1212,26 @@ class MessageReactionRemoveAllEvent{
     omittable_field<Snowflake> guild_id;
 
     friend void to_json(nlohmann::json &j, const MessageReactionRemoveAllEvent &t) {
-        //ToJsonExtra
         if(!t.channel_id.is_omitted()) {j["channel_id"] = t.channel_id;}
         if(!t.message_id.is_omitted()) {j["message_id"] = t.message_id;}
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
     }
+    friend void from_json(const nlohmann::json &j, MessageReactionRemoveAllEvent &t {
+        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
+        if(j.contains(message_id)){j.at(message_id).get_to(t.message_id);}
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove-emoji-message-reaction-remove-emoji-event-fields
 class MessageReactionRemoveEmojiEvent{
-  public:
+public:
     MessageReactionRemoveEmojiEvent(
         field<Snowflake> channel_id = uninitialized,
         omittable_field<Snowflake> guild_id = omitted,
         field<Snowflake> message_id = uninitialized,
         field<Emoji> emoji = uninitialized
-    ): 
+    ):
         channel_id(channel_id),
         guild_id(guild_id),
         message_id(message_id),
@@ -1141,23 +1244,29 @@ class MessageReactionRemoveEmojiEvent{
     field<Emoji> emoji;
 
     friend void to_json(nlohmann::json &j, const MessageReactionRemoveEmojiEvent &t) {
-        //ToJsonExtra
         if(!t.channel_id.is_omitted()) {j["channel_id"] = t.channel_id;}
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.message_id.is_omitted()) {j["message_id"] = t.message_id;}
         if(!t.emoji.is_omitted()) {j["emoji"] = t.emoji;}
     }
+    friend void from_json(const nlohmann::json &j, MessageReactionRemoveEmojiEvent &t {
+        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(message_id)){j.at(message_id).get_to(t.message_id);}
+        if(j.contains(emoji)){j.at(emoji).get_to(t.emoji);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#presence-update-presence-update-event-fields
 class PresenceUpdateEvent{
-  public:
+public:
     PresenceUpdateEvent(
         field<User> user = uninitialized,
         field<Snowflake> guild_id = uninitialized,
         field<std::string> status = uninitialized,
         field<std::vector<Activity> > activities = uninitialized,
         field<ClientStatus> client_status = uninitialized
-    ): 
+    ):
         user(user),
         guild_id(guild_id),
         status(status),
@@ -1172,22 +1281,29 @@ class PresenceUpdateEvent{
     field<ClientStatus> client_status;
 
     friend void to_json(nlohmann::json &j, const PresenceUpdateEvent &t) {
-        //ToJsonExtra
         if(!t.user.is_omitted()) {j["user"] = t.user;}
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.status.is_omitted()) {j["status"] = t.status;}
         if(!t.activities.is_omitted()) {j["activities"] = t.activities;}
         if(!t.client_status.is_omitted()) {j["client_status"] = t.client_status;}
     }
+    friend void from_json(const nlohmann::json &j, PresenceUpdateEvent &t {
+        if(j.contains(user)){j.at(user).get_to(t.user);}
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(status)){j.at(status).get_to(t.status);}
+        if(j.contains(activities)){j.at(activities).get_to(t.activities);}
+        if(j.contains(client_status)){j.at(client_status).get_to(t.client_status);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#presence-client-status-object
 class ClientStatus{
-  public:
+public:
     ClientStatus(
         omittable_field<std::string> desktop = omitted,
         omittable_field<std::string> mobile = omitted,
         omittable_field<std::string> web = omitted
-    ): 
+    ):
         desktop(desktop),
         mobile(mobile),
         web(web)
@@ -1198,15 +1314,20 @@ class ClientStatus{
     omittable_field<std::string> web;
 
     friend void to_json(nlohmann::json &j, const ClientStatus &t) {
-        //ToJsonExtra
         if(!t.desktop.is_omitted()) {j["desktop"] = t.desktop;}
         if(!t.mobile.is_omitted()) {j["mobile"] = t.mobile;}
         if(!t.web.is_omitted()) {j["web"] = t.web;}
     }
+    friend void from_json(const nlohmann::json &j, ClientStatus &t {
+        if(j.contains(desktop)){j.at(desktop).get_to(t.desktop);}
+        if(j.contains(mobile)){j.at(mobile).get_to(t.mobile);}
+        if(j.contains(web)){j.at(web).get_to(t.web);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#activity-object-activity-structure
 class Activity{
-  public:
+public:
     Activity(
         field<std::string> name = uninitialized,
         field<int> type = uninitialized,
@@ -1223,7 +1344,7 @@ class Activity{
         omittable_field<bool> instance = omitted,
         omittable_field<int> flags = omitted,
         omittable_field<std::vector<Button> > buttons = omitted
-    ): 
+    ):
         name(name),
         type(type),
         url(url),
@@ -1258,7 +1379,6 @@ class Activity{
     omittable_field<std::vector<Button> > buttons;
 
     friend void to_json(nlohmann::json &j, const Activity &t) {
-        //ToJsonExtra
         if(!t.name.is_omitted()) {j["name"] = t.name;}
         if(!t.type.is_omitted()) {j["type"] = t.type;}
         if(!t.url.is_omitted()) {j["url"] = t.url;}
@@ -1275,14 +1395,32 @@ class Activity{
         if(!t.flags.is_omitted()) {j["flags"] = t.flags;}
         if(!t.buttons.is_omitted()) {j["buttons"] = t.buttons;}
     }
+    friend void from_json(const nlohmann::json &j, Activity &t {
+        if(j.contains(name)){j.at(name).get_to(t.name);}
+        if(j.contains(type)){j.at(type).get_to(t.type);}
+        if(j.contains(url)){j.at(url).get_to(t.url);}
+        if(j.contains(created_at)){j.at(created_at).get_to(t.created_at);}
+        if(j.contains(timestamps)){j.at(timestamps).get_to(t.timestamps);}
+        if(j.contains(application_id)){j.at(application_id).get_to(t.application_id);}
+        if(j.contains(details)){j.at(details).get_to(t.details);}
+        if(j.contains(state)){j.at(state).get_to(t.state);}
+        if(j.contains(emoji)){j.at(emoji).get_to(t.emoji);}
+        if(j.contains(party)){j.at(party).get_to(t.party);}
+        if(j.contains(assets)){j.at(assets).get_to(t.assets);}
+        if(j.contains(secrets)){j.at(secrets).get_to(t.secrets);}
+        if(j.contains(instance)){j.at(instance).get_to(t.instance);}
+        if(j.contains(flags)){j.at(flags).get_to(t.flags);}
+        if(j.contains(buttons)){j.at(buttons).get_to(t.buttons);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#activity-object-activity-timestamps
 class ActivityTimestamps{
-  public:
+public:
     ActivityTimestamps(
         omittable_field<int> start = omitted,
         omittable_field<int> end = omitted
-    ): 
+    ):
         start(start),
         end(end)
     {}
@@ -1291,19 +1429,23 @@ class ActivityTimestamps{
     omittable_field<int> end;
 
     friend void to_json(nlohmann::json &j, const ActivityTimestamps &t) {
-        //ToJsonExtra
         if(!t.start.is_omitted()) {j["start"] = t.start;}
         if(!t.end.is_omitted()) {j["end"] = t.end;}
     }
+    friend void from_json(const nlohmann::json &j, ActivityTimestamps &t {
+        if(j.contains(start)){j.at(start).get_to(t.start);}
+        if(j.contains(end)){j.at(end).get_to(t.end);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#activity-object-activity-emoji
 class ActivityEmoji{
-  public:
+public:
     ActivityEmoji(
         field<std::string> name = uninitialized,
         omittable_field<Snowflake> id = omitted,
         omittable_field<bool> animated = omitted
-    ): 
+    ):
         name(name),
         id(id),
         animated(animated)
@@ -1314,19 +1456,24 @@ class ActivityEmoji{
     omittable_field<bool> animated;
 
     friend void to_json(nlohmann::json &j, const ActivityEmoji &t) {
-        //ToJsonExtra
         if(!t.name.is_omitted()) {j["name"] = t.name;}
         if(!t.id.is_omitted()) {j["id"] = t.id;}
         if(!t.animated.is_omitted()) {j["animated"] = t.animated;}
     }
+    friend void from_json(const nlohmann::json &j, ActivityEmoji &t {
+        if(j.contains(name)){j.at(name).get_to(t.name);}
+        if(j.contains(id)){j.at(id).get_to(t.id);}
+        if(j.contains(animated)){j.at(animated).get_to(t.animated);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#activity-object-activity-party
 class ActivityParty{
-  public:
+public:
     ActivityParty(
         omittable_field<std::string> id = omitted,
         omittable_field<std::Array<int, 2>> size = omitted
-    ): 
+    ):
         id(id),
         size(size)
     {}
@@ -1335,20 +1482,24 @@ class ActivityParty{
     omittable_field<std::Array<int, 2>> size;
 
     friend void to_json(nlohmann::json &j, const ActivityParty &t) {
-        //ToJsonExtra
         if(!t.id.is_omitted()) {j["id"] = t.id;}
         if(!t.size.is_omitted()) {j["size"] = t.size;}
     }
+    friend void from_json(const nlohmann::json &j, ActivityParty &t {
+        if(j.contains(id)){j.at(id).get_to(t.id);}
+        if(j.contains(size)){j.at(size).get_to(t.size);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#activity-object-activity-assets
 class ActivityAssets{
-  public:
+public:
     ActivityAssets(
         omittable_field<std::string> large_image = omitted,
         omittable_field<std::string> large_text = omitted,
         omittable_field<std::string> small_image = omitted,
         omittable_field<std::string> small_text = omitted
-    ): 
+    ):
         large_image(large_image),
         large_text(large_text),
         small_image(small_image),
@@ -1361,21 +1512,27 @@ class ActivityAssets{
     omittable_field<std::string> small_text;
 
     friend void to_json(nlohmann::json &j, const ActivityAssets &t) {
-        //ToJsonExtra
         if(!t.large_image.is_omitted()) {j["large_image"] = t.large_image;}
         if(!t.large_text.is_omitted()) {j["large_text"] = t.large_text;}
         if(!t.small_image.is_omitted()) {j["small_image"] = t.small_image;}
         if(!t.small_text.is_omitted()) {j["small_text"] = t.small_text;}
     }
+    friend void from_json(const nlohmann::json &j, ActivityAssets &t {
+        if(j.contains(large_image)){j.at(large_image).get_to(t.large_image);}
+        if(j.contains(large_text)){j.at(large_text).get_to(t.large_text);}
+        if(j.contains(small_image)){j.at(small_image).get_to(t.small_image);}
+        if(j.contains(small_text)){j.at(small_text).get_to(t.small_text);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#activity-object-activity-secrets
 class ActivitySecrets{
-  public:
+public:
     ActivitySecrets(
         omittable_field<std::string> join = omitted,
         omittable_field<std::string> spectate = omitted,
         omittable_field<std::string> match = omitted
-    ): 
+    ):
         join(join),
         spectate(spectate),
         match(match)
@@ -1386,19 +1543,24 @@ class ActivitySecrets{
     omittable_field<std::string> match;
 
     friend void to_json(nlohmann::json &j, const ActivitySecrets &t) {
-        //ToJsonExtra
         if(!t.join.is_omitted()) {j["join"] = t.join;}
         if(!t.spectate.is_omitted()) {j["spectate"] = t.spectate;}
         if(!t.match.is_omitted()) {j["match"] = t.match;}
     }
+    friend void from_json(const nlohmann::json &j, ActivitySecrets &t {
+        if(j.contains(join)){j.at(join).get_to(t.join);}
+        if(j.contains(spectate)){j.at(spectate).get_to(t.spectate);}
+        if(j.contains(match)){j.at(match).get_to(t.match);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#activity-object-activity-buttons
 class ActivityButtons{
-  public:
+public:
     ActivityButtons(
         field<std::string> label = uninitialized,
         field<std::string> url = uninitialized
-    ): 
+    ):
         label(label),
         url(url)
     {}
@@ -1407,21 +1569,25 @@ class ActivityButtons{
     field<std::string> url;
 
     friend void to_json(nlohmann::json &j, const ActivityButtons &t) {
-        //ToJsonExtra
         if(!t.label.is_omitted()) {j["label"] = t.label;}
         if(!t.url.is_omitted()) {j["url"] = t.url;}
     }
+    friend void from_json(const nlohmann::json &j, ActivityButtons &t {
+        if(j.contains(label)){j.at(label).get_to(t.label);}
+        if(j.contains(url)){j.at(url).get_to(t.url);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#typing-start-typing-start-event-fields
 class TypingStartEvent{
-  public:
+public:
     TypingStartEvent(
         field<Snowflake> channel_id = uninitialized,
         omittable_field<Snowflake> guild_id = omitted,
         field<Snowflake> user_id = uninitialized,
         field<int> timestamp = uninitialized,
         omittable_field<GuildMember> member = omitted
-    ): 
+    ):
         channel_id(channel_id),
         guild_id(guild_id),
         user_id(user_id),
@@ -1436,22 +1602,29 @@ class TypingStartEvent{
     omittable_field<GuildMember> member;
 
     friend void to_json(nlohmann::json &j, const TypingStartEvent &t) {
-        //ToJsonExtra
         if(!t.channel_id.is_omitted()) {j["channel_id"] = t.channel_id;}
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.user_id.is_omitted()) {j["user_id"] = t.user_id;}
         if(!t.timestamp.is_omitted()) {j["timestamp"] = t.timestamp;}
         if(!t.member.is_omitted()) {j["member"] = t.member;}
     }
+    friend void from_json(const nlohmann::json &j, TypingStartEvent &t {
+        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(user_id)){j.at(user_id).get_to(t.user_id);}
+        if(j.contains(timestamp)){j.at(timestamp).get_to(t.timestamp);}
+        if(j.contains(member)){j.at(member).get_to(t.member);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#voice-server-update-voice-server-update-event-fields
 class VoiceServerUpdateEvent{
-  public:
+public:
     VoiceServerUpdateEvent(
         field<std::string> token = uninitialized,
         field<Snowflake> guild_id = uninitialized,
         nullable_field<std::string> endpoint = uninitialized
-    ): 
+    ):
         token(token),
         guild_id(guild_id),
         endpoint(endpoint)
@@ -1462,19 +1635,24 @@ class VoiceServerUpdateEvent{
     nullable_field<std::string> endpoint;
 
     friend void to_json(nlohmann::json &j, const VoiceServerUpdateEvent &t) {
-        //ToJsonExtra
         if(!t.token.is_omitted()) {j["token"] = t.token;}
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.endpoint.is_omitted()) {j["endpoint"] = t.endpoint;}
     }
+    friend void from_json(const nlohmann::json &j, VoiceServerUpdateEvent &t {
+        if(j.contains(token)){j.at(token).get_to(t.token);}
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(endpoint)){j.at(endpoint).get_to(t.endpoint);}
+    }
 };
+
 // https://discord.com/developers/docs/topics/gateway-events#webhooks-update-webhooks-update-event-fields
 class WebhooksUpdateEvent{
-  public:
+public:
     WebhooksUpdateEvent(
         field<Snowflake> guild_id = uninitialized,
         field<Snowflake> channel_id = uninitialized
-    ): 
+    ):
         guild_id(guild_id),
         channel_id(channel_id)
     {}
@@ -1483,8 +1661,11 @@ class WebhooksUpdateEvent{
     field<Snowflake> channel_id;
 
     friend void to_json(nlohmann::json &j, const WebhooksUpdateEvent &t) {
-        //ToJsonExtra
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.channel_id.is_omitted()) {j["channel_id"] = t.channel_id;}
+    }
+    friend void from_json(const nlohmann::json &j, WebhooksUpdateEvent &t {
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
     }
 };

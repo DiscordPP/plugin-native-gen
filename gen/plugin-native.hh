@@ -43,6 +43,8 @@ using Locale = std::string;
 using Action = json;
 // https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-action-object-action-types
 using ActionType = int;
+// https://discord.com/developers/docs/resources/application-role-connection-metadata#application-role-connection-metadata-object-application-role-connection-metadata-type
+using ApplicationRoleConnectionMetadataType = int;
 // https://discord.com/developers/docs/interactions/message-components#component-object
 using Component = json;
 // https://discord.com/developers/docs/resources/guild#integration-account-object
@@ -81,6 +83,7 @@ using InteractionCallbackData = json;
 #include "objects_fwd/permissions_fwd.hh"
 #include "objects_fwd/rate-limits_fwd.hh"
 #include "objects_fwd/teams_fwd.hh"
+#include "objects_fwd/children_fwd.hh"
 /* This space intentionally left blank */
 #include "objects_fwd/gateway_fwd.hh"
 /* This space intentionally left blank */
@@ -107,6 +110,7 @@ using InteractionCallbackData = json;
 #include "objects/permissions.hh"
 #include "objects/rate-limits.hh"
 #include "objects/teams.hh"
+#include "objects/children.hh"
 /* This space intentionally left blank */
 #include "objects/receiving-and-responding.hh"
 #undef OBJECT_BREAKOUTS

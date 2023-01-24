@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object-guild-scheduled-event-structure
 class GuildScheduledEvent{
-  public:
+public:
     GuildScheduledEvent(
         field<Snowflake> id = uninitialized,
         field<Snowflake> guild_id = uninitialized,
@@ -24,7 +24,7 @@ class GuildScheduledEvent{
         omittable_field<User> creator = omitted,
         omittable_field<int> user_count = omitted,
         nullable_omittable_field<std::string> image = omitted
-    ): 
+    ):
         id(id),
         guild_id(guild_id),
         channel_id(channel_id),
@@ -61,7 +61,6 @@ class GuildScheduledEvent{
     nullable_omittable_field<std::string> image;
 
     friend void to_json(nlohmann::json &j, const GuildScheduledEvent &t) {
-        //ToJsonExtra
         if(!t.id.is_omitted()) {j["id"] = t.id;}
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.channel_id.is_omitted()) {j["channel_id"] = t.channel_id;}
@@ -79,31 +78,53 @@ class GuildScheduledEvent{
         if(!t.user_count.is_omitted()) {j["user_count"] = t.user_count;}
         if(!t.image.is_omitted()) {j["image"] = t.image;}
     }
+    friend void from_json(const nlohmann::json &j, GuildScheduledEvent &t {
+        if(j.contains(id)){j.at(id).get_to(t.id);}
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
+        if(j.contains(creator_id)){j.at(creator_id).get_to(t.creator_id);}
+        if(j.contains(name)){j.at(name).get_to(t.name);}
+        if(j.contains(description)){j.at(description).get_to(t.description);}
+        if(j.contains(scheduled_start_time)){j.at(scheduled_start_time).get_to(t.scheduled_start_time);}
+        if(j.contains(scheduled_end_time)){j.at(scheduled_end_time).get_to(t.scheduled_end_time);}
+        if(j.contains(privacy_level)){j.at(privacy_level).get_to(t.privacy_level);}
+        if(j.contains(status)){j.at(status).get_to(t.status);}
+        if(j.contains(entity_type)){j.at(entity_type).get_to(t.entity_type);}
+        if(j.contains(entity_id)){j.at(entity_id).get_to(t.entity_id);}
+        if(j.contains(entity_metadata)){j.at(entity_metadata).get_to(t.entity_metadata);}
+        if(j.contains(creator)){j.at(creator).get_to(t.creator);}
+        if(j.contains(user_count)){j.at(user_count).get_to(t.user_count);}
+        if(j.contains(image)){j.at(image).get_to(t.image);}
+    }
 };
+
 // https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object-guild-scheduled-event-entity-metadata
 class GuildScheduledEventEntityMetadata{
-  public:
+public:
     GuildScheduledEventEntityMetadata(
         omittable_field<std::string> location = omitted
-    ): 
+    ):
         location(location)
     {}
     
     omittable_field<std::string> location;
 
     friend void to_json(nlohmann::json &j, const GuildScheduledEventEntityMetadata &t) {
-        //ToJsonExtra
         if(!t.location.is_omitted()) {j["location"] = t.location;}
     }
+    friend void from_json(const nlohmann::json &j, GuildScheduledEventEntityMetadata &t {
+        if(j.contains(location)){j.at(location).get_to(t.location);}
+    }
 };
+
 // https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-user-object-guild-scheduled-event-user-structure
 class GuildScheduledEventUser{
-  public:
+public:
     GuildScheduledEventUser(
         field<Snowflake> guild_scheduled_event_id = uninitialized,
         field<User> user = uninitialized,
         omittable_field<GuildMember> member = omitted
-    ): 
+    ):
         guild_scheduled_event_id(guild_scheduled_event_id),
         user(user),
         member(member)
@@ -114,9 +135,13 @@ class GuildScheduledEventUser{
     omittable_field<GuildMember> member;
 
     friend void to_json(nlohmann::json &j, const GuildScheduledEventUser &t) {
-        //ToJsonExtra
         if(!t.guild_scheduled_event_id.is_omitted()) {j["guild_scheduled_event_id"] = t.guild_scheduled_event_id;}
         if(!t.user.is_omitted()) {j["user"] = t.user;}
         if(!t.member.is_omitted()) {j["member"] = t.member;}
+    }
+    friend void from_json(const nlohmann::json &j, GuildScheduledEventUser &t {
+        if(j.contains(guild_scheduled_event_id)){j.at(guild_scheduled_event_id).get_to(t.guild_scheduled_event_id);}
+        if(j.contains(user)){j.at(user).get_to(t.user);}
+        if(j.contains(member)){j.at(member).get_to(t.member);}
     }
 };

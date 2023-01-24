@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/resources/guild-template#guild-template-object-guild-template-structure
 class GuildTemplate{
-  public:
+public:
     GuildTemplate(
         field<std::string> code = uninitialized,
         field<std::string> name = uninitialized,
@@ -19,7 +19,7 @@ class GuildTemplate{
         field<Snowflake> source_guild_id = uninitialized,
         field<Guild> serialized_source_guild = uninitialized,
         nullable_field<bool> is_dirty = uninitialized
-    ): 
+    ):
         code(code),
         name(name),
         description(description),
@@ -46,7 +46,6 @@ class GuildTemplate{
     nullable_field<bool> is_dirty;
 
     friend void to_json(nlohmann::json &j, const GuildTemplate &t) {
-        //ToJsonExtra
         if(!t.code.is_omitted()) {j["code"] = t.code;}
         if(!t.name.is_omitted()) {j["name"] = t.name;}
         if(!t.description.is_omitted()) {j["description"] = t.description;}
@@ -58,5 +57,18 @@ class GuildTemplate{
         if(!t.source_guild_id.is_omitted()) {j["source_guild_id"] = t.source_guild_id;}
         if(!t.serialized_source_guild.is_omitted()) {j["serialized_source_guild"] = t.serialized_source_guild;}
         if(!t.is_dirty.is_omitted()) {j["is_dirty"] = t.is_dirty;}
+    }
+    friend void from_json(const nlohmann::json &j, GuildTemplate &t {
+        if(j.contains(code)){j.at(code).get_to(t.code);}
+        if(j.contains(name)){j.at(name).get_to(t.name);}
+        if(j.contains(description)){j.at(description).get_to(t.description);}
+        if(j.contains(usage_count)){j.at(usage_count).get_to(t.usage_count);}
+        if(j.contains(creator_id)){j.at(creator_id).get_to(t.creator_id);}
+        if(j.contains(creator)){j.at(creator).get_to(t.creator);}
+        if(j.contains(created_at)){j.at(created_at).get_to(t.created_at);}
+        if(j.contains(updated_at)){j.at(updated_at).get_to(t.updated_at);}
+        if(j.contains(source_guild_id)){j.at(source_guild_id).get_to(t.source_guild_id);}
+        if(j.contains(serialized_source_guild)){j.at(serialized_source_guild).get_to(t.serialized_source_guild);}
+        if(j.contains(is_dirty)){j.at(is_dirty).get_to(t.is_dirty);}
     }
 };

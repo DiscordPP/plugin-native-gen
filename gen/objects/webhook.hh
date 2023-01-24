@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/resources/webhook#webhook-object-webhook-structure
 class Webhook{
-  public:
+public:
     Webhook(
         field<Snowflake> id = uninitialized,
         field<int> type = uninitialized,
@@ -20,7 +20,7 @@ class Webhook{
         omittable_field<Guild> source_guild = omitted,
         omittable_field<Channel> source_channel = omitted,
         omittable_field<std::string> url = omitted
-    ): 
+    ):
         id(id),
         type(type),
         guild_id(guild_id),
@@ -49,7 +49,6 @@ class Webhook{
     omittable_field<std::string> url;
 
     friend void to_json(nlohmann::json &j, const Webhook &t) {
-        //ToJsonExtra
         if(!t.id.is_omitted()) {j["id"] = t.id;}
         if(!t.type.is_omitted()) {j["type"] = t.type;}
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
@@ -62,5 +61,19 @@ class Webhook{
         if(!t.source_guild.is_omitted()) {j["source_guild"] = t.source_guild;}
         if(!t.source_channel.is_omitted()) {j["source_channel"] = t.source_channel;}
         if(!t.url.is_omitted()) {j["url"] = t.url;}
+    }
+    friend void from_json(const nlohmann::json &j, Webhook &t {
+        if(j.contains(id)){j.at(id).get_to(t.id);}
+        if(j.contains(type)){j.at(type).get_to(t.type);}
+        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
+        if(j.contains(user)){j.at(user).get_to(t.user);}
+        if(j.contains(name)){j.at(name).get_to(t.name);}
+        if(j.contains(avatar)){j.at(avatar).get_to(t.avatar);}
+        if(j.contains(token)){j.at(token).get_to(t.token);}
+        if(j.contains(application_id)){j.at(application_id).get_to(t.application_id);}
+        if(j.contains(source_guild)){j.at(source_guild).get_to(t.source_guild);}
+        if(j.contains(source_channel)){j.at(source_channel).get_to(t.source_channel);}
+        if(j.contains(url)){j.at(url).get_to(t.url);}
     }
 };
