@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/interactions/message-components#button-object-button-structure
 class Button: public Component{
-public:
+  public:
     Button(
         field<int> style = uninitialized,
         omittable_field<std::string> label = omitted,
@@ -55,7 +55,7 @@ public:
 
 // https://discord.com/developers/docs/interactions/message-components#select-menu-object-select-menu-structure
 class SelectMenu: public Component{
-public:
+  public:
     SelectMenu(
         field<int> type = uninitialized,
         field<std::string> custom_id = uninitialized,
@@ -110,7 +110,7 @@ public:
 
 // https://discord.com/developers/docs/interactions/message-components#text-inputs-text-input-structure
 class TextInput: public Component{
-public:
+  public:
     TextInput(
         field<std::string> custom_id = uninitialized,
         field<int> style = uninitialized,
@@ -169,7 +169,7 @@ public:
 
 // https://discord.com/developers/docs/interactions/message-components#action-rows
 class ActionRow: public Component{
-public:
+  public:
     ActionRow(
         field<std::vector<Component> > components = uninitialized
     ):
@@ -191,7 +191,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#thread-member-update-thread-member-update-event-extra-fields
 class ThreadMemberUpdateEvent: public ThreadMember{
-public:
+  public:
     ThreadMemberUpdateEvent(
         omittable_field<Snowflake> id = omitted,
         omittable_field<Snowflake> user_id = omitted,
@@ -222,7 +222,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#guild-create-guild-create-extra-fields
 class GuildCreateEvent: public Guild{
-public:
+  public:
     GuildCreateEvent(
         field<Snowflake> id = uninitialized,
         field<std::string> name = uninitialized,
@@ -375,7 +375,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#guild-member-add-guild-member-add-extra-fields
 class GuildMemberAddEvent: public GuildMember{
-public:
+  public:
     GuildMemberAddEvent(
         omittable_field<User> user = omitted,
         nullable_omittable_field<std::string> nick = omitted,
@@ -420,7 +420,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#message-create-message-create-extra-fields
 class MessageCreateEvent: public Message{
-public:
+  public:
     MessageCreateEvent(
         field<Snowflake> id = uninitialized,
         field<Snowflake> channel_id = uninitialized,

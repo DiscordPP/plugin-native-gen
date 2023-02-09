@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/resources/application#application-object-application-structure
 class Application{
-public:
+  public:
     Application(
         field<Snowflake> id = uninitialized,
         field<std::string> name = uninitialized,
@@ -130,7 +130,7 @@ public:
 
 // https://discord.com/developers/docs/resources/application#install-params-object-install-params-structure
 class InstallParams{
-public:
+  public:
     InstallParams(
         field<std::vector<std::string> > scopes = uninitialized,
         field<std::string> permissions = uninitialized

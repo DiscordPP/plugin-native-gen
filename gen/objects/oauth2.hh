@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/topics/oauth2#get-current-authorization-information-response-structure
 class GetCurrentAuthorizationInformationResponse{
-public:
+  public:
     GetCurrentAuthorizationInformationResponse(
         field<Application> application = uninitialized,
         field<std::vector<std::string> > scopes = uninitialized,

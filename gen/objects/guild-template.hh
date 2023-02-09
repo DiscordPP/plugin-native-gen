@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/resources/guild-template#guild-template-object-guild-template-structure
 class GuildTemplate{
-public:
+  public:
     GuildTemplate(
         field<std::string> code = uninitialized,
         field<std::string> name = uninitialized,

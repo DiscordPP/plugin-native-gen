@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/topics/rate-limits#exceeding-a-rate-limit-rate-limit-response-structure
 class RateLimitResponse{
-public:
+  public:
     RateLimitResponse(
         field<std::string> message = uninitialized,
         field<float> retry_after = uninitialized,

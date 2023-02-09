@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object-guild-scheduled-event-structure
 class GuildScheduledEvent{
-public:
+  public:
     GuildScheduledEvent(
         field<Snowflake> id = uninitialized,
         field<Snowflake> guild_id = uninitialized,
@@ -100,7 +100,7 @@ public:
 
 // https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object-guild-scheduled-event-entity-metadata
 class GuildScheduledEventEntityMetadata{
-public:
+  public:
     GuildScheduledEventEntityMetadata(
         omittable_field<std::string> location = omitted
     ):
@@ -119,7 +119,7 @@ public:
 
 // https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-user-object-guild-scheduled-event-user-structure
 class GuildScheduledEventUser{
-public:
+  public:
     GuildScheduledEventUser(
         field<Snowflake> guild_scheduled_event_id = uninitialized,
         field<User> user = uninitialized,

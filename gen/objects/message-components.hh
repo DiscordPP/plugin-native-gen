@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/interactions/message-components#select-menu-object-select-option-structure
 class SelectOption{
-public:
+  public:
     SelectOption(
         field<std::string> label = uninitialized,
         field<std::string> value = uninitialized,
@@ -45,7 +45,7 @@ public:
 
 // https://discord.com/developers/docs/interactions/message-components#component-object
 class Component{
-public:
+  public:
     Component(
         field<int> type = uninitialized
     ):

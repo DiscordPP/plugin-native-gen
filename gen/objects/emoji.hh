@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/resources/emoji#emoji-object-emoji-structure
 class Emoji{
-public:
+  public:
     Emoji(
         nullable_field<Snowflake> id = uninitialized,
         nullable_field<std::string> name = uninitialized,

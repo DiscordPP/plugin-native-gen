@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/topics/gateway#get-gateway-bot-json-response
 class GetGatewayBotResponse{
-public:
+  public:
     GetGatewayBotResponse(
         field<std::string> url = uninitialized,
         field<int> shards = uninitialized,
@@ -35,7 +35,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway#session-start-limit-object-session-start-limit-structure
 class SessionStartLimit{
-public:
+  public:
     SessionStartLimit(
         field<int> total = uninitialized,
         field<int> remaining = uninitialized,

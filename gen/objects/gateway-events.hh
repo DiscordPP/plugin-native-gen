@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/topics/gateway-events#payload-structure
 class Payload{
-public:
+  public:
     Payload(
         field<int> op = uninitialized,
         nullable_field<json> d = uninitialized,
@@ -40,7 +40,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#identify-identify-structure
 class Identify{
-public:
+  public:
     Identify(
         field<std::string> token = uninitialized,
         field<IdentifyConnectionProperties> properties = uninitialized,
@@ -89,7 +89,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#identify-identify-connection-properties
 class IdentifyConnectionProperties{
-public:
+  public:
     IdentifyConnectionProperties(
         field<std::string> os = uninitialized,
         field<std::string> browser = uninitialized,
@@ -118,7 +118,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#resume-resume-structure
 class Resume{
-public:
+  public:
     Resume(
         field<std::string> token = uninitialized,
         field<std::string> session_id = uninitialized,
@@ -147,7 +147,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#request-guild-members-guild-request-members-structure
 class GuildRequestMembers{
-public:
+  public:
     GuildRequestMembers(
         field<Snowflake> guild_id = uninitialized,
         omittable_field<std::string> query = omitted,
@@ -191,7 +191,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#update-voice-state-gateway-voice-state-update-structure
 class GatewayVoiceStateUpdate{
-public:
+  public:
     GatewayVoiceStateUpdate(
         field<Snowflake> guild_id = uninitialized,
         nullable_field<Snowflake> channel_id = uninitialized,
@@ -225,7 +225,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#update-presence-gateway-presence-update-structure
 class GatewayPresenceUpdate{
-public:
+  public:
     GatewayPresenceUpdate(
         nullable_field<int> since = uninitialized,
         field<std::vector<Activity> > activities = uninitialized,
@@ -259,7 +259,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#hello-hello-structure
 class Hello{
-public:
+  public:
     Hello(
         field<int> heartbeat_interval = uninitialized
     ):
@@ -278,7 +278,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#ready-ready-event-fields
 class ReadyEvent{
-public:
+  public:
     ReadyEvent(
         field<int> v = uninitialized,
         field<User> user = uninitialized,
@@ -327,7 +327,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#auto-moderation-action-execution-auto-moderation-action-execution-event-fields
 class AutoModerationActionExecutionEvent{
-public:
+  public:
     AutoModerationActionExecutionEvent(
         field<Snowflake> guild_id = uninitialized,
         field<AutoModerationAction> action = uninitialized,
@@ -396,7 +396,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#thread-list-sync-thread-list-sync-event-fields
 class ThreadListSyncEvent{
-public:
+  public:
     ThreadListSyncEvent(
         field<Snowflake> guild_id = uninitialized,
         omittable_field<std::vector<Snowflake> > channel_ids = omitted,
@@ -430,7 +430,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#thread-members-update-thread-members-update-event-fields
 class ThreadMembersUpdateEvent{
-public:
+  public:
     ThreadMembersUpdateEvent(
         field<Snowflake> id = uninitialized,
         field<Snowflake> guild_id = uninitialized,
@@ -469,7 +469,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#channel-pins-update-channel-pins-update-event-fields
 class ChannelPinsUpdateEvent{
-public:
+  public:
     ChannelPinsUpdateEvent(
         omittable_field<Snowflake> guild_id = omitted,
         field<Snowflake> channel_id = uninitialized,
@@ -498,7 +498,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#guild-ban-add-guild-ban-add-event-fields
 class GuildBanAddEvent{
-public:
+  public:
     GuildBanAddEvent(
         field<Snowflake> guild_id = uninitialized,
         field<User> user = uninitialized
@@ -522,7 +522,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#guild-ban-remove-guild-ban-remove-event-fields
 class GuildBanRemoveEvent{
-public:
+  public:
     GuildBanRemoveEvent(
         field<Snowflake> guild_id = uninitialized,
         field<User> user = uninitialized
@@ -546,7 +546,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#guild-emojis-update-guild-emojis-update-event-fields
 class GuildEmojisUpdateEvent{
-public:
+  public:
     GuildEmojisUpdateEvent(
         field<Snowflake> guild_id = uninitialized,
         field<std::vector<Emoji> > emojis = uninitialized
@@ -570,7 +570,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#guild-stickers-update-guild-stickers-update-event-fields
 class GuildStickersUpdateEvent{
-public:
+  public:
     GuildStickersUpdateEvent(
         field<Snowflake> guild_id = uninitialized,
         field<std::vector<Sticker> > stickers = uninitialized
@@ -594,7 +594,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#guild-integrations-update-guild-integrations-update-event-fields
 class GuildIntegrationsUpdateEvent{
-public:
+  public:
     GuildIntegrationsUpdateEvent(
         field<Snowflake> guild_id = uninitialized
     ):
@@ -613,7 +613,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#guild-member-remove-guild-member-remove-event-fields
 class GuildMemberRemoveEvent{
-public:
+  public:
     GuildMemberRemoveEvent(
         field<Snowflake> guild_id = uninitialized,
         field<User> user = uninitialized
@@ -637,7 +637,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#guild-member-update-guild-member-update-event-fields
 class GuildMemberUpdateEvent{
-public:
+  public:
     GuildMemberUpdateEvent(
         field<Snowflake> guild_id = uninitialized,
         field<std::vector<Snowflake> > roles = uninitialized,
@@ -706,7 +706,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#guild-members-chunk-guild-members-chunk-event-fields
 class GuildMembersChunkEvent{
-public:
+  public:
     GuildMembersChunkEvent(
         field<Snowflake> guild_id = uninitialized,
         field<std::vector<GuildMember> > members = uninitialized,
@@ -755,7 +755,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#guild-role-create-guild-role-create-event-fields
 class GuildRoleCreateEvent{
-public:
+  public:
     GuildRoleCreateEvent(
         field<Snowflake> guild_id = uninitialized,
         field<Role> role = uninitialized
@@ -779,7 +779,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#guild-role-update-guild-role-update-event-fields
 class GuildRoleUpdateEvent{
-public:
+  public:
     GuildRoleUpdateEvent(
         field<Snowflake> guild_id = uninitialized,
         field<Role> role = uninitialized
@@ -803,7 +803,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#guild-role-delete-guild-role-delete-event-fields
 class GuildRoleDeleteEvent{
-public:
+  public:
     GuildRoleDeleteEvent(
         field<Snowflake> guild_id = uninitialized,
         field<Snowflake> role_id = uninitialized
@@ -827,7 +827,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-user-add-guild-scheduled-event-user-add-event-fields
 class GuildScheduledEventUserAddEvent{
-public:
+  public:
     GuildScheduledEventUserAddEvent(
         field<Snowflake> guild_scheduled_event_id = uninitialized,
         field<Snowflake> user_id = uninitialized,
@@ -856,7 +856,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-user-remove-guild-scheduled-event-user-remove-event-fields
 class GuildScheduledEventUserRemoveEvent{
-public:
+  public:
     GuildScheduledEventUserRemoveEvent(
         field<Snowflake> guild_scheduled_event_id = uninitialized,
         field<Snowflake> user_id = uninitialized,
@@ -885,7 +885,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#integration-create-integration-create-event-additional-fields
 class IntegrationCreateEventAdditional{
-public:
+  public:
     IntegrationCreateEventAdditional(
         field<Snowflake> guild_id = uninitialized
     ):
@@ -904,7 +904,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#integration-update-integration-update-event-additional-fields
 class IntegrationUpdateEventAdditional{
-public:
+  public:
     IntegrationUpdateEventAdditional(
         field<Snowflake> guild_id = uninitialized
     ):
@@ -923,7 +923,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#integration-delete-integration-delete-event-fields
 class IntegrationDeleteEvent{
-public:
+  public:
     IntegrationDeleteEvent(
         field<Snowflake> id = uninitialized,
         field<Snowflake> guild_id = uninitialized,
@@ -952,7 +952,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#invite-create-invite-create-event-fields
 class InviteCreateEvent{
-public:
+  public:
     InviteCreateEvent(
         field<Snowflake> channel_id = uninitialized,
         field<std::string> code = uninitialized,
@@ -1026,7 +1026,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#invite-delete-invite-delete-event-fields
 class InviteDeleteEvent{
-public:
+  public:
     InviteDeleteEvent(
         field<Snowflake> channel_id = uninitialized,
         omittable_field<Snowflake> guild_id = omitted,
@@ -1055,7 +1055,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#message-delete-message-delete-event-fields
 class MessageDeleteEvent{
-public:
+  public:
     MessageDeleteEvent(
         field<Snowflake> id = uninitialized,
         field<Snowflake> channel_id = uninitialized,
@@ -1084,7 +1084,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#message-delete-bulk-message-delete-bulk-event-fields
 class MessageDeleteBulkEvent{
-public:
+  public:
     MessageDeleteBulkEvent(
         field<std::vector<Snowflake> > ids = uninitialized,
         field<Snowflake> channel_id = uninitialized,
@@ -1113,7 +1113,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#message-reaction-add-message-reaction-add-event-fields
 class MessageReactionAddEvent{
-public:
+  public:
     MessageReactionAddEvent(
         field<Snowflake> user_id = uninitialized,
         field<Snowflake> channel_id = uninitialized,
@@ -1157,7 +1157,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove-message-reaction-remove-event-fields
 class MessageReactionRemoveEvent{
-public:
+  public:
     MessageReactionRemoveEvent(
         field<Snowflake> user_id = uninitialized,
         field<Snowflake> channel_id = uninitialized,
@@ -1196,7 +1196,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove-all-message-reaction-remove-all-event-fields
 class MessageReactionRemoveAllEvent{
-public:
+  public:
     MessageReactionRemoveAllEvent(
         field<Snowflake> channel_id = uninitialized,
         field<Snowflake> message_id = uninitialized,
@@ -1225,7 +1225,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove-emoji-message-reaction-remove-emoji-event-fields
 class MessageReactionRemoveEmojiEvent{
-public:
+  public:
     MessageReactionRemoveEmojiEvent(
         field<Snowflake> channel_id = uninitialized,
         omittable_field<Snowflake> guild_id = omitted,
@@ -1259,7 +1259,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#presence-update-presence-update-event-fields
 class PresenceUpdateEvent{
-public:
+  public:
     PresenceUpdateEvent(
         field<User> user = uninitialized,
         field<Snowflake> guild_id = uninitialized,
@@ -1298,7 +1298,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#presence-client-status-object
 class ClientStatus{
-public:
+  public:
     ClientStatus(
         omittable_field<std::string> desktop = omitted,
         omittable_field<std::string> mobile = omitted,
@@ -1327,7 +1327,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#activity-object-activity-structure
 class Activity{
-public:
+  public:
     Activity(
         field<std::string> name = uninitialized,
         field<int> type = uninitialized,
@@ -1416,7 +1416,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#activity-object-activity-timestamps
 class ActivityTimestamps{
-public:
+  public:
     ActivityTimestamps(
         omittable_field<int> start = omitted,
         omittable_field<int> end = omitted
@@ -1440,7 +1440,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#activity-object-activity-emoji
 class ActivityEmoji{
-public:
+  public:
     ActivityEmoji(
         field<std::string> name = uninitialized,
         omittable_field<Snowflake> id = omitted,
@@ -1469,7 +1469,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#activity-object-activity-party
 class ActivityParty{
-public:
+  public:
     ActivityParty(
         omittable_field<std::string> id = omitted,
         omittable_field<std::Array<int, 2>> size = omitted
@@ -1493,7 +1493,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#activity-object-activity-assets
 class ActivityAssets{
-public:
+  public:
     ActivityAssets(
         omittable_field<std::string> large_image = omitted,
         omittable_field<std::string> large_text = omitted,
@@ -1527,7 +1527,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#activity-object-activity-secrets
 class ActivitySecrets{
-public:
+  public:
     ActivitySecrets(
         omittable_field<std::string> join = omitted,
         omittable_field<std::string> spectate = omitted,
@@ -1556,7 +1556,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#activity-object-activity-buttons
 class ActivityButtons{
-public:
+  public:
     ActivityButtons(
         field<std::string> label = uninitialized,
         field<std::string> url = uninitialized
@@ -1580,7 +1580,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#typing-start-typing-start-event-fields
 class TypingStartEvent{
-public:
+  public:
     TypingStartEvent(
         field<Snowflake> channel_id = uninitialized,
         omittable_field<Snowflake> guild_id = omitted,
@@ -1619,7 +1619,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#voice-server-update-voice-server-update-event-fields
 class VoiceServerUpdateEvent{
-public:
+  public:
     VoiceServerUpdateEvent(
         field<std::string> token = uninitialized,
         field<Snowflake> guild_id = uninitialized,
@@ -1648,7 +1648,7 @@ public:
 
 // https://discord.com/developers/docs/topics/gateway-events#webhooks-update-webhooks-update-event-fields
 class WebhooksUpdateEvent{
-public:
+  public:
     WebhooksUpdateEvent(
         field<Snowflake> guild_id = uninitialized,
         field<Snowflake> channel_id = uninitialized

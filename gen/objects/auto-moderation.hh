@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-rule-object-auto-moderation-rule-structure
 class AutoModerationRule{
-public:
+  public:
     AutoModerationRule(
         field<Snowflake> id = uninitialized,
         field<Snowflake> guild_id = uninitialized,
@@ -75,7 +75,7 @@ public:
 
 // https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-rule-object-trigger-metadata
 class TriggerMetadata{
-public:
+  public:
     TriggerMetadata(
         field<std::vector<std::string> > keyword_filter = uninitialized,
         field<std::vector<std::string> > regex_patterns = uninitialized,
@@ -114,7 +114,7 @@ public:
 
 // https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-action-object-auto-moderation-action-structure
 class AutoModerationAction{
-public:
+  public:
     AutoModerationAction(
         field<ActionType> type = uninitialized,
         omittable_field<ActionMetadata> metadata = omitted
@@ -138,7 +138,7 @@ public:
 
 // https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-action-object-action-metadata
 class ActionMetadata{
-public:
+  public:
     ActionMetadata(
         field<Snowflake> channel_id = uninitialized,
         field<int> duration_seconds = uninitialized

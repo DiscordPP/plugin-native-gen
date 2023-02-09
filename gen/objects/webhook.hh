@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/resources/webhook#webhook-object-webhook-structure
 class Webhook{
-public:
+  public:
     Webhook(
         field<Snowflake> id = uninitialized,
         field<int> type = uninitialized,

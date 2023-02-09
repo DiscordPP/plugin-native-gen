@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/resources/sticker#sticker-object-sticker-structure
 class Sticker{
-public:
+  public:
     Sticker(
         field<Snowflake> id = uninitialized,
         omittable_field<Snowflake> pack_id = omitted,
@@ -80,7 +80,7 @@ public:
 
 // https://discord.com/developers/docs/resources/sticker#sticker-item-object-sticker-item-structure
 class StickerItem{
-public:
+  public:
     StickerItem(
         field<Snowflake> id = uninitialized,
         field<std::string> name = uninitialized,
@@ -109,7 +109,7 @@ public:
 
 // https://discord.com/developers/docs/resources/sticker#sticker-pack-object-sticker-pack-structure
 class StickerPack{
-public:
+  public:
     StickerPack(
         field<Snowflake> id = uninitialized,
         field<std::vector<Sticker> > stickers = uninitialized,
@@ -158,7 +158,7 @@ public:
 
 // https://discord.com/developers/docs/resources/sticker#list-nitro-sticker-packs-response-structure
 class ListNitroStickerPacksResponse{
-public:
+  public:
     ListNitroStickerPacksResponse(
         field<std::vector<StickerPack> > sticker_packs = uninitialized
     ):

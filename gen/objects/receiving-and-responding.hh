@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-application-command-data-structure
 class ApplicationCommandData{
-public:
+  public:
     ApplicationCommandData(
         field<Snowflake> id = uninitialized,
         field<std::string> name = uninitialized,
@@ -55,7 +55,7 @@ public:
 
 // https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-message-component-data-structure
 class MessageComponentData{
-public:
+  public:
     MessageComponentData(
         field<std::string> custom_id = uninitialized,
         field<int> component_type = uninitialized,
@@ -84,7 +84,7 @@ public:
 
 // https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-modal-submit-data-structure
 class ModalSubmitData{
-public:
+  public:
     ModalSubmitData(
         field<std::string> custom_id = uninitialized,
         field<std::vector<Component> > components = uninitialized
@@ -108,7 +108,7 @@ public:
 
 // https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-resolved-data-structure
 class ResolvedData{
-public:
+  public:
     ResolvedData(
         omittable_field<std::map<Snowflake, User> > users = omitted,
         omittable_field<std::map<Snowflake, GuildMember> > members = omitted,
@@ -152,7 +152,7 @@ public:
 
 // https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-application-command-interaction-data-option-structure
 class ApplicationCommandInteractionDataOption{
-public:
+  public:
     ApplicationCommandInteractionDataOption(
         field<std::string> name = uninitialized,
         field<int> type = uninitialized,
@@ -191,7 +191,7 @@ public:
 
 // https://discord.com/developers/docs/interactions/receiving-and-responding#message-interaction-object-message-interaction-structure
 class MessageInteraction{
-public:
+  public:
     MessageInteraction(
         field<Snowflake> id = uninitialized,
         field<InteractionType> type = uninitialized,
@@ -230,7 +230,7 @@ public:
 
 // https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-interaction-response-structure
 class InteractionResponse{
-public:
+  public:
     InteractionResponse(
         field<InteractionCallbackType> type = uninitialized,
         omittable_field<InteractionCallbackData> data = omitted
@@ -254,7 +254,7 @@ public:
 
 // https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-messages
 class Messages{
-public:
+  public:
     Messages(
         omittable_field<bool> tts = omitted,
         omittable_field<std::string> content = omitted,
@@ -303,7 +303,7 @@ public:
 
 // https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-autocomplete
 class Autocomplete{
-public:
+  public:
     Autocomplete(
         field<std::vector<Choice> > choices = uninitialized
     ):
@@ -322,7 +322,7 @@ public:
 
 // https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-modal
 class Modal{
-public:
+  public:
     Modal(
         field<std::string> custom_id = uninitialized,
         field<std::string> title = uninitialized,
@@ -351,7 +351,7 @@ public:
 
 // https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-interaction-structure
 class Interaction{
-public:
+  public:
     Interaction(
         field<Snowflake> id = uninitialized,
         field<Snowflake> application_id = uninitialized,

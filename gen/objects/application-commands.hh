@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-structure
 class ApplicationCommand{
-public:
+  public:
     ApplicationCommand(
         field<Snowflake> id = uninitialized,
         omittable_field<ApplicationCommandType> type = omitted,
@@ -90,7 +90,7 @@ public:
 
 // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-structure
 class ApplicationCommandOption{
-public:
+  public:
     ApplicationCommandOption(
         field<ApplicationCommandOptionType> type = uninitialized,
         field<std::string> name = uninitialized,
@@ -174,7 +174,7 @@ public:
 
 // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-choice-structure
 class ApplicationCommandOptionChoice{
-public:
+  public:
     ApplicationCommandOptionChoice(
         field<std::string> name = uninitialized,
         nullable_omittable_field<std::map<Locale, std::string>> name_localizations = omitted,
@@ -203,7 +203,7 @@ public:
 
 // https://discord.com/developers/docs/interactions/application-commands#application-command-permissions-object-guild-application-command-permissions-structure
 class GuildApplicationCommandPermissions{
-public:
+  public:
     GuildApplicationCommandPermissions(
         field<Snowflake> id = uninitialized,
         field<Snowflake> application_id = uninitialized,
@@ -237,7 +237,7 @@ public:
 
 // https://discord.com/developers/docs/interactions/application-commands#application-command-permissions-object-application-command-permissions-structure
 class ApplicationCommandPermissions{
-public:
+  public:
     ApplicationCommandPermissions(
         field<Snowflake> id = uninitialized,
         field<ApplicationCommandPermissionType> type = uninitialized,

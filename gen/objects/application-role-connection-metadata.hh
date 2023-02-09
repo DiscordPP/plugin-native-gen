@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/resources/application-role-connection-metadata#application-role-connection-metadata-object-application-role-connection-metadata-structure
 class ApplicationRoleConnectionMetadata{
-public:
+  public:
     ApplicationRoleConnectionMetadata(
         field<ApplicationRoleConnectionMetadataType> type = uninitialized,
         field<std::string> key = uninitialized,

@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/resources/invite#invite-object-invite-structure
 class Invite{
-public:
+  public:
     Invite(
         field<std::string> code = uninitialized,
         omittable_field<Guild> guild = omitted,
@@ -80,7 +80,7 @@ public:
 
 // https://discord.com/developers/docs/resources/invite#invite-metadata-object-invite-metadata-structure
 class InviteMetadata{
-public:
+  public:
     InviteMetadata(
         field<int> uses = uninitialized,
         field<int> max_uses = uninitialized,
@@ -119,7 +119,7 @@ public:
 
 // https://discord.com/developers/docs/resources/invite#invite-stage-instance-object-invite-stage-instance-structure
 class InviteStageInstance{
-public:
+  public:
     InviteStageInstance(
         field<std::vector<GuildMember> > members = uninitialized,
         field<int> participant_count = uninitialized,

@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/resources/voice#voice-state-object-voice-state-structure
 class VoiceState{
-public:
+  public:
     VoiceState(
         omittable_field<Snowflake> guild_id = omitted,
         nullable_field<Snowflake> channel_id = uninitialized,
@@ -85,7 +85,7 @@ public:
 
 // https://discord.com/developers/docs/resources/voice#voice-region-object-voice-region-structure
 class VoiceRegion{
-public:
+  public:
     VoiceRegion(
         field<std::string> id = uninitialized,
         field<std::string> name = uninitialized,

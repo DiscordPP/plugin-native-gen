@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/resources/user#user-object-user-structure
 class User{
-public:
+  public:
     User(
         field<Snowflake> id = uninitialized,
         field<std::string> username = uninitialized,
@@ -95,7 +95,7 @@ public:
 
 // https://discord.com/developers/docs/resources/user#connection-object-connection-structure
 class Connection{
-public:
+  public:
     Connection(
         field<std::string> id = uninitialized,
         field<std::string> name = uninitialized,
@@ -159,7 +159,7 @@ public:
 
 // https://discord.com/developers/docs/resources/user#application-role-connection-object-application-role-connection-structure
 class ApplicationRoleConnection{
-public:
+  public:
     ApplicationRoleConnection(
         nullable_field<std::string> platform_name = uninitialized,
         nullable_field<std::string> platform_username = uninitialized,

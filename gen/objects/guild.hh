@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/resources/guild#guild-object-guild-structure
 class Guild{
-public:
+  public:
     Guild(
         field<Snowflake> id = uninitialized,
         field<std::string> name = uninitialized,
@@ -225,7 +225,7 @@ public:
 
 // https://discord.com/developers/docs/resources/guild#guild-preview-object-guild-preview-structure
 class GuildPreview{
-public:
+  public:
     GuildPreview(
         field<Snowflake> id = uninitialized,
         field<std::string> name = uninitialized,
@@ -294,7 +294,7 @@ public:
 
 // https://discord.com/developers/docs/resources/guild#guild-widget-settings-object-guild-widget-settings-structure
 class GuildWidgetSettings{
-public:
+  public:
     GuildWidgetSettings(
         field<bool> enabled = uninitialized,
         nullable_field<Snowflake> channel_id = uninitialized
@@ -318,7 +318,7 @@ public:
 
 // https://discord.com/developers/docs/resources/guild#guild-widget-object-guild-widget-structure
 class GuildWidget{
-public:
+  public:
     GuildWidget(
         field<Snowflake> id = uninitialized,
         field<std::string> name = uninitialized,
@@ -362,7 +362,7 @@ public:
 
 // https://discord.com/developers/docs/resources/guild#guild-member-object-guild-member-structure
 class GuildMember{
-public:
+  public:
     GuildMember(
         omittable_field<User> user = omitted,
         nullable_omittable_field<std::string> nick = omitted,
@@ -436,7 +436,7 @@ public:
 
 // https://discord.com/developers/docs/resources/guild#integration-object-integration-structure
 class Integration{
-public:
+  public:
     Integration(
         field<Snowflake> id = uninitialized,
         field<std::string> name = uninitialized,
@@ -530,7 +530,7 @@ public:
 
 // https://discord.com/developers/docs/resources/guild#integration-account-object-integration-account-structure
 class IntegrationAccount{
-public:
+  public:
     IntegrationAccount(
         field<std::string> id = uninitialized,
         field<std::string> name = uninitialized
@@ -554,7 +554,7 @@ public:
 
 // https://discord.com/developers/docs/resources/guild#integration-application-object-integration-application-structure
 class IntegrationApplication{
-public:
+  public:
     IntegrationApplication(
         field<Snowflake> id = uninitialized,
         field<std::string> name = uninitialized,
@@ -593,7 +593,7 @@ public:
 
 // https://discord.com/developers/docs/resources/guild#ban-object-ban-structure
 class Ban{
-public:
+  public:
     Ban(
         nullable_field<std::string> reason = uninitialized,
         field<User> user = uninitialized
@@ -617,7 +617,7 @@ public:
 
 // https://discord.com/developers/docs/resources/guild#welcome-screen-object-welcome-screen-structure
 class WelcomeScreen{
-public:
+  public:
     WelcomeScreen(
         nullable_field<std::string> description = uninitialized,
         field<std::vector<WelcomeScreenChannel> > welcome_channels = uninitialized
@@ -641,7 +641,7 @@ public:
 
 // https://discord.com/developers/docs/resources/guild#welcome-screen-object-welcome-screen-channel-structure
 class WelcomeScreenChannel{
-public:
+  public:
     WelcomeScreenChannel(
         field<Snowflake> channel_id = uninitialized,
         field<std::string> description = uninitialized,
@@ -675,7 +675,7 @@ public:
 
 // https://discord.com/developers/docs/resources/guild#list-active-guild-threads-response-body
 class ListActiveGuildThreadsResponse{
-public:
+  public:
     ListActiveGuildThreadsResponse(
         field<std::vector<Channel> > threads = uninitialized,
         field<std::vector<ThreadMembers> > members = uninitialized

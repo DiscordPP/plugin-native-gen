@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/topics/permissions#role-object-role-structure
 class Role{
-public:
+  public:
     Role(
         field<Snowflake> id = uninitialized,
         field<std::string> name = uninitialized,
@@ -75,7 +75,7 @@ public:
 
 // https://discord.com/developers/docs/topics/permissions#role-object-role-tags-structure
 class RoleTags{
-public:
+  public:
     RoleTags(
         omittable_field<Snowflake> bot_id = omitted,
         omittable_field<Snowflake> integration_id = omitted,

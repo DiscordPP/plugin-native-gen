@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/resources/stage-instance#stage-instance-object-stage-instance-structure
 class StageInstance{
-public:
+  public:
     StageInstance(
         field<Snowflake> id = uninitialized,
         field<Snowflake> guild_id = uninitialized,

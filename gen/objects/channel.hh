@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/resources/channel#channel-object-channel-structure
 class Channel{
-public:
+  public:
     Channel(
         field<Snowflake> id = uninitialized,
         field<int> type = uninitialized,
@@ -190,7 +190,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#message-object-message-structure
 class Message{
-public:
+  public:
     Message(
         field<Snowflake> id = uninitialized,
         field<Snowflake> channel_id = uninitialized,
@@ -359,7 +359,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#message-object-message-activity-structure
 class MessageActivity{
-public:
+  public:
     MessageActivity(
         field<int> type = uninitialized,
         omittable_field<std::string> party_id = omitted
@@ -383,7 +383,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#message-reference-object-message-reference-structure
 class MessageReference{
-public:
+  public:
     MessageReference(
         omittable_field<Snowflake> message_id = omitted,
         omittable_field<Snowflake> channel_id = omitted,
@@ -417,7 +417,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#followed-channel-object-followed-channel-structure
 class FollowedChannel{
-public:
+  public:
     FollowedChannel(
         field<Snowflake> channel_id = uninitialized,
         field<Snowflake> webhook_id = uninitialized
@@ -441,7 +441,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#reaction-object-reaction-structure
 class Reaction{
-public:
+  public:
     Reaction(
         field<int> count = uninitialized,
         field<bool> me = uninitialized,
@@ -470,7 +470,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#overwrite-object-overwrite-structure
 class Overwrite{
-public:
+  public:
     Overwrite(
         field<Snowflake> id = uninitialized,
         field<int> type = uninitialized,
@@ -504,7 +504,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#thread-metadata-object-thread-metadata-structure
 class ThreadMetadata{
-public:
+  public:
     ThreadMetadata(
         field<bool> archived = uninitialized,
         field<int> auto_archive_duration = uninitialized,
@@ -548,7 +548,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#thread-member-object-thread-member-structure
 class ThreadMember{
-public:
+  public:
     ThreadMember(
         omittable_field<Snowflake> id = omitted,
         omittable_field<Snowflake> user_id = omitted,
@@ -587,7 +587,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#default-reaction-object-default-reaction-structure
 class DefaultReaction{
-public:
+  public:
     DefaultReaction(
         nullable_field<Snowflake> emoji_id = uninitialized,
         nullable_field<std::string> emoji_name = uninitialized
@@ -611,7 +611,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#forum-tag-object-forum-tag-structure
 class ForumTag{
-public:
+  public:
     ForumTag(
         field<Snowflake> id = uninitialized,
         field<std::string> name = uninitialized,
@@ -650,7 +650,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#embed-object-embed-structure
 class Embed{
-public:
+  public:
     Embed(
         omittable_field<std::string> title = omitted,
         omittable_field<std::string> type = omitted,
@@ -729,7 +729,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#embed-object-embed-thumbnail-structure
 class EmbedThumbnail{
-public:
+  public:
     EmbedThumbnail(
         field<std::string> url = uninitialized,
         omittable_field<std::string> proxy_url = omitted,
@@ -763,7 +763,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#embed-object-embed-video-structure
 class EmbedVideo{
-public:
+  public:
     EmbedVideo(
         omittable_field<std::string> url = omitted,
         omittable_field<std::string> proxy_url = omitted,
@@ -797,7 +797,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#embed-object-embed-image-structure
 class EmbedImage{
-public:
+  public:
     EmbedImage(
         field<std::string> url = uninitialized,
         omittable_field<std::string> proxy_url = omitted,
@@ -831,7 +831,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#embed-object-embed-provider-structure
 class EmbedProvider{
-public:
+  public:
     EmbedProvider(
         omittable_field<std::string> name = omitted,
         omittable_field<std::string> url = omitted
@@ -855,7 +855,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#embed-object-embed-author-structure
 class EmbedAuthor{
-public:
+  public:
     EmbedAuthor(
         field<std::string> name = uninitialized,
         omittable_field<std::string> url = omitted,
@@ -889,7 +889,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#embed-object-embed-footer-structure
 class EmbedFooter{
-public:
+  public:
     EmbedFooter(
         field<std::string> text = uninitialized,
         omittable_field<std::string> icon_url = omitted,
@@ -918,7 +918,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#embed-object-embed-field-structure
 class EmbedField{
-public:
+  public:
     EmbedField(
         field<std::string> name = uninitialized,
         field<std::string> value = uninitialized,
@@ -947,7 +947,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#attachment-object-attachment-structure
 class Attachment{
-public:
+  public:
     Attachment(
         field<Snowflake> id = uninitialized,
         field<std::string> filename = uninitialized,
@@ -1011,7 +1011,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#channel-mention-object-channel-mention-structure
 class ChannelMention{
-public:
+  public:
     ChannelMention(
         field<Snowflake> id = uninitialized,
         field<Snowflake> guild_id = uninitialized,
@@ -1045,7 +1045,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#allowed-mentions-object-allowed-mentions-structure
 class AllowedMentions{
-public:
+  public:
     AllowedMentions(
         field<std::vector<AllowedMentionType> > parse = uninitialized,
         field<std::vector<Snowflake> > roles = uninitialized,
@@ -1079,7 +1079,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#role-subscription-data-object-role-subscription-data-object-structure
 class RoleSubscriptionData{
-public:
+  public:
     RoleSubscriptionData(
         field<Snowflake> role_subscription_listing_id = uninitialized,
         field<std::string> tier_name = uninitialized,
@@ -1113,7 +1113,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#modify-channel-json-params-(group-dm)
 class JsonParams(GroupDm){
-public:
+  public:
     JsonParams(GroupDm)(
         field<std::string> name = uninitialized,
         field<Binary> icon = uninitialized
@@ -1137,7 +1137,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#modify-channel-json-params-(guild-channel)
 class JsonParams(GuildChannel){
-public:
+  public:
     JsonParams(GuildChannel)(
         field<std::string> name = uninitialized,
         field<int> type = uninitialized,
@@ -1246,7 +1246,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#modify-channel-json-params-(thread)
 class JsonParams(Thread){
-public:
+  public:
     JsonParams(Thread)(
         field<std::string> name = uninitialized,
         field<bool> archived = uninitialized,
@@ -1300,7 +1300,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#start-thread-in-forum-channel-forum-thread-message-params-object
 class ForumThreadMessageParams{
-public:
+  public:
     ForumThreadMessageParams(
         omittable_field<std::string> content = omitted,
         omittable_field<std::vector<Embed> > embeds = omitted,
@@ -1359,7 +1359,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#list-public-archived-threads-response-body
 class ListPublicArchivedThreadsResponse{
-public:
+  public:
     ListPublicArchivedThreadsResponse(
         field<std::vector<Channel> > threads = uninitialized,
         field<std::vector<ThreadMembers> > members = uninitialized,
@@ -1388,7 +1388,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#list-private-archived-threads-response-body
 class ListPrivateArchivedThreadsResponse{
-public:
+  public:
     ListPrivateArchivedThreadsResponse(
         field<std::vector<Channel> > threads = uninitialized,
         field<std::vector<ThreadMembers> > members = uninitialized,
@@ -1417,7 +1417,7 @@ public:
 
 // https://discord.com/developers/docs/resources/channel#list-joined-private-archived-threads-response-body
 class ListJoinedPrivateArchivedThreadsResponse{
-public:
+  public:
     ListJoinedPrivateArchivedThreadsResponse(
         field<std::vector<Channel> > threads = uninitialized,
         field<std::vector<ThreadMembers> > members = uninitialized,

@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/topics/teams#data-models-team-object
 class Team{
-public:
+  public:
     Team(
         nullable_field<std::string> icon = uninitialized,
         field<Snowflake> id = uninitialized,
@@ -45,7 +45,7 @@ public:
 
 // https://discord.com/developers/docs/topics/teams#data-models-team-member-object
 class TeamMember{
-public:
+  public:
     TeamMember(
         field<int> membership_state = uninitialized,
         field<std::vector<std::string> > permissions = uninitialized,

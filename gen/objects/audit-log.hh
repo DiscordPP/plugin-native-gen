@@ -6,7 +6,7 @@
 
 // https://discord.com/developers/docs/resources/audit-log#audit-log-object-audit-log-structure
 class AuditLog{
-public:
+  public:
     AuditLog(
         field<std::vector<ApplicationCommands> > application_commands = uninitialized,
         field<std::vector<AuditLogEntry> > audit_log_entries = uninitialized,
@@ -60,7 +60,7 @@ public:
 
 // https://discord.com/developers/docs/resources/audit-log#audit-log-entry-object-audit-log-entry-structure
 class AuditLogEntry{
-public:
+  public:
     AuditLogEntry(
         nullable_field<std::string> target_id = uninitialized,
         omittable_field<std::vector<AuditLogChange> > changes = omitted,
@@ -109,7 +109,7 @@ public:
 
 // https://discord.com/developers/docs/resources/audit-log#audit-log-entry-object-optional-audit-entry-info
 class OptionalAuditEntryInfo{
-public:
+  public:
     OptionalAuditEntryInfo(
         field<Snowflake> application_id = uninitialized,
         field<std::string> auto_moderation_rule_name = uninitialized,
@@ -178,7 +178,7 @@ public:
 
 // https://discord.com/developers/docs/resources/audit-log#audit-log-change-object-audit-log-change-structure
 class AuditLogChange{
-public:
+  public:
     AuditLogChange(
         omittable_field<json> new_value = omitted,
         omittable_field<json> old_value = omitted,
