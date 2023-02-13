@@ -130,6 +130,7 @@ TYPES: Dict[str, str] = {
 }
 
 NL = '\n'
+DQ = '\"'
 
 DELAY_OBJECTS = ['receiving-and-responding']
 
@@ -396,6 +397,65 @@ class {name};
 
 '''
             # @formatter:on
+
+    # @formatter:off
+    render_enums = """\
+#pragma once
+
+namespace discordpp {
+
+"""
+    # @formatter:on
+    for filepath in Path(PARSED_PATH).rglob("*.enum.json"):
+        print(filepath)
+        render_enums += f'\n// {filepath.stem.replace("_", " ").removesuffix(".enum")} //\n\n'
+        overridepath = Path(str(filepath.stem).replace(str(PARSED_PATH), str(OVERRIDE_PATH)))
+        with \
+                filepath.open(mode="r") as file:  # , \
+            # (overridepath.open(mode="r") if overridepath.is_file() else nullcontext()) as override_file:
+            enums: Dict[str, Dict[str, str | Dict[str, str]]] = json.loads(file.read())
+            for name, opt in enums.items():
+                value_eg = list(opt.values())[0].get('value')
+                print(name, '|',  list(opt.keys())[0], '|', value_eg)
+                pretty_name = name.replace(" ", "").removesuffix('s')
+                is_int = bool(value_eg and ('<<' in value_eg or value_eg.isdigit()))
+                render_parts = {
+                    'name': f'enum class {pretty_name}{" : int" if is_int else ""}',
+                    'values': "\n    ".join(
+                        key.replace(' ', '_') + (" = " + re.sub(r' (.+)', '', value['value']) if is_int else "") + ','
+                        for key, value in opt.items()
+                    )
+                }
+                render_parts['values'] = render_parts['values'][:-1]
+                if not is_int:
+                    render_parts['serialize_values'] =  "\n    ".join(
+                        f"{{{pretty_name}::{key.replace(' ', '_')}, \"{value.get('value', key).removeprefix(DQ).removesuffix(DQ)}\"}},"
+                        for key, value in opt.items()
+                    )
+                    render_parts['serialize_values'] = render_parts['serialize_values'][:-1]
+                print(json.dumps(render_parts, indent=4))
+                # @formatter:off
+                render_enums += f"""\
+{render_parts['name']} {{
+    {render_parts['values']}
+}};
+"""
+                # @formatter:on
+                if not is_int:
+                    # @formatter:off
+                    render_enums += f"""\
+NLOHMANN_JSON_SERIALIZE_ENUM({pretty_name}, {{
+    {render_parts['serialize_values']}
+}})
+"""
+                    # @formatter:on
+                render_enums += '\n'
+    # @formatter:off
+    render_enums += """\
+} // namespace discordpp
+"""
+    # @formatter:on
+    TARGET_PATH.joinpath('enums.hh').write_text(render_enums)
 
     # @formatter:off
     TARGET_PATH.joinpath('plugin-native.hh').write_text(f'''\
