@@ -280,25 +280,31 @@ enum class EmbedType {
     article,
     link
 };
-NLOHMANN_JSON_SERIALIZE_ENUM(EmbedType, {
-    {EmbedType::rich, "rich"},
-    {EmbedType::image, "image"},
-    {EmbedType::video, "video"},
-    {EmbedType::gifv, "gifv"},
-    {EmbedType::article, "article"},
-    {EmbedType::link, "link"}
-})
+NLOHMANN_JSON_SERIALIZE_ENUM(
+    EmbedType,
+    {
+        {EmbedType::rich, "rich"},
+        {EmbedType::image, "image"},
+        {EmbedType::video, "video"},
+        {EmbedType::gifv, "gifv"},
+        {EmbedType::article, "article"},
+        {EmbedType::link, "link"}
+    }
+);
 
 enum class AllowedMentionType {
     Role_Mentions,
     User_Mentions,
     Everyone_Mentions
 };
-NLOHMANN_JSON_SERIALIZE_ENUM(AllowedMentionType, {
-    {AllowedMentionType::Role_Mentions, "roles"},
-    {AllowedMentionType::User_Mentions, "users"},
-    {AllowedMentionType::Everyone_Mentions, "everyone"}
-})
+NLOHMANN_JSON_SERIALIZE_ENUM(
+    AllowedMentionType,
+    {
+        {AllowedMentionType::Role_Mentions, "roles"},
+        {AllowedMentionType::User_Mentions, "users"},
+        {AllowedMentionType::Everyone_Mentions, "everyone"}
+    }
+);
 
 
 // Guild //
@@ -378,45 +384,51 @@ enum class GuildFeature {
     VIP_REGIONS,
     WELCOME_SCREEN_ENABLED
 };
-NLOHMANN_JSON_SERIALIZE_ENUM(GuildFeature, {
-    {GuildFeature::ANIMATED_BANNER, "ANIMATED_BANNER"},
-    {GuildFeature::ANIMATED_ICON, "ANIMATED_ICON"},
-    {GuildFeature::APPLICATION_COMMAND_PERMISSIONS_V2, "APPLICATION_COMMAND_PERMISSIONS_V2"},
-    {GuildFeature::AUTO_MODERATION, "AUTO_MODERATION"},
-    {GuildFeature::BANNER, "BANNER"},
-    {GuildFeature::COMMUNITY, "COMMUNITY"},
-    {GuildFeature::CREATOR_MONETIZABLE_PROVISIONAL, "CREATOR_MONETIZABLE_PROVISIONAL"},
-    {GuildFeature::CREATOR_STORE_PAGE, "CREATOR_STORE_PAGE"},
-    {GuildFeature::DEVELOPER_SUPPORT_SERVER, "DEVELOPER_SUPPORT_SERVER"},
-    {GuildFeature::DISCOVERABLE, "DISCOVERABLE"},
-    {GuildFeature::FEATURABLE, "FEATURABLE"},
-    {GuildFeature::INVITES_DISABLED, "INVITES_DISABLED"},
-    {GuildFeature::INVITE_SPLASH, "INVITE_SPLASH"},
-    {GuildFeature::MEMBER_VERIFICATION_GATE_ENABLED, "MEMBER_VERIFICATION_GATE_ENABLED"},
-    {GuildFeature::MORE_STICKERS, "MORE_STICKERS"},
-    {GuildFeature::NEWS, "NEWS"},
-    {GuildFeature::PARTNERED, "PARTNERED"},
-    {GuildFeature::PREVIEW_ENABLED, "PREVIEW_ENABLED"},
-    {GuildFeature::ROLE_ICONS, "ROLE_ICONS"},
-    {GuildFeature::ROLE_SUBSCRIPTIONS_AVAILABLE_FOR_PURCHASE, "ROLE_SUBSCRIPTIONS_AVAILABLE_FOR_PURCHASE"},
-    {GuildFeature::ROLE_SUBSCRIPTIONS_ENABLED, "ROLE_SUBSCRIPTIONS_ENABLED"},
-    {GuildFeature::TICKETED_EVENTS_ENABLED, "TICKETED_EVENTS_ENABLED"},
-    {GuildFeature::VANITY_URL, "VANITY_URL"},
-    {GuildFeature::VERIFIED, "VERIFIED"},
-    {GuildFeature::VIP_REGIONS, "VIP_REGIONS"},
-    {GuildFeature::WELCOME_SCREEN_ENABLED, "WELCOME_SCREEN_ENABLED"}
-})
+NLOHMANN_JSON_SERIALIZE_ENUM(
+    GuildFeature,
+    {
+        {GuildFeature::ANIMATED_BANNER, "ANIMATED_BANNER"},
+        {GuildFeature::ANIMATED_ICON, "ANIMATED_ICON"},
+        {GuildFeature::APPLICATION_COMMAND_PERMISSIONS_V2, "APPLICATION_COMMAND_PERMISSIONS_V2"},
+        {GuildFeature::AUTO_MODERATION, "AUTO_MODERATION"},
+        {GuildFeature::BANNER, "BANNER"},
+        {GuildFeature::COMMUNITY, "COMMUNITY"},
+        {GuildFeature::CREATOR_MONETIZABLE_PROVISIONAL, "CREATOR_MONETIZABLE_PROVISIONAL"},
+        {GuildFeature::CREATOR_STORE_PAGE, "CREATOR_STORE_PAGE"},
+        {GuildFeature::DEVELOPER_SUPPORT_SERVER, "DEVELOPER_SUPPORT_SERVER"},
+        {GuildFeature::DISCOVERABLE, "DISCOVERABLE"},
+        {GuildFeature::FEATURABLE, "FEATURABLE"},
+        {GuildFeature::INVITES_DISABLED, "INVITES_DISABLED"},
+        {GuildFeature::INVITE_SPLASH, "INVITE_SPLASH"},
+        {GuildFeature::MEMBER_VERIFICATION_GATE_ENABLED, "MEMBER_VERIFICATION_GATE_ENABLED"},
+        {GuildFeature::MORE_STICKERS, "MORE_STICKERS"},
+        {GuildFeature::NEWS, "NEWS"},
+        {GuildFeature::PARTNERED, "PARTNERED"},
+        {GuildFeature::PREVIEW_ENABLED, "PREVIEW_ENABLED"},
+        {GuildFeature::ROLE_ICONS, "ROLE_ICONS"},
+        {GuildFeature::ROLE_SUBSCRIPTIONS_AVAILABLE_FOR_PURCHASE, "ROLE_SUBSCRIPTIONS_AVAILABLE_FOR_PURCHASE"},
+        {GuildFeature::ROLE_SUBSCRIPTIONS_ENABLED, "ROLE_SUBSCRIPTIONS_ENABLED"},
+        {GuildFeature::TICKETED_EVENTS_ENABLED, "TICKETED_EVENTS_ENABLED"},
+        {GuildFeature::VANITY_URL, "VANITY_URL"},
+        {GuildFeature::VERIFIED, "VERIFIED"},
+        {GuildFeature::VIP_REGIONS, "VIP_REGIONS"},
+        {GuildFeature::WELCOME_SCREEN_ENABLED, "WELCOME_SCREEN_ENABLED"}
+    }
+);
 
 enum class MutableGuildFeature {
     COMMUNITY,
     INVITES_DISABLED,
     DISCOVERABLE
 };
-NLOHMANN_JSON_SERIALIZE_ENUM(MutableGuildFeature, {
-    {MutableGuildFeature::COMMUNITY, "COMMUNITY"},
-    {MutableGuildFeature::INVITES_DISABLED, "INVITES_DISABLED"},
-    {MutableGuildFeature::DISCOVERABLE, "DISCOVERABLE"}
-})
+NLOHMANN_JSON_SERIALIZE_ENUM(
+    MutableGuildFeature,
+    {
+        {MutableGuildFeature::COMMUNITY, "COMMUNITY"},
+        {MutableGuildFeature::INVITES_DISABLED, "INVITES_DISABLED"},
+        {MutableGuildFeature::DISCOVERABLE, "DISCOVERABLE"}
+    }
+);
 
 enum class IntegrationExpireBehavior : int {
     Remove_role = 0,
@@ -430,13 +442,16 @@ enum class WidgetStyleOption {
     banner3,
     banner4
 };
-NLOHMANN_JSON_SERIALIZE_ENUM(WidgetStyleOption, {
-    {WidgetStyleOption::shield, "shield"},
-    {WidgetStyleOption::banner1, "banner1"},
-    {WidgetStyleOption::banner2, "banner2"},
-    {WidgetStyleOption::banner3, "banner3"},
-    {WidgetStyleOption::banner4, "banner4"}
-})
+NLOHMANN_JSON_SERIALIZE_ENUM(
+    WidgetStyleOption,
+    {
+        {WidgetStyleOption::shield, "shield"},
+        {WidgetStyleOption::banner1, "banner1"},
+        {WidgetStyleOption::banner2, "banner2"},
+        {WidgetStyleOption::banner3, "banner3"},
+        {WidgetStyleOption::banner4, "banner4"}
+    }
+);
 
 
 // Guild Scheduled Event //
@@ -518,7 +533,7 @@ enum class PremiumType : int {
 };
 
 enum class Service {
-    Battle.net,
+    Battle_net,
     eBay,
     Epic_Games,
     Facebook,
@@ -537,26 +552,29 @@ enum class Service {
     Xbox,
     YouTube
 };
-NLOHMANN_JSON_SERIALIZE_ENUM(Service, {
-    {Service::Battle.net, "battlenet"},
-    {Service::eBay, "ebay"},
-    {Service::Epic_Games, "epicgames"},
-    {Service::Facebook, "facebook"},
-    {Service::GitHub, "github"},
-    {Service::League_of_Legends, "leagueoflegends"},
-    {Service::PayPal, "paypal"},
-    {Service::PlayStation_Network, "playstation"},
-    {Service::Reddit, "reddit"},
-    {Service::Riot_Games, "riotgames"},
-    {Service::Spotify, "spotify"},
-    {Service::Skype, "skype"},
-    {Service::Steam, "steam"},
-    {Service::TikTok, "tiktok"},
-    {Service::Twitch, "twitch"},
-    {Service::Twitter, "twitter"},
-    {Service::Xbox, "xbox"},
-    {Service::YouTube, "youtube"}
-})
+NLOHMANN_JSON_SERIALIZE_ENUM(
+    Service,
+    {
+        {Service::Battle_net, "battlenet"},
+        {Service::eBay, "ebay"},
+        {Service::Epic_Games, "epicgames"},
+        {Service::Facebook, "facebook"},
+        {Service::GitHub, "github"},
+        {Service::League_of_Legends, "leagueoflegends"},
+        {Service::PayPal, "paypal"},
+        {Service::PlayStation_Network, "playstation"},
+        {Service::Reddit, "reddit"},
+        {Service::Riot_Games, "riotgames"},
+        {Service::Spotify, "spotify"},
+        {Service::Skype, "skype"},
+        {Service::Steam, "steam"},
+        {Service::TikTok, "tiktok"},
+        {Service::Twitch, "twitch"},
+        {Service::Twitter, "twitter"},
+        {Service::Xbox, "xbox"},
+        {Service::YouTube, "youtube"}
+    }
+);
 
 enum class VisibilityType : int {
     None = 0,
@@ -583,14 +601,17 @@ enum class GatewayCommand {
     Update_Voice_State,
     Update_Presence
 };
-NLOHMANN_JSON_SERIALIZE_ENUM(GatewayCommand, {
-    {GatewayCommand::Identify, "Identify"},
-    {GatewayCommand::Resume, "Resume"},
-    {GatewayCommand::Heartbeat, "Heartbeat"},
-    {GatewayCommand::Request_Guild_Members, "Request Guild Members"},
-    {GatewayCommand::Update_Voice_State, "Update Voice State"},
-    {GatewayCommand::Update_Presence, "Update Presence"}
-})
+NLOHMANN_JSON_SERIALIZE_ENUM(
+    GatewayCommand,
+    {
+        {GatewayCommand::Identify, "Identify"},
+        {GatewayCommand::Resume, "Resume"},
+        {GatewayCommand::Heartbeat, "Heartbeat"},
+        {GatewayCommand::Request_Guild_Members, "Request Guild Members"},
+        {GatewayCommand::Update_Voice_State, "Update Voice State"},
+        {GatewayCommand::Update_Presence, "Update Presence"}
+    }
+);
 
 enum class GatewayEvent {
     Hello,
@@ -657,71 +678,74 @@ enum class GatewayEvent {
     Voice_Server_Update,
     Webhooks_Update
 };
-NLOHMANN_JSON_SERIALIZE_ENUM(GatewayEvent, {
-    {GatewayEvent::Hello, "Hello"},
-    {GatewayEvent::Ready, "Ready"},
-    {GatewayEvent::Resumed, "Resumed"},
-    {GatewayEvent::Reconnect, "Reconnect"},
-    {GatewayEvent::Invalid_Session, "Invalid Session"},
-    {GatewayEvent::Application_Command_Permissions_Update, "Application Command Permissions Update"},
-    {GatewayEvent::Auto_Moderation_Rule_Create, "Auto Moderation Rule Create"},
-    {GatewayEvent::Auto_Moderation_Rule_Update, "Auto Moderation Rule Update"},
-    {GatewayEvent::Auto_Moderation_Rule_Delete, "Auto Moderation Rule Delete"},
-    {GatewayEvent::Auto_Moderation_Action_Execution, "Auto Moderation Action Execution"},
-    {GatewayEvent::Channel_Create, "Channel Create"},
-    {GatewayEvent::Channel_Update, "Channel Update"},
-    {GatewayEvent::Channel_Delete, "Channel Delete"},
-    {GatewayEvent::Channel_Pins_Update, "Channel Pins Update"},
-    {GatewayEvent::Thread_Create, "Thread Create"},
-    {GatewayEvent::Thread_Update, "Thread Update"},
-    {GatewayEvent::Thread_Delete, "Thread Delete"},
-    {GatewayEvent::Thread_List_Sync, "Thread List Sync"},
-    {GatewayEvent::Thread_Member_Update, "Thread Member Update"},
-    {GatewayEvent::Thread_Members_Update, "Thread Members Update"},
-    {GatewayEvent::Guild_Create, "Guild Create"},
-    {GatewayEvent::Guild_Update, "Guild Update"},
-    {GatewayEvent::Guild_Delete, "Guild Delete"},
-    {GatewayEvent::Guild_Ban_Add, "Guild Ban Add"},
-    {GatewayEvent::Guild_Ban_Remove, "Guild Ban Remove"},
-    {GatewayEvent::Guild_Emojis_Update, "Guild Emojis Update"},
-    {GatewayEvent::Guild_Stickers_Update, "Guild Stickers Update"},
-    {GatewayEvent::Guild_Integrations_Update, "Guild Integrations Update"},
-    {GatewayEvent::Guild_Member_Add, "Guild Member Add"},
-    {GatewayEvent::Guild_Member_Remove, "Guild Member Remove"},
-    {GatewayEvent::Guild_Member_Update, "Guild Member Update"},
-    {GatewayEvent::Guild_Members_Chunk, "Guild Members Chunk"},
-    {GatewayEvent::Guild_Role_Create, "Guild Role Create"},
-    {GatewayEvent::Guild_Role_Update, "Guild Role Update"},
-    {GatewayEvent::Guild_Role_Delete, "Guild Role Delete"},
-    {GatewayEvent::Guild_Scheduled_Event_Create, "Guild Scheduled Event Create"},
-    {GatewayEvent::Guild_Scheduled_Event_Update, "Guild Scheduled Event Update"},
-    {GatewayEvent::Guild_Scheduled_Event_Delete, "Guild Scheduled Event Delete"},
-    {GatewayEvent::Guild_Scheduled_Event_User_Add, "Guild Scheduled Event User Add"},
-    {GatewayEvent::Guild_Scheduled_Event_User_Remove, "Guild Scheduled Event User Remove"},
-    {GatewayEvent::Integration_Create, "Integration Create"},
-    {GatewayEvent::Integration_Update, "Integration Update"},
-    {GatewayEvent::Integration_Delete, "Integration Delete"},
-    {GatewayEvent::Interaction_Create, "Interaction Create"},
-    {GatewayEvent::Invite_Create, "Invite Create"},
-    {GatewayEvent::Invite_Delete, "Invite Delete"},
-    {GatewayEvent::Message_Create, "Message Create"},
-    {GatewayEvent::Message_Update, "Message Update"},
-    {GatewayEvent::Message_Delete, "Message Delete"},
-    {GatewayEvent::Message_Delete_Bulk, "Message Delete Bulk"},
-    {GatewayEvent::Message_Reaction_Add, "Message Reaction Add"},
-    {GatewayEvent::Message_Reaction_Remove, "Message Reaction Remove"},
-    {GatewayEvent::Message_Reaction_Remove_All, "Message Reaction Remove All"},
-    {GatewayEvent::Message_Reaction_Remove_Emoji, "Message Reaction Remove Emoji"},
-    {GatewayEvent::Presence_Update, "Presence Update"},
-    {GatewayEvent::Stage_Instance_Create, "Stage Instance Create"},
-    {GatewayEvent::Stage_Instance_Delete, "Stage Instance Delete"},
-    {GatewayEvent::Stage_Instance_Update, "Stage Instance Update"},
-    {GatewayEvent::Typing_Start, "Typing Start"},
-    {GatewayEvent::User_Update, "User Update"},
-    {GatewayEvent::Voice_State_Update, "Voice State Update"},
-    {GatewayEvent::Voice_Server_Update, "Voice Server Update"},
-    {GatewayEvent::Webhooks_Update, "Webhooks Update"}
-})
+NLOHMANN_JSON_SERIALIZE_ENUM(
+    GatewayEvent,
+    {
+        {GatewayEvent::Hello, "Hello"},
+        {GatewayEvent::Ready, "Ready"},
+        {GatewayEvent::Resumed, "Resumed"},
+        {GatewayEvent::Reconnect, "Reconnect"},
+        {GatewayEvent::Invalid_Session, "Invalid Session"},
+        {GatewayEvent::Application_Command_Permissions_Update, "Application Command Permissions Update"},
+        {GatewayEvent::Auto_Moderation_Rule_Create, "Auto Moderation Rule Create"},
+        {GatewayEvent::Auto_Moderation_Rule_Update, "Auto Moderation Rule Update"},
+        {GatewayEvent::Auto_Moderation_Rule_Delete, "Auto Moderation Rule Delete"},
+        {GatewayEvent::Auto_Moderation_Action_Execution, "Auto Moderation Action Execution"},
+        {GatewayEvent::Channel_Create, "Channel Create"},
+        {GatewayEvent::Channel_Update, "Channel Update"},
+        {GatewayEvent::Channel_Delete, "Channel Delete"},
+        {GatewayEvent::Channel_Pins_Update, "Channel Pins Update"},
+        {GatewayEvent::Thread_Create, "Thread Create"},
+        {GatewayEvent::Thread_Update, "Thread Update"},
+        {GatewayEvent::Thread_Delete, "Thread Delete"},
+        {GatewayEvent::Thread_List_Sync, "Thread List Sync"},
+        {GatewayEvent::Thread_Member_Update, "Thread Member Update"},
+        {GatewayEvent::Thread_Members_Update, "Thread Members Update"},
+        {GatewayEvent::Guild_Create, "Guild Create"},
+        {GatewayEvent::Guild_Update, "Guild Update"},
+        {GatewayEvent::Guild_Delete, "Guild Delete"},
+        {GatewayEvent::Guild_Ban_Add, "Guild Ban Add"},
+        {GatewayEvent::Guild_Ban_Remove, "Guild Ban Remove"},
+        {GatewayEvent::Guild_Emojis_Update, "Guild Emojis Update"},
+        {GatewayEvent::Guild_Stickers_Update, "Guild Stickers Update"},
+        {GatewayEvent::Guild_Integrations_Update, "Guild Integrations Update"},
+        {GatewayEvent::Guild_Member_Add, "Guild Member Add"},
+        {GatewayEvent::Guild_Member_Remove, "Guild Member Remove"},
+        {GatewayEvent::Guild_Member_Update, "Guild Member Update"},
+        {GatewayEvent::Guild_Members_Chunk, "Guild Members Chunk"},
+        {GatewayEvent::Guild_Role_Create, "Guild Role Create"},
+        {GatewayEvent::Guild_Role_Update, "Guild Role Update"},
+        {GatewayEvent::Guild_Role_Delete, "Guild Role Delete"},
+        {GatewayEvent::Guild_Scheduled_Event_Create, "Guild Scheduled Event Create"},
+        {GatewayEvent::Guild_Scheduled_Event_Update, "Guild Scheduled Event Update"},
+        {GatewayEvent::Guild_Scheduled_Event_Delete, "Guild Scheduled Event Delete"},
+        {GatewayEvent::Guild_Scheduled_Event_User_Add, "Guild Scheduled Event User Add"},
+        {GatewayEvent::Guild_Scheduled_Event_User_Remove, "Guild Scheduled Event User Remove"},
+        {GatewayEvent::Integration_Create, "Integration Create"},
+        {GatewayEvent::Integration_Update, "Integration Update"},
+        {GatewayEvent::Integration_Delete, "Integration Delete"},
+        {GatewayEvent::Interaction_Create, "Interaction Create"},
+        {GatewayEvent::Invite_Create, "Invite Create"},
+        {GatewayEvent::Invite_Delete, "Invite Delete"},
+        {GatewayEvent::Message_Create, "Message Create"},
+        {GatewayEvent::Message_Update, "Message Update"},
+        {GatewayEvent::Message_Delete, "Message Delete"},
+        {GatewayEvent::Message_Delete_Bulk, "Message Delete Bulk"},
+        {GatewayEvent::Message_Reaction_Add, "Message Reaction Add"},
+        {GatewayEvent::Message_Reaction_Remove, "Message Reaction Remove"},
+        {GatewayEvent::Message_Reaction_Remove_All, "Message Reaction Remove All"},
+        {GatewayEvent::Message_Reaction_Remove_Emoji, "Message Reaction Remove Emoji"},
+        {GatewayEvent::Presence_Update, "Presence Update"},
+        {GatewayEvent::Stage_Instance_Create, "Stage Instance Create"},
+        {GatewayEvent::Stage_Instance_Delete, "Stage Instance Delete"},
+        {GatewayEvent::Stage_Instance_Update, "Stage Instance Update"},
+        {GatewayEvent::Typing_Start, "Typing Start"},
+        {GatewayEvent::User_Update, "User Update"},
+        {GatewayEvent::Voice_State_Update, "Voice State Update"},
+        {GatewayEvent::Voice_Server_Update, "Voice Server Update"},
+        {GatewayEvent::Webhooks_Update, "Webhooks Update"}
+    }
+);
 
 enum class StatusType {
     online,
@@ -730,13 +754,16 @@ enum class StatusType {
     invisible,
     offline
 };
-NLOHMANN_JSON_SERIALIZE_ENUM(StatusType, {
-    {StatusType::online, "online"},
-    {StatusType::dnd, "dnd"},
-    {StatusType::idle, "idle"},
-    {StatusType::invisible, "invisible"},
-    {StatusType::offline, "offline"}
-})
+NLOHMANN_JSON_SERIALIZE_ENUM(
+    StatusType,
+    {
+        {StatusType::online, "online"},
+        {StatusType::dnd, "dnd"},
+        {StatusType::idle, "idle"},
+        {StatusType::invisible, "invisible"},
+        {StatusType::offline, "offline"}
+    }
+);
 
 enum class ActivityType : int {
     Game = 0,
@@ -770,14 +797,17 @@ enum class SendEvent {
     Update_Voice_State,
     Update_Presence
 };
-NLOHMANN_JSON_SERIALIZE_ENUM(SendEvent, {
-    {SendEvent::Identify, "Identify"},
-    {SendEvent::Resume, "Resume"},
-    {SendEvent::Heartbeat, "Heartbeat"},
-    {SendEvent::Request_Guild_Members, "Request Guild Members"},
-    {SendEvent::Update_Voice_State, "Update Voice State"},
-    {SendEvent::Update_Presence, "Update Presence"}
-})
+NLOHMANN_JSON_SERIALIZE_ENUM(
+    SendEvent,
+    {
+        {SendEvent::Identify, "Identify"},
+        {SendEvent::Resume, "Resume"},
+        {SendEvent::Heartbeat, "Heartbeat"},
+        {SendEvent::Request_Guild_Members, "Request Guild Members"},
+        {SendEvent::Update_Voice_State, "Update Voice State"},
+        {SendEvent::Update_Presence, "Update Presence"}
+    }
+);
 
 enum class StatusType {
     online,
@@ -786,13 +816,16 @@ enum class StatusType {
     invisible,
     offline
 };
-NLOHMANN_JSON_SERIALIZE_ENUM(StatusType, {
-    {StatusType::online, "online"},
-    {StatusType::dnd, "dnd"},
-    {StatusType::idle, "idle"},
-    {StatusType::invisible, "invisible"},
-    {StatusType::offline, "offline"}
-})
+NLOHMANN_JSON_SERIALIZE_ENUM(
+    StatusType,
+    {
+        {StatusType::online, "online"},
+        {StatusType::dnd, "dnd"},
+        {StatusType::idle, "idle"},
+        {StatusType::invisible, "invisible"},
+        {StatusType::offline, "offline"}
+    }
+);
 
 enum class ReceiveEvent {
     Hello,
@@ -860,72 +893,75 @@ enum class ReceiveEvent {
     Voice_Server_Update,
     Webhooks_Update
 };
-NLOHMANN_JSON_SERIALIZE_ENUM(ReceiveEvent, {
-    {ReceiveEvent::Hello, "Hello"},
-    {ReceiveEvent::Ready, "Ready"},
-    {ReceiveEvent::Resumed, "Resumed"},
-    {ReceiveEvent::Reconnect, "Reconnect"},
-    {ReceiveEvent::Invalid_Session, "Invalid Session"},
-    {ReceiveEvent::Application_Command_Permissions_Update, "Application Command Permissions Update"},
-    {ReceiveEvent::Auto_Moderation_Rule_Create, "Auto Moderation Rule Create"},
-    {ReceiveEvent::Auto_Moderation_Rule_Update, "Auto Moderation Rule Update"},
-    {ReceiveEvent::Auto_Moderation_Rule_Delete, "Auto Moderation Rule Delete"},
-    {ReceiveEvent::Auto_Moderation_Action_Execution, "Auto Moderation Action Execution"},
-    {ReceiveEvent::Channel_Create, "Channel Create"},
-    {ReceiveEvent::Channel_Update, "Channel Update"},
-    {ReceiveEvent::Channel_Delete, "Channel Delete"},
-    {ReceiveEvent::Channel_Pins_Update, "Channel Pins Update"},
-    {ReceiveEvent::Thread_Create, "Thread Create"},
-    {ReceiveEvent::Thread_Update, "Thread Update"},
-    {ReceiveEvent::Thread_Delete, "Thread Delete"},
-    {ReceiveEvent::Thread_List_Sync, "Thread List Sync"},
-    {ReceiveEvent::Thread_Member_Update, "Thread Member Update"},
-    {ReceiveEvent::Thread_Members_Update, "Thread Members Update"},
-    {ReceiveEvent::Guild_Create, "Guild Create"},
-    {ReceiveEvent::Guild_Update, "Guild Update"},
-    {ReceiveEvent::Guild_Delete, "Guild Delete"},
-    {ReceiveEvent::Guild_Audit_Log_Entry_Create, "Guild Audit Log Entry Create"},
-    {ReceiveEvent::Guild_Ban_Add, "Guild Ban Add"},
-    {ReceiveEvent::Guild_Ban_Remove, "Guild Ban Remove"},
-    {ReceiveEvent::Guild_Emojis_Update, "Guild Emojis Update"},
-    {ReceiveEvent::Guild_Stickers_Update, "Guild Stickers Update"},
-    {ReceiveEvent::Guild_Integrations_Update, "Guild Integrations Update"},
-    {ReceiveEvent::Guild_Member_Add, "Guild Member Add"},
-    {ReceiveEvent::Guild_Member_Remove, "Guild Member Remove"},
-    {ReceiveEvent::Guild_Member_Update, "Guild Member Update"},
-    {ReceiveEvent::Guild_Members_Chunk, "Guild Members Chunk"},
-    {ReceiveEvent::Guild_Role_Create, "Guild Role Create"},
-    {ReceiveEvent::Guild_Role_Update, "Guild Role Update"},
-    {ReceiveEvent::Guild_Role_Delete, "Guild Role Delete"},
-    {ReceiveEvent::Guild_Scheduled_Event_Create, "Guild Scheduled Event Create"},
-    {ReceiveEvent::Guild_Scheduled_Event_Update, "Guild Scheduled Event Update"},
-    {ReceiveEvent::Guild_Scheduled_Event_Delete, "Guild Scheduled Event Delete"},
-    {ReceiveEvent::Guild_Scheduled_Event_User_Add, "Guild Scheduled Event User Add"},
-    {ReceiveEvent::Guild_Scheduled_Event_User_Remove, "Guild Scheduled Event User Remove"},
-    {ReceiveEvent::Integration_Create, "Integration Create"},
-    {ReceiveEvent::Integration_Update, "Integration Update"},
-    {ReceiveEvent::Integration_Delete, "Integration Delete"},
-    {ReceiveEvent::Interaction_Create, "Interaction Create"},
-    {ReceiveEvent::Invite_Create, "Invite Create"},
-    {ReceiveEvent::Invite_Delete, "Invite Delete"},
-    {ReceiveEvent::Message_Create, "Message Create"},
-    {ReceiveEvent::Message_Update, "Message Update"},
-    {ReceiveEvent::Message_Delete, "Message Delete"},
-    {ReceiveEvent::Message_Delete_Bulk, "Message Delete Bulk"},
-    {ReceiveEvent::Message_Reaction_Add, "Message Reaction Add"},
-    {ReceiveEvent::Message_Reaction_Remove, "Message Reaction Remove"},
-    {ReceiveEvent::Message_Reaction_Remove_All, "Message Reaction Remove All"},
-    {ReceiveEvent::Message_Reaction_Remove_Emoji, "Message Reaction Remove Emoji"},
-    {ReceiveEvent::Presence_Update, "Presence Update"},
-    {ReceiveEvent::Stage_Instance_Create, "Stage Instance Create"},
-    {ReceiveEvent::Stage_Instance_Update, "Stage Instance Update"},
-    {ReceiveEvent::Stage_Instance_Delete, "Stage Instance Delete"},
-    {ReceiveEvent::Typing_Start, "Typing Start"},
-    {ReceiveEvent::User_Update, "User Update"},
-    {ReceiveEvent::Voice_State_Update, "Voice State Update"},
-    {ReceiveEvent::Voice_Server_Update, "Voice Server Update"},
-    {ReceiveEvent::Webhooks_Update, "Webhooks Update"}
-})
+NLOHMANN_JSON_SERIALIZE_ENUM(
+    ReceiveEvent,
+    {
+        {ReceiveEvent::Hello, "Hello"},
+        {ReceiveEvent::Ready, "Ready"},
+        {ReceiveEvent::Resumed, "Resumed"},
+        {ReceiveEvent::Reconnect, "Reconnect"},
+        {ReceiveEvent::Invalid_Session, "Invalid Session"},
+        {ReceiveEvent::Application_Command_Permissions_Update, "Application Command Permissions Update"},
+        {ReceiveEvent::Auto_Moderation_Rule_Create, "Auto Moderation Rule Create"},
+        {ReceiveEvent::Auto_Moderation_Rule_Update, "Auto Moderation Rule Update"},
+        {ReceiveEvent::Auto_Moderation_Rule_Delete, "Auto Moderation Rule Delete"},
+        {ReceiveEvent::Auto_Moderation_Action_Execution, "Auto Moderation Action Execution"},
+        {ReceiveEvent::Channel_Create, "Channel Create"},
+        {ReceiveEvent::Channel_Update, "Channel Update"},
+        {ReceiveEvent::Channel_Delete, "Channel Delete"},
+        {ReceiveEvent::Channel_Pins_Update, "Channel Pins Update"},
+        {ReceiveEvent::Thread_Create, "Thread Create"},
+        {ReceiveEvent::Thread_Update, "Thread Update"},
+        {ReceiveEvent::Thread_Delete, "Thread Delete"},
+        {ReceiveEvent::Thread_List_Sync, "Thread List Sync"},
+        {ReceiveEvent::Thread_Member_Update, "Thread Member Update"},
+        {ReceiveEvent::Thread_Members_Update, "Thread Members Update"},
+        {ReceiveEvent::Guild_Create, "Guild Create"},
+        {ReceiveEvent::Guild_Update, "Guild Update"},
+        {ReceiveEvent::Guild_Delete, "Guild Delete"},
+        {ReceiveEvent::Guild_Audit_Log_Entry_Create, "Guild Audit Log Entry Create"},
+        {ReceiveEvent::Guild_Ban_Add, "Guild Ban Add"},
+        {ReceiveEvent::Guild_Ban_Remove, "Guild Ban Remove"},
+        {ReceiveEvent::Guild_Emojis_Update, "Guild Emojis Update"},
+        {ReceiveEvent::Guild_Stickers_Update, "Guild Stickers Update"},
+        {ReceiveEvent::Guild_Integrations_Update, "Guild Integrations Update"},
+        {ReceiveEvent::Guild_Member_Add, "Guild Member Add"},
+        {ReceiveEvent::Guild_Member_Remove, "Guild Member Remove"},
+        {ReceiveEvent::Guild_Member_Update, "Guild Member Update"},
+        {ReceiveEvent::Guild_Members_Chunk, "Guild Members Chunk"},
+        {ReceiveEvent::Guild_Role_Create, "Guild Role Create"},
+        {ReceiveEvent::Guild_Role_Update, "Guild Role Update"},
+        {ReceiveEvent::Guild_Role_Delete, "Guild Role Delete"},
+        {ReceiveEvent::Guild_Scheduled_Event_Create, "Guild Scheduled Event Create"},
+        {ReceiveEvent::Guild_Scheduled_Event_Update, "Guild Scheduled Event Update"},
+        {ReceiveEvent::Guild_Scheduled_Event_Delete, "Guild Scheduled Event Delete"},
+        {ReceiveEvent::Guild_Scheduled_Event_User_Add, "Guild Scheduled Event User Add"},
+        {ReceiveEvent::Guild_Scheduled_Event_User_Remove, "Guild Scheduled Event User Remove"},
+        {ReceiveEvent::Integration_Create, "Integration Create"},
+        {ReceiveEvent::Integration_Update, "Integration Update"},
+        {ReceiveEvent::Integration_Delete, "Integration Delete"},
+        {ReceiveEvent::Interaction_Create, "Interaction Create"},
+        {ReceiveEvent::Invite_Create, "Invite Create"},
+        {ReceiveEvent::Invite_Delete, "Invite Delete"},
+        {ReceiveEvent::Message_Create, "Message Create"},
+        {ReceiveEvent::Message_Update, "Message Update"},
+        {ReceiveEvent::Message_Delete, "Message Delete"},
+        {ReceiveEvent::Message_Delete_Bulk, "Message Delete Bulk"},
+        {ReceiveEvent::Message_Reaction_Add, "Message Reaction Add"},
+        {ReceiveEvent::Message_Reaction_Remove, "Message Reaction Remove"},
+        {ReceiveEvent::Message_Reaction_Remove_All, "Message Reaction Remove All"},
+        {ReceiveEvent::Message_Reaction_Remove_Emoji, "Message Reaction Remove Emoji"},
+        {ReceiveEvent::Presence_Update, "Presence Update"},
+        {ReceiveEvent::Stage_Instance_Create, "Stage Instance Create"},
+        {ReceiveEvent::Stage_Instance_Update, "Stage Instance Update"},
+        {ReceiveEvent::Stage_Instance_Delete, "Stage Instance Delete"},
+        {ReceiveEvent::Typing_Start, "Typing Start"},
+        {ReceiveEvent::User_Update, "User Update"},
+        {ReceiveEvent::Voice_State_Update, "Voice State Update"},
+        {ReceiveEvent::Voice_Server_Update, "Voice Server Update"},
+        {ReceiveEvent::Webhooks_Update, "Webhooks Update"}
+    }
+);
 
 enum class ActivityType : int {
     Game = 0,
@@ -952,65 +988,68 @@ enum class ActivityFlag : int {
 // OAuth2 //
 
 enum class OAuth2Scope {
-    activities.read,
-    activities.write,
-    applications.builds.read,
-    applications.builds.upload,
-    applications.commands,
-    applications.commands.update,
-    applications.commands.permissions.update,
-    applications.entitlements,
-    applications.store.update,
+    activities_read,
+    activities_write,
+    applications_builds_read,
+    applications_builds_upload,
+    applications_commands,
+    applications_commands_update,
+    applications_commands_permissions_update,
+    applications_entitlements,
+    applications_store_update,
     bot,
     connections,
-    dm_channels.read,
+    dm_channels_read,
     email,
-    gdm.join,
+    gdm_join,
     guilds,
-    guilds.join,
-    guilds.members.read,
+    guilds_join,
+    guilds_members_read,
     identify,
-    messages.read,
-    relationships.read,
-    role_connections.write,
+    messages_read,
+    relationships_read,
+    role_connections_write,
     rpc,
-    rpc.activities.write,
-    rpc.notifications.read,
-    rpc.voice.read,
-    rpc.voice.write,
+    rpc_activities_write,
+    rpc_notifications_read,
+    rpc_voice_read,
+    rpc_voice_write,
     voice,
-    webhook.incoming
+    webhook_incoming
 };
-NLOHMANN_JSON_SERIALIZE_ENUM(OAuth2Scope, {
-    {OAuth2Scope::activities.read, "activities.read"},
-    {OAuth2Scope::activities.write, "activities.write"},
-    {OAuth2Scope::applications.builds.read, "applications.builds.read"},
-    {OAuth2Scope::applications.builds.upload, "applications.builds.upload"},
-    {OAuth2Scope::applications.commands, "applications.commands"},
-    {OAuth2Scope::applications.commands.update, "applications.commands.update"},
-    {OAuth2Scope::applications.commands.permissions.update, "applications.commands.permissions.update"},
-    {OAuth2Scope::applications.entitlements, "applications.entitlements"},
-    {OAuth2Scope::applications.store.update, "applications.store.update"},
-    {OAuth2Scope::bot, "bot"},
-    {OAuth2Scope::connections, "connections"},
-    {OAuth2Scope::dm_channels.read, "dm_channels.read"},
-    {OAuth2Scope::email, "email"},
-    {OAuth2Scope::gdm.join, "gdm.join"},
-    {OAuth2Scope::guilds, "guilds"},
-    {OAuth2Scope::guilds.join, "guilds.join"},
-    {OAuth2Scope::guilds.members.read, "guilds.members.read"},
-    {OAuth2Scope::identify, "identify"},
-    {OAuth2Scope::messages.read, "messages.read"},
-    {OAuth2Scope::relationships.read, "relationships.read"},
-    {OAuth2Scope::role_connections.write, "role_connections.write"},
-    {OAuth2Scope::rpc, "rpc"},
-    {OAuth2Scope::rpc.activities.write, "rpc.activities.write"},
-    {OAuth2Scope::rpc.notifications.read, "rpc.notifications.read"},
-    {OAuth2Scope::rpc.voice.read, "rpc.voice.read"},
-    {OAuth2Scope::rpc.voice.write, "rpc.voice.write"},
-    {OAuth2Scope::voice, "voice"},
-    {OAuth2Scope::webhook.incoming, "webhook.incoming"}
-})
+NLOHMANN_JSON_SERIALIZE_ENUM(
+    OAuth2Scope,
+    {
+        {OAuth2Scope::activities_read, "activities.read"},
+        {OAuth2Scope::activities_write, "activities.write"},
+        {OAuth2Scope::applications_builds_read, "applications.builds.read"},
+        {OAuth2Scope::applications_builds_upload, "applications.builds.upload"},
+        {OAuth2Scope::applications_commands, "applications.commands"},
+        {OAuth2Scope::applications_commands_update, "applications.commands.update"},
+        {OAuth2Scope::applications_commands_permissions_update, "applications.commands.permissions.update"},
+        {OAuth2Scope::applications_entitlements, "applications.entitlements"},
+        {OAuth2Scope::applications_store_update, "applications.store.update"},
+        {OAuth2Scope::bot, "bot"},
+        {OAuth2Scope::connections, "connections"},
+        {OAuth2Scope::dm_channels_read, "dm_channels.read"},
+        {OAuth2Scope::email, "email"},
+        {OAuth2Scope::gdm_join, "gdm.join"},
+        {OAuth2Scope::guilds, "guilds"},
+        {OAuth2Scope::guilds_join, "guilds.join"},
+        {OAuth2Scope::guilds_members_read, "guilds.members.read"},
+        {OAuth2Scope::identify, "identify"},
+        {OAuth2Scope::messages_read, "messages.read"},
+        {OAuth2Scope::relationships_read, "relationships.read"},
+        {OAuth2Scope::role_connections_write, "role_connections.write"},
+        {OAuth2Scope::rpc, "rpc"},
+        {OAuth2Scope::rpc_activities_write, "rpc.activities.write"},
+        {OAuth2Scope::rpc_notifications_read, "rpc.notifications.read"},
+        {OAuth2Scope::rpc_voice_read, "rpc.voice.read"},
+        {OAuth2Scope::rpc_voice_write, "rpc.voice.write"},
+        {OAuth2Scope::voice, "voice"},
+        {OAuth2Scope::webhook_incoming, "webhook.incoming"}
+    }
+);
 
 enum class BotAuthParameter {
     client_id,
@@ -1019,13 +1058,16 @@ enum class BotAuthParameter {
     guild_id,
     disable_guild_select
 };
-NLOHMANN_JSON_SERIALIZE_ENUM(BotAuthParameter, {
-    {BotAuthParameter::client_id, "client_id"},
-    {BotAuthParameter::scope, "scope"},
-    {BotAuthParameter::permissions, "permissions"},
-    {BotAuthParameter::guild_id, "guild_id"},
-    {BotAuthParameter::disable_guild_select, "disable_guild_select"}
-})
+NLOHMANN_JSON_SERIALIZE_ENUM(
+    BotAuthParameter,
+    {
+        {BotAuthParameter::client_id, "client_id"},
+        {BotAuthParameter::scope, "scope"},
+        {BotAuthParameter::permissions, "permissions"},
+        {BotAuthParameter::guild_id, "guild_id"},
+        {BotAuthParameter::disable_guild_select, "disable_guild_select"}
+    }
+);
 
 
 // Permissions //

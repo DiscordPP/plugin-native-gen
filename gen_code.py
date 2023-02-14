@@ -423,14 +423,14 @@ namespace discordpp {
                 render_parts = {
                     'name': f'enum class {pretty_name}{" : int" if is_int else ""}',
                     'values': "\n    ".join(
-                        key.replace(' ', '_') + (" = " + re.sub(r' (.+)', '', value['value']) if is_int else "") + ','
+                        key.replace(' ', '_').replace('.', '_') + (" = " + re.sub(r' (.+)', '', value['value']) if is_int else "") + ','
                         for key, value in opt.items()
                     )
                 }
                 render_parts['values'] = render_parts['values'][:-1]
                 if not is_int:
-                    render_parts['serialize_values'] =  "\n    ".join(
-                        f"{{{pretty_name}::{key.replace(' ', '_')}, \"{value.get('value', key).removeprefix(DQ).removesuffix(DQ)}\"}},"
+                    render_parts['serialize_values'] =  "\n        ".join(
+                        f"{{{pretty_name}::{key.replace(' ', '_').replace('.', '_')}, \"{value.get('value', key).removeprefix(DQ).removesuffix(DQ)}\"}},"
                         for key, value in opt.items()
                     )
                     render_parts['serialize_values'] = render_parts['serialize_values'][:-1]
@@ -444,9 +444,12 @@ namespace discordpp {
                 if not is_int:
                     # @formatter:off
                     render_enums += f"""\
-NLOHMANN_JSON_SERIALIZE_ENUM({pretty_name}, {{
-    {render_parts['serialize_values']}
-}})
+NLOHMANN_JSON_SERIALIZE_ENUM(
+    {pretty_name},
+    {{
+        {render_parts['serialize_values']}
+    }}
+);
 """
                     # @formatter:on
                 render_enums += '\n'
