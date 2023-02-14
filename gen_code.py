@@ -215,8 +215,6 @@ def run():
     all_objects['children'] = {}
     for filepath in Path(PARSED_PATH).rglob("*.object.json"):
         stem = filepath.stem.split('.')[0].lower().replace('_', '-')
-        if "game_sdk" in str(filepath):
-            continue
         overridepath = Path(str(filepath).replace(str(PARSED_PATH), str(OVERRIDE_PATH)))
         with \
                 filepath.open(mode="r") as file, \
@@ -381,8 +379,6 @@ class {name};
 
     print()
     for filepath in []:  # Path(PARSED_PATH).rglob("*.endpoint.json"):
-        if "game_sdk" in str(filepath):
-            continue
         print(filepath)
         overridepath = Path(str(filepath).replace(str(PARSED_PATH), str(OVERRIDE_PATH)))
         with \
@@ -407,6 +403,8 @@ namespace discordpp {
 """
     # @formatter:on
     for filepath in Path(PARSED_PATH).rglob("*.enum.json"):
+        if "Opcodes_and_Status_Codes" in str(filepath):
+            continue
         print(filepath)
         render_enums += f'\n// {filepath.stem.replace("_", " ").removesuffix(".enum")} //\n\n'
         overridepath = Path(str(filepath.stem).replace(str(PARSED_PATH), str(OVERRIDE_PATH)))
