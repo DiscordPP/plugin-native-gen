@@ -1,0 +1,17 @@
+{
+  "Status Types": {
+    "parser-data": {
+      "skip": true
+    }
+  },
+  "Activity Types": {
+    "parser-data": {
+      "skip": true
+    }
+  },
+  "Activity Flags": {
+    "parser-data": {
+      "skip": true
+    }
+  }
+}

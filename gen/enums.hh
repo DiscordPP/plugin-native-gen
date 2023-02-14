@@ -809,24 +809,6 @@ NLOHMANN_JSON_SERIALIZE_ENUM(
     }
 );
 
-enum class StatusType {
-    online,
-    dnd,
-    idle,
-    invisible,
-    offline
-};
-NLOHMANN_JSON_SERIALIZE_ENUM(
-    StatusType,
-    {
-        {StatusType::online, "online"},
-        {StatusType::dnd, "dnd"},
-        {StatusType::idle, "idle"},
-        {StatusType::invisible, "invisible"},
-        {StatusType::offline, "offline"}
-    }
-);
-
 enum class ReceiveEvent {
     Hello,
     Ready,
@@ -962,27 +944,6 @@ NLOHMANN_JSON_SERIALIZE_ENUM(
         {ReceiveEvent::Webhooks_Update, "Webhooks Update"}
     }
 );
-
-enum class ActivityType : int {
-    Game = 0,
-    Streaming = 1,
-    Listening = 2,
-    Watching = 3,
-    Custom = 4,
-    Competing = 5
-};
-
-enum class ActivityFlag : long int {
-    INSTANCE = 1 << 0,
-    JOIN = 1 << 1,
-    SPECTATE = 1 << 2,
-    JOIN_REQUEST = 1 << 3,
-    SYNC = 1 << 4,
-    PLAY = 1 << 5,
-    PARTY_PRIVACY_FRIENDS = 1 << 6,
-    PARTY_PRIVACY_VOICE_CHANNEL = 1 << 7,
-    EMBEDDED = 1 << 8
-};
 
 
 // OAuth2 //

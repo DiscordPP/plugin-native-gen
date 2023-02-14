@@ -5,7 +5,7 @@ import json
 import re
 from contextlib import nullcontext
 from pathlib import Path
-from typing import Any, Dict, List, OrderedDict
+from typing import Any, Dict, List, OrderedDict, TypeVar
 
 PARSED_PATH = Path('discord-api-parser/discord-api-json')
 OVERRIDE_PATH = Path('overrides')
@@ -157,6 +157,22 @@ def make_pascal_case(src):
 def warn_reserved(s):
     if s in RESERVED:
         print(f'{bcolors.WARNING}WARNING: {s} is a reserved word{bcolors.ENDC}')
+
+
+
+
+# https://github.com/pydantic/pydantic/blob/b8a695788e957285f10a5ddff12b726a85b1122e/pydantic/utils.py#L212-L223
+# MIT License: https://github.com/pydantic/pydantic/blob/b8a695788e957285f10a5ddff12b726a85b1122e/LICENSE
+KeyType = TypeVar('KeyType')
+def deep_update(mapping: Dict[KeyType, Any], *updating_mappings: Dict[KeyType, Any]) -> Dict[KeyType, Any]:
+    updated_mapping = mapping.copy()
+    for updating_mapping in updating_mappings:
+        for k, v in updating_mapping.items():
+            if k in updated_mapping and isinstance(updated_mapping[k], dict) and isinstance(v, dict):
+                updated_mapping[k] = deep_update(updated_mapping[k], v)
+            else:
+                updated_mapping[k] = v
+    return updated_mapping
 
 
 def parse_type(src: str):
@@ -407,14 +423,22 @@ namespace discordpp {
             continue
         print(filepath)
         render_enums += f'\n// {filepath.stem.replace("_", " ").removesuffix(".enum")} //\n\n'
-        overridepath = Path(str(filepath.stem).replace(str(PARSED_PATH), str(OVERRIDE_PATH)))
+        overridepath = Path(str(filepath).replace(str(PARSED_PATH), str(OVERRIDE_PATH)))
         with \
-                filepath.open(mode="r") as file:  # , \
-            # (overridepath.open(mode="r") if overridepath.is_file() else nullcontext()) as override_file:
+                filepath.open(mode="r") as file, \
+                (overridepath.open(mode="r") if overridepath.is_file() else nullcontext()) as override_file:
             enums: Dict[str, Dict[str, str | Dict[str, str]]] = json.loads(file.read())
+            if override_file:
+                enums = deep_update(enums, json.loads(override_file.read()))
             for name, opt in enums.items():
+                metadata = opt.pop("parser-data", None)
+                if metadata:
+                    if metadata['skip']:
+                        print('Skipping', name)
+                        continue
+
                 value_eg = list(opt.values())[0].get('value')
-                pretty_name = name.replace(" ", "")#.removesuffix('s')
+                pretty_name = name.replace(" ", "")  # .removesuffix('s')
                 if pretty_name.endswith('s') and  not any(pretty_name.endswith(suffix) for suffix in [
                     'Status'
                 ]):
