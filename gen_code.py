@@ -417,7 +417,11 @@ namespace discordpp {
             for name, opt in enums.items():
                 value_eg = list(opt.values())[0].get('value')
                 print(name, '|',  list(opt.keys())[0], '|', value_eg)
-                pretty_name = name.replace(" ", "").removesuffix('s')
+                pretty_name = name.replace(" ", "")#.removesuffix('s')
+                if pretty_name.endswith('s') and  not any(pretty_name.endswith(suffix) for suffix in [
+                    'Status'
+                ]):
+                    pretty_name = pretty_name[:-1]
                 is_int = bool(value_eg and ('<<' in value_eg or value_eg.isdigit()))
                 render_parts = {
                     'name': f'enum class {pretty_name}{" : int" if is_int else ""}',

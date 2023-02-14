@@ -451,7 +451,7 @@ enum class GuildScheduledEventEntityType : int {
     EXTERNAL = 3
 };
 
-enum class GuildScheduledEventStatu : int {
+enum class GuildScheduledEventStatus : int {
     SCHEDULED = 1,
     ACTIVE = 2,
     COMPLETED = 3,
