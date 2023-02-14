@@ -419,11 +419,12 @@ namespace discordpp {
                     'Status'
                 ]):
                     pretty_name = pretty_name[:-1]
-                is_int = bool(value_eg and ('<<' in value_eg or value_eg.isdigit()))
+                is_int = bool(value_eg and (value_eg.isdigit() or '<<' in value_eg or '0x' in value_eg))
+                is_large = bool(value_eg and ('<<' in value_eg or '0x' in value_eg))
                 render_parts = {
-                    'name': f'enum class {pretty_name}{" : int" if is_int else ""}',
+                    'name': f'enum class {pretty_name}{" : long int" if is_large else " : int" if is_int else ""}',
                     'values': "\n    ".join(
-                        key.replace(' ', '_').replace('.', '_') + (" = " + re.sub(r' (.+)', '', value['value']) if is_int else "") + ','
+                        key.replace(' ', '_').replace('.', '_') + (" = " + re.sub(r' \(.+\)', '', value['value']) if is_int else "") + ','
                         for key, value in opt.items()
                     )
                 }

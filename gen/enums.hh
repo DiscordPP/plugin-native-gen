@@ -71,16 +71,16 @@ enum class InteractionCallbackType : int {
 
 // Application //
 
-enum class ApplicationFlag : int {
-    GATEWAY_PRESENCE = 1,
-    GATEWAY_PRESENCE_LIMITED = 1,
-    GATEWAY_GUILD_MEMBERS = 1,
-    GATEWAY_GUILD_MEMBERS_LIMITED = 1,
-    VERIFICATION_PENDING_GUILD_LIMIT = 1,
-    EMBEDDED = 1,
-    GATEWAY_MESSAGE_CONTENT = 1,
-    GATEWAY_MESSAGE_CONTENT_LIMITED = 1,
-    APPLICATION_COMMAND_BADGE = 1
+enum class ApplicationFlag : long int {
+    GATEWAY_PRESENCE = 1 << 12,
+    GATEWAY_PRESENCE_LIMITED = 1 << 13,
+    GATEWAY_GUILD_MEMBERS = 1 << 14,
+    GATEWAY_GUILD_MEMBERS_LIMITED = 1 << 15,
+    VERIFICATION_PENDING_GUILD_LIMIT = 1 << 16,
+    EMBEDDED = 1 << 17,
+    GATEWAY_MESSAGE_CONTENT = 1 << 18,
+    GATEWAY_MESSAGE_CONTENT_LIMITED = 1 << 19,
+    APPLICATION_COMMAND_BADGE = 1 << 23
 };
 
 
@@ -206,9 +206,9 @@ enum class VideoQualityMode : int {
     FULL = 2
 };
 
-enum class ChannelFlag : int {
-    PINNED = 1,
-    REQUIRE_TAG = 1
+enum class ChannelFlag : long int {
+    PINNED = 1 << 1,
+    REQUIRE_TAG = 1 << 4
 };
 
 enum class SortOrderType : int {
@@ -259,17 +259,17 @@ enum class MessageActivityType : int {
     JOIN_REQUEST = 5
 };
 
-enum class MessageFlag : int {
-    CROSSPOSTED = 1,
-    IS_CROSSPOST = 1,
-    SUPPRESS_EMBEDS = 1,
-    SOURCE_MESSAGE_DELETED = 1,
-    URGENT = 1,
-    HAS_THREAD = 1,
-    EPHEMERAL = 1,
-    LOADING = 1,
-    FAILED_TO_MENTION_SOME_ROLES_IN_THREAD = 1,
-    SUPPRESS_NOTIFICATIONS = 1
+enum class MessageFlag : long int {
+    CROSSPOSTED = 1 << 0,
+    IS_CROSSPOST = 1 << 1,
+    SUPPRESS_EMBEDS = 1 << 2,
+    SOURCE_MESSAGE_DELETED = 1 << 3,
+    URGENT = 1 << 4,
+    HAS_THREAD = 1 << 5,
+    EPHEMERAL = 1 << 6,
+    LOADING = 1 << 7,
+    FAILED_TO_MENTION_SOME_ROLES_IN_THREAD = 1 << 8,
+    SUPPRESS_NOTIFICATIONS = 1 << 12
 };
 
 enum class EmbedType {
@@ -347,13 +347,13 @@ enum class PremiumTier : int {
     TIER_3 = 3
 };
 
-enum class SystemChannelFlag : int {
-    SUPPRESS_JOIN_NOTIFICATIONS = 1,
-    SUPPRESS_PREMIUM_SUBSCRIPTIONS = 1,
-    SUPPRESS_GUILD_REMINDER_NOTIFICATIONS = 1,
-    SUPPRESS_JOIN_NOTIFICATION_REPLIES = 1,
-    SUPPRESS_ROLE_SUBSCRIPTION_PURCHASE_NOTIFICATIONS = 1,
-    SUPPRESS_ROLE_SUBSCRIPTION_PURCHASE_NOTIFICATION_REPLIES = 1
+enum class SystemChannelFlag : long int {
+    SUPPRESS_JOIN_NOTIFICATIONS = 1 << 0,
+    SUPPRESS_PREMIUM_SUBSCRIPTIONS = 1 << 1,
+    SUPPRESS_GUILD_REMINDER_NOTIFICATIONS = 1 << 2,
+    SUPPRESS_JOIN_NOTIFICATION_REPLIES = 1 << 3,
+    SUPPRESS_ROLE_SUBSCRIPTION_PURCHASE_NOTIFICATIONS = 1 << 4,
+    SUPPRESS_ROLE_SUBSCRIPTION_PURCHASE_NOTIFICATION_REPLIES = 1 << 5
 };
 
 enum class GuildFeature {
@@ -507,22 +507,22 @@ enum class StickerFormatType : int {
 
 // User //
 
-enum class UserFlag : int {
-    STAFF = 1,
-    PARTNER = 1,
-    HYPESQUAD = 1,
-    BUG_HUNTER_LEVEL_1 = 1,
-    HYPESQUAD_ONLINE_HOUSE_1 = 1,
-    HYPESQUAD_ONLINE_HOUSE_2 = 1,
-    HYPESQUAD_ONLINE_HOUSE_3 = 1,
-    PREMIUM_EARLY_SUPPORTER = 1,
-    TEAM_PSEUDO_USER = 1,
-    BUG_HUNTER_LEVEL_2 = 1,
-    VERIFIED_BOT = 1,
-    VERIFIED_DEVELOPER = 1,
-    CERTIFIED_MODERATOR = 1,
-    BOT_HTTP_INTERACTIONS = 1,
-    ACTIVE_DEVELOPER = 1
+enum class UserFlag : long int {
+    STAFF = 1 << 0,
+    PARTNER = 1 << 1,
+    HYPESQUAD = 1 << 2,
+    BUG_HUNTER_LEVEL_1 = 1 << 3,
+    HYPESQUAD_ONLINE_HOUSE_1 = 1 << 6,
+    HYPESQUAD_ONLINE_HOUSE_2 = 1 << 7,
+    HYPESQUAD_ONLINE_HOUSE_3 = 1 << 8,
+    PREMIUM_EARLY_SUPPORTER = 1 << 9,
+    TEAM_PSEUDO_USER = 1 << 10,
+    BUG_HUNTER_LEVEL_2 = 1 << 14,
+    VERIFIED_BOT = 1 << 16,
+    VERIFIED_DEVELOPER = 1 << 17,
+    CERTIFIED_MODERATOR = 1 << 18,
+    BOT_HTTP_INTERACTIONS = 1 << 19,
+    ACTIVE_DEVELOPER = 1 << 22
 };
 
 enum class PremiumType : int {
@@ -774,16 +774,16 @@ enum class ActivityType : int {
     Competing = 5
 };
 
-enum class ActivityFlag : int {
-    INSTANCE = 1,
-    JOIN = 1,
-    SPECTATE = 1,
-    JOIN_REQUEST = 1,
-    SYNC = 1,
-    PLAY = 1,
-    PARTY_PRIVACY_FRIENDS = 1,
-    PARTY_PRIVACY_VOICE_CHANNEL = 1,
-    EMBEDDED = 1
+enum class ActivityFlag : long int {
+    INSTANCE = 1 << 0,
+    JOIN = 1 << 1,
+    SPECTATE = 1 << 2,
+    JOIN_REQUEST = 1 << 3,
+    SYNC = 1 << 4,
+    PLAY = 1 << 5,
+    PARTY_PRIVACY_FRIENDS = 1 << 6,
+    PARTY_PRIVACY_VOICE_CHANNEL = 1 << 7,
+    EMBEDDED = 1 << 8
 };
 
 
@@ -972,16 +972,16 @@ enum class ActivityType : int {
     Competing = 5
 };
 
-enum class ActivityFlag : int {
-    INSTANCE = 1,
-    JOIN = 1,
-    SPECTATE = 1,
-    JOIN_REQUEST = 1,
-    SYNC = 1,
-    PLAY = 1,
-    PARTY_PRIVACY_FRIENDS = 1,
-    PARTY_PRIVACY_VOICE_CHANNEL = 1,
-    EMBEDDED = 1
+enum class ActivityFlag : long int {
+    INSTANCE = 1 << 0,
+    JOIN = 1 << 1,
+    SPECTATE = 1 << 2,
+    JOIN_REQUEST = 1 << 3,
+    SYNC = 1 << 4,
+    PLAY = 1 << 5,
+    PARTY_PRIVACY_FRIENDS = 1 << 6,
+    PARTY_PRIVACY_VOICE_CHANNEL = 1 << 7,
+    EMBEDDED = 1 << 8
 };
 
 
@@ -1072,7 +1072,7 @@ NLOHMANN_JSON_SERIALIZE_ENUM(
 
 // Permissions //
 
-enum class BitwisePermissionFlag : int {
+enum class BitwisePermissionFlag : long int {
     CREATE_INSTANT_INVITE = 0x0000000000000001,
     KICK_MEMBERS = 0x0000000000000002,
     BAN_MEMBERS = 0x0000000000000004,
@@ -1127,10 +1127,10 @@ enum class MembershipStateEnum : int {
 
 // Voice Connections //
 
-enum class Speaking : int {
-    Microphone = 1,
-    Soundshare = 1,
-    Priority = 1
+enum class Speaking : long int {
+    Microphone = 1 << 0,
+    Soundshare = 1 << 1,
+    Priority = 1 << 2
 };
 
 } // namespace discordpp
