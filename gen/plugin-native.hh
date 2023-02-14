@@ -39,24 +39,6 @@ using Timestamp = std::string;
 using ImageData = std::string;
 // https://discord.com/developers/docs/reference#locales
 using Locale = std::string;
-// https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-action-object
-using Action = json;
-// https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-action-object-action-types
-using ActionType = int;
-// https://discord.com/developers/docs/resources/application-role-connection-metadata#application-role-connection-metadata-object-application-role-connection-metadata-type
-using ApplicationRoleConnectionMetadataType = int;
-// https://discord.com/developers/docs/interactions/message-components#component-object
-using Component = json;
-// https://discord.com/developers/docs/resources/guild#integration-account-object
-using Action = json;
-// https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object-guild-scheduled-event-privacy-level
-using PrivacyLevel = int;
-// https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object-guild-scheduled-event-status
-using EventStatus = int;
-// https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object-guild-scheduled-event-entity-types
-using ScheduledEntityType = int;
-// Missing? https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-interaction-callback-data-structure
-using InteractionCallbackData = json;
 
 #define OBJECT_BREAKOUTS
 /* This space intentionally left blank */

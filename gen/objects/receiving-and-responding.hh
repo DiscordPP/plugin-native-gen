@@ -253,9 +253,9 @@ class InteractionResponse{
 };
 
 // https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-messages
-class Messages{
+class MessagesCallback{
   public:
-    Messages(
+    MessagesCallback(
         omittable_field<bool> tts = omitted,
         omittable_field<std::string> content = omitted,
         omittable_field<std::vector<Embed> > embeds = omitted,
@@ -281,7 +281,7 @@ class Messages{
     omittable_field<std::vector<Component> > components;
     omittable_field<std::vector<Attachment> > attachments;
 
-    friend void to_json(nlohmann::json &j, const Messages &t) {
+    friend void to_json(nlohmann::json &j, const MessagesCallback &t) {
         if(!t.tts.is_omitted()) {j["tts"] = t.tts;}
         if(!t.content.is_omitted()) {j["content"] = t.content;}
         if(!t.embeds.is_omitted()) {j["embeds"] = t.embeds;}
@@ -290,7 +290,7 @@ class Messages{
         if(!t.components.is_omitted()) {j["components"] = t.components;}
         if(!t.attachments.is_omitted()) {j["attachments"] = t.attachments;}
     }
-    friend void from_json(const nlohmann::json &j, Messages &t {
+    friend void from_json(const nlohmann::json &j, MessagesCallback &t {
         if(j.contains(tts)){j.at(tts).get_to(t.tts);}
         if(j.contains(content)){j.at(content).get_to(t.content);}
         if(j.contains(embeds)){j.at(embeds).get_to(t.embeds);}
@@ -302,9 +302,9 @@ class Messages{
 };
 
 // https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-autocomplete
-class Autocomplete{
+class AutocompleteCallback{
   public:
-    Autocomplete(
+    AutocompleteCallback(
         field<std::vector<Choice> > choices = uninitialized
     ):
         choices(choices)
@@ -312,18 +312,18 @@ class Autocomplete{
     
     field<std::vector<Choice> > choices;
 
-    friend void to_json(nlohmann::json &j, const Autocomplete &t) {
+    friend void to_json(nlohmann::json &j, const AutocompleteCallback &t) {
         if(!t.choices.is_omitted()) {j["choices"] = t.choices;}
     }
-    friend void from_json(const nlohmann::json &j, Autocomplete &t {
+    friend void from_json(const nlohmann::json &j, AutocompleteCallback &t {
         if(j.contains(choices)){j.at(choices).get_to(t.choices);}
     }
 };
 
 // https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-modal
-class Modal{
+class ModalCallback{
   public:
-    Modal(
+    ModalCallback(
         field<std::string> custom_id = uninitialized,
         field<std::string> title = uninitialized,
         field<std::vector<Component> > components = uninitialized
@@ -337,12 +337,12 @@ class Modal{
     field<std::string> title;
     field<std::vector<Component> > components;
 
-    friend void to_json(nlohmann::json &j, const Modal &t) {
+    friend void to_json(nlohmann::json &j, const ModalCallback &t) {
         if(!t.custom_id.is_omitted()) {j["custom_id"] = t.custom_id;}
         if(!t.title.is_omitted()) {j["title"] = t.title;}
         if(!t.components.is_omitted()) {j["components"] = t.components;}
     }
-    friend void from_json(const nlohmann::json &j, Modal &t {
+    friend void from_json(const nlohmann::json &j, ModalCallback &t {
         if(j.contains(custom_id)){j.at(custom_id).get_to(t.custom_id);}
         if(j.contains(title)){j.at(title).get_to(t.title);}
         if(j.contains(components)){j.at(components).get_to(t.components);}

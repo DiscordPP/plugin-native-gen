@@ -16,5 +16,20 @@
     "messages": {
       "type": "++std::map<Snowflake, Message>"
     }
+  },
+  "Messages": {
+    "parser-data": {
+      "name": "MessagesCallback"
+    }
+  },
+  "Autocomplete": {
+    "parser-data": {
+      "name": "AutocompleteCallback"
+    }
+  },
+  "Modal": {
+    "parser-data": {
+      "name": "ModalCallback"
+    }
   }
 }

@@ -1,5 +1,14 @@
 {
   "Guild Scheduled Event": {
+    "privacy_level": {
+      "type": "++GuildScheduledEventPrivacyLevel"
+    },
+    "entity_type": {
+      "type": "++GuildScheduledEventEntityType"
+    },
+    "status": {
+      "type": "++GuildScheduledEventStatus"
+    },
     "entity_metadata": {
       "type": "++GuildScheduledEventEntityMetadata"
     }

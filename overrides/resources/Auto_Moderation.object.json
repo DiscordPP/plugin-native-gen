@@ -2,6 +2,9 @@
   "Auto Moderation Rule": {
     "trigger_metadata": {
       "type": "++TriggerMetadata"
+    },
+    "actions": {
+      "type": "++std::vector<AutoModerationAction>"
     }
   },
   "Auto Moderation Action": {

@@ -416,7 +416,6 @@ namespace discordpp {
             enums: Dict[str, Dict[str, str | Dict[str, str]]] = json.loads(file.read())
             for name, opt in enums.items():
                 value_eg = list(opt.values())[0].get('value')
-                print(name, '|',  list(opt.keys())[0], '|', value_eg)
                 pretty_name = name.replace(" ", "")#.removesuffix('s')
                 if pretty_name.endswith('s') and  not any(pretty_name.endswith(suffix) for suffix in [
                     'Status'
@@ -437,7 +436,6 @@ namespace discordpp {
                         for key, value in opt.items()
                     )
                     render_parts['serialize_values'] = render_parts['serialize_values'][:-1]
-                print(json.dumps(render_parts, indent=4))
                 # @formatter:off
                 render_enums += f"""\
 {render_parts['name']} {{
@@ -504,24 +502,6 @@ using Timestamp = std::string;
 using ImageData = std::string;
 // https://discord.com/developers/docs/reference#locales
 using Locale = std::string;
-// https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-action-object
-using Action = json;
-// https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-action-object-action-types
-using ActionType = int;
-// https://discord.com/developers/docs/resources/application-role-connection-metadata#application-role-connection-metadata-object-application-role-connection-metadata-type
-using ApplicationRoleConnectionMetadataType = int;
-// https://discord.com/developers/docs/interactions/message-components#component-object
-using Component = json;
-// https://discord.com/developers/docs/resources/guild#integration-account-object
-using Action = json;
-// https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object-guild-scheduled-event-privacy-level
-using PrivacyLevel = int;
-// https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object-guild-scheduled-event-status
-using EventStatus = int;
-// https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object-guild-scheduled-event-entity-types
-using ScheduledEntityType = int;
-// Missing? https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-interaction-callback-data-structure
-using InteractionCallbackData = json;
 
 #define OBJECT_BREAKOUTS
 /* This space intentionally left blank */

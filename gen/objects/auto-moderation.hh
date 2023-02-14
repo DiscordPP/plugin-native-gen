@@ -15,7 +15,7 @@ class AutoModerationRule{
         field<int> event_type = uninitialized,
         field<int> trigger_type = uninitialized,
         field<TriggerMetadata> trigger_metadata = uninitialized,
-        field<std::vector<Action> > actions = uninitialized,
+        field<std::vector<AutoModerationAction> > actions = uninitialized,
         field<bool> enabled = uninitialized,
         field<std::vector<Snowflake> > exempt_roles = uninitialized,
         field<std::vector<Snowflake> > exempt_channels = uninitialized
@@ -40,7 +40,7 @@ class AutoModerationRule{
     field<int> event_type;
     field<int> trigger_type;
     field<TriggerMetadata> trigger_metadata;
-    field<std::vector<Action> > actions;
+    field<std::vector<AutoModerationAction> > actions;
     field<bool> enabled;
     field<std::vector<Snowflake> > exempt_roles;
     field<std::vector<Snowflake> > exempt_channels;

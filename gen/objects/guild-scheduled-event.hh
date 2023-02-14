@@ -16,9 +16,9 @@ class GuildScheduledEvent{
         nullable_omittable_field<std::string> description = omitted,
         field<Timestamp> scheduled_start_time = uninitialized,
         nullable_field<Timestamp> scheduled_end_time = uninitialized,
-        field<PrivacyLevel> privacy_level = uninitialized,
-        field<EventStatus> status = uninitialized,
-        field<ScheduledEntityType> entity_type = uninitialized,
+        field<GuildScheduledEventPrivacyLevel> privacy_level = uninitialized,
+        field<GuildScheduledEventStatus> status = uninitialized,
+        field<GuildScheduledEventEntityType> entity_type = uninitialized,
         nullable_field<Snowflake> entity_id = uninitialized,
         nullable_field<GuildScheduledEventEntityMetadata> entity_metadata = uninitialized,
         omittable_field<User> creator = omitted,
@@ -51,9 +51,9 @@ class GuildScheduledEvent{
     nullable_omittable_field<std::string> description;
     field<Timestamp> scheduled_start_time;
     nullable_field<Timestamp> scheduled_end_time;
-    field<PrivacyLevel> privacy_level;
-    field<EventStatus> status;
-    field<ScheduledEntityType> entity_type;
+    field<GuildScheduledEventPrivacyLevel> privacy_level;
+    field<GuildScheduledEventStatus> status;
+    field<GuildScheduledEventEntityType> entity_type;
     nullable_field<Snowflake> entity_id;
     nullable_field<GuildScheduledEventEntityMetadata> entity_metadata;
     omittable_field<User> creator;
