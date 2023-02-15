@@ -30,11 +30,11 @@ class Payload{
         if(!t.s.is_omitted()) {j["s"] = t.s;}
         if(!t.t.is_omitted()) {j["t"] = t.t;}
     }
-    friend void from_json(const nlohmann::json &j, Payload &t {
-        if(j.contains(op)){j.at(op).get_to(t.op);}
-        if(j.contains(d)){j.at(d).get_to(t.d);}
-        if(j.contains(s)){j.at(s).get_to(t.s);}
-        if(j.contains(t)){j.at(t).get_to(t.t);}
+    friend void from_json(const nlohmann::json &j, Payload &t) {
+        if(j.contains("op")){j.at("op").get_to(t.op);}
+        if(j.contains("d")){j.at("d").get_to(t.d);}
+        if(j.contains("s")){j.at("s").get_to(t.s);}
+        if(j.contains("t")){j.at("t").get_to(t.t);}
     }
 };
 
@@ -76,14 +76,14 @@ class Identify{
         if(!t.presence.is_omitted()) {j["presence"] = t.presence;}
         if(!t.intents.is_omitted()) {j["intents"] = t.intents;}
     }
-    friend void from_json(const nlohmann::json &j, Identify &t {
-        if(j.contains(token)){j.at(token).get_to(t.token);}
-        if(j.contains(properties)){j.at(properties).get_to(t.properties);}
-        if(j.contains(compress)){j.at(compress).get_to(t.compress);}
-        if(j.contains(large_threshold)){j.at(large_threshold).get_to(t.large_threshold);}
-        if(j.contains(shard)){j.at(shard).get_to(t.shard);}
-        if(j.contains(presence)){j.at(presence).get_to(t.presence);}
-        if(j.contains(intents)){j.at(intents).get_to(t.intents);}
+    friend void from_json(const nlohmann::json &j, Identify &t) {
+        if(j.contains("token")){j.at("token").get_to(t.token);}
+        if(j.contains("properties")){j.at("properties").get_to(t.properties);}
+        if(j.contains("compress")){j.at("compress").get_to(t.compress);}
+        if(j.contains("large_threshold")){j.at("large_threshold").get_to(t.large_threshold);}
+        if(j.contains("shard")){j.at("shard").get_to(t.shard);}
+        if(j.contains("presence")){j.at("presence").get_to(t.presence);}
+        if(j.contains("intents")){j.at("intents").get_to(t.intents);}
     }
 };
 
@@ -109,10 +109,10 @@ class IdentifyConnectionProperties{
         if(!t.browser.is_omitted()) {j["browser"] = t.browser;}
         if(!t.device.is_omitted()) {j["device"] = t.device;}
     }
-    friend void from_json(const nlohmann::json &j, IdentifyConnectionProperties &t {
-        if(j.contains(os)){j.at(os).get_to(t.os);}
-        if(j.contains(browser)){j.at(browser).get_to(t.browser);}
-        if(j.contains(device)){j.at(device).get_to(t.device);}
+    friend void from_json(const nlohmann::json &j, IdentifyConnectionProperties &t) {
+        if(j.contains("os")){j.at("os").get_to(t.os);}
+        if(j.contains("browser")){j.at("browser").get_to(t.browser);}
+        if(j.contains("device")){j.at("device").get_to(t.device);}
     }
 };
 
@@ -138,10 +138,10 @@ class Resume{
         if(!t.session_id.is_omitted()) {j["session_id"] = t.session_id;}
         if(!t.seq.is_omitted()) {j["seq"] = t.seq;}
     }
-    friend void from_json(const nlohmann::json &j, Resume &t {
-        if(j.contains(token)){j.at(token).get_to(t.token);}
-        if(j.contains(session_id)){j.at(session_id).get_to(t.session_id);}
-        if(j.contains(seq)){j.at(seq).get_to(t.seq);}
+    friend void from_json(const nlohmann::json &j, Resume &t) {
+        if(j.contains("token")){j.at("token").get_to(t.token);}
+        if(j.contains("session_id")){j.at("session_id").get_to(t.session_id);}
+        if(j.contains("seq")){j.at("seq").get_to(t.seq);}
     }
 };
 
@@ -179,13 +179,13 @@ class GuildRequestMembers{
         if(!t.user_ids.is_omitted()) {j["user_ids"] = t.user_ids;}
         if(!t.nonce.is_omitted()) {j["nonce"] = t.nonce;}
     }
-    friend void from_json(const nlohmann::json &j, GuildRequestMembers &t {
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(query)){j.at(query).get_to(t.query);}
-        if(j.contains(limit)){j.at(limit).get_to(t.limit);}
-        if(j.contains(presences)){j.at(presences).get_to(t.presences);}
-        if(j.contains(user_ids)){j.at(user_ids).get_to(t.user_ids);}
-        if(j.contains(nonce)){j.at(nonce).get_to(t.nonce);}
+    friend void from_json(const nlohmann::json &j, GuildRequestMembers &t) {
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("query")){j.at("query").get_to(t.query);}
+        if(j.contains("limit")){j.at("limit").get_to(t.limit);}
+        if(j.contains("presences")){j.at("presences").get_to(t.presences);}
+        if(j.contains("user_ids")){j.at("user_ids").get_to(t.user_ids);}
+        if(j.contains("nonce")){j.at("nonce").get_to(t.nonce);}
     }
 };
 
@@ -215,11 +215,11 @@ class GatewayVoiceStateUpdate{
         if(!t.self_mute.is_omitted()) {j["self_mute"] = t.self_mute;}
         if(!t.self_deaf.is_omitted()) {j["self_deaf"] = t.self_deaf;}
     }
-    friend void from_json(const nlohmann::json &j, GatewayVoiceStateUpdate &t {
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
-        if(j.contains(self_mute)){j.at(self_mute).get_to(t.self_mute);}
-        if(j.contains(self_deaf)){j.at(self_deaf).get_to(t.self_deaf);}
+    friend void from_json(const nlohmann::json &j, GatewayVoiceStateUpdate &t) {
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("channel_id")){j.at("channel_id").get_to(t.channel_id);}
+        if(j.contains("self_mute")){j.at("self_mute").get_to(t.self_mute);}
+        if(j.contains("self_deaf")){j.at("self_deaf").get_to(t.self_deaf);}
     }
 };
 
@@ -249,11 +249,11 @@ class GatewayPresenceUpdate{
         if(!t.status.is_omitted()) {j["status"] = t.status;}
         if(!t.afk.is_omitted()) {j["afk"] = t.afk;}
     }
-    friend void from_json(const nlohmann::json &j, GatewayPresenceUpdate &t {
-        if(j.contains(since)){j.at(since).get_to(t.since);}
-        if(j.contains(activities)){j.at(activities).get_to(t.activities);}
-        if(j.contains(status)){j.at(status).get_to(t.status);}
-        if(j.contains(afk)){j.at(afk).get_to(t.afk);}
+    friend void from_json(const nlohmann::json &j, GatewayPresenceUpdate &t) {
+        if(j.contains("since")){j.at("since").get_to(t.since);}
+        if(j.contains("activities")){j.at("activities").get_to(t.activities);}
+        if(j.contains("status")){j.at("status").get_to(t.status);}
+        if(j.contains("afk")){j.at("afk").get_to(t.afk);}
     }
 };
 
@@ -271,8 +271,8 @@ class Hello{
     friend void to_json(nlohmann::json &j, const Hello &t) {
         if(!t.heartbeat_interval.is_omitted()) {j["heartbeat_interval"] = t.heartbeat_interval;}
     }
-    friend void from_json(const nlohmann::json &j, Hello &t {
-        if(j.contains(heartbeat_interval)){j.at(heartbeat_interval).get_to(t.heartbeat_interval);}
+    friend void from_json(const nlohmann::json &j, Hello &t) {
+        if(j.contains("heartbeat_interval")){j.at("heartbeat_interval").get_to(t.heartbeat_interval);}
     }
 };
 
@@ -314,14 +314,14 @@ class ReadyEvent{
         if(!t.shard.is_omitted()) {j["shard"] = t.shard;}
         if(!t.application.is_omitted()) {j["application"] = t.application;}
     }
-    friend void from_json(const nlohmann::json &j, ReadyEvent &t {
-        if(j.contains(v)){j.at(v).get_to(t.v);}
-        if(j.contains(user)){j.at(user).get_to(t.user);}
-        if(j.contains(guilds)){j.at(guilds).get_to(t.guilds);}
-        if(j.contains(session_id)){j.at(session_id).get_to(t.session_id);}
-        if(j.contains(resume_gateway_url)){j.at(resume_gateway_url).get_to(t.resume_gateway_url);}
-        if(j.contains(shard)){j.at(shard).get_to(t.shard);}
-        if(j.contains(application)){j.at(application).get_to(t.application);}
+    friend void from_json(const nlohmann::json &j, ReadyEvent &t) {
+        if(j.contains("v")){j.at("v").get_to(t.v);}
+        if(j.contains("user")){j.at("user").get_to(t.user);}
+        if(j.contains("guilds")){j.at("guilds").get_to(t.guilds);}
+        if(j.contains("session_id")){j.at("session_id").get_to(t.session_id);}
+        if(j.contains("resume_gateway_url")){j.at("resume_gateway_url").get_to(t.resume_gateway_url);}
+        if(j.contains("shard")){j.at("shard").get_to(t.shard);}
+        if(j.contains("application")){j.at("application").get_to(t.application);}
     }
 };
 
@@ -379,18 +379,18 @@ class AutoModerationActionExecutionEvent{
         if(!t.matched_keyword.is_omitted()) {j["matched_keyword"] = t.matched_keyword;}
         if(!t.matched_content.is_omitted()) {j["matched_content"] = t.matched_content;}
     }
-    friend void from_json(const nlohmann::json &j, AutoModerationActionExecutionEvent &t {
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(action)){j.at(action).get_to(t.action);}
-        if(j.contains(rule_id)){j.at(rule_id).get_to(t.rule_id);}
-        if(j.contains(rule_trigger_type)){j.at(rule_trigger_type).get_to(t.rule_trigger_type);}
-        if(j.contains(user_id)){j.at(user_id).get_to(t.user_id);}
-        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
-        if(j.contains(message_id)){j.at(message_id).get_to(t.message_id);}
-        if(j.contains(alert_system_message_id)){j.at(alert_system_message_id).get_to(t.alert_system_message_id);}
-        if(j.contains(content)){j.at(content).get_to(t.content);}
-        if(j.contains(matched_keyword)){j.at(matched_keyword).get_to(t.matched_keyword);}
-        if(j.contains(matched_content)){j.at(matched_content).get_to(t.matched_content);}
+    friend void from_json(const nlohmann::json &j, AutoModerationActionExecutionEvent &t) {
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("action")){j.at("action").get_to(t.action);}
+        if(j.contains("rule_id")){j.at("rule_id").get_to(t.rule_id);}
+        if(j.contains("rule_trigger_type")){j.at("rule_trigger_type").get_to(t.rule_trigger_type);}
+        if(j.contains("user_id")){j.at("user_id").get_to(t.user_id);}
+        if(j.contains("channel_id")){j.at("channel_id").get_to(t.channel_id);}
+        if(j.contains("message_id")){j.at("message_id").get_to(t.message_id);}
+        if(j.contains("alert_system_message_id")){j.at("alert_system_message_id").get_to(t.alert_system_message_id);}
+        if(j.contains("content")){j.at("content").get_to(t.content);}
+        if(j.contains("matched_keyword")){j.at("matched_keyword").get_to(t.matched_keyword);}
+        if(j.contains("matched_content")){j.at("matched_content").get_to(t.matched_content);}
     }
 };
 
@@ -420,11 +420,11 @@ class ThreadListSyncEvent{
         if(!t.threads.is_omitted()) {j["threads"] = t.threads;}
         if(!t.members.is_omitted()) {j["members"] = t.members;}
     }
-    friend void from_json(const nlohmann::json &j, ThreadListSyncEvent &t {
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(channel_ids)){j.at(channel_ids).get_to(t.channel_ids);}
-        if(j.contains(threads)){j.at(threads).get_to(t.threads);}
-        if(j.contains(members)){j.at(members).get_to(t.members);}
+    friend void from_json(const nlohmann::json &j, ThreadListSyncEvent &t) {
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("channel_ids")){j.at("channel_ids").get_to(t.channel_ids);}
+        if(j.contains("threads")){j.at("threads").get_to(t.threads);}
+        if(j.contains("members")){j.at("members").get_to(t.members);}
     }
 };
 
@@ -458,12 +458,12 @@ class ThreadMembersUpdateEvent{
         if(!t.added_members.is_omitted()) {j["added_members"] = t.added_members;}
         if(!t.removed_member_ids.is_omitted()) {j["removed_member_ids"] = t.removed_member_ids;}
     }
-    friend void from_json(const nlohmann::json &j, ThreadMembersUpdateEvent &t {
-        if(j.contains(id)){j.at(id).get_to(t.id);}
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(member_count)){j.at(member_count).get_to(t.member_count);}
-        if(j.contains(added_members)){j.at(added_members).get_to(t.added_members);}
-        if(j.contains(removed_member_ids)){j.at(removed_member_ids).get_to(t.removed_member_ids);}
+    friend void from_json(const nlohmann::json &j, ThreadMembersUpdateEvent &t) {
+        if(j.contains("id")){j.at("id").get_to(t.id);}
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("member_count")){j.at("member_count").get_to(t.member_count);}
+        if(j.contains("added_members")){j.at("added_members").get_to(t.added_members);}
+        if(j.contains("removed_member_ids")){j.at("removed_member_ids").get_to(t.removed_member_ids);}
     }
 };
 
@@ -489,10 +489,10 @@ class ChannelPinsUpdateEvent{
         if(!t.channel_id.is_omitted()) {j["channel_id"] = t.channel_id;}
         if(!t.last_pin_timestamp.is_omitted()) {j["last_pin_timestamp"] = t.last_pin_timestamp;}
     }
-    friend void from_json(const nlohmann::json &j, ChannelPinsUpdateEvent &t {
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
-        if(j.contains(last_pin_timestamp)){j.at(last_pin_timestamp).get_to(t.last_pin_timestamp);}
+    friend void from_json(const nlohmann::json &j, ChannelPinsUpdateEvent &t) {
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("channel_id")){j.at("channel_id").get_to(t.channel_id);}
+        if(j.contains("last_pin_timestamp")){j.at("last_pin_timestamp").get_to(t.last_pin_timestamp);}
     }
 };
 
@@ -514,9 +514,9 @@ class GuildBanAddEvent{
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.user.is_omitted()) {j["user"] = t.user;}
     }
-    friend void from_json(const nlohmann::json &j, GuildBanAddEvent &t {
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(user)){j.at(user).get_to(t.user);}
+    friend void from_json(const nlohmann::json &j, GuildBanAddEvent &t) {
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("user")){j.at("user").get_to(t.user);}
     }
 };
 
@@ -538,9 +538,9 @@ class GuildBanRemoveEvent{
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.user.is_omitted()) {j["user"] = t.user;}
     }
-    friend void from_json(const nlohmann::json &j, GuildBanRemoveEvent &t {
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(user)){j.at(user).get_to(t.user);}
+    friend void from_json(const nlohmann::json &j, GuildBanRemoveEvent &t) {
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("user")){j.at("user").get_to(t.user);}
     }
 };
 
@@ -562,9 +562,9 @@ class GuildEmojisUpdateEvent{
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.emojis.is_omitted()) {j["emojis"] = t.emojis;}
     }
-    friend void from_json(const nlohmann::json &j, GuildEmojisUpdateEvent &t {
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(emojis)){j.at(emojis).get_to(t.emojis);}
+    friend void from_json(const nlohmann::json &j, GuildEmojisUpdateEvent &t) {
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("emojis")){j.at("emojis").get_to(t.emojis);}
     }
 };
 
@@ -586,9 +586,9 @@ class GuildStickersUpdateEvent{
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.stickers.is_omitted()) {j["stickers"] = t.stickers;}
     }
-    friend void from_json(const nlohmann::json &j, GuildStickersUpdateEvent &t {
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(stickers)){j.at(stickers).get_to(t.stickers);}
+    friend void from_json(const nlohmann::json &j, GuildStickersUpdateEvent &t) {
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("stickers")){j.at("stickers").get_to(t.stickers);}
     }
 };
 
@@ -606,8 +606,8 @@ class GuildIntegrationsUpdateEvent{
     friend void to_json(nlohmann::json &j, const GuildIntegrationsUpdateEvent &t) {
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
     }
-    friend void from_json(const nlohmann::json &j, GuildIntegrationsUpdateEvent &t {
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+    friend void from_json(const nlohmann::json &j, GuildIntegrationsUpdateEvent &t) {
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
     }
 };
 
@@ -629,9 +629,9 @@ class GuildMemberRemoveEvent{
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.user.is_omitted()) {j["user"] = t.user;}
     }
-    friend void from_json(const nlohmann::json &j, GuildMemberRemoveEvent &t {
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(user)){j.at(user).get_to(t.user);}
+    friend void from_json(const nlohmann::json &j, GuildMemberRemoveEvent &t) {
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("user")){j.at("user").get_to(t.user);}
     }
 };
 
@@ -689,18 +689,18 @@ class GuildMemberUpdateEvent{
         if(!t.pending.is_omitted()) {j["pending"] = t.pending;}
         if(!t.communication_disabled_until.is_omitted()) {j["communication_disabled_until"] = t.communication_disabled_until;}
     }
-    friend void from_json(const nlohmann::json &j, GuildMemberUpdateEvent &t {
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(roles)){j.at(roles).get_to(t.roles);}
-        if(j.contains(user)){j.at(user).get_to(t.user);}
-        if(j.contains(nick)){j.at(nick).get_to(t.nick);}
-        if(j.contains(avatar)){j.at(avatar).get_to(t.avatar);}
-        if(j.contains(joined_at)){j.at(joined_at).get_to(t.joined_at);}
-        if(j.contains(premium_since)){j.at(premium_since).get_to(t.premium_since);}
-        if(j.contains(deaf)){j.at(deaf).get_to(t.deaf);}
-        if(j.contains(mute)){j.at(mute).get_to(t.mute);}
-        if(j.contains(pending)){j.at(pending).get_to(t.pending);}
-        if(j.contains(communication_disabled_until)){j.at(communication_disabled_until).get_to(t.communication_disabled_until);}
+    friend void from_json(const nlohmann::json &j, GuildMemberUpdateEvent &t) {
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("roles")){j.at("roles").get_to(t.roles);}
+        if(j.contains("user")){j.at("user").get_to(t.user);}
+        if(j.contains("nick")){j.at("nick").get_to(t.nick);}
+        if(j.contains("avatar")){j.at("avatar").get_to(t.avatar);}
+        if(j.contains("joined_at")){j.at("joined_at").get_to(t.joined_at);}
+        if(j.contains("premium_since")){j.at("premium_since").get_to(t.premium_since);}
+        if(j.contains("deaf")){j.at("deaf").get_to(t.deaf);}
+        if(j.contains("mute")){j.at("mute").get_to(t.mute);}
+        if(j.contains("pending")){j.at("pending").get_to(t.pending);}
+        if(j.contains("communication_disabled_until")){j.at("communication_disabled_until").get_to(t.communication_disabled_until);}
     }
 };
 
@@ -742,14 +742,14 @@ class GuildMembersChunkEvent{
         if(!t.presences.is_omitted()) {j["presences"] = t.presences;}
         if(!t.nonce.is_omitted()) {j["nonce"] = t.nonce;}
     }
-    friend void from_json(const nlohmann::json &j, GuildMembersChunkEvent &t {
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(members)){j.at(members).get_to(t.members);}
-        if(j.contains(chunk_index)){j.at(chunk_index).get_to(t.chunk_index);}
-        if(j.contains(chunk_count)){j.at(chunk_count).get_to(t.chunk_count);}
-        if(j.contains(not_found)){j.at(not_found).get_to(t.not_found);}
-        if(j.contains(presences)){j.at(presences).get_to(t.presences);}
-        if(j.contains(nonce)){j.at(nonce).get_to(t.nonce);}
+    friend void from_json(const nlohmann::json &j, GuildMembersChunkEvent &t) {
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("members")){j.at("members").get_to(t.members);}
+        if(j.contains("chunk_index")){j.at("chunk_index").get_to(t.chunk_index);}
+        if(j.contains("chunk_count")){j.at("chunk_count").get_to(t.chunk_count);}
+        if(j.contains("not_found")){j.at("not_found").get_to(t.not_found);}
+        if(j.contains("presences")){j.at("presences").get_to(t.presences);}
+        if(j.contains("nonce")){j.at("nonce").get_to(t.nonce);}
     }
 };
 
@@ -771,9 +771,9 @@ class GuildRoleCreateEvent{
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.role.is_omitted()) {j["role"] = t.role;}
     }
-    friend void from_json(const nlohmann::json &j, GuildRoleCreateEvent &t {
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(role)){j.at(role).get_to(t.role);}
+    friend void from_json(const nlohmann::json &j, GuildRoleCreateEvent &t) {
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("role")){j.at("role").get_to(t.role);}
     }
 };
 
@@ -795,9 +795,9 @@ class GuildRoleUpdateEvent{
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.role.is_omitted()) {j["role"] = t.role;}
     }
-    friend void from_json(const nlohmann::json &j, GuildRoleUpdateEvent &t {
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(role)){j.at(role).get_to(t.role);}
+    friend void from_json(const nlohmann::json &j, GuildRoleUpdateEvent &t) {
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("role")){j.at("role").get_to(t.role);}
     }
 };
 
@@ -819,9 +819,9 @@ class GuildRoleDeleteEvent{
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.role_id.is_omitted()) {j["role_id"] = t.role_id;}
     }
-    friend void from_json(const nlohmann::json &j, GuildRoleDeleteEvent &t {
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(role_id)){j.at(role_id).get_to(t.role_id);}
+    friend void from_json(const nlohmann::json &j, GuildRoleDeleteEvent &t) {
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("role_id")){j.at("role_id").get_to(t.role_id);}
     }
 };
 
@@ -847,10 +847,10 @@ class GuildScheduledEventUserAddEvent{
         if(!t.user_id.is_omitted()) {j["user_id"] = t.user_id;}
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
     }
-    friend void from_json(const nlohmann::json &j, GuildScheduledEventUserAddEvent &t {
-        if(j.contains(guild_scheduled_event_id)){j.at(guild_scheduled_event_id).get_to(t.guild_scheduled_event_id);}
-        if(j.contains(user_id)){j.at(user_id).get_to(t.user_id);}
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+    friend void from_json(const nlohmann::json &j, GuildScheduledEventUserAddEvent &t) {
+        if(j.contains("guild_scheduled_event_id")){j.at("guild_scheduled_event_id").get_to(t.guild_scheduled_event_id);}
+        if(j.contains("user_id")){j.at("user_id").get_to(t.user_id);}
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
     }
 };
 
@@ -876,10 +876,10 @@ class GuildScheduledEventUserRemoveEvent{
         if(!t.user_id.is_omitted()) {j["user_id"] = t.user_id;}
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
     }
-    friend void from_json(const nlohmann::json &j, GuildScheduledEventUserRemoveEvent &t {
-        if(j.contains(guild_scheduled_event_id)){j.at(guild_scheduled_event_id).get_to(t.guild_scheduled_event_id);}
-        if(j.contains(user_id)){j.at(user_id).get_to(t.user_id);}
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+    friend void from_json(const nlohmann::json &j, GuildScheduledEventUserRemoveEvent &t) {
+        if(j.contains("guild_scheduled_event_id")){j.at("guild_scheduled_event_id").get_to(t.guild_scheduled_event_id);}
+        if(j.contains("user_id")){j.at("user_id").get_to(t.user_id);}
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
     }
 };
 
@@ -897,8 +897,8 @@ class IntegrationCreateEventAdditional{
     friend void to_json(nlohmann::json &j, const IntegrationCreateEventAdditional &t) {
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
     }
-    friend void from_json(const nlohmann::json &j, IntegrationCreateEventAdditional &t {
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+    friend void from_json(const nlohmann::json &j, IntegrationCreateEventAdditional &t) {
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
     }
 };
 
@@ -916,8 +916,8 @@ class IntegrationUpdateEventAdditional{
     friend void to_json(nlohmann::json &j, const IntegrationUpdateEventAdditional &t) {
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
     }
-    friend void from_json(const nlohmann::json &j, IntegrationUpdateEventAdditional &t {
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+    friend void from_json(const nlohmann::json &j, IntegrationUpdateEventAdditional &t) {
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
     }
 };
 
@@ -943,10 +943,10 @@ class IntegrationDeleteEvent{
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.application_id.is_omitted()) {j["application_id"] = t.application_id;}
     }
-    friend void from_json(const nlohmann::json &j, IntegrationDeleteEvent &t {
-        if(j.contains(id)){j.at(id).get_to(t.id);}
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(application_id)){j.at(application_id).get_to(t.application_id);}
+    friend void from_json(const nlohmann::json &j, IntegrationDeleteEvent &t) {
+        if(j.contains("id")){j.at("id").get_to(t.id);}
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("application_id")){j.at("application_id").get_to(t.application_id);}
     }
 };
 
@@ -1008,19 +1008,19 @@ class InviteCreateEvent{
         if(!t.temporary.is_omitted()) {j["temporary"] = t.temporary;}
         if(!t.uses.is_omitted()) {j["uses"] = t.uses;}
     }
-    friend void from_json(const nlohmann::json &j, InviteCreateEvent &t {
-        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
-        if(j.contains(code)){j.at(code).get_to(t.code);}
-        if(j.contains(created_at)){j.at(created_at).get_to(t.created_at);}
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(inviter)){j.at(inviter).get_to(t.inviter);}
-        if(j.contains(max_age)){j.at(max_age).get_to(t.max_age);}
-        if(j.contains(max_uses)){j.at(max_uses).get_to(t.max_uses);}
-        if(j.contains(target_type)){j.at(target_type).get_to(t.target_type);}
-        if(j.contains(target_user)){j.at(target_user).get_to(t.target_user);}
-        if(j.contains(target_application)){j.at(target_application).get_to(t.target_application);}
-        if(j.contains(temporary)){j.at(temporary).get_to(t.temporary);}
-        if(j.contains(uses)){j.at(uses).get_to(t.uses);}
+    friend void from_json(const nlohmann::json &j, InviteCreateEvent &t) {
+        if(j.contains("channel_id")){j.at("channel_id").get_to(t.channel_id);}
+        if(j.contains("code")){j.at("code").get_to(t.code);}
+        if(j.contains("created_at")){j.at("created_at").get_to(t.created_at);}
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("inviter")){j.at("inviter").get_to(t.inviter);}
+        if(j.contains("max_age")){j.at("max_age").get_to(t.max_age);}
+        if(j.contains("max_uses")){j.at("max_uses").get_to(t.max_uses);}
+        if(j.contains("target_type")){j.at("target_type").get_to(t.target_type);}
+        if(j.contains("target_user")){j.at("target_user").get_to(t.target_user);}
+        if(j.contains("target_application")){j.at("target_application").get_to(t.target_application);}
+        if(j.contains("temporary")){j.at("temporary").get_to(t.temporary);}
+        if(j.contains("uses")){j.at("uses").get_to(t.uses);}
     }
 };
 
@@ -1046,10 +1046,10 @@ class InviteDeleteEvent{
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.code.is_omitted()) {j["code"] = t.code;}
     }
-    friend void from_json(const nlohmann::json &j, InviteDeleteEvent &t {
-        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(code)){j.at(code).get_to(t.code);}
+    friend void from_json(const nlohmann::json &j, InviteDeleteEvent &t) {
+        if(j.contains("channel_id")){j.at("channel_id").get_to(t.channel_id);}
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("code")){j.at("code").get_to(t.code);}
     }
 };
 
@@ -1075,10 +1075,10 @@ class MessageDeleteEvent{
         if(!t.channel_id.is_omitted()) {j["channel_id"] = t.channel_id;}
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
     }
-    friend void from_json(const nlohmann::json &j, MessageDeleteEvent &t {
-        if(j.contains(id)){j.at(id).get_to(t.id);}
-        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+    friend void from_json(const nlohmann::json &j, MessageDeleteEvent &t) {
+        if(j.contains("id")){j.at("id").get_to(t.id);}
+        if(j.contains("channel_id")){j.at("channel_id").get_to(t.channel_id);}
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
     }
 };
 
@@ -1104,10 +1104,10 @@ class MessageDeleteBulkEvent{
         if(!t.channel_id.is_omitted()) {j["channel_id"] = t.channel_id;}
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
     }
-    friend void from_json(const nlohmann::json &j, MessageDeleteBulkEvent &t {
-        if(j.contains(ids)){j.at(ids).get_to(t.ids);}
-        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+    friend void from_json(const nlohmann::json &j, MessageDeleteBulkEvent &t) {
+        if(j.contains("ids")){j.at("ids").get_to(t.ids);}
+        if(j.contains("channel_id")){j.at("channel_id").get_to(t.channel_id);}
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
     }
 };
 
@@ -1145,13 +1145,13 @@ class MessageReactionAddEvent{
         if(!t.member.is_omitted()) {j["member"] = t.member;}
         if(!t.emoji.is_omitted()) {j["emoji"] = t.emoji;}
     }
-    friend void from_json(const nlohmann::json &j, MessageReactionAddEvent &t {
-        if(j.contains(user_id)){j.at(user_id).get_to(t.user_id);}
-        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
-        if(j.contains(message_id)){j.at(message_id).get_to(t.message_id);}
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(member)){j.at(member).get_to(t.member);}
-        if(j.contains(emoji)){j.at(emoji).get_to(t.emoji);}
+    friend void from_json(const nlohmann::json &j, MessageReactionAddEvent &t) {
+        if(j.contains("user_id")){j.at("user_id").get_to(t.user_id);}
+        if(j.contains("channel_id")){j.at("channel_id").get_to(t.channel_id);}
+        if(j.contains("message_id")){j.at("message_id").get_to(t.message_id);}
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("member")){j.at("member").get_to(t.member);}
+        if(j.contains("emoji")){j.at("emoji").get_to(t.emoji);}
     }
 };
 
@@ -1185,12 +1185,12 @@ class MessageReactionRemoveEvent{
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.emoji.is_omitted()) {j["emoji"] = t.emoji;}
     }
-    friend void from_json(const nlohmann::json &j, MessageReactionRemoveEvent &t {
-        if(j.contains(user_id)){j.at(user_id).get_to(t.user_id);}
-        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
-        if(j.contains(message_id)){j.at(message_id).get_to(t.message_id);}
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(emoji)){j.at(emoji).get_to(t.emoji);}
+    friend void from_json(const nlohmann::json &j, MessageReactionRemoveEvent &t) {
+        if(j.contains("user_id")){j.at("user_id").get_to(t.user_id);}
+        if(j.contains("channel_id")){j.at("channel_id").get_to(t.channel_id);}
+        if(j.contains("message_id")){j.at("message_id").get_to(t.message_id);}
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("emoji")){j.at("emoji").get_to(t.emoji);}
     }
 };
 
@@ -1216,10 +1216,10 @@ class MessageReactionRemoveAllEvent{
         if(!t.message_id.is_omitted()) {j["message_id"] = t.message_id;}
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
     }
-    friend void from_json(const nlohmann::json &j, MessageReactionRemoveAllEvent &t {
-        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
-        if(j.contains(message_id)){j.at(message_id).get_to(t.message_id);}
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+    friend void from_json(const nlohmann::json &j, MessageReactionRemoveAllEvent &t) {
+        if(j.contains("channel_id")){j.at("channel_id").get_to(t.channel_id);}
+        if(j.contains("message_id")){j.at("message_id").get_to(t.message_id);}
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
     }
 };
 
@@ -1249,11 +1249,11 @@ class MessageReactionRemoveEmojiEvent{
         if(!t.message_id.is_omitted()) {j["message_id"] = t.message_id;}
         if(!t.emoji.is_omitted()) {j["emoji"] = t.emoji;}
     }
-    friend void from_json(const nlohmann::json &j, MessageReactionRemoveEmojiEvent &t {
-        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(message_id)){j.at(message_id).get_to(t.message_id);}
-        if(j.contains(emoji)){j.at(emoji).get_to(t.emoji);}
+    friend void from_json(const nlohmann::json &j, MessageReactionRemoveEmojiEvent &t) {
+        if(j.contains("channel_id")){j.at("channel_id").get_to(t.channel_id);}
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("message_id")){j.at("message_id").get_to(t.message_id);}
+        if(j.contains("emoji")){j.at("emoji").get_to(t.emoji);}
     }
 };
 
@@ -1287,12 +1287,12 @@ class PresenceUpdateEvent{
         if(!t.activities.is_omitted()) {j["activities"] = t.activities;}
         if(!t.client_status.is_omitted()) {j["client_status"] = t.client_status;}
     }
-    friend void from_json(const nlohmann::json &j, PresenceUpdateEvent &t {
-        if(j.contains(user)){j.at(user).get_to(t.user);}
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(status)){j.at(status).get_to(t.status);}
-        if(j.contains(activities)){j.at(activities).get_to(t.activities);}
-        if(j.contains(client_status)){j.at(client_status).get_to(t.client_status);}
+    friend void from_json(const nlohmann::json &j, PresenceUpdateEvent &t) {
+        if(j.contains("user")){j.at("user").get_to(t.user);}
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("status")){j.at("status").get_to(t.status);}
+        if(j.contains("activities")){j.at("activities").get_to(t.activities);}
+        if(j.contains("client_status")){j.at("client_status").get_to(t.client_status);}
     }
 };
 
@@ -1318,10 +1318,10 @@ class ClientStatus{
         if(!t.mobile.is_omitted()) {j["mobile"] = t.mobile;}
         if(!t.web.is_omitted()) {j["web"] = t.web;}
     }
-    friend void from_json(const nlohmann::json &j, ClientStatus &t {
-        if(j.contains(desktop)){j.at(desktop).get_to(t.desktop);}
-        if(j.contains(mobile)){j.at(mobile).get_to(t.mobile);}
-        if(j.contains(web)){j.at(web).get_to(t.web);}
+    friend void from_json(const nlohmann::json &j, ClientStatus &t) {
+        if(j.contains("desktop")){j.at("desktop").get_to(t.desktop);}
+        if(j.contains("mobile")){j.at("mobile").get_to(t.mobile);}
+        if(j.contains("web")){j.at("web").get_to(t.web);}
     }
 };
 
@@ -1395,22 +1395,22 @@ class Activity{
         if(!t.flags.is_omitted()) {j["flags"] = t.flags;}
         if(!t.buttons.is_omitted()) {j["buttons"] = t.buttons;}
     }
-    friend void from_json(const nlohmann::json &j, Activity &t {
-        if(j.contains(name)){j.at(name).get_to(t.name);}
-        if(j.contains(type)){j.at(type).get_to(t.type);}
-        if(j.contains(url)){j.at(url).get_to(t.url);}
-        if(j.contains(created_at)){j.at(created_at).get_to(t.created_at);}
-        if(j.contains(timestamps)){j.at(timestamps).get_to(t.timestamps);}
-        if(j.contains(application_id)){j.at(application_id).get_to(t.application_id);}
-        if(j.contains(details)){j.at(details).get_to(t.details);}
-        if(j.contains(state)){j.at(state).get_to(t.state);}
-        if(j.contains(emoji)){j.at(emoji).get_to(t.emoji);}
-        if(j.contains(party)){j.at(party).get_to(t.party);}
-        if(j.contains(assets)){j.at(assets).get_to(t.assets);}
-        if(j.contains(secrets)){j.at(secrets).get_to(t.secrets);}
-        if(j.contains(instance)){j.at(instance).get_to(t.instance);}
-        if(j.contains(flags)){j.at(flags).get_to(t.flags);}
-        if(j.contains(buttons)){j.at(buttons).get_to(t.buttons);}
+    friend void from_json(const nlohmann::json &j, Activity &t) {
+        if(j.contains("name")){j.at("name").get_to(t.name);}
+        if(j.contains("type")){j.at("type").get_to(t.type);}
+        if(j.contains("url")){j.at("url").get_to(t.url);}
+        if(j.contains("created_at")){j.at("created_at").get_to(t.created_at);}
+        if(j.contains("timestamps")){j.at("timestamps").get_to(t.timestamps);}
+        if(j.contains("application_id")){j.at("application_id").get_to(t.application_id);}
+        if(j.contains("details")){j.at("details").get_to(t.details);}
+        if(j.contains("state")){j.at("state").get_to(t.state);}
+        if(j.contains("emoji")){j.at("emoji").get_to(t.emoji);}
+        if(j.contains("party")){j.at("party").get_to(t.party);}
+        if(j.contains("assets")){j.at("assets").get_to(t.assets);}
+        if(j.contains("secrets")){j.at("secrets").get_to(t.secrets);}
+        if(j.contains("instance")){j.at("instance").get_to(t.instance);}
+        if(j.contains("flags")){j.at("flags").get_to(t.flags);}
+        if(j.contains("buttons")){j.at("buttons").get_to(t.buttons);}
     }
 };
 
@@ -1432,9 +1432,9 @@ class ActivityTimestamps{
         if(!t.start.is_omitted()) {j["start"] = t.start;}
         if(!t.end.is_omitted()) {j["end"] = t.end;}
     }
-    friend void from_json(const nlohmann::json &j, ActivityTimestamps &t {
-        if(j.contains(start)){j.at(start).get_to(t.start);}
-        if(j.contains(end)){j.at(end).get_to(t.end);}
+    friend void from_json(const nlohmann::json &j, ActivityTimestamps &t) {
+        if(j.contains("start")){j.at("start").get_to(t.start);}
+        if(j.contains("end")){j.at("end").get_to(t.end);}
     }
 };
 
@@ -1460,10 +1460,10 @@ class ActivityEmoji{
         if(!t.id.is_omitted()) {j["id"] = t.id;}
         if(!t.animated.is_omitted()) {j["animated"] = t.animated;}
     }
-    friend void from_json(const nlohmann::json &j, ActivityEmoji &t {
-        if(j.contains(name)){j.at(name).get_to(t.name);}
-        if(j.contains(id)){j.at(id).get_to(t.id);}
-        if(j.contains(animated)){j.at(animated).get_to(t.animated);}
+    friend void from_json(const nlohmann::json &j, ActivityEmoji &t) {
+        if(j.contains("name")){j.at("name").get_to(t.name);}
+        if(j.contains("id")){j.at("id").get_to(t.id);}
+        if(j.contains("animated")){j.at("animated").get_to(t.animated);}
     }
 };
 
@@ -1485,9 +1485,9 @@ class ActivityParty{
         if(!t.id.is_omitted()) {j["id"] = t.id;}
         if(!t.size.is_omitted()) {j["size"] = t.size;}
     }
-    friend void from_json(const nlohmann::json &j, ActivityParty &t {
-        if(j.contains(id)){j.at(id).get_to(t.id);}
-        if(j.contains(size)){j.at(size).get_to(t.size);}
+    friend void from_json(const nlohmann::json &j, ActivityParty &t) {
+        if(j.contains("id")){j.at("id").get_to(t.id);}
+        if(j.contains("size")){j.at("size").get_to(t.size);}
     }
 };
 
@@ -1517,11 +1517,11 @@ class ActivityAssets{
         if(!t.small_image.is_omitted()) {j["small_image"] = t.small_image;}
         if(!t.small_text.is_omitted()) {j["small_text"] = t.small_text;}
     }
-    friend void from_json(const nlohmann::json &j, ActivityAssets &t {
-        if(j.contains(large_image)){j.at(large_image).get_to(t.large_image);}
-        if(j.contains(large_text)){j.at(large_text).get_to(t.large_text);}
-        if(j.contains(small_image)){j.at(small_image).get_to(t.small_image);}
-        if(j.contains(small_text)){j.at(small_text).get_to(t.small_text);}
+    friend void from_json(const nlohmann::json &j, ActivityAssets &t) {
+        if(j.contains("large_image")){j.at("large_image").get_to(t.large_image);}
+        if(j.contains("large_text")){j.at("large_text").get_to(t.large_text);}
+        if(j.contains("small_image")){j.at("small_image").get_to(t.small_image);}
+        if(j.contains("small_text")){j.at("small_text").get_to(t.small_text);}
     }
 };
 
@@ -1547,10 +1547,10 @@ class ActivitySecrets{
         if(!t.spectate.is_omitted()) {j["spectate"] = t.spectate;}
         if(!t.match.is_omitted()) {j["match"] = t.match;}
     }
-    friend void from_json(const nlohmann::json &j, ActivitySecrets &t {
-        if(j.contains(join)){j.at(join).get_to(t.join);}
-        if(j.contains(spectate)){j.at(spectate).get_to(t.spectate);}
-        if(j.contains(match)){j.at(match).get_to(t.match);}
+    friend void from_json(const nlohmann::json &j, ActivitySecrets &t) {
+        if(j.contains("join")){j.at("join").get_to(t.join);}
+        if(j.contains("spectate")){j.at("spectate").get_to(t.spectate);}
+        if(j.contains("match")){j.at("match").get_to(t.match);}
     }
 };
 
@@ -1572,9 +1572,9 @@ class ActivityButtons{
         if(!t.label.is_omitted()) {j["label"] = t.label;}
         if(!t.url.is_omitted()) {j["url"] = t.url;}
     }
-    friend void from_json(const nlohmann::json &j, ActivityButtons &t {
-        if(j.contains(label)){j.at(label).get_to(t.label);}
-        if(j.contains(url)){j.at(url).get_to(t.url);}
+    friend void from_json(const nlohmann::json &j, ActivityButtons &t) {
+        if(j.contains("label")){j.at("label").get_to(t.label);}
+        if(j.contains("url")){j.at("url").get_to(t.url);}
     }
 };
 
@@ -1608,12 +1608,12 @@ class TypingStartEvent{
         if(!t.timestamp.is_omitted()) {j["timestamp"] = t.timestamp;}
         if(!t.member.is_omitted()) {j["member"] = t.member;}
     }
-    friend void from_json(const nlohmann::json &j, TypingStartEvent &t {
-        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(user_id)){j.at(user_id).get_to(t.user_id);}
-        if(j.contains(timestamp)){j.at(timestamp).get_to(t.timestamp);}
-        if(j.contains(member)){j.at(member).get_to(t.member);}
+    friend void from_json(const nlohmann::json &j, TypingStartEvent &t) {
+        if(j.contains("channel_id")){j.at("channel_id").get_to(t.channel_id);}
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("user_id")){j.at("user_id").get_to(t.user_id);}
+        if(j.contains("timestamp")){j.at("timestamp").get_to(t.timestamp);}
+        if(j.contains("member")){j.at("member").get_to(t.member);}
     }
 };
 
@@ -1639,10 +1639,10 @@ class VoiceServerUpdateEvent{
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.endpoint.is_omitted()) {j["endpoint"] = t.endpoint;}
     }
-    friend void from_json(const nlohmann::json &j, VoiceServerUpdateEvent &t {
-        if(j.contains(token)){j.at(token).get_to(t.token);}
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(endpoint)){j.at(endpoint).get_to(t.endpoint);}
+    friend void from_json(const nlohmann::json &j, VoiceServerUpdateEvent &t) {
+        if(j.contains("token")){j.at("token").get_to(t.token);}
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("endpoint")){j.at("endpoint").get_to(t.endpoint);}
     }
 };
 
@@ -1664,8 +1664,8 @@ class WebhooksUpdateEvent{
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.channel_id.is_omitted()) {j["channel_id"] = t.channel_id;}
     }
-    friend void from_json(const nlohmann::json &j, WebhooksUpdateEvent &t {
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
+    friend void from_json(const nlohmann::json &j, WebhooksUpdateEvent &t) {
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("channel_id")){j.at("channel_id").get_to(t.channel_id);}
     }
 };

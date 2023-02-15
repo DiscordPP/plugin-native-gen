@@ -78,23 +78,23 @@ class GuildScheduledEvent{
         if(!t.user_count.is_omitted()) {j["user_count"] = t.user_count;}
         if(!t.image.is_omitted()) {j["image"] = t.image;}
     }
-    friend void from_json(const nlohmann::json &j, GuildScheduledEvent &t {
-        if(j.contains(id)){j.at(id).get_to(t.id);}
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
-        if(j.contains(creator_id)){j.at(creator_id).get_to(t.creator_id);}
-        if(j.contains(name)){j.at(name).get_to(t.name);}
-        if(j.contains(description)){j.at(description).get_to(t.description);}
-        if(j.contains(scheduled_start_time)){j.at(scheduled_start_time).get_to(t.scheduled_start_time);}
-        if(j.contains(scheduled_end_time)){j.at(scheduled_end_time).get_to(t.scheduled_end_time);}
-        if(j.contains(privacy_level)){j.at(privacy_level).get_to(t.privacy_level);}
-        if(j.contains(status)){j.at(status).get_to(t.status);}
-        if(j.contains(entity_type)){j.at(entity_type).get_to(t.entity_type);}
-        if(j.contains(entity_id)){j.at(entity_id).get_to(t.entity_id);}
-        if(j.contains(entity_metadata)){j.at(entity_metadata).get_to(t.entity_metadata);}
-        if(j.contains(creator)){j.at(creator).get_to(t.creator);}
-        if(j.contains(user_count)){j.at(user_count).get_to(t.user_count);}
-        if(j.contains(image)){j.at(image).get_to(t.image);}
+    friend void from_json(const nlohmann::json &j, GuildScheduledEvent &t) {
+        if(j.contains("id")){j.at("id").get_to(t.id);}
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("channel_id")){j.at("channel_id").get_to(t.channel_id);}
+        if(j.contains("creator_id")){j.at("creator_id").get_to(t.creator_id);}
+        if(j.contains("name")){j.at("name").get_to(t.name);}
+        if(j.contains("description")){j.at("description").get_to(t.description);}
+        if(j.contains("scheduled_start_time")){j.at("scheduled_start_time").get_to(t.scheduled_start_time);}
+        if(j.contains("scheduled_end_time")){j.at("scheduled_end_time").get_to(t.scheduled_end_time);}
+        if(j.contains("privacy_level")){j.at("privacy_level").get_to(t.privacy_level);}
+        if(j.contains("status")){j.at("status").get_to(t.status);}
+        if(j.contains("entity_type")){j.at("entity_type").get_to(t.entity_type);}
+        if(j.contains("entity_id")){j.at("entity_id").get_to(t.entity_id);}
+        if(j.contains("entity_metadata")){j.at("entity_metadata").get_to(t.entity_metadata);}
+        if(j.contains("creator")){j.at("creator").get_to(t.creator);}
+        if(j.contains("user_count")){j.at("user_count").get_to(t.user_count);}
+        if(j.contains("image")){j.at("image").get_to(t.image);}
     }
 };
 
@@ -112,8 +112,8 @@ class GuildScheduledEventEntityMetadata{
     friend void to_json(nlohmann::json &j, const GuildScheduledEventEntityMetadata &t) {
         if(!t.location.is_omitted()) {j["location"] = t.location;}
     }
-    friend void from_json(const nlohmann::json &j, GuildScheduledEventEntityMetadata &t {
-        if(j.contains(location)){j.at(location).get_to(t.location);}
+    friend void from_json(const nlohmann::json &j, GuildScheduledEventEntityMetadata &t) {
+        if(j.contains("location")){j.at("location").get_to(t.location);}
     }
 };
 
@@ -139,9 +139,9 @@ class GuildScheduledEventUser{
         if(!t.user.is_omitted()) {j["user"] = t.user;}
         if(!t.member.is_omitted()) {j["member"] = t.member;}
     }
-    friend void from_json(const nlohmann::json &j, GuildScheduledEventUser &t {
-        if(j.contains(guild_scheduled_event_id)){j.at(guild_scheduled_event_id).get_to(t.guild_scheduled_event_id);}
-        if(j.contains(user)){j.at(user).get_to(t.user);}
-        if(j.contains(member)){j.at(member).get_to(t.member);}
+    friend void from_json(const nlohmann::json &j, GuildScheduledEventUser &t) {
+        if(j.contains("guild_scheduled_event_id")){j.at("guild_scheduled_event_id").get_to(t.guild_scheduled_event_id);}
+        if(j.contains("user")){j.at("user").get_to(t.user);}
+        if(j.contains("member")){j.at("member").get_to(t.member);}
     }
 };

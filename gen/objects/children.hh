@@ -42,14 +42,14 @@ class Button: public Component{
         if(!t.url.is_omitted()) {j["url"] = t.url;}
         if(!t.disabled.is_omitted()) {j["disabled"] = t.disabled;}
     }
-    friend void from_json(const nlohmann::json &j, Button &t {
-        if(j.contains(type)){j.at(type).get_to(t.type);}
-        if(j.contains(style)){j.at(style).get_to(t.style);}
-        if(j.contains(label)){j.at(label).get_to(t.label);}
-        if(j.contains(emoji)){j.at(emoji).get_to(t.emoji);}
-        if(j.contains(custom_id)){j.at(custom_id).get_to(t.custom_id);}
-        if(j.contains(url)){j.at(url).get_to(t.url);}
-        if(j.contains(disabled)){j.at(disabled).get_to(t.disabled);}
+    friend void from_json(const nlohmann::json &j, Button &t) {
+        if(j.contains("type")){j.at("type").get_to(t.type);}
+        if(j.contains("style")){j.at("style").get_to(t.style);}
+        if(j.contains("label")){j.at("label").get_to(t.label);}
+        if(j.contains("emoji")){j.at("emoji").get_to(t.emoji);}
+        if(j.contains("custom_id")){j.at("custom_id").get_to(t.custom_id);}
+        if(j.contains("url")){j.at("url").get_to(t.url);}
+        if(j.contains("disabled")){j.at("disabled").get_to(t.disabled);}
     }
 };
 
@@ -96,15 +96,15 @@ class SelectMenu: public Component{
         if(!t.max_values.is_omitted()) {j["max_values"] = t.max_values;}
         if(!t.disabled.is_omitted()) {j["disabled"] = t.disabled;}
     }
-    friend void from_json(const nlohmann::json &j, SelectMenu &t {
-        if(j.contains(type)){j.at(type).get_to(t.type);}
-        if(j.contains(custom_id)){j.at(custom_id).get_to(t.custom_id);}
-        if(j.contains(options)){j.at(options).get_to(t.options);}
-        if(j.contains(channel_types)){j.at(channel_types).get_to(t.channel_types);}
-        if(j.contains(placeholder)){j.at(placeholder).get_to(t.placeholder);}
-        if(j.contains(min_values)){j.at(min_values).get_to(t.min_values);}
-        if(j.contains(max_values)){j.at(max_values).get_to(t.max_values);}
-        if(j.contains(disabled)){j.at(disabled).get_to(t.disabled);}
+    friend void from_json(const nlohmann::json &j, SelectMenu &t) {
+        if(j.contains("type")){j.at("type").get_to(t.type);}
+        if(j.contains("custom_id")){j.at("custom_id").get_to(t.custom_id);}
+        if(j.contains("options")){j.at("options").get_to(t.options);}
+        if(j.contains("channel_types")){j.at("channel_types").get_to(t.channel_types);}
+        if(j.contains("placeholder")){j.at("placeholder").get_to(t.placeholder);}
+        if(j.contains("min_values")){j.at("min_values").get_to(t.min_values);}
+        if(j.contains("max_values")){j.at("max_values").get_to(t.max_values);}
+        if(j.contains("disabled")){j.at("disabled").get_to(t.disabled);}
     }
 };
 
@@ -154,16 +154,16 @@ class TextInput: public Component{
         if(!t.value.is_omitted()) {j["value"] = t.value;}
         if(!t.placeholder.is_omitted()) {j["placeholder"] = t.placeholder;}
     }
-    friend void from_json(const nlohmann::json &j, TextInput &t {
-        if(j.contains(type)){j.at(type).get_to(t.type);}
-        if(j.contains(custom_id)){j.at(custom_id).get_to(t.custom_id);}
-        if(j.contains(style)){j.at(style).get_to(t.style);}
-        if(j.contains(label)){j.at(label).get_to(t.label);}
-        if(j.contains(min_length)){j.at(min_length).get_to(t.min_length);}
-        if(j.contains(max_length)){j.at(max_length).get_to(t.max_length);}
-        if(j.contains(required)){j.at(required).get_to(t.required);}
-        if(j.contains(value)){j.at(value).get_to(t.value);}
-        if(j.contains(placeholder)){j.at(placeholder).get_to(t.placeholder);}
+    friend void from_json(const nlohmann::json &j, TextInput &t) {
+        if(j.contains("type")){j.at("type").get_to(t.type);}
+        if(j.contains("custom_id")){j.at("custom_id").get_to(t.custom_id);}
+        if(j.contains("style")){j.at("style").get_to(t.style);}
+        if(j.contains("label")){j.at("label").get_to(t.label);}
+        if(j.contains("min_length")){j.at("min_length").get_to(t.min_length);}
+        if(j.contains("max_length")){j.at("max_length").get_to(t.max_length);}
+        if(j.contains("required")){j.at("required").get_to(t.required);}
+        if(j.contains("value")){j.at("value").get_to(t.value);}
+        if(j.contains("placeholder")){j.at("placeholder").get_to(t.placeholder);}
     }
 };
 
@@ -184,8 +184,8 @@ class ActionRow: public Component{
     friend void to_json(nlohmann::json &j, const ActionRow &t) {
         if(!t.components.is_omitted()) {j["components"] = t.components;}
     }
-    friend void from_json(const nlohmann::json &j, ActionRow &t {
-        if(j.contains(components)){j.at(components).get_to(t.components);}
+    friend void from_json(const nlohmann::json &j, ActionRow &t) {
+        if(j.contains("components")){j.at("components").get_to(t.components);}
     }
 };
 
@@ -215,8 +215,8 @@ class ThreadMemberUpdateEvent: public ThreadMember{
     friend void to_json(nlohmann::json &j, const ThreadMemberUpdateEvent &t) {
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
     }
-    friend void from_json(const nlohmann::json &j, ThreadMemberUpdateEvent &t {
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+    friend void from_json(const nlohmann::json &j, ThreadMemberUpdateEvent &t) {
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
     }
 };
 
@@ -358,18 +358,18 @@ class GuildCreateEvent: public Guild{
         if(!t.stage_instances.is_omitted()) {j["stage_instances"] = t.stage_instances;}
         if(!t.guild_scheduled_events.is_omitted()) {j["guild_scheduled_events"] = t.guild_scheduled_events;}
     }
-    friend void from_json(const nlohmann::json &j, GuildCreateEvent &t {
-        if(j.contains(joined_at)){j.at(joined_at).get_to(t.joined_at);}
-        if(j.contains(large)){j.at(large).get_to(t.large);}
-        if(j.contains(unavailable)){j.at(unavailable).get_to(t.unavailable);}
-        if(j.contains(member_count)){j.at(member_count).get_to(t.member_count);}
-        if(j.contains(voice_states)){j.at(voice_states).get_to(t.voice_states);}
-        if(j.contains(members)){j.at(members).get_to(t.members);}
-        if(j.contains(channels)){j.at(channels).get_to(t.channels);}
-        if(j.contains(threads)){j.at(threads).get_to(t.threads);}
-        if(j.contains(presences)){j.at(presences).get_to(t.presences);}
-        if(j.contains(stage_instances)){j.at(stage_instances).get_to(t.stage_instances);}
-        if(j.contains(guild_scheduled_events)){j.at(guild_scheduled_events).get_to(t.guild_scheduled_events);}
+    friend void from_json(const nlohmann::json &j, GuildCreateEvent &t) {
+        if(j.contains("joined_at")){j.at("joined_at").get_to(t.joined_at);}
+        if(j.contains("large")){j.at("large").get_to(t.large);}
+        if(j.contains("unavailable")){j.at("unavailable").get_to(t.unavailable);}
+        if(j.contains("member_count")){j.at("member_count").get_to(t.member_count);}
+        if(j.contains("voice_states")){j.at("voice_states").get_to(t.voice_states);}
+        if(j.contains("members")){j.at("members").get_to(t.members);}
+        if(j.contains("channels")){j.at("channels").get_to(t.channels);}
+        if(j.contains("threads")){j.at("threads").get_to(t.threads);}
+        if(j.contains("presences")){j.at("presences").get_to(t.presences);}
+        if(j.contains("stage_instances")){j.at("stage_instances").get_to(t.stage_instances);}
+        if(j.contains("guild_scheduled_events")){j.at("guild_scheduled_events").get_to(t.guild_scheduled_events);}
     }
 };
 
@@ -413,8 +413,8 @@ class GuildMemberAddEvent: public GuildMember{
     friend void to_json(nlohmann::json &j, const GuildMemberAddEvent &t) {
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
     }
-    friend void from_json(const nlohmann::json &j, GuildMemberAddEvent &t {
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
+    friend void from_json(const nlohmann::json &j, GuildMemberAddEvent &t) {
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
     }
 };
 
@@ -501,9 +501,9 @@ class MessageCreateEvent: public Message{
         if(!t.member.is_omitted()) {j["member"] = t.member;}
         if(!t.mentions.is_omitted()) {j["mentions"] = t.mentions;}
     }
-    friend void from_json(const nlohmann::json &j, MessageCreateEvent &t {
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(member)){j.at(member).get_to(t.member);}
-        if(j.contains(mentions)){j.at(mentions).get_to(t.mentions);}
+    friend void from_json(const nlohmann::json &j, MessageCreateEvent &t) {
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("member")){j.at("member").get_to(t.member);}
+        if(j.contains("mentions")){j.at("mentions").get_to(t.mentions);}
     }
 };

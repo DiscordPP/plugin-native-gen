@@ -30,10 +30,10 @@ class RateLimitResponse{
         if(!t.global.is_omitted()) {j["global"] = t.global;}
         if(!t.code.is_omitted()) {j["code"] = t.code;}
     }
-    friend void from_json(const nlohmann::json &j, RateLimitResponse &t {
-        if(j.contains(message)){j.at(message).get_to(t.message);}
-        if(j.contains(retry_after)){j.at(retry_after).get_to(t.retry_after);}
-        if(j.contains(global)){j.at(global).get_to(t.global);}
-        if(j.contains(code)){j.at(code).get_to(t.code);}
+    friend void from_json(const nlohmann::json &j, RateLimitResponse &t) {
+        if(j.contains("message")){j.at("message").get_to(t.message);}
+        if(j.contains("retry_after")){j.at("retry_after").get_to(t.retry_after);}
+        if(j.contains("global")){j.at("global").get_to(t.global);}
+        if(j.contains("code")){j.at("code").get_to(t.code);}
     }
 };

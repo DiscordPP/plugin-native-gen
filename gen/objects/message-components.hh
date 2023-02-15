@@ -34,12 +34,12 @@ class SelectOption{
         if(!t.emoji.is_omitted()) {j["emoji"] = t.emoji;}
         if(!t.default_selected.is_omitted()) {j["default"] = t.default_selected;}
     }
-    friend void from_json(const nlohmann::json &j, SelectOption &t {
-        if(j.contains(label)){j.at(label).get_to(t.label);}
-        if(j.contains(value)){j.at(value).get_to(t.value);}
-        if(j.contains(description)){j.at(description).get_to(t.description);}
-        if(j.contains(emoji)){j.at(emoji).get_to(t.emoji);}
-        if(j.contains(default)){j.at(default).get_to(t.default_selected);}
+    friend void from_json(const nlohmann::json &j, SelectOption &t) {
+        if(j.contains("label")){j.at("label").get_to(t.label);}
+        if(j.contains("value")){j.at("value").get_to(t.value);}
+        if(j.contains("description")){j.at("description").get_to(t.description);}
+        if(j.contains("emoji")){j.at("emoji").get_to(t.emoji);}
+        if(j.contains("default")){j.at("default").get_to(t.default_selected);}
     }
 };
 
@@ -57,7 +57,7 @@ class Component{
     friend void to_json(nlohmann::json &j, const Component &t) {
         if(!t.type.is_omitted()) {j["type"] = t.type;}
     }
-    friend void from_json(const nlohmann::json &j, Component &t {
-        if(j.contains(type)){j.at(type).get_to(t.type);}
+    friend void from_json(const nlohmann::json &j, Component &t) {
+        if(j.contains("type")){j.at("type").get_to(t.type);}
     }
 };

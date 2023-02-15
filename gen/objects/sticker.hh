@@ -62,19 +62,19 @@ class Sticker{
         if(!t.user.is_omitted()) {j["user"] = t.user;}
         if(!t.sort_value.is_omitted()) {j["sort_value"] = t.sort_value;}
     }
-    friend void from_json(const nlohmann::json &j, Sticker &t {
-        if(j.contains(id)){j.at(id).get_to(t.id);}
-        if(j.contains(pack_id)){j.at(pack_id).get_to(t.pack_id);}
-        if(j.contains(name)){j.at(name).get_to(t.name);}
-        if(j.contains(description)){j.at(description).get_to(t.description);}
-        if(j.contains(tags)){j.at(tags).get_to(t.tags);}
-        if(j.contains(asset)){j.at(asset).get_to(t.asset);}
-        if(j.contains(type)){j.at(type).get_to(t.type);}
-        if(j.contains(format_type)){j.at(format_type).get_to(t.format_type);}
-        if(j.contains(available)){j.at(available).get_to(t.available);}
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(user)){j.at(user).get_to(t.user);}
-        if(j.contains(sort_value)){j.at(sort_value).get_to(t.sort_value);}
+    friend void from_json(const nlohmann::json &j, Sticker &t) {
+        if(j.contains("id")){j.at("id").get_to(t.id);}
+        if(j.contains("pack_id")){j.at("pack_id").get_to(t.pack_id);}
+        if(j.contains("name")){j.at("name").get_to(t.name);}
+        if(j.contains("description")){j.at("description").get_to(t.description);}
+        if(j.contains("tags")){j.at("tags").get_to(t.tags);}
+        if(j.contains("asset")){j.at("asset").get_to(t.asset);}
+        if(j.contains("type")){j.at("type").get_to(t.type);}
+        if(j.contains("format_type")){j.at("format_type").get_to(t.format_type);}
+        if(j.contains("available")){j.at("available").get_to(t.available);}
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("user")){j.at("user").get_to(t.user);}
+        if(j.contains("sort_value")){j.at("sort_value").get_to(t.sort_value);}
     }
 };
 
@@ -100,10 +100,10 @@ class StickerItem{
         if(!t.name.is_omitted()) {j["name"] = t.name;}
         if(!t.format_type.is_omitted()) {j["format_type"] = t.format_type;}
     }
-    friend void from_json(const nlohmann::json &j, StickerItem &t {
-        if(j.contains(id)){j.at(id).get_to(t.id);}
-        if(j.contains(name)){j.at(name).get_to(t.name);}
-        if(j.contains(format_type)){j.at(format_type).get_to(t.format_type);}
+    friend void from_json(const nlohmann::json &j, StickerItem &t) {
+        if(j.contains("id")){j.at("id").get_to(t.id);}
+        if(j.contains("name")){j.at("name").get_to(t.name);}
+        if(j.contains("format_type")){j.at("format_type").get_to(t.format_type);}
     }
 };
 
@@ -145,14 +145,14 @@ class StickerPack{
         if(!t.description.is_omitted()) {j["description"] = t.description;}
         if(!t.banner_asset_id.is_omitted()) {j["banner_asset_id"] = t.banner_asset_id;}
     }
-    friend void from_json(const nlohmann::json &j, StickerPack &t {
-        if(j.contains(id)){j.at(id).get_to(t.id);}
-        if(j.contains(stickers)){j.at(stickers).get_to(t.stickers);}
-        if(j.contains(name)){j.at(name).get_to(t.name);}
-        if(j.contains(sku_id)){j.at(sku_id).get_to(t.sku_id);}
-        if(j.contains(cover_sticker_id)){j.at(cover_sticker_id).get_to(t.cover_sticker_id);}
-        if(j.contains(description)){j.at(description).get_to(t.description);}
-        if(j.contains(banner_asset_id)){j.at(banner_asset_id).get_to(t.banner_asset_id);}
+    friend void from_json(const nlohmann::json &j, StickerPack &t) {
+        if(j.contains("id")){j.at("id").get_to(t.id);}
+        if(j.contains("stickers")){j.at("stickers").get_to(t.stickers);}
+        if(j.contains("name")){j.at("name").get_to(t.name);}
+        if(j.contains("sku_id")){j.at("sku_id").get_to(t.sku_id);}
+        if(j.contains("cover_sticker_id")){j.at("cover_sticker_id").get_to(t.cover_sticker_id);}
+        if(j.contains("description")){j.at("description").get_to(t.description);}
+        if(j.contains("banner_asset_id")){j.at("banner_asset_id").get_to(t.banner_asset_id);}
     }
 };
 
@@ -170,7 +170,7 @@ class ListNitroStickerPacksResponse{
     friend void to_json(nlohmann::json &j, const ListNitroStickerPacksResponse &t) {
         if(!t.sticker_packs.is_omitted()) {j["sticker_packs"] = t.sticker_packs;}
     }
-    friend void from_json(const nlohmann::json &j, ListNitroStickerPacksResponse &t {
-        if(j.contains(sticker_packs)){j.at(sticker_packs).get_to(t.sticker_packs);}
+    friend void from_json(const nlohmann::json &j, ListNitroStickerPacksResponse &t) {
+        if(j.contains("sticker_packs")){j.at("sticker_packs").get_to(t.sticker_packs);}
     }
 };

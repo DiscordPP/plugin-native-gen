@@ -62,19 +62,19 @@ class Invite{
         if(!t.stage_instance.is_omitted()) {j["stage_instance"] = t.stage_instance;}
         if(!t.guild_scheduled_event.is_omitted()) {j["guild_scheduled_event"] = t.guild_scheduled_event;}
     }
-    friend void from_json(const nlohmann::json &j, Invite &t {
-        if(j.contains(code)){j.at(code).get_to(t.code);}
-        if(j.contains(guild)){j.at(guild).get_to(t.guild);}
-        if(j.contains(channel)){j.at(channel).get_to(t.channel);}
-        if(j.contains(inviter)){j.at(inviter).get_to(t.inviter);}
-        if(j.contains(target_type)){j.at(target_type).get_to(t.target_type);}
-        if(j.contains(target_user)){j.at(target_user).get_to(t.target_user);}
-        if(j.contains(target_application)){j.at(target_application).get_to(t.target_application);}
-        if(j.contains(approximate_presence_count)){j.at(approximate_presence_count).get_to(t.approximate_presence_count);}
-        if(j.contains(approximate_member_count)){j.at(approximate_member_count).get_to(t.approximate_member_count);}
-        if(j.contains(expires_at)){j.at(expires_at).get_to(t.expires_at);}
-        if(j.contains(stage_instance)){j.at(stage_instance).get_to(t.stage_instance);}
-        if(j.contains(guild_scheduled_event)){j.at(guild_scheduled_event).get_to(t.guild_scheduled_event);}
+    friend void from_json(const nlohmann::json &j, Invite &t) {
+        if(j.contains("code")){j.at("code").get_to(t.code);}
+        if(j.contains("guild")){j.at("guild").get_to(t.guild);}
+        if(j.contains("channel")){j.at("channel").get_to(t.channel);}
+        if(j.contains("inviter")){j.at("inviter").get_to(t.inviter);}
+        if(j.contains("target_type")){j.at("target_type").get_to(t.target_type);}
+        if(j.contains("target_user")){j.at("target_user").get_to(t.target_user);}
+        if(j.contains("target_application")){j.at("target_application").get_to(t.target_application);}
+        if(j.contains("approximate_presence_count")){j.at("approximate_presence_count").get_to(t.approximate_presence_count);}
+        if(j.contains("approximate_member_count")){j.at("approximate_member_count").get_to(t.approximate_member_count);}
+        if(j.contains("expires_at")){j.at("expires_at").get_to(t.expires_at);}
+        if(j.contains("stage_instance")){j.at("stage_instance").get_to(t.stage_instance);}
+        if(j.contains("guild_scheduled_event")){j.at("guild_scheduled_event").get_to(t.guild_scheduled_event);}
     }
 };
 
@@ -108,12 +108,12 @@ class InviteMetadata{
         if(!t.temporary.is_omitted()) {j["temporary"] = t.temporary;}
         if(!t.created_at.is_omitted()) {j["created_at"] = t.created_at;}
     }
-    friend void from_json(const nlohmann::json &j, InviteMetadata &t {
-        if(j.contains(uses)){j.at(uses).get_to(t.uses);}
-        if(j.contains(max_uses)){j.at(max_uses).get_to(t.max_uses);}
-        if(j.contains(max_age)){j.at(max_age).get_to(t.max_age);}
-        if(j.contains(temporary)){j.at(temporary).get_to(t.temporary);}
-        if(j.contains(created_at)){j.at(created_at).get_to(t.created_at);}
+    friend void from_json(const nlohmann::json &j, InviteMetadata &t) {
+        if(j.contains("uses")){j.at("uses").get_to(t.uses);}
+        if(j.contains("max_uses")){j.at("max_uses").get_to(t.max_uses);}
+        if(j.contains("max_age")){j.at("max_age").get_to(t.max_age);}
+        if(j.contains("temporary")){j.at("temporary").get_to(t.temporary);}
+        if(j.contains("created_at")){j.at("created_at").get_to(t.created_at);}
     }
 };
 
@@ -143,10 +143,10 @@ class InviteStageInstance{
         if(!t.speaker_count.is_omitted()) {j["speaker_count"] = t.speaker_count;}
         if(!t.topic.is_omitted()) {j["topic"] = t.topic;}
     }
-    friend void from_json(const nlohmann::json &j, InviteStageInstance &t {
-        if(j.contains(members)){j.at(members).get_to(t.members);}
-        if(j.contains(participant_count)){j.at(participant_count).get_to(t.participant_count);}
-        if(j.contains(speaker_count)){j.at(speaker_count).get_to(t.speaker_count);}
-        if(j.contains(topic)){j.at(topic).get_to(t.topic);}
+    friend void from_json(const nlohmann::json &j, InviteStageInstance &t) {
+        if(j.contains("members")){j.at("members").get_to(t.members);}
+        if(j.contains("participant_count")){j.at("participant_count").get_to(t.participant_count);}
+        if(j.contains("speaker_count")){j.at("speaker_count").get_to(t.speaker_count);}
+        if(j.contains("topic")){j.at("topic").get_to(t.topic);}
     }
 };

@@ -42,13 +42,13 @@ class StageInstance{
         if(!t.discoverable_disabled.is_omitted()) {j["discoverable_disabled"] = t.discoverable_disabled;}
         if(!t.guild_scheduled_event_id.is_omitted()) {j["guild_scheduled_event_id"] = t.guild_scheduled_event_id;}
     }
-    friend void from_json(const nlohmann::json &j, StageInstance &t {
-        if(j.contains(id)){j.at(id).get_to(t.id);}
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
-        if(j.contains(topic)){j.at(topic).get_to(t.topic);}
-        if(j.contains(privacy_level)){j.at(privacy_level).get_to(t.privacy_level);}
-        if(j.contains(discoverable_disabled)){j.at(discoverable_disabled).get_to(t.discoverable_disabled);}
-        if(j.contains(guild_scheduled_event_id)){j.at(guild_scheduled_event_id).get_to(t.guild_scheduled_event_id);}
+    friend void from_json(const nlohmann::json &j, StageInstance &t) {
+        if(j.contains("id")){j.at("id").get_to(t.id);}
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("channel_id")){j.at("channel_id").get_to(t.channel_id);}
+        if(j.contains("topic")){j.at("topic").get_to(t.topic);}
+        if(j.contains("privacy_level")){j.at("privacy_level").get_to(t.privacy_level);}
+        if(j.contains("discoverable_disabled")){j.at("discoverable_disabled").get_to(t.discoverable_disabled);}
+        if(j.contains("guild_scheduled_event_id")){j.at("guild_scheduled_event_id").get_to(t.guild_scheduled_event_id);}
     }
 };

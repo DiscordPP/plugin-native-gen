@@ -150,41 +150,41 @@ class Channel{
         if(!t.default_sort_order.is_omitted()) {j["default_sort_order"] = t.default_sort_order;}
         if(!t.default_forum_layout.is_omitted()) {j["default_forum_layout"] = t.default_forum_layout;}
     }
-    friend void from_json(const nlohmann::json &j, Channel &t {
-        if(j.contains(id)){j.at(id).get_to(t.id);}
-        if(j.contains(type)){j.at(type).get_to(t.type);}
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(position)){j.at(position).get_to(t.position);}
-        if(j.contains(permission_overwrites)){j.at(permission_overwrites).get_to(t.permission_overwrites);}
-        if(j.contains(name)){j.at(name).get_to(t.name);}
-        if(j.contains(topic)){j.at(topic).get_to(t.topic);}
-        if(j.contains(nsfw)){j.at(nsfw).get_to(t.nsfw);}
-        if(j.contains(last_message_id)){j.at(last_message_id).get_to(t.last_message_id);}
-        if(j.contains(bitrate)){j.at(bitrate).get_to(t.bitrate);}
-        if(j.contains(user_limit)){j.at(user_limit).get_to(t.user_limit);}
-        if(j.contains(rate_limit_per_user)){j.at(rate_limit_per_user).get_to(t.rate_limit_per_user);}
-        if(j.contains(recipients)){j.at(recipients).get_to(t.recipients);}
-        if(j.contains(icon)){j.at(icon).get_to(t.icon);}
-        if(j.contains(owner_id)){j.at(owner_id).get_to(t.owner_id);}
-        if(j.contains(application_id)){j.at(application_id).get_to(t.application_id);}
-        if(j.contains(parent_id)){j.at(parent_id).get_to(t.parent_id);}
-        if(j.contains(last_pin_timestamp)){j.at(last_pin_timestamp).get_to(t.last_pin_timestamp);}
-        if(j.contains(rtc_region)){j.at(rtc_region).get_to(t.rtc_region);}
-        if(j.contains(video_quality_mode)){j.at(video_quality_mode).get_to(t.video_quality_mode);}
-        if(j.contains(message_count)){j.at(message_count).get_to(t.message_count);}
-        if(j.contains(member_count)){j.at(member_count).get_to(t.member_count);}
-        if(j.contains(thread_metadata)){j.at(thread_metadata).get_to(t.thread_metadata);}
-        if(j.contains(member)){j.at(member).get_to(t.member);}
-        if(j.contains(default_auto_archive_duration)){j.at(default_auto_archive_duration).get_to(t.default_auto_archive_duration);}
-        if(j.contains(permissions)){j.at(permissions).get_to(t.permissions);}
-        if(j.contains(flags)){j.at(flags).get_to(t.flags);}
-        if(j.contains(total_message_sent)){j.at(total_message_sent).get_to(t.total_message_sent);}
-        if(j.contains(available_tags)){j.at(available_tags).get_to(t.available_tags);}
-        if(j.contains(applied_tags)){j.at(applied_tags).get_to(t.applied_tags);}
-        if(j.contains(default_reaction_emoji)){j.at(default_reaction_emoji).get_to(t.default_reaction_emoji);}
-        if(j.contains(default_thread_rate_limit_per_user)){j.at(default_thread_rate_limit_per_user).get_to(t.default_thread_rate_limit_per_user);}
-        if(j.contains(default_sort_order)){j.at(default_sort_order).get_to(t.default_sort_order);}
-        if(j.contains(default_forum_layout)){j.at(default_forum_layout).get_to(t.default_forum_layout);}
+    friend void from_json(const nlohmann::json &j, Channel &t) {
+        if(j.contains("id")){j.at("id").get_to(t.id);}
+        if(j.contains("type")){j.at("type").get_to(t.type);}
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("position")){j.at("position").get_to(t.position);}
+        if(j.contains("permission_overwrites")){j.at("permission_overwrites").get_to(t.permission_overwrites);}
+        if(j.contains("name")){j.at("name").get_to(t.name);}
+        if(j.contains("topic")){j.at("topic").get_to(t.topic);}
+        if(j.contains("nsfw")){j.at("nsfw").get_to(t.nsfw);}
+        if(j.contains("last_message_id")){j.at("last_message_id").get_to(t.last_message_id);}
+        if(j.contains("bitrate")){j.at("bitrate").get_to(t.bitrate);}
+        if(j.contains("user_limit")){j.at("user_limit").get_to(t.user_limit);}
+        if(j.contains("rate_limit_per_user")){j.at("rate_limit_per_user").get_to(t.rate_limit_per_user);}
+        if(j.contains("recipients")){j.at("recipients").get_to(t.recipients);}
+        if(j.contains("icon")){j.at("icon").get_to(t.icon);}
+        if(j.contains("owner_id")){j.at("owner_id").get_to(t.owner_id);}
+        if(j.contains("application_id")){j.at("application_id").get_to(t.application_id);}
+        if(j.contains("parent_id")){j.at("parent_id").get_to(t.parent_id);}
+        if(j.contains("last_pin_timestamp")){j.at("last_pin_timestamp").get_to(t.last_pin_timestamp);}
+        if(j.contains("rtc_region")){j.at("rtc_region").get_to(t.rtc_region);}
+        if(j.contains("video_quality_mode")){j.at("video_quality_mode").get_to(t.video_quality_mode);}
+        if(j.contains("message_count")){j.at("message_count").get_to(t.message_count);}
+        if(j.contains("member_count")){j.at("member_count").get_to(t.member_count);}
+        if(j.contains("thread_metadata")){j.at("thread_metadata").get_to(t.thread_metadata);}
+        if(j.contains("member")){j.at("member").get_to(t.member);}
+        if(j.contains("default_auto_archive_duration")){j.at("default_auto_archive_duration").get_to(t.default_auto_archive_duration);}
+        if(j.contains("permissions")){j.at("permissions").get_to(t.permissions);}
+        if(j.contains("flags")){j.at("flags").get_to(t.flags);}
+        if(j.contains("total_message_sent")){j.at("total_message_sent").get_to(t.total_message_sent);}
+        if(j.contains("available_tags")){j.at("available_tags").get_to(t.available_tags);}
+        if(j.contains("applied_tags")){j.at("applied_tags").get_to(t.applied_tags);}
+        if(j.contains("default_reaction_emoji")){j.at("default_reaction_emoji").get_to(t.default_reaction_emoji);}
+        if(j.contains("default_thread_rate_limit_per_user")){j.at("default_thread_rate_limit_per_user").get_to(t.default_thread_rate_limit_per_user);}
+        if(j.contains("default_sort_order")){j.at("default_sort_order").get_to(t.default_sort_order);}
+        if(j.contains("default_forum_layout")){j.at("default_forum_layout").get_to(t.default_forum_layout);}
     }
 };
 
@@ -322,38 +322,38 @@ class Message{
         if(!t.position.is_omitted()) {j["position"] = t.position;}
         if(!t.role_subscription_data.is_omitted()) {j["role_subscription_data"] = t.role_subscription_data;}
     }
-    friend void from_json(const nlohmann::json &j, Message &t {
-        if(j.contains(id)){j.at(id).get_to(t.id);}
-        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
-        if(j.contains(author)){j.at(author).get_to(t.author);}
-        if(j.contains(content)){j.at(content).get_to(t.content);}
-        if(j.contains(timestamp)){j.at(timestamp).get_to(t.timestamp);}
-        if(j.contains(edited_timestamp)){j.at(edited_timestamp).get_to(t.edited_timestamp);}
-        if(j.contains(tts)){j.at(tts).get_to(t.tts);}
-        if(j.contains(mention_everyone)){j.at(mention_everyone).get_to(t.mention_everyone);}
-        if(j.contains(mentions)){j.at(mentions).get_to(t.mentions);}
-        if(j.contains(mention_roles)){j.at(mention_roles).get_to(t.mention_roles);}
-        if(j.contains(mention_channels)){j.at(mention_channels).get_to(t.mention_channels);}
-        if(j.contains(attachments)){j.at(attachments).get_to(t.attachments);}
-        if(j.contains(embeds)){j.at(embeds).get_to(t.embeds);}
-        if(j.contains(reactions)){j.at(reactions).get_to(t.reactions);}
-        if(j.contains(nonce)){j.at(nonce).get_to(t.nonce);}
-        if(j.contains(pinned)){j.at(pinned).get_to(t.pinned);}
-        if(j.contains(webhook_id)){j.at(webhook_id).get_to(t.webhook_id);}
-        if(j.contains(type)){j.at(type).get_to(t.type);}
-        if(j.contains(activity)){j.at(activity).get_to(t.activity);}
-        if(j.contains(application)){j.at(application).get_to(t.application);}
-        if(j.contains(application_id)){j.at(application_id).get_to(t.application_id);}
-        if(j.contains(message_reference)){j.at(message_reference).get_to(t.message_reference);}
-        if(j.contains(flags)){j.at(flags).get_to(t.flags);}
-        if(j.contains(referenced_message)){j.at(referenced_message).get_to(t.referenced_message);}
-        if(j.contains(interaction)){j.at(interaction).get_to(t.interaction);}
-        if(j.contains(thread)){j.at(thread).get_to(t.thread);}
-        if(j.contains(components)){j.at(components).get_to(t.components);}
-        if(j.contains(sticker_items)){j.at(sticker_items).get_to(t.sticker_items);}
-        if(j.contains(stickers)){j.at(stickers).get_to(t.stickers);}
-        if(j.contains(position)){j.at(position).get_to(t.position);}
-        if(j.contains(role_subscription_data)){j.at(role_subscription_data).get_to(t.role_subscription_data);}
+    friend void from_json(const nlohmann::json &j, Message &t) {
+        if(j.contains("id")){j.at("id").get_to(t.id);}
+        if(j.contains("channel_id")){j.at("channel_id").get_to(t.channel_id);}
+        if(j.contains("author")){j.at("author").get_to(t.author);}
+        if(j.contains("content")){j.at("content").get_to(t.content);}
+        if(j.contains("timestamp")){j.at("timestamp").get_to(t.timestamp);}
+        if(j.contains("edited_timestamp")){j.at("edited_timestamp").get_to(t.edited_timestamp);}
+        if(j.contains("tts")){j.at("tts").get_to(t.tts);}
+        if(j.contains("mention_everyone")){j.at("mention_everyone").get_to(t.mention_everyone);}
+        if(j.contains("mentions")){j.at("mentions").get_to(t.mentions);}
+        if(j.contains("mention_roles")){j.at("mention_roles").get_to(t.mention_roles);}
+        if(j.contains("mention_channels")){j.at("mention_channels").get_to(t.mention_channels);}
+        if(j.contains("attachments")){j.at("attachments").get_to(t.attachments);}
+        if(j.contains("embeds")){j.at("embeds").get_to(t.embeds);}
+        if(j.contains("reactions")){j.at("reactions").get_to(t.reactions);}
+        if(j.contains("nonce")){j.at("nonce").get_to(t.nonce);}
+        if(j.contains("pinned")){j.at("pinned").get_to(t.pinned);}
+        if(j.contains("webhook_id")){j.at("webhook_id").get_to(t.webhook_id);}
+        if(j.contains("type")){j.at("type").get_to(t.type);}
+        if(j.contains("activity")){j.at("activity").get_to(t.activity);}
+        if(j.contains("application")){j.at("application").get_to(t.application);}
+        if(j.contains("application_id")){j.at("application_id").get_to(t.application_id);}
+        if(j.contains("message_reference")){j.at("message_reference").get_to(t.message_reference);}
+        if(j.contains("flags")){j.at("flags").get_to(t.flags);}
+        if(j.contains("referenced_message")){j.at("referenced_message").get_to(t.referenced_message);}
+        if(j.contains("interaction")){j.at("interaction").get_to(t.interaction);}
+        if(j.contains("thread")){j.at("thread").get_to(t.thread);}
+        if(j.contains("components")){j.at("components").get_to(t.components);}
+        if(j.contains("sticker_items")){j.at("sticker_items").get_to(t.sticker_items);}
+        if(j.contains("stickers")){j.at("stickers").get_to(t.stickers);}
+        if(j.contains("position")){j.at("position").get_to(t.position);}
+        if(j.contains("role_subscription_data")){j.at("role_subscription_data").get_to(t.role_subscription_data);}
     }
 };
 
@@ -375,9 +375,9 @@ class MessageActivity{
         if(!t.type.is_omitted()) {j["type"] = t.type;}
         if(!t.party_id.is_omitted()) {j["party_id"] = t.party_id;}
     }
-    friend void from_json(const nlohmann::json &j, MessageActivity &t {
-        if(j.contains(type)){j.at(type).get_to(t.type);}
-        if(j.contains(party_id)){j.at(party_id).get_to(t.party_id);}
+    friend void from_json(const nlohmann::json &j, MessageActivity &t) {
+        if(j.contains("type")){j.at("type").get_to(t.type);}
+        if(j.contains("party_id")){j.at("party_id").get_to(t.party_id);}
     }
 };
 
@@ -407,11 +407,11 @@ class MessageReference{
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.fail_if_not_exists.is_omitted()) {j["fail_if_not_exists"] = t.fail_if_not_exists;}
     }
-    friend void from_json(const nlohmann::json &j, MessageReference &t {
-        if(j.contains(message_id)){j.at(message_id).get_to(t.message_id);}
-        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(fail_if_not_exists)){j.at(fail_if_not_exists).get_to(t.fail_if_not_exists);}
+    friend void from_json(const nlohmann::json &j, MessageReference &t) {
+        if(j.contains("message_id")){j.at("message_id").get_to(t.message_id);}
+        if(j.contains("channel_id")){j.at("channel_id").get_to(t.channel_id);}
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("fail_if_not_exists")){j.at("fail_if_not_exists").get_to(t.fail_if_not_exists);}
     }
 };
 
@@ -433,9 +433,9 @@ class FollowedChannel{
         if(!t.channel_id.is_omitted()) {j["channel_id"] = t.channel_id;}
         if(!t.webhook_id.is_omitted()) {j["webhook_id"] = t.webhook_id;}
     }
-    friend void from_json(const nlohmann::json &j, FollowedChannel &t {
-        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
-        if(j.contains(webhook_id)){j.at(webhook_id).get_to(t.webhook_id);}
+    friend void from_json(const nlohmann::json &j, FollowedChannel &t) {
+        if(j.contains("channel_id")){j.at("channel_id").get_to(t.channel_id);}
+        if(j.contains("webhook_id")){j.at("webhook_id").get_to(t.webhook_id);}
     }
 };
 
@@ -461,10 +461,10 @@ class Reaction{
         if(!t.me.is_omitted()) {j["me"] = t.me;}
         if(!t.emoji.is_omitted()) {j["emoji"] = t.emoji;}
     }
-    friend void from_json(const nlohmann::json &j, Reaction &t {
-        if(j.contains(count)){j.at(count).get_to(t.count);}
-        if(j.contains(me)){j.at(me).get_to(t.me);}
-        if(j.contains(emoji)){j.at(emoji).get_to(t.emoji);}
+    friend void from_json(const nlohmann::json &j, Reaction &t) {
+        if(j.contains("count")){j.at("count").get_to(t.count);}
+        if(j.contains("me")){j.at("me").get_to(t.me);}
+        if(j.contains("emoji")){j.at("emoji").get_to(t.emoji);}
     }
 };
 
@@ -494,11 +494,11 @@ class Overwrite{
         if(!t.allow.is_omitted()) {j["allow"] = t.allow;}
         if(!t.deny.is_omitted()) {j["deny"] = t.deny;}
     }
-    friend void from_json(const nlohmann::json &j, Overwrite &t {
-        if(j.contains(id)){j.at(id).get_to(t.id);}
-        if(j.contains(type)){j.at(type).get_to(t.type);}
-        if(j.contains(allow)){j.at(allow).get_to(t.allow);}
-        if(j.contains(deny)){j.at(deny).get_to(t.deny);}
+    friend void from_json(const nlohmann::json &j, Overwrite &t) {
+        if(j.contains("id")){j.at("id").get_to(t.id);}
+        if(j.contains("type")){j.at("type").get_to(t.type);}
+        if(j.contains("allow")){j.at("allow").get_to(t.allow);}
+        if(j.contains("deny")){j.at("deny").get_to(t.deny);}
     }
 };
 
@@ -536,13 +536,13 @@ class ThreadMetadata{
         if(!t.invitable.is_omitted()) {j["invitable"] = t.invitable;}
         if(!t.create_timestamp.is_omitted()) {j["create_timestamp"] = t.create_timestamp;}
     }
-    friend void from_json(const nlohmann::json &j, ThreadMetadata &t {
-        if(j.contains(archived)){j.at(archived).get_to(t.archived);}
-        if(j.contains(auto_archive_duration)){j.at(auto_archive_duration).get_to(t.auto_archive_duration);}
-        if(j.contains(archive_timestamp)){j.at(archive_timestamp).get_to(t.archive_timestamp);}
-        if(j.contains(locked)){j.at(locked).get_to(t.locked);}
-        if(j.contains(invitable)){j.at(invitable).get_to(t.invitable);}
-        if(j.contains(create_timestamp)){j.at(create_timestamp).get_to(t.create_timestamp);}
+    friend void from_json(const nlohmann::json &j, ThreadMetadata &t) {
+        if(j.contains("archived")){j.at("archived").get_to(t.archived);}
+        if(j.contains("auto_archive_duration")){j.at("auto_archive_duration").get_to(t.auto_archive_duration);}
+        if(j.contains("archive_timestamp")){j.at("archive_timestamp").get_to(t.archive_timestamp);}
+        if(j.contains("locked")){j.at("locked").get_to(t.locked);}
+        if(j.contains("invitable")){j.at("invitable").get_to(t.invitable);}
+        if(j.contains("create_timestamp")){j.at("create_timestamp").get_to(t.create_timestamp);}
     }
 };
 
@@ -576,12 +576,12 @@ class ThreadMember{
         if(!t.flags.is_omitted()) {j["flags"] = t.flags;}
         if(!t.member.is_omitted()) {j["member"] = t.member;}
     }
-    friend void from_json(const nlohmann::json &j, ThreadMember &t {
-        if(j.contains(id)){j.at(id).get_to(t.id);}
-        if(j.contains(user_id)){j.at(user_id).get_to(t.user_id);}
-        if(j.contains(join_timestamp)){j.at(join_timestamp).get_to(t.join_timestamp);}
-        if(j.contains(flags)){j.at(flags).get_to(t.flags);}
-        if(j.contains(member)){j.at(member).get_to(t.member);}
+    friend void from_json(const nlohmann::json &j, ThreadMember &t) {
+        if(j.contains("id")){j.at("id").get_to(t.id);}
+        if(j.contains("user_id")){j.at("user_id").get_to(t.user_id);}
+        if(j.contains("join_timestamp")){j.at("join_timestamp").get_to(t.join_timestamp);}
+        if(j.contains("flags")){j.at("flags").get_to(t.flags);}
+        if(j.contains("member")){j.at("member").get_to(t.member);}
     }
 };
 
@@ -603,9 +603,9 @@ class DefaultReaction{
         if(!t.emoji_id.is_omitted()) {j["emoji_id"] = t.emoji_id;}
         if(!t.emoji_name.is_omitted()) {j["emoji_name"] = t.emoji_name;}
     }
-    friend void from_json(const nlohmann::json &j, DefaultReaction &t {
-        if(j.contains(emoji_id)){j.at(emoji_id).get_to(t.emoji_id);}
-        if(j.contains(emoji_name)){j.at(emoji_name).get_to(t.emoji_name);}
+    friend void from_json(const nlohmann::json &j, DefaultReaction &t) {
+        if(j.contains("emoji_id")){j.at("emoji_id").get_to(t.emoji_id);}
+        if(j.contains("emoji_name")){j.at("emoji_name").get_to(t.emoji_name);}
     }
 };
 
@@ -639,12 +639,12 @@ class ForumTag{
         if(!t.emoji_id.is_omitted()) {j["emoji_id"] = t.emoji_id;}
         if(!t.emoji_name.is_omitted()) {j["emoji_name"] = t.emoji_name;}
     }
-    friend void from_json(const nlohmann::json &j, ForumTag &t {
-        if(j.contains(id)){j.at(id).get_to(t.id);}
-        if(j.contains(name)){j.at(name).get_to(t.name);}
-        if(j.contains(moderated)){j.at(moderated).get_to(t.moderated);}
-        if(j.contains(emoji_id)){j.at(emoji_id).get_to(t.emoji_id);}
-        if(j.contains(emoji_name)){j.at(emoji_name).get_to(t.emoji_name);}
+    friend void from_json(const nlohmann::json &j, ForumTag &t) {
+        if(j.contains("id")){j.at("id").get_to(t.id);}
+        if(j.contains("name")){j.at("name").get_to(t.name);}
+        if(j.contains("moderated")){j.at("moderated").get_to(t.moderated);}
+        if(j.contains("emoji_id")){j.at("emoji_id").get_to(t.emoji_id);}
+        if(j.contains("emoji_name")){j.at("emoji_name").get_to(t.emoji_name);}
     }
 };
 
@@ -710,20 +710,20 @@ class Embed{
         if(!t.author.is_omitted()) {j["author"] = t.author;}
         if(!t.fields.is_omitted()) {j["fields"] = t.fields;}
     }
-    friend void from_json(const nlohmann::json &j, Embed &t {
-        if(j.contains(title)){j.at(title).get_to(t.title);}
-        if(j.contains(type)){j.at(type).get_to(t.type);}
-        if(j.contains(description)){j.at(description).get_to(t.description);}
-        if(j.contains(url)){j.at(url).get_to(t.url);}
-        if(j.contains(timestamp)){j.at(timestamp).get_to(t.timestamp);}
-        if(j.contains(color)){j.at(color).get_to(t.color);}
-        if(j.contains(footer)){j.at(footer).get_to(t.footer);}
-        if(j.contains(image)){j.at(image).get_to(t.image);}
-        if(j.contains(thumbnail)){j.at(thumbnail).get_to(t.thumbnail);}
-        if(j.contains(video)){j.at(video).get_to(t.video);}
-        if(j.contains(provider)){j.at(provider).get_to(t.provider);}
-        if(j.contains(author)){j.at(author).get_to(t.author);}
-        if(j.contains(fields)){j.at(fields).get_to(t.fields);}
+    friend void from_json(const nlohmann::json &j, Embed &t) {
+        if(j.contains("title")){j.at("title").get_to(t.title);}
+        if(j.contains("type")){j.at("type").get_to(t.type);}
+        if(j.contains("description")){j.at("description").get_to(t.description);}
+        if(j.contains("url")){j.at("url").get_to(t.url);}
+        if(j.contains("timestamp")){j.at("timestamp").get_to(t.timestamp);}
+        if(j.contains("color")){j.at("color").get_to(t.color);}
+        if(j.contains("footer")){j.at("footer").get_to(t.footer);}
+        if(j.contains("image")){j.at("image").get_to(t.image);}
+        if(j.contains("thumbnail")){j.at("thumbnail").get_to(t.thumbnail);}
+        if(j.contains("video")){j.at("video").get_to(t.video);}
+        if(j.contains("provider")){j.at("provider").get_to(t.provider);}
+        if(j.contains("author")){j.at("author").get_to(t.author);}
+        if(j.contains("fields")){j.at("fields").get_to(t.fields);}
     }
 };
 
@@ -753,11 +753,11 @@ class EmbedThumbnail{
         if(!t.height.is_omitted()) {j["height"] = t.height;}
         if(!t.width.is_omitted()) {j["width"] = t.width;}
     }
-    friend void from_json(const nlohmann::json &j, EmbedThumbnail &t {
-        if(j.contains(url)){j.at(url).get_to(t.url);}
-        if(j.contains(proxy_url)){j.at(proxy_url).get_to(t.proxy_url);}
-        if(j.contains(height)){j.at(height).get_to(t.height);}
-        if(j.contains(width)){j.at(width).get_to(t.width);}
+    friend void from_json(const nlohmann::json &j, EmbedThumbnail &t) {
+        if(j.contains("url")){j.at("url").get_to(t.url);}
+        if(j.contains("proxy_url")){j.at("proxy_url").get_to(t.proxy_url);}
+        if(j.contains("height")){j.at("height").get_to(t.height);}
+        if(j.contains("width")){j.at("width").get_to(t.width);}
     }
 };
 
@@ -787,11 +787,11 @@ class EmbedVideo{
         if(!t.height.is_omitted()) {j["height"] = t.height;}
         if(!t.width.is_omitted()) {j["width"] = t.width;}
     }
-    friend void from_json(const nlohmann::json &j, EmbedVideo &t {
-        if(j.contains(url)){j.at(url).get_to(t.url);}
-        if(j.contains(proxy_url)){j.at(proxy_url).get_to(t.proxy_url);}
-        if(j.contains(height)){j.at(height).get_to(t.height);}
-        if(j.contains(width)){j.at(width).get_to(t.width);}
+    friend void from_json(const nlohmann::json &j, EmbedVideo &t) {
+        if(j.contains("url")){j.at("url").get_to(t.url);}
+        if(j.contains("proxy_url")){j.at("proxy_url").get_to(t.proxy_url);}
+        if(j.contains("height")){j.at("height").get_to(t.height);}
+        if(j.contains("width")){j.at("width").get_to(t.width);}
     }
 };
 
@@ -821,11 +821,11 @@ class EmbedImage{
         if(!t.height.is_omitted()) {j["height"] = t.height;}
         if(!t.width.is_omitted()) {j["width"] = t.width;}
     }
-    friend void from_json(const nlohmann::json &j, EmbedImage &t {
-        if(j.contains(url)){j.at(url).get_to(t.url);}
-        if(j.contains(proxy_url)){j.at(proxy_url).get_to(t.proxy_url);}
-        if(j.contains(height)){j.at(height).get_to(t.height);}
-        if(j.contains(width)){j.at(width).get_to(t.width);}
+    friend void from_json(const nlohmann::json &j, EmbedImage &t) {
+        if(j.contains("url")){j.at("url").get_to(t.url);}
+        if(j.contains("proxy_url")){j.at("proxy_url").get_to(t.proxy_url);}
+        if(j.contains("height")){j.at("height").get_to(t.height);}
+        if(j.contains("width")){j.at("width").get_to(t.width);}
     }
 };
 
@@ -847,9 +847,9 @@ class EmbedProvider{
         if(!t.name.is_omitted()) {j["name"] = t.name;}
         if(!t.url.is_omitted()) {j["url"] = t.url;}
     }
-    friend void from_json(const nlohmann::json &j, EmbedProvider &t {
-        if(j.contains(name)){j.at(name).get_to(t.name);}
-        if(j.contains(url)){j.at(url).get_to(t.url);}
+    friend void from_json(const nlohmann::json &j, EmbedProvider &t) {
+        if(j.contains("name")){j.at("name").get_to(t.name);}
+        if(j.contains("url")){j.at("url").get_to(t.url);}
     }
 };
 
@@ -879,11 +879,11 @@ class EmbedAuthor{
         if(!t.icon_url.is_omitted()) {j["icon_url"] = t.icon_url;}
         if(!t.proxy_icon_url.is_omitted()) {j["proxy_icon_url"] = t.proxy_icon_url;}
     }
-    friend void from_json(const nlohmann::json &j, EmbedAuthor &t {
-        if(j.contains(name)){j.at(name).get_to(t.name);}
-        if(j.contains(url)){j.at(url).get_to(t.url);}
-        if(j.contains(icon_url)){j.at(icon_url).get_to(t.icon_url);}
-        if(j.contains(proxy_icon_url)){j.at(proxy_icon_url).get_to(t.proxy_icon_url);}
+    friend void from_json(const nlohmann::json &j, EmbedAuthor &t) {
+        if(j.contains("name")){j.at("name").get_to(t.name);}
+        if(j.contains("url")){j.at("url").get_to(t.url);}
+        if(j.contains("icon_url")){j.at("icon_url").get_to(t.icon_url);}
+        if(j.contains("proxy_icon_url")){j.at("proxy_icon_url").get_to(t.proxy_icon_url);}
     }
 };
 
@@ -909,10 +909,10 @@ class EmbedFooter{
         if(!t.icon_url.is_omitted()) {j["icon_url"] = t.icon_url;}
         if(!t.proxy_icon_url.is_omitted()) {j["proxy_icon_url"] = t.proxy_icon_url;}
     }
-    friend void from_json(const nlohmann::json &j, EmbedFooter &t {
-        if(j.contains(text)){j.at(text).get_to(t.text);}
-        if(j.contains(icon_url)){j.at(icon_url).get_to(t.icon_url);}
-        if(j.contains(proxy_icon_url)){j.at(proxy_icon_url).get_to(t.proxy_icon_url);}
+    friend void from_json(const nlohmann::json &j, EmbedFooter &t) {
+        if(j.contains("text")){j.at("text").get_to(t.text);}
+        if(j.contains("icon_url")){j.at("icon_url").get_to(t.icon_url);}
+        if(j.contains("proxy_icon_url")){j.at("proxy_icon_url").get_to(t.proxy_icon_url);}
     }
 };
 
@@ -938,10 +938,10 @@ class EmbedField{
         if(!t.value.is_omitted()) {j["value"] = t.value;}
         if(!t.display_inline.is_omitted()) {j["inline"] = t.display_inline;}
     }
-    friend void from_json(const nlohmann::json &j, EmbedField &t {
-        if(j.contains(name)){j.at(name).get_to(t.name);}
-        if(j.contains(value)){j.at(value).get_to(t.value);}
-        if(j.contains(inline)){j.at(inline).get_to(t.display_inline);}
+    friend void from_json(const nlohmann::json &j, EmbedField &t) {
+        if(j.contains("name")){j.at("name").get_to(t.name);}
+        if(j.contains("value")){j.at("value").get_to(t.value);}
+        if(j.contains("inline")){j.at("inline").get_to(t.display_inline);}
     }
 };
 
@@ -995,17 +995,17 @@ class Attachment{
         if(!t.width.is_omitted()) {j["width"] = t.width;}
         if(!t.ephemeral.is_omitted()) {j["ephemeral"] = t.ephemeral;}
     }
-    friend void from_json(const nlohmann::json &j, Attachment &t {
-        if(j.contains(id)){j.at(id).get_to(t.id);}
-        if(j.contains(filename)){j.at(filename).get_to(t.filename);}
-        if(j.contains(description)){j.at(description).get_to(t.description);}
-        if(j.contains(content_type)){j.at(content_type).get_to(t.content_type);}
-        if(j.contains(size)){j.at(size).get_to(t.size);}
-        if(j.contains(url)){j.at(url).get_to(t.url);}
-        if(j.contains(proxy_url)){j.at(proxy_url).get_to(t.proxy_url);}
-        if(j.contains(height)){j.at(height).get_to(t.height);}
-        if(j.contains(width)){j.at(width).get_to(t.width);}
-        if(j.contains(ephemeral)){j.at(ephemeral).get_to(t.ephemeral);}
+    friend void from_json(const nlohmann::json &j, Attachment &t) {
+        if(j.contains("id")){j.at("id").get_to(t.id);}
+        if(j.contains("filename")){j.at("filename").get_to(t.filename);}
+        if(j.contains("description")){j.at("description").get_to(t.description);}
+        if(j.contains("content_type")){j.at("content_type").get_to(t.content_type);}
+        if(j.contains("size")){j.at("size").get_to(t.size);}
+        if(j.contains("url")){j.at("url").get_to(t.url);}
+        if(j.contains("proxy_url")){j.at("proxy_url").get_to(t.proxy_url);}
+        if(j.contains("height")){j.at("height").get_to(t.height);}
+        if(j.contains("width")){j.at("width").get_to(t.width);}
+        if(j.contains("ephemeral")){j.at("ephemeral").get_to(t.ephemeral);}
     }
 };
 
@@ -1035,11 +1035,11 @@ class ChannelMention{
         if(!t.type.is_omitted()) {j["type"] = t.type;}
         if(!t.name.is_omitted()) {j["name"] = t.name;}
     }
-    friend void from_json(const nlohmann::json &j, ChannelMention &t {
-        if(j.contains(id)){j.at(id).get_to(t.id);}
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(type)){j.at(type).get_to(t.type);}
-        if(j.contains(name)){j.at(name).get_to(t.name);}
+    friend void from_json(const nlohmann::json &j, ChannelMention &t) {
+        if(j.contains("id")){j.at("id").get_to(t.id);}
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("type")){j.at("type").get_to(t.type);}
+        if(j.contains("name")){j.at("name").get_to(t.name);}
     }
 };
 
@@ -1069,11 +1069,11 @@ class AllowedMentions{
         if(!t.users.is_omitted()) {j["users"] = t.users;}
         if(!t.replied_user.is_omitted()) {j["replied_user"] = t.replied_user;}
     }
-    friend void from_json(const nlohmann::json &j, AllowedMentions &t {
-        if(j.contains(parse)){j.at(parse).get_to(t.parse);}
-        if(j.contains(roles)){j.at(roles).get_to(t.roles);}
-        if(j.contains(users)){j.at(users).get_to(t.users);}
-        if(j.contains(replied_user)){j.at(replied_user).get_to(t.replied_user);}
+    friend void from_json(const nlohmann::json &j, AllowedMentions &t) {
+        if(j.contains("parse")){j.at("parse").get_to(t.parse);}
+        if(j.contains("roles")){j.at("roles").get_to(t.roles);}
+        if(j.contains("users")){j.at("users").get_to(t.users);}
+        if(j.contains("replied_user")){j.at("replied_user").get_to(t.replied_user);}
     }
 };
 
@@ -1103,11 +1103,11 @@ class RoleSubscriptionData{
         if(!t.total_months_subscribed.is_omitted()) {j["total_months_subscribed"] = t.total_months_subscribed;}
         if(!t.is_renewal.is_omitted()) {j["is_renewal"] = t.is_renewal;}
     }
-    friend void from_json(const nlohmann::json &j, RoleSubscriptionData &t {
-        if(j.contains(role_subscription_listing_id)){j.at(role_subscription_listing_id).get_to(t.role_subscription_listing_id);}
-        if(j.contains(tier_name)){j.at(tier_name).get_to(t.tier_name);}
-        if(j.contains(total_months_subscribed)){j.at(total_months_subscribed).get_to(t.total_months_subscribed);}
-        if(j.contains(is_renewal)){j.at(is_renewal).get_to(t.is_renewal);}
+    friend void from_json(const nlohmann::json &j, RoleSubscriptionData &t) {
+        if(j.contains("role_subscription_listing_id")){j.at("role_subscription_listing_id").get_to(t.role_subscription_listing_id);}
+        if(j.contains("tier_name")){j.at("tier_name").get_to(t.tier_name);}
+        if(j.contains("total_months_subscribed")){j.at("total_months_subscribed").get_to(t.total_months_subscribed);}
+        if(j.contains("is_renewal")){j.at("is_renewal").get_to(t.is_renewal);}
     }
 };
 
@@ -1129,9 +1129,9 @@ class JsonParams(GroupDm){
         if(!t.name.is_omitted()) {j["name"] = t.name;}
         if(!t.icon.is_omitted()) {j["icon"] = t.icon;}
     }
-    friend void from_json(const nlohmann::json &j, JsonParams(GroupDm) &t {
-        if(j.contains(name)){j.at(name).get_to(t.name);}
-        if(j.contains(icon)){j.at(icon).get_to(t.icon);}
+    friend void from_json(const nlohmann::json &j, JsonParams(GroupDm) &t) {
+        if(j.contains("name")){j.at("name").get_to(t.name);}
+        if(j.contains("icon")){j.at("icon").get_to(t.icon);}
     }
 };
 
@@ -1221,26 +1221,26 @@ class JsonParams(GuildChannel){
         if(!t.default_sort_order.is_omitted()) {j["default_sort_order"] = t.default_sort_order;}
         if(!t.default_forum_layout.is_omitted()) {j["default_forum_layout"] = t.default_forum_layout;}
     }
-    friend void from_json(const nlohmann::json &j, JsonParams(GuildChannel) &t {
-        if(j.contains(name)){j.at(name).get_to(t.name);}
-        if(j.contains(type)){j.at(type).get_to(t.type);}
-        if(j.contains(position)){j.at(position).get_to(t.position);}
-        if(j.contains(topic)){j.at(topic).get_to(t.topic);}
-        if(j.contains(nsfw)){j.at(nsfw).get_to(t.nsfw);}
-        if(j.contains(rate_limit_per_user)){j.at(rate_limit_per_user).get_to(t.rate_limit_per_user);}
-        if(j.contains(bitrate)){j.at(bitrate).get_to(t.bitrate);}
-        if(j.contains(user_limit)){j.at(user_limit).get_to(t.user_limit);}
-        if(j.contains(permission_overwrites)){j.at(permission_overwrites).get_to(t.permission_overwrites);}
-        if(j.contains(parent_id)){j.at(parent_id).get_to(t.parent_id);}
-        if(j.contains(rtc_region)){j.at(rtc_region).get_to(t.rtc_region);}
-        if(j.contains(video_quality_mode)){j.at(video_quality_mode).get_to(t.video_quality_mode);}
-        if(j.contains(default_auto_archive_duration)){j.at(default_auto_archive_duration).get_to(t.default_auto_archive_duration);}
-        if(j.contains(flags)){j.at(flags).get_to(t.flags);}
-        if(j.contains(available_tags)){j.at(available_tags).get_to(t.available_tags);}
-        if(j.contains(default_reaction_emoji)){j.at(default_reaction_emoji).get_to(t.default_reaction_emoji);}
-        if(j.contains(default_thread_rate_limit_per_user)){j.at(default_thread_rate_limit_per_user).get_to(t.default_thread_rate_limit_per_user);}
-        if(j.contains(default_sort_order)){j.at(default_sort_order).get_to(t.default_sort_order);}
-        if(j.contains(default_forum_layout)){j.at(default_forum_layout).get_to(t.default_forum_layout);}
+    friend void from_json(const nlohmann::json &j, JsonParams(GuildChannel) &t) {
+        if(j.contains("name")){j.at("name").get_to(t.name);}
+        if(j.contains("type")){j.at("type").get_to(t.type);}
+        if(j.contains("position")){j.at("position").get_to(t.position);}
+        if(j.contains("topic")){j.at("topic").get_to(t.topic);}
+        if(j.contains("nsfw")){j.at("nsfw").get_to(t.nsfw);}
+        if(j.contains("rate_limit_per_user")){j.at("rate_limit_per_user").get_to(t.rate_limit_per_user);}
+        if(j.contains("bitrate")){j.at("bitrate").get_to(t.bitrate);}
+        if(j.contains("user_limit")){j.at("user_limit").get_to(t.user_limit);}
+        if(j.contains("permission_overwrites")){j.at("permission_overwrites").get_to(t.permission_overwrites);}
+        if(j.contains("parent_id")){j.at("parent_id").get_to(t.parent_id);}
+        if(j.contains("rtc_region")){j.at("rtc_region").get_to(t.rtc_region);}
+        if(j.contains("video_quality_mode")){j.at("video_quality_mode").get_to(t.video_quality_mode);}
+        if(j.contains("default_auto_archive_duration")){j.at("default_auto_archive_duration").get_to(t.default_auto_archive_duration);}
+        if(j.contains("flags")){j.at("flags").get_to(t.flags);}
+        if(j.contains("available_tags")){j.at("available_tags").get_to(t.available_tags);}
+        if(j.contains("default_reaction_emoji")){j.at("default_reaction_emoji").get_to(t.default_reaction_emoji);}
+        if(j.contains("default_thread_rate_limit_per_user")){j.at("default_thread_rate_limit_per_user").get_to(t.default_thread_rate_limit_per_user);}
+        if(j.contains("default_sort_order")){j.at("default_sort_order").get_to(t.default_sort_order);}
+        if(j.contains("default_forum_layout")){j.at("default_forum_layout").get_to(t.default_forum_layout);}
     }
 };
 
@@ -1286,15 +1286,15 @@ class JsonParams(Thread){
         if(!t.flags.is_omitted()) {j["flags"] = t.flags;}
         if(!t.applied_tags.is_omitted()) {j["applied_tags"] = t.applied_tags;}
     }
-    friend void from_json(const nlohmann::json &j, JsonParams(Thread) &t {
-        if(j.contains(name)){j.at(name).get_to(t.name);}
-        if(j.contains(archived)){j.at(archived).get_to(t.archived);}
-        if(j.contains(auto_archive_duration)){j.at(auto_archive_duration).get_to(t.auto_archive_duration);}
-        if(j.contains(locked)){j.at(locked).get_to(t.locked);}
-        if(j.contains(invitable)){j.at(invitable).get_to(t.invitable);}
-        if(j.contains(rate_limit_per_user)){j.at(rate_limit_per_user).get_to(t.rate_limit_per_user);}
-        if(j.contains(flags)){j.at(flags).get_to(t.flags);}
-        if(j.contains(applied_tags)){j.at(applied_tags).get_to(t.applied_tags);}
+    friend void from_json(const nlohmann::json &j, JsonParams(Thread) &t) {
+        if(j.contains("name")){j.at("name").get_to(t.name);}
+        if(j.contains("archived")){j.at("archived").get_to(t.archived);}
+        if(j.contains("auto_archive_duration")){j.at("auto_archive_duration").get_to(t.auto_archive_duration);}
+        if(j.contains("locked")){j.at("locked").get_to(t.locked);}
+        if(j.contains("invitable")){j.at("invitable").get_to(t.invitable);}
+        if(j.contains("rate_limit_per_user")){j.at("rate_limit_per_user").get_to(t.rate_limit_per_user);}
+        if(j.contains("flags")){j.at("flags").get_to(t.flags);}
+        if(j.contains("applied_tags")){j.at("applied_tags").get_to(t.applied_tags);}
     }
 };
 
@@ -1344,16 +1344,16 @@ class ForumThreadMessageParams{
         if(!t.attachments.is_omitted()) {j["attachments"] = t.attachments;}
         if(!t.flags.is_omitted()) {j["flags"] = t.flags;}
     }
-    friend void from_json(const nlohmann::json &j, ForumThreadMessageParams &t {
-        if(j.contains(content)){j.at(content).get_to(t.content);}
-        if(j.contains(embeds)){j.at(embeds).get_to(t.embeds);}
-        if(j.contains(allowed_mentions)){j.at(allowed_mentions).get_to(t.allowed_mentions);}
-        if(j.contains(components)){j.at(components).get_to(t.components);}
-        if(j.contains(sticker_ids)){j.at(sticker_ids).get_to(t.sticker_ids);}
-        if(j.contains(files[n])){j.at(files[n]).get_to(t.files[n]);}
-        if(j.contains(payload_json)){j.at(payload_json).get_to(t.payload_json);}
-        if(j.contains(attachments)){j.at(attachments).get_to(t.attachments);}
-        if(j.contains(flags)){j.at(flags).get_to(t.flags);}
+    friend void from_json(const nlohmann::json &j, ForumThreadMessageParams &t) {
+        if(j.contains("content")){j.at("content").get_to(t.content);}
+        if(j.contains("embeds")){j.at("embeds").get_to(t.embeds);}
+        if(j.contains("allowed_mentions")){j.at("allowed_mentions").get_to(t.allowed_mentions);}
+        if(j.contains("components")){j.at("components").get_to(t.components);}
+        if(j.contains("sticker_ids")){j.at("sticker_ids").get_to(t.sticker_ids);}
+        if(j.contains("files[n]")){j.at("files[n]").get_to(t.files[n]);}
+        if(j.contains("payload_json")){j.at("payload_json").get_to(t.payload_json);}
+        if(j.contains("attachments")){j.at("attachments").get_to(t.attachments);}
+        if(j.contains("flags")){j.at("flags").get_to(t.flags);}
     }
 };
 
@@ -1379,10 +1379,10 @@ class ListPublicArchivedThreadsResponse{
         if(!t.members.is_omitted()) {j["members"] = t.members;}
         if(!t.has_more.is_omitted()) {j["has_more"] = t.has_more;}
     }
-    friend void from_json(const nlohmann::json &j, ListPublicArchivedThreadsResponse &t {
-        if(j.contains(threads)){j.at(threads).get_to(t.threads);}
-        if(j.contains(members)){j.at(members).get_to(t.members);}
-        if(j.contains(has_more)){j.at(has_more).get_to(t.has_more);}
+    friend void from_json(const nlohmann::json &j, ListPublicArchivedThreadsResponse &t) {
+        if(j.contains("threads")){j.at("threads").get_to(t.threads);}
+        if(j.contains("members")){j.at("members").get_to(t.members);}
+        if(j.contains("has_more")){j.at("has_more").get_to(t.has_more);}
     }
 };
 
@@ -1408,10 +1408,10 @@ class ListPrivateArchivedThreadsResponse{
         if(!t.members.is_omitted()) {j["members"] = t.members;}
         if(!t.has_more.is_omitted()) {j["has_more"] = t.has_more;}
     }
-    friend void from_json(const nlohmann::json &j, ListPrivateArchivedThreadsResponse &t {
-        if(j.contains(threads)){j.at(threads).get_to(t.threads);}
-        if(j.contains(members)){j.at(members).get_to(t.members);}
-        if(j.contains(has_more)){j.at(has_more).get_to(t.has_more);}
+    friend void from_json(const nlohmann::json &j, ListPrivateArchivedThreadsResponse &t) {
+        if(j.contains("threads")){j.at("threads").get_to(t.threads);}
+        if(j.contains("members")){j.at("members").get_to(t.members);}
+        if(j.contains("has_more")){j.at("has_more").get_to(t.has_more);}
     }
 };
 
@@ -1437,9 +1437,9 @@ class ListJoinedPrivateArchivedThreadsResponse{
         if(!t.members.is_omitted()) {j["members"] = t.members;}
         if(!t.has_more.is_omitted()) {j["has_more"] = t.has_more;}
     }
-    friend void from_json(const nlohmann::json &j, ListJoinedPrivateArchivedThreadsResponse &t {
-        if(j.contains(threads)){j.at(threads).get_to(t.threads);}
-        if(j.contains(members)){j.at(members).get_to(t.members);}
-        if(j.contains(has_more)){j.at(has_more).get_to(t.has_more);}
+    friend void from_json(const nlohmann::json &j, ListJoinedPrivateArchivedThreadsResponse &t) {
+        if(j.contains("threads")){j.at("threads").get_to(t.threads);}
+        if(j.contains("members")){j.at("members").get_to(t.members);}
+        if(j.contains("has_more")){j.at("has_more").get_to(t.has_more);}
     }
 };

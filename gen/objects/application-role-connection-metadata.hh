@@ -38,12 +38,12 @@ class ApplicationRoleConnectionMetadata{
         if(!t.description.is_omitted()) {j["description"] = t.description;}
         if(!t.description_localizations.is_omitted()) {j["description_localizations"] = t.description_localizations;}
     }
-    friend void from_json(const nlohmann::json &j, ApplicationRoleConnectionMetadata &t {
-        if(j.contains(type)){j.at(type).get_to(t.type);}
-        if(j.contains(key)){j.at(key).get_to(t.key);}
-        if(j.contains(name)){j.at(name).get_to(t.name);}
-        if(j.contains(name_localizations)){j.at(name_localizations).get_to(t.name_localizations);}
-        if(j.contains(description)){j.at(description).get_to(t.description);}
-        if(j.contains(description_localizations)){j.at(description_localizations).get_to(t.description_localizations);}
+    friend void from_json(const nlohmann::json &j, ApplicationRoleConnectionMetadata &t) {
+        if(j.contains("type")){j.at("type").get_to(t.type);}
+        if(j.contains("key")){j.at("key").get_to(t.key);}
+        if(j.contains("name")){j.at("name").get_to(t.name);}
+        if(j.contains("name_localizations")){j.at("name_localizations").get_to(t.name_localizations);}
+        if(j.contains("description")){j.at("description").get_to(t.description);}
+        if(j.contains("description_localizations")){j.at("description_localizations").get_to(t.description_localizations);}
     }
 };

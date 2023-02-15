@@ -58,18 +58,18 @@ class AutoModerationRule{
         if(!t.exempt_roles.is_omitted()) {j["exempt_roles"] = t.exempt_roles;}
         if(!t.exempt_channels.is_omitted()) {j["exempt_channels"] = t.exempt_channels;}
     }
-    friend void from_json(const nlohmann::json &j, AutoModerationRule &t {
-        if(j.contains(id)){j.at(id).get_to(t.id);}
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(name)){j.at(name).get_to(t.name);}
-        if(j.contains(creator_id)){j.at(creator_id).get_to(t.creator_id);}
-        if(j.contains(event_type)){j.at(event_type).get_to(t.event_type);}
-        if(j.contains(trigger_type)){j.at(trigger_type).get_to(t.trigger_type);}
-        if(j.contains(trigger_metadata)){j.at(trigger_metadata).get_to(t.trigger_metadata);}
-        if(j.contains(actions)){j.at(actions).get_to(t.actions);}
-        if(j.contains(enabled)){j.at(enabled).get_to(t.enabled);}
-        if(j.contains(exempt_roles)){j.at(exempt_roles).get_to(t.exempt_roles);}
-        if(j.contains(exempt_channels)){j.at(exempt_channels).get_to(t.exempt_channels);}
+    friend void from_json(const nlohmann::json &j, AutoModerationRule &t) {
+        if(j.contains("id")){j.at("id").get_to(t.id);}
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("name")){j.at("name").get_to(t.name);}
+        if(j.contains("creator_id")){j.at("creator_id").get_to(t.creator_id);}
+        if(j.contains("event_type")){j.at("event_type").get_to(t.event_type);}
+        if(j.contains("trigger_type")){j.at("trigger_type").get_to(t.trigger_type);}
+        if(j.contains("trigger_metadata")){j.at("trigger_metadata").get_to(t.trigger_metadata);}
+        if(j.contains("actions")){j.at("actions").get_to(t.actions);}
+        if(j.contains("enabled")){j.at("enabled").get_to(t.enabled);}
+        if(j.contains("exempt_roles")){j.at("exempt_roles").get_to(t.exempt_roles);}
+        if(j.contains("exempt_channels")){j.at("exempt_channels").get_to(t.exempt_channels);}
     }
 };
 
@@ -103,12 +103,12 @@ class TriggerMetadata{
         if(!t.allow_list.is_omitted()) {j["allow_list"] = t.allow_list;}
         if(!t.mention_total_limit.is_omitted()) {j["mention_total_limit"] = t.mention_total_limit;}
     }
-    friend void from_json(const nlohmann::json &j, TriggerMetadata &t {
-        if(j.contains(keyword_filter)){j.at(keyword_filter).get_to(t.keyword_filter);}
-        if(j.contains(regex_patterns)){j.at(regex_patterns).get_to(t.regex_patterns);}
-        if(j.contains(presets)){j.at(presets).get_to(t.presets);}
-        if(j.contains(allow_list)){j.at(allow_list).get_to(t.allow_list);}
-        if(j.contains(mention_total_limit)){j.at(mention_total_limit).get_to(t.mention_total_limit);}
+    friend void from_json(const nlohmann::json &j, TriggerMetadata &t) {
+        if(j.contains("keyword_filter")){j.at("keyword_filter").get_to(t.keyword_filter);}
+        if(j.contains("regex_patterns")){j.at("regex_patterns").get_to(t.regex_patterns);}
+        if(j.contains("presets")){j.at("presets").get_to(t.presets);}
+        if(j.contains("allow_list")){j.at("allow_list").get_to(t.allow_list);}
+        if(j.contains("mention_total_limit")){j.at("mention_total_limit").get_to(t.mention_total_limit);}
     }
 };
 
@@ -130,9 +130,9 @@ class AutoModerationAction{
         if(!t.type.is_omitted()) {j["type"] = t.type;}
         if(!t.metadata.is_omitted()) {j["metadata"] = t.metadata;}
     }
-    friend void from_json(const nlohmann::json &j, AutoModerationAction &t {
-        if(j.contains(type)){j.at(type).get_to(t.type);}
-        if(j.contains(metadata)){j.at(metadata).get_to(t.metadata);}
+    friend void from_json(const nlohmann::json &j, AutoModerationAction &t) {
+        if(j.contains("type")){j.at("type").get_to(t.type);}
+        if(j.contains("metadata")){j.at("metadata").get_to(t.metadata);}
     }
 };
 
@@ -154,8 +154,8 @@ class ActionMetadata{
         if(!t.channel_id.is_omitted()) {j["channel_id"] = t.channel_id;}
         if(!t.duration_seconds.is_omitted()) {j["duration_seconds"] = t.duration_seconds;}
     }
-    friend void from_json(const nlohmann::json &j, ActionMetadata &t {
-        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
-        if(j.contains(duration_seconds)){j.at(duration_seconds).get_to(t.duration_seconds);}
+    friend void from_json(const nlohmann::json &j, ActionMetadata &t) {
+        if(j.contains("channel_id")){j.at("channel_id").get_to(t.channel_id);}
+        if(j.contains("duration_seconds")){j.at("duration_seconds").get_to(t.duration_seconds);}
     }
 };

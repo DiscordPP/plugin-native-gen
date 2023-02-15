@@ -34,12 +34,12 @@ class Team{
         if(!t.name.is_omitted()) {j["name"] = t.name;}
         if(!t.owner_user_id.is_omitted()) {j["owner_user_id"] = t.owner_user_id;}
     }
-    friend void from_json(const nlohmann::json &j, Team &t {
-        if(j.contains(icon)){j.at(icon).get_to(t.icon);}
-        if(j.contains(id)){j.at(id).get_to(t.id);}
-        if(j.contains(members)){j.at(members).get_to(t.members);}
-        if(j.contains(name)){j.at(name).get_to(t.name);}
-        if(j.contains(owner_user_id)){j.at(owner_user_id).get_to(t.owner_user_id);}
+    friend void from_json(const nlohmann::json &j, Team &t) {
+        if(j.contains("icon")){j.at("icon").get_to(t.icon);}
+        if(j.contains("id")){j.at("id").get_to(t.id);}
+        if(j.contains("members")){j.at("members").get_to(t.members);}
+        if(j.contains("name")){j.at("name").get_to(t.name);}
+        if(j.contains("owner_user_id")){j.at("owner_user_id").get_to(t.owner_user_id);}
     }
 };
 
@@ -69,10 +69,10 @@ class TeamMember{
         if(!t.team_id.is_omitted()) {j["team_id"] = t.team_id;}
         if(!t.user.is_omitted()) {j["user"] = t.user;}
     }
-    friend void from_json(const nlohmann::json &j, TeamMember &t {
-        if(j.contains(membership_state)){j.at(membership_state).get_to(t.membership_state);}
-        if(j.contains(permissions)){j.at(permissions).get_to(t.permissions);}
-        if(j.contains(team_id)){j.at(team_id).get_to(t.team_id);}
-        if(j.contains(user)){j.at(user).get_to(t.user);}
+    friend void from_json(const nlohmann::json &j, TeamMember &t) {
+        if(j.contains("membership_state")){j.at("membership_state").get_to(t.membership_state);}
+        if(j.contains("permissions")){j.at("permissions").get_to(t.permissions);}
+        if(j.contains("team_id")){j.at("team_id").get_to(t.team_id);}
+        if(j.contains("user")){j.at("user").get_to(t.user);}
     }
 };

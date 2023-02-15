@@ -30,10 +30,10 @@ class GetCurrentAuthorizationInformationResponse{
         if(!t.expires.is_omitted()) {j["expires"] = t.expires;}
         if(!t.user.is_omitted()) {j["user"] = t.user;}
     }
-    friend void from_json(const nlohmann::json &j, GetCurrentAuthorizationInformationResponse &t {
-        if(j.contains(application)){j.at(application).get_to(t.application);}
-        if(j.contains(scopes)){j.at(scopes).get_to(t.scopes);}
-        if(j.contains(expires)){j.at(expires).get_to(t.expires);}
-        if(j.contains(user)){j.at(user).get_to(t.user);}
+    friend void from_json(const nlohmann::json &j, GetCurrentAuthorizationInformationResponse &t) {
+        if(j.contains("application")){j.at("application").get_to(t.application);}
+        if(j.contains("scopes")){j.at("scopes").get_to(t.scopes);}
+        if(j.contains("expires")){j.at("expires").get_to(t.expires);}
+        if(j.contains("user")){j.at("user").get_to(t.user);}
     }
 };

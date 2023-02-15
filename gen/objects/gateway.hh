@@ -26,10 +26,10 @@ class GetGatewayBotResponse{
         if(!t.shards.is_omitted()) {j["shards"] = t.shards;}
         if(!t.session_start_limit.is_omitted()) {j["session_start_limit"] = t.session_start_limit;}
     }
-    friend void from_json(const nlohmann::json &j, GetGatewayBotResponse &t {
-        if(j.contains(url)){j.at(url).get_to(t.url);}
-        if(j.contains(shards)){j.at(shards).get_to(t.shards);}
-        if(j.contains(session_start_limit)){j.at(session_start_limit).get_to(t.session_start_limit);}
+    friend void from_json(const nlohmann::json &j, GetGatewayBotResponse &t) {
+        if(j.contains("url")){j.at("url").get_to(t.url);}
+        if(j.contains("shards")){j.at("shards").get_to(t.shards);}
+        if(j.contains("session_start_limit")){j.at("session_start_limit").get_to(t.session_start_limit);}
     }
 };
 
@@ -59,10 +59,10 @@ class SessionStartLimit{
         if(!t.reset_after.is_omitted()) {j["reset_after"] = t.reset_after;}
         if(!t.max_concurrency.is_omitted()) {j["max_concurrency"] = t.max_concurrency;}
     }
-    friend void from_json(const nlohmann::json &j, SessionStartLimit &t {
-        if(j.contains(total)){j.at(total).get_to(t.total);}
-        if(j.contains(remaining)){j.at(remaining).get_to(t.remaining);}
-        if(j.contains(reset_after)){j.at(reset_after).get_to(t.reset_after);}
-        if(j.contains(max_concurrency)){j.at(max_concurrency).get_to(t.max_concurrency);}
+    friend void from_json(const nlohmann::json &j, SessionStartLimit &t) {
+        if(j.contains("total")){j.at("total").get_to(t.total);}
+        if(j.contains("remaining")){j.at("remaining").get_to(t.remaining);}
+        if(j.contains("reset_after")){j.at("reset_after").get_to(t.reset_after);}
+        if(j.contains("max_concurrency")){j.at("max_concurrency").get_to(t.max_concurrency);}
     }
 };

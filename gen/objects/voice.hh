@@ -66,20 +66,20 @@ class VoiceState{
         if(!t.suppress.is_omitted()) {j["suppress"] = t.suppress;}
         if(!t.request_to_speak_timestamp.is_omitted()) {j["request_to_speak_timestamp"] = t.request_to_speak_timestamp;}
     }
-    friend void from_json(const nlohmann::json &j, VoiceState &t {
-        if(j.contains(guild_id)){j.at(guild_id).get_to(t.guild_id);}
-        if(j.contains(channel_id)){j.at(channel_id).get_to(t.channel_id);}
-        if(j.contains(user_id)){j.at(user_id).get_to(t.user_id);}
-        if(j.contains(member)){j.at(member).get_to(t.member);}
-        if(j.contains(session_id)){j.at(session_id).get_to(t.session_id);}
-        if(j.contains(deaf)){j.at(deaf).get_to(t.deaf);}
-        if(j.contains(mute)){j.at(mute).get_to(t.mute);}
-        if(j.contains(self_deaf)){j.at(self_deaf).get_to(t.self_deaf);}
-        if(j.contains(self_mute)){j.at(self_mute).get_to(t.self_mute);}
-        if(j.contains(self_stream)){j.at(self_stream).get_to(t.self_stream);}
-        if(j.contains(self_video)){j.at(self_video).get_to(t.self_video);}
-        if(j.contains(suppress)){j.at(suppress).get_to(t.suppress);}
-        if(j.contains(request_to_speak_timestamp)){j.at(request_to_speak_timestamp).get_to(t.request_to_speak_timestamp);}
+    friend void from_json(const nlohmann::json &j, VoiceState &t) {
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("channel_id")){j.at("channel_id").get_to(t.channel_id);}
+        if(j.contains("user_id")){j.at("user_id").get_to(t.user_id);}
+        if(j.contains("member")){j.at("member").get_to(t.member);}
+        if(j.contains("session_id")){j.at("session_id").get_to(t.session_id);}
+        if(j.contains("deaf")){j.at("deaf").get_to(t.deaf);}
+        if(j.contains("mute")){j.at("mute").get_to(t.mute);}
+        if(j.contains("self_deaf")){j.at("self_deaf").get_to(t.self_deaf);}
+        if(j.contains("self_mute")){j.at("self_mute").get_to(t.self_mute);}
+        if(j.contains("self_stream")){j.at("self_stream").get_to(t.self_stream);}
+        if(j.contains("self_video")){j.at("self_video").get_to(t.self_video);}
+        if(j.contains("suppress")){j.at("suppress").get_to(t.suppress);}
+        if(j.contains("request_to_speak_timestamp")){j.at("request_to_speak_timestamp").get_to(t.request_to_speak_timestamp);}
     }
 };
 
@@ -113,11 +113,11 @@ class VoiceRegion{
         if(!t.deprecated.is_omitted()) {j["deprecated"] = t.deprecated;}
         if(!t.custom.is_omitted()) {j["custom"] = t.custom;}
     }
-    friend void from_json(const nlohmann::json &j, VoiceRegion &t {
-        if(j.contains(id)){j.at(id).get_to(t.id);}
-        if(j.contains(name)){j.at(name).get_to(t.name);}
-        if(j.contains(optimal)){j.at(optimal).get_to(t.optimal);}
-        if(j.contains(deprecated)){j.at(deprecated).get_to(t.deprecated);}
-        if(j.contains(custom)){j.at(custom).get_to(t.custom);}
+    friend void from_json(const nlohmann::json &j, VoiceRegion &t) {
+        if(j.contains("id")){j.at("id").get_to(t.id);}
+        if(j.contains("name")){j.at("name").get_to(t.name);}
+        if(j.contains("optimal")){j.at("optimal").get_to(t.optimal);}
+        if(j.contains("deprecated")){j.at("deprecated").get_to(t.deprecated);}
+        if(j.contains("custom")){j.at("custom").get_to(t.custom);}
     }
 };
