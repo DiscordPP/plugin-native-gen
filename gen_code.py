@@ -269,6 +269,10 @@ def run():
             name, fields = list(objects.items())[i]
             metadata = fields.get("parser-data")
             if metadata:
+                skip = metadata.get("skip")
+                if skip:
+                    objects.pop(name)
+                    continue
                 requeue = metadata.get("requeue")
                 if requeue:
                     metadata["requeue"] -= 1
