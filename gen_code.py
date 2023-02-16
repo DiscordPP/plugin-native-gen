@@ -37,14 +37,14 @@ TYPES: Dict[str, str] = {
     'mixed': 'json',
     'null': 'std::nullptr_t',
     'member': 'GuildMember',
-    'array of two integers': 'std::Array<int, 2>',
+    'array of two integers': 'std::array<int, 2>',
 
     # Generated: may not be correct
     'action type': 'ActionType',
     'action': 'Action',
     'activity': 'Activity',
     'allowed mention type': 'AllowedMentionType',
-    'allowed mention': 'AllowedMention',
+    'allowed mention': 'AllowedMentions',
     'allowed mentions': 'AllowedMentions',
     'application command interaction data option': 'ApplicationCommandInteractionDataOption',
     'application command option choice': 'ApplicationCommandOptionChoice',
@@ -53,7 +53,7 @@ TYPES: Dict[str, str] = {
     'application command permission type': 'ApplicationCommandPermissionType',
     'applicationroleconnectionmetadatatype': 'ApplicationRoleConnectionMetadataType',
     'application command type': 'ApplicationCommandType',
-    'application commands': 'ApplicationCommands',
+    'application commands': 'ApplicationCommand',
     'application': 'Application',
     'attachment': 'Attachment',
     'audit log change': 'AuditLogChange',
@@ -97,7 +97,7 @@ TYPES: Dict[str, str] = {
     'message interaction': 'MessageInteraction',
     'message reference': 'MessageReference',
     'message': 'Message',
-    'oauth2 scope': 'Oauth2Scope',
+    'oauth2 scope': 'OAuth2Scope',
     'overwrite': 'Overwrite',
     'presence update': 'PresenceUpdate',
     'presence': 'Presence',
@@ -117,10 +117,10 @@ TYPES: Dict[str, str] = {
     'team member': 'TeamMember',
     'team': 'Team',
     'thread member': 'ThreadMember',
-    'thread members': 'ThreadMembers',
+    'thread members': 'ThreadMember',
     'thread metadata': 'ThreadMetadata',
     'trigger type': 'TriggerType',
-    'unavailable guild': 'UnavailableGuild',
+    'unavailable guild': 'Guild',
     'user objects, with an additional partial member field': 'UserObjects,WithAnAdditionalPartialMemberField',
     'user': 'User',
     'voice state': 'VoiceState',
@@ -241,7 +241,10 @@ def run():
                 for name, fields in overrides.items():
                     if name in objects:
                         for field_name, field in fields.items():
-                            objects[name][field_name].update(field)
+                            if field_name in objects[name]:
+                                objects[name][field_name].update(field)
+                            else:
+                                objects[name][field_name] = field
                     else:
                         objects[name] = fields
             all_objects[stem] = {}
@@ -276,9 +279,7 @@ def run():
                 requeue = metadata.get("requeue")
                 if requeue:
                     metadata["requeue"] -= 1
-                    print(objects.keys())
                     objects[name] = objects.pop(name)
-                    print(objects.keys())
                     continue
             i += 1
         for name, fields in copy.deepcopy(objects).items():
@@ -318,6 +319,7 @@ def run():
                 # print('                                 ', field["type"])
                 # print('                             : ', parse_type(field["type"]))
             render_parts = {
+                "predeclare": ''.join(f'{NL}class {class_name};' for class_name in metadata.get('predeclare', [])),
                 "constructor": {
                     "parameters": ',\n        '.join([
                         f'{field["container_type"]} {field.get("name", field_name)} = {"omitted" if field["optional"] else "uninitialized"}'
@@ -355,10 +357,11 @@ def run():
                         f'        if(j.contains(\"{field.get("field_name", field_name)}\")){{'
                         f'j.at(\"{field.get("field_name", field_name)}\").get_to(t.{field.get("name", field_name)});}}'
                     ) for field_name, field in fields.items()])
-                }
+                },
+                "alts": ''.join(f'{NL}using {alt} = {name};' for alt in metadata.get('alts', []))
             }
             # @formatter:off
-            render += f'''
+            render += f'''{render_parts["predeclare"]}
 // {metadata.get('docs_url')}
 class {name}{f': public {parent_name}' if parent else ''}{{
   public:
@@ -376,7 +379,7 @@ class {name}{f': public {parent_name}' if parent else ''}{{
     friend void from_json(const nlohmann::json &j, {name} &t) {{
 {render_parts["from_json"]["assignments"]}
     }}
-}};
+}};{render_parts["alts"]}
 '''
             render_fwd += f'''\
 class {name};
@@ -444,7 +447,7 @@ namespace discordpp {
                 value_eg = list(opt.values())[0].get('value')
                 pretty_name = name.replace(" ", "")  # .removesuffix('s')
                 if pretty_name.endswith('s') and  not any(pretty_name.endswith(suffix) for suffix in [
-                    'Status'
+                    'Status', 'Flags'
                 ]):
                     pretty_name = pretty_name[:-1]
                 is_int = bool(value_eg and (value_eg.isdigit() or '<<' in value_eg or '0x' in value_eg))
@@ -487,7 +490,7 @@ NLOHMANN_JSON_SERIALIZE_ENUM(
 } // namespace discordpp
 """
     # @formatter:on
-    TARGET_PATH.joinpath('enums.hh').write_text(render_enums)
+    TARGET_PATH.joinpath('enum.hh').write_text(render_enums)
 
     # @formatter:off
     TARGET_PATH.joinpath('plugin-native.hh').write_text(f'''\
@@ -532,6 +535,9 @@ using Timestamp = std::string;
 using ImageData = std::string;
 // https://discord.com/developers/docs/reference#locales
 using Locale = std::string;
+
+// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-interaction-callback-data-structure
+using InteractionCallbackData = json;
 
 #define OBJECT_BREAKOUTS
 /* This space intentionally left blank */

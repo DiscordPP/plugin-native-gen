@@ -1,4 +1,14 @@
 {
+  "Guild": {
+    "unavailable": {
+      "type": "++bool",
+      "optional": true,
+      "nullable": false,
+      "comments": {
+        "Description": "Signifies a partial guild object representing an Offline Guild or a Guild whose information has not been provided through Guild Create events during the Gateway connect."
+      }
+    }
+  },
   "Integration": {
     "expire_behavior": {
       "type": "++IntegrationExpireBehavior"

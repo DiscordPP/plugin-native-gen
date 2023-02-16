@@ -3,9 +3,6 @@
     "properties": {
       "type": "++IdentifyConnectionProperties"
     },
-    "shard": {
-      "type": "++std::array<int, 2>"
-    },
     "presence": {
       "type": "++GatewayPresenceUpdate"
     }
@@ -43,6 +40,9 @@
     }
   },
   "Guild Members Chunk Event": {
+    "parser-data": {
+      "predeclare": ["Presence"]
+    },
     "not_found": {
       "type": "++std::vector<Snowflake>"
     }
@@ -51,6 +51,12 @@
     "parser-data": {
       "name": "MessageCreateEvent",
       "parent": "Message"
+    }
+  },
+  "Presence Update Event": {
+    "parser-data": {
+      "name": "Presence",
+      "alts": ["PresenceUpdateEvent", "PresenceUpdate"]
     }
   }
 }

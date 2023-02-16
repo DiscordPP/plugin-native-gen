@@ -305,12 +305,12 @@ class MessagesCallback{
 class AutocompleteCallback{
   public:
     AutocompleteCallback(
-        field<std::vector<Choice> > choices = uninitialized
+        field<std::vector<ApplicationCommandOptionChoice> > choices = uninitialized
     ):
         choices(choices)
     {}
     
-    field<std::vector<Choice> > choices;
+    field<std::vector<ApplicationCommandOptionChoice> > choices;
 
     friend void to_json(nlohmann::json &j, const AutocompleteCallback &t) {
         if(!t.choices.is_omitted()) {j["choices"] = t.choices;}

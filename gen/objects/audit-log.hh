@@ -8,7 +8,7 @@
 class AuditLog{
   public:
     AuditLog(
-        field<std::vector<ApplicationCommands> > application_commands = uninitialized,
+        field<std::vector<ApplicationCommand> > application_commands = uninitialized,
         field<std::vector<AuditLogEntry> > audit_log_entries = uninitialized,
         field<std::vector<AutoModerationRule> > auto_moderation_rules = uninitialized,
         field<std::vector<GuildScheduledEvent> > guild_scheduled_events = uninitialized,
@@ -27,7 +27,7 @@ class AuditLog{
         webhooks(webhooks)
     {}
     
-    field<std::vector<ApplicationCommands> > application_commands;
+    field<std::vector<ApplicationCommand> > application_commands;
     field<std::vector<AuditLogEntry> > audit_log_entries;
     field<std::vector<AutoModerationRule> > auto_moderation_rules;
     field<std::vector<GuildScheduledEvent> > guild_scheduled_events;

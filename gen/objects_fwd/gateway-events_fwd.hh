@@ -39,7 +39,7 @@ class MessageReactionAddEvent;
 class MessageReactionRemoveEvent;
 class MessageReactionRemoveAllEvent;
 class MessageReactionRemoveEmojiEvent;
-class PresenceUpdateEvent;
+class Presence;
 class ClientStatus;
 class Activity;
 class ActivityTimestamps;

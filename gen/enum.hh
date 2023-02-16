@@ -71,7 +71,7 @@ enum class InteractionCallbackType : int {
 
 // Application //
 
-enum class ApplicationFlag : long int {
+enum class ApplicationFlags : long int {
     GATEWAY_PRESENCE = 1 << 12,
     GATEWAY_PRESENCE_LIMITED = 1 << 13,
     GATEWAY_GUILD_MEMBERS = 1 << 14,
@@ -206,7 +206,7 @@ enum class VideoQualityMode : int {
     FULL = 2
 };
 
-enum class ChannelFlag : long int {
+enum class ChannelFlags : long int {
     PINNED = 1 << 1,
     REQUIRE_TAG = 1 << 4
 };
@@ -259,7 +259,7 @@ enum class MessageActivityType : int {
     JOIN_REQUEST = 5
 };
 
-enum class MessageFlag : long int {
+enum class MessageFlags : long int {
     CROSSPOSTED = 1 << 0,
     IS_CROSSPOST = 1 << 1,
     SUPPRESS_EMBEDS = 1 << 2,
@@ -347,7 +347,7 @@ enum class PremiumTier : int {
     TIER_3 = 3
 };
 
-enum class SystemChannelFlag : long int {
+enum class SystemChannelFlags : long int {
     SUPPRESS_JOIN_NOTIFICATIONS = 1 << 0,
     SUPPRESS_PREMIUM_SUBSCRIPTIONS = 1 << 1,
     SUPPRESS_GUILD_REMINDER_NOTIFICATIONS = 1 << 2,
@@ -507,7 +507,7 @@ enum class StickerFormatType : int {
 
 // User //
 
-enum class UserFlag : long int {
+enum class UserFlags : long int {
     STAFF = 1 << 0,
     PARTNER = 1 << 1,
     HYPESQUAD = 1 << 2,
@@ -774,7 +774,7 @@ enum class ActivityType : int {
     Competing = 5
 };
 
-enum class ActivityFlag : long int {
+enum class ActivityFlags : long int {
     INSTANCE = 1 << 0,
     JOIN = 1 << 1,
     SPECTATE = 1 << 2,
@@ -1033,7 +1033,7 @@ NLOHMANN_JSON_SERIALIZE_ENUM(
 
 // Permissions //
 
-enum class BitwisePermissionFlag : long int {
+enum class BitwisePermissionFlags : long int {
     CREATE_INSTANT_INVITE = 0x0000000000000001,
     KICK_MEMBERS = 0x0000000000000002,
     BAN_MEMBERS = 0x0000000000000004,

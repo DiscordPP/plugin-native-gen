@@ -40,6 +40,9 @@ using ImageData = std::string;
 // https://discord.com/developers/docs/reference#locales
 using Locale = std::string;
 
+// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-interaction-callback-data-structure
+using InteractionCallbackData = json;
+
 #define OBJECT_BREAKOUTS
 /* This space intentionally left blank */
 #include "objects_fwd/application-commands_fwd.hh"

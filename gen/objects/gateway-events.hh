@@ -46,7 +46,7 @@ class Identify{
         field<IdentifyConnectionProperties> properties = uninitialized,
         omittable_field<bool> compress = omitted,
         omittable_field<int> large_threshold = omitted,
-        omittable_field<std::array<int, 2> > shard = omitted,
+        omittable_field<std::array<int, 2>> shard = omitted,
         omittable_field<GatewayPresenceUpdate> presence = omitted,
         field<int> intents = uninitialized
     ):
@@ -63,7 +63,7 @@ class Identify{
     field<IdentifyConnectionProperties> properties;
     omittable_field<bool> compress;
     omittable_field<int> large_threshold;
-    omittable_field<std::array<int, 2> > shard;
+    omittable_field<std::array<int, 2>> shard;
     omittable_field<GatewayPresenceUpdate> presence;
     field<int> intents;
 
@@ -282,10 +282,10 @@ class ReadyEvent{
     ReadyEvent(
         field<int> v = uninitialized,
         field<User> user = uninitialized,
-        field<std::vector<UnavailableGuild> > guilds = uninitialized,
+        field<std::vector<Guild> > guilds = uninitialized,
         field<std::string> session_id = uninitialized,
         field<std::string> resume_gateway_url = uninitialized,
-        omittable_field<std::Array<int, 2>> shard = omitted,
+        omittable_field<std::array<int, 2>> shard = omitted,
         field<Application> application = uninitialized
     ):
         v(v),
@@ -299,10 +299,10 @@ class ReadyEvent{
     
     field<int> v;
     field<User> user;
-    field<std::vector<UnavailableGuild> > guilds;
+    field<std::vector<Guild> > guilds;
     field<std::string> session_id;
     field<std::string> resume_gateway_url;
-    omittable_field<std::Array<int, 2>> shard;
+    omittable_field<std::array<int, 2>> shard;
     field<Application> application;
 
     friend void to_json(nlohmann::json &j, const ReadyEvent &t) {
@@ -704,6 +704,7 @@ class GuildMemberUpdateEvent{
     }
 };
 
+class Presence;
 // https://discord.com/developers/docs/topics/gateway-events#guild-members-chunk-guild-members-chunk-event-fields
 class GuildMembersChunkEvent{
   public:
@@ -1258,9 +1259,9 @@ class MessageReactionRemoveEmojiEvent{
 };
 
 // https://discord.com/developers/docs/topics/gateway-events#presence-update-presence-update-event-fields
-class PresenceUpdateEvent{
+class Presence{
   public:
-    PresenceUpdateEvent(
+    Presence(
         field<User> user = uninitialized,
         field<Snowflake> guild_id = uninitialized,
         field<std::string> status = uninitialized,
@@ -1280,14 +1281,14 @@ class PresenceUpdateEvent{
     field<std::vector<Activity> > activities;
     field<ClientStatus> client_status;
 
-    friend void to_json(nlohmann::json &j, const PresenceUpdateEvent &t) {
+    friend void to_json(nlohmann::json &j, const Presence &t) {
         if(!t.user.is_omitted()) {j["user"] = t.user;}
         if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
         if(!t.status.is_omitted()) {j["status"] = t.status;}
         if(!t.activities.is_omitted()) {j["activities"] = t.activities;}
         if(!t.client_status.is_omitted()) {j["client_status"] = t.client_status;}
     }
-    friend void from_json(const nlohmann::json &j, PresenceUpdateEvent &t) {
+    friend void from_json(const nlohmann::json &j, Presence &t) {
         if(j.contains("user")){j.at("user").get_to(t.user);}
         if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
         if(j.contains("status")){j.at("status").get_to(t.status);}
@@ -1295,6 +1296,8 @@ class PresenceUpdateEvent{
         if(j.contains("client_status")){j.at("client_status").get_to(t.client_status);}
     }
 };
+using PresenceUpdateEvent = Presence;
+using PresenceUpdate = Presence;
 
 // https://discord.com/developers/docs/topics/gateway-events#presence-client-status-object
 class ClientStatus{
@@ -1472,14 +1475,14 @@ class ActivityParty{
   public:
     ActivityParty(
         omittable_field<std::string> id = omitted,
-        omittable_field<std::Array<int, 2>> size = omitted
+        omittable_field<std::array<int, 2>> size = omitted
     ):
         id(id),
         size(size)
     {}
     
     omittable_field<std::string> id;
-    omittable_field<std::Array<int, 2>> size;
+    omittable_field<std::array<int, 2>> size;
 
     friend void to_json(nlohmann::json &j, const ActivityParty &t) {
         if(!t.id.is_omitted()) {j["id"] = t.id;}

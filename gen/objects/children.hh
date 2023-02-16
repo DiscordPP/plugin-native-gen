@@ -265,9 +265,9 @@ class GuildCreateEvent: public Guild{
         field<int> nsfw_level = uninitialized,
         omittable_field<std::vector<Sticker> > stickers = omitted,
         field<bool> premium_progress_bar_enabled = uninitialized,
+        omittable_field<bool> unavailable = omitted,
         field<Timestamp> joined_at = uninitialized,
         field<bool> large = uninitialized,
-        omittable_field<bool> unavailable = omitted,
         field<int> member_count = uninitialized,
         field<std::vector<VoiceState> > voice_states = uninitialized,
         field<std::vector<GuildMember> > members = uninitialized,
@@ -318,11 +318,11 @@ class GuildCreateEvent: public Guild{
             welcome_screen,
             nsfw_level,
             stickers,
-            premium_progress_bar_enabled
+            premium_progress_bar_enabled,
+            unavailable
         ),
         joined_at(joined_at),
         large(large),
-        unavailable(unavailable),
         member_count(member_count),
         voice_states(voice_states),
         members(members),
@@ -335,7 +335,6 @@ class GuildCreateEvent: public Guild{
     
     field<Timestamp> joined_at;
     field<bool> large;
-    omittable_field<bool> unavailable;
     field<int> member_count;
     field<std::vector<VoiceState> > voice_states;
     field<std::vector<GuildMember> > members;

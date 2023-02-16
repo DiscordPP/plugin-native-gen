@@ -17,6 +17,11 @@
       "type": "++std::map<Snowflake, Message>"
     }
   },
+  "Interaction Response": {
+    "data": {
+      "Xtype": "json"
+    }
+  },
   "Messages": {
     "parser-data": {
       "name": "MessagesCallback"
@@ -25,6 +30,9 @@
   "Autocomplete": {
     "parser-data": {
       "name": "AutocompleteCallback"
+    },
+    "choices": {
+      "type": "++std::vector<ApplicationCommandOptionChoice>"
     }
   },
   "Modal": {

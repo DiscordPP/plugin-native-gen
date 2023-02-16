@@ -1116,7 +1116,7 @@ class ListPublicArchivedThreadsResponse{
   public:
     ListPublicArchivedThreadsResponse(
         field<std::vector<Channel> > threads = uninitialized,
-        field<std::vector<ThreadMembers> > members = uninitialized,
+        field<std::vector<ThreadMember> > members = uninitialized,
         field<bool> has_more = uninitialized
     ):
         threads(threads),
@@ -1125,7 +1125,7 @@ class ListPublicArchivedThreadsResponse{
     {}
     
     field<std::vector<Channel> > threads;
-    field<std::vector<ThreadMembers> > members;
+    field<std::vector<ThreadMember> > members;
     field<bool> has_more;
 
     friend void to_json(nlohmann::json &j, const ListPublicArchivedThreadsResponse &t) {
@@ -1145,7 +1145,7 @@ class ListPrivateArchivedThreadsResponse{
   public:
     ListPrivateArchivedThreadsResponse(
         field<std::vector<Channel> > threads = uninitialized,
-        field<std::vector<ThreadMembers> > members = uninitialized,
+        field<std::vector<ThreadMember> > members = uninitialized,
         field<bool> has_more = uninitialized
     ):
         threads(threads),
@@ -1154,7 +1154,7 @@ class ListPrivateArchivedThreadsResponse{
     {}
     
     field<std::vector<Channel> > threads;
-    field<std::vector<ThreadMembers> > members;
+    field<std::vector<ThreadMember> > members;
     field<bool> has_more;
 
     friend void to_json(nlohmann::json &j, const ListPrivateArchivedThreadsResponse &t) {
@@ -1174,7 +1174,7 @@ class ListJoinedPrivateArchivedThreadsResponse{
   public:
     ListJoinedPrivateArchivedThreadsResponse(
         field<std::vector<Channel> > threads = uninitialized,
-        field<std::vector<ThreadMembers> > members = uninitialized,
+        field<std::vector<ThreadMember> > members = uninitialized,
         field<bool> has_more = uninitialized
     ):
         threads(threads),
@@ -1183,7 +1183,7 @@ class ListJoinedPrivateArchivedThreadsResponse{
     {}
     
     field<std::vector<Channel> > threads;
-    field<std::vector<ThreadMembers> > members;
+    field<std::vector<ThreadMember> > members;
     field<bool> has_more;
 
     friend void to_json(nlohmann::json &j, const ListJoinedPrivateArchivedThreadsResponse &t) {

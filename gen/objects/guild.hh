@@ -48,7 +48,8 @@ class Guild{
         omittable_field<WelcomeScreen> welcome_screen = omitted,
         field<int> nsfw_level = uninitialized,
         omittable_field<std::vector<Sticker> > stickers = omitted,
-        field<bool> premium_progress_bar_enabled = uninitialized
+        field<bool> premium_progress_bar_enabled = uninitialized,
+        omittable_field<bool> unavailable = omitted
     ):
         id(id),
         name(name),
@@ -90,7 +91,8 @@ class Guild{
         welcome_screen(welcome_screen),
         nsfw_level(nsfw_level),
         stickers(stickers),
-        premium_progress_bar_enabled(premium_progress_bar_enabled)
+        premium_progress_bar_enabled(premium_progress_bar_enabled),
+        unavailable(unavailable)
     {}
     
     field<Snowflake> id;
@@ -134,6 +136,7 @@ class Guild{
     field<int> nsfw_level;
     omittable_field<std::vector<Sticker> > stickers;
     field<bool> premium_progress_bar_enabled;
+    omittable_field<bool> unavailable;
 
     friend void to_json(nlohmann::json &j, const Guild &t) {
         if(!t.id.is_omitted()) {j["id"] = t.id;}
@@ -177,6 +180,7 @@ class Guild{
         if(!t.nsfw_level.is_omitted()) {j["nsfw_level"] = t.nsfw_level;}
         if(!t.stickers.is_omitted()) {j["stickers"] = t.stickers;}
         if(!t.premium_progress_bar_enabled.is_omitted()) {j["premium_progress_bar_enabled"] = t.premium_progress_bar_enabled;}
+        if(!t.unavailable.is_omitted()) {j["unavailable"] = t.unavailable;}
     }
     friend void from_json(const nlohmann::json &j, Guild &t) {
         if(j.contains("id")){j.at("id").get_to(t.id);}
@@ -220,6 +224,7 @@ class Guild{
         if(j.contains("nsfw_level")){j.at("nsfw_level").get_to(t.nsfw_level);}
         if(j.contains("stickers")){j.at("stickers").get_to(t.stickers);}
         if(j.contains("premium_progress_bar_enabled")){j.at("premium_progress_bar_enabled").get_to(t.premium_progress_bar_enabled);}
+        if(j.contains("unavailable")){j.at("unavailable").get_to(t.unavailable);}
     }
 };
 
@@ -453,7 +458,7 @@ class Integration{
         omittable_field<int> subscriber_count = omitted,
         omittable_field<bool> revoked = omitted,
         omittable_field<Application> application = omitted,
-        omittable_field<std::vector<Oauth2Scope> > scopes = omitted
+        omittable_field<std::vector<OAuth2Scope> > scopes = omitted
     ):
         id(id),
         name(name),
@@ -488,7 +493,7 @@ class Integration{
     omittable_field<int> subscriber_count;
     omittable_field<bool> revoked;
     omittable_field<Application> application;
-    omittable_field<std::vector<Oauth2Scope> > scopes;
+    omittable_field<std::vector<OAuth2Scope> > scopes;
 
     friend void to_json(nlohmann::json &j, const Integration &t) {
         if(!t.id.is_omitted()) {j["id"] = t.id;}
@@ -678,14 +683,14 @@ class ListActiveGuildThreadsResponse{
   public:
     ListActiveGuildThreadsResponse(
         field<std::vector<Channel> > threads = uninitialized,
-        field<std::vector<ThreadMembers> > members = uninitialized
+        field<std::vector<ThreadMember> > members = uninitialized
     ):
         threads(threads),
         members(members)
     {}
     
     field<std::vector<Channel> > threads;
-    field<std::vector<ThreadMembers> > members;
+    field<std::vector<ThreadMember> > members;
 
     friend void to_json(nlohmann::json &j, const ListActiveGuildThreadsResponse &t) {
         if(!t.threads.is_omitted()) {j["threads"] = t.threads;}
