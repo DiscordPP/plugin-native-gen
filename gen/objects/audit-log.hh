@@ -26,6 +26,7 @@ class AuditLog{
         users(users),
         webhooks(webhooks)
     {}
+    AuditLog(const json &j) { from_json(j, *this); }
     
     field<std::vector<ApplicationCommand> > application_commands;
     field<std::vector<AuditLogEntry> > audit_log_entries;
@@ -78,6 +79,7 @@ class AuditLogEntry{
         options(options),
         reason(reason)
     {}
+    AuditLogEntry(const json &j) { from_json(j, *this); }
     
     nullable_field<std::string> target_id;
     omittable_field<std::vector<AuditLogChange> > changes;
@@ -135,6 +137,7 @@ class OptionalAuditEntryInfo{
         role_name(role_name),
         type(type)
     {}
+    OptionalAuditEntryInfo(const json &j) { from_json(j, *this); }
     
     field<Snowflake> application_id;
     field<std::string> auto_moderation_rule_name;
@@ -188,6 +191,7 @@ class AuditLogChange{
         old_value(old_value),
         key(key)
     {}
+    AuditLogChange(const json &j) { from_json(j, *this); }
     
     omittable_field<json> new_value;
     omittable_field<json> old_value;

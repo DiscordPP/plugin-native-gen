@@ -20,6 +20,7 @@ class SelectOption{
         emoji(emoji),
         default_selected(default_selected)
     {}
+    SelectOption(const json &j) { from_json(j, *this); }
     
     field<std::string> label;
     field<std::string> value;
@@ -51,6 +52,7 @@ class Component{
     ):
         type(type)
     {}
+    Component(const json &j) { from_json(j, *this); }
     
     field<int> type;
 

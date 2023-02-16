@@ -94,6 +94,7 @@ class Guild{
         premium_progress_bar_enabled(premium_progress_bar_enabled),
         unavailable(unavailable)
     {}
+    Guild(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<std::string> name;
@@ -256,6 +257,7 @@ class GuildPreview{
         description(description),
         stickers(stickers)
     {}
+    GuildPreview(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<std::string> name;
@@ -307,6 +309,7 @@ class GuildWidgetSettings{
         enabled(enabled),
         channel_id(channel_id)
     {}
+    GuildWidgetSettings(const json &j) { from_json(j, *this); }
     
     field<bool> enabled;
     nullable_field<Snowflake> channel_id;
@@ -339,6 +342,7 @@ class GuildWidget{
         members(members),
         presence_count(presence_count)
     {}
+    GuildWidget(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<std::string> name;
@@ -395,6 +399,7 @@ class GuildMember{
         permissions(permissions),
         communication_disabled_until(communication_disabled_until)
     {}
+    GuildMember(const json &j) { from_json(j, *this); }
     
     omittable_field<User> user;
     nullable_omittable_field<std::string> nick;
@@ -477,6 +482,7 @@ class Integration{
         application(application),
         scopes(scopes)
     {}
+    Integration(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<std::string> name;
@@ -543,6 +549,7 @@ class IntegrationAccount{
         id(id),
         name(name)
     {}
+    IntegrationAccount(const json &j) { from_json(j, *this); }
     
     field<std::string> id;
     field<std::string> name;
@@ -573,6 +580,7 @@ class IntegrationApplication{
         description(description),
         bot(bot)
     {}
+    IntegrationApplication(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<std::string> name;
@@ -606,6 +614,7 @@ class Ban{
         reason(reason),
         user(user)
     {}
+    Ban(const json &j) { from_json(j, *this); }
     
     nullable_field<std::string> reason;
     field<User> user;
@@ -630,6 +639,7 @@ class WelcomeScreen{
         description(description),
         welcome_channels(welcome_channels)
     {}
+    WelcomeScreen(const json &j) { from_json(j, *this); }
     
     nullable_field<std::string> description;
     field<std::vector<WelcomeScreenChannel> > welcome_channels;
@@ -658,6 +668,7 @@ class WelcomeScreenChannel{
         emoji_id(emoji_id),
         emoji_name(emoji_name)
     {}
+    WelcomeScreenChannel(const json &j) { from_json(j, *this); }
     
     field<Snowflake> channel_id;
     field<std::string> description;
@@ -688,6 +699,7 @@ class ListActiveGuildThreadsResponse{
         threads(threads),
         members(members)
     {}
+    ListActiveGuildThreadsResponse(const json &j) { from_json(j, *this); }
     
     field<std::vector<Channel> > threads;
     field<std::vector<ThreadMember> > members;

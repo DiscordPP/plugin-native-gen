@@ -38,6 +38,7 @@ class ApplicationCommand{
         nsfw(nsfw),
         version(version)
     {}
+    ApplicationCommand(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     omittable_field<ApplicationCommandType> type;
@@ -122,6 +123,7 @@ class ApplicationCommandOption{
         max_length(max_length),
         autocomplete(autocomplete)
     {}
+    ApplicationCommandOption(const json &j) { from_json(j, *this); }
     
     field<ApplicationCommandOptionType> type;
     field<std::string> name;
@@ -184,6 +186,7 @@ class ApplicationCommandOptionChoice{
         name_localizations(name_localizations),
         value(value)
     {}
+    ApplicationCommandOptionChoice(const json &j) { from_json(j, *this); }
     
     field<std::string> name;
     nullable_omittable_field<std::map<Locale, std::string>> name_localizations;
@@ -215,6 +218,7 @@ class GuildApplicationCommandPermissions{
         guild_id(guild_id),
         permissions(permissions)
     {}
+    GuildApplicationCommandPermissions(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<Snowflake> application_id;
@@ -247,6 +251,7 @@ class ApplicationCommandPermissions{
         type(type),
         permission(permission)
     {}
+    ApplicationCommandPermissions(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<ApplicationCommandPermissionType> type;

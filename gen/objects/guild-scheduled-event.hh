@@ -42,6 +42,7 @@ class GuildScheduledEvent{
         user_count(user_count),
         image(image)
     {}
+    GuildScheduledEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<Snowflake> guild_id;
@@ -106,6 +107,7 @@ class GuildScheduledEventEntityMetadata{
     ):
         location(location)
     {}
+    GuildScheduledEventEntityMetadata(const json &j) { from_json(j, *this); }
     
     omittable_field<std::string> location;
 
@@ -129,6 +131,7 @@ class GuildScheduledEventUser{
         user(user),
         member(member)
     {}
+    GuildScheduledEventUser(const json &j) { from_json(j, *this); }
     
     field<Snowflake> guild_scheduled_event_id;
     field<User> user;

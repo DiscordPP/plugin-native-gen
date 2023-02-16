@@ -24,6 +24,7 @@ class StageInstance{
         discoverable_disabled(discoverable_disabled),
         guild_scheduled_event_id(guild_scheduled_event_id)
     {}
+    StageInstance(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<Snowflake> guild_id;

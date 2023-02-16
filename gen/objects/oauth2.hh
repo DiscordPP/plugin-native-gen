@@ -18,6 +18,7 @@ class GetCurrentAuthorizationInformationResponse{
         expires(expires),
         user(user)
     {}
+    GetCurrentAuthorizationInformationResponse(const json &j) { from_json(j, *this); }
     
     field<Application> application;
     field<std::vector<std::string> > scopes;

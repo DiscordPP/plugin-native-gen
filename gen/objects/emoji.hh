@@ -26,6 +26,7 @@ class Emoji{
         animated(animated),
         available(available)
     {}
+    Emoji(const json &j) { from_json(j, *this); }
     
     nullable_field<Snowflake> id;
     nullable_field<std::string> name;

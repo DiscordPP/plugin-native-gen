@@ -370,6 +370,7 @@ class {name}{f': public {parent_name}' if parent else ''}{{
     ):
 {render_parts["constructor"]["initialisation"]}
     {{}}
+    {name}(const json &j) {{ from_json(j, *this); }}
     
 {render_parts["variables"]}
 

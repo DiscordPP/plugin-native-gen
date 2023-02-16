@@ -34,6 +34,7 @@ class Webhook{
         source_channel(source_channel),
         url(url)
     {}
+    Webhook(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<int> type;

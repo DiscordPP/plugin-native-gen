@@ -24,6 +24,7 @@ class ApplicationCommandData{
         guild_id(guild_id),
         target_id(target_id)
     {}
+    ApplicationCommandData(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<std::string> name;
@@ -65,6 +66,7 @@ class MessageComponentData{
         component_type(component_type),
         values(values)
     {}
+    MessageComponentData(const json &j) { from_json(j, *this); }
     
     field<std::string> custom_id;
     field<int> component_type;
@@ -92,6 +94,7 @@ class ModalSubmitData{
         custom_id(custom_id),
         components(components)
     {}
+    ModalSubmitData(const json &j) { from_json(j, *this); }
     
     field<std::string> custom_id;
     field<std::vector<Component> > components;
@@ -124,6 +127,7 @@ class ResolvedData{
         messages(messages),
         attachments(attachments)
     {}
+    ResolvedData(const json &j) { from_json(j, *this); }
     
     omittable_field<std::map<Snowflake, User> > users;
     omittable_field<std::map<Snowflake, GuildMember> > members;
@@ -166,6 +170,7 @@ class ApplicationCommandInteractionDataOption{
         options(options),
         focused(focused)
     {}
+    ApplicationCommandInteractionDataOption(const json &j) { from_json(j, *this); }
     
     field<std::string> name;
     field<int> type;
@@ -205,6 +210,7 @@ class MessageInteraction{
         user(user),
         member(member)
     {}
+    MessageInteraction(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<InteractionType> type;
@@ -238,6 +244,7 @@ class InteractionResponse{
         type(type),
         data(data)
     {}
+    InteractionResponse(const json &j) { from_json(j, *this); }
     
     field<InteractionCallbackType> type;
     omittable_field<InteractionCallbackData> data;
@@ -272,6 +279,7 @@ class MessagesCallback{
         components(components),
         attachments(attachments)
     {}
+    MessagesCallback(const json &j) { from_json(j, *this); }
     
     omittable_field<bool> tts;
     omittable_field<std::string> content;
@@ -309,6 +317,7 @@ class AutocompleteCallback{
     ):
         choices(choices)
     {}
+    AutocompleteCallback(const json &j) { from_json(j, *this); }
     
     field<std::vector<ApplicationCommandOptionChoice> > choices;
 
@@ -332,6 +341,7 @@ class ModalCallback{
         title(title),
         components(components)
     {}
+    ModalCallback(const json &j) { from_json(j, *this); }
     
     field<std::string> custom_id;
     field<std::string> title;
@@ -383,6 +393,7 @@ class Interaction{
         locale(locale),
         guild_locale(guild_locale)
     {}
+    Interaction(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<Snowflake> application_id;

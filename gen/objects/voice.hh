@@ -36,6 +36,7 @@ class VoiceState{
         suppress(suppress),
         request_to_speak_timestamp(request_to_speak_timestamp)
     {}
+    VoiceState(const json &j) { from_json(j, *this); }
     
     omittable_field<Snowflake> guild_id;
     nullable_field<Snowflake> channel_id;
@@ -99,6 +100,7 @@ class VoiceRegion{
         deprecated(deprecated),
         custom(custom)
     {}
+    VoiceRegion(const json &j) { from_json(j, *this); }
     
     field<std::string> id;
     field<std::string> name;

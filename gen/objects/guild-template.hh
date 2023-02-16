@@ -32,6 +32,7 @@ class GuildTemplate{
         serialized_source_guild(serialized_source_guild),
         is_dirty(is_dirty)
     {}
+    GuildTemplate(const json &j) { from_json(j, *this); }
     
     field<std::string> code;
     field<std::string> name;

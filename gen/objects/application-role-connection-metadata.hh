@@ -22,6 +22,7 @@ class ApplicationRoleConnectionMetadata{
         description(description),
         description_localizations(description_localizations)
     {}
+    ApplicationRoleConnectionMetadata(const json &j) { from_json(j, *this); }
     
     field<ApplicationRoleConnectionMetadataType> type;
     field<std::string> key;

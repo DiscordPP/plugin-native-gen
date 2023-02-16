@@ -32,6 +32,7 @@ class Role{
         mentionable(mentionable),
         tags(tags)
     {}
+    Role(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<std::string> name;
@@ -91,6 +92,7 @@ class RoleTags{
         available_for_purchase(available_for_purchase),
         guild_connections(guild_connections)
     {}
+    RoleTags(const json &j) { from_json(j, *this); }
     
     omittable_field<Snowflake> bot_id;
     omittable_field<Snowflake> integration_id;

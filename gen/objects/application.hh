@@ -54,6 +54,7 @@ class Application{
         custom_install_url(custom_install_url),
         role_connections_verification_url(role_connections_verification_url)
     {}
+    Application(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<std::string> name;
@@ -138,6 +139,7 @@ class InstallParams{
         scopes(scopes),
         permissions(permissions)
     {}
+    InstallParams(const json &j) { from_json(j, *this); }
     
     field<std::vector<std::string> > scopes;
     field<std::string> permissions;

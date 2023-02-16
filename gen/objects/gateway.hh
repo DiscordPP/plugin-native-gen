@@ -16,6 +16,7 @@ class GetGatewayBotResponse{
         shards(shards),
         session_start_limit(session_start_limit)
     {}
+    GetGatewayBotResponse(const json &j) { from_json(j, *this); }
     
     field<std::string> url;
     field<int> shards;
@@ -47,6 +48,7 @@ class SessionStartLimit{
         reset_after(reset_after),
         max_concurrency(max_concurrency)
     {}
+    SessionStartLimit(const json &j) { from_json(j, *this); }
     
     field<int> total;
     field<int> remaining;

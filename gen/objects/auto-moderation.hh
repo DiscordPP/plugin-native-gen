@@ -32,6 +32,7 @@ class AutoModerationRule{
         exempt_roles(exempt_roles),
         exempt_channels(exempt_channels)
     {}
+    AutoModerationRule(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<Snowflake> guild_id;
@@ -89,6 +90,7 @@ class TriggerMetadata{
         allow_list(allow_list),
         mention_total_limit(mention_total_limit)
     {}
+    TriggerMetadata(const json &j) { from_json(j, *this); }
     
     field<std::vector<std::string> > keyword_filter;
     field<std::vector<std::string> > regex_patterns;
@@ -122,6 +124,7 @@ class AutoModerationAction{
         type(type),
         metadata(metadata)
     {}
+    AutoModerationAction(const json &j) { from_json(j, *this); }
     
     field<ActionType> type;
     omittable_field<ActionMetadata> metadata;
@@ -146,6 +149,7 @@ class ActionMetadata{
         channel_id(channel_id),
         duration_seconds(duration_seconds)
     {}
+    ActionMetadata(const json &j) { from_json(j, *this); }
     
     field<Snowflake> channel_id;
     field<int> duration_seconds;

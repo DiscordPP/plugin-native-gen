@@ -34,6 +34,7 @@ class Invite{
         stage_instance(stage_instance),
         guild_scheduled_event(guild_scheduled_event)
     {}
+    Invite(const json &j) { from_json(j, *this); }
     
     field<std::string> code;
     omittable_field<Guild> guild;
@@ -94,6 +95,7 @@ class InviteMetadata{
         temporary(temporary),
         created_at(created_at)
     {}
+    InviteMetadata(const json &j) { from_json(j, *this); }
     
     field<int> uses;
     field<int> max_uses;
@@ -131,6 +133,7 @@ class InviteStageInstance{
         speaker_count(speaker_count),
         topic(topic)
     {}
+    InviteStageInstance(const json &j) { from_json(j, *this); }
     
     field<std::vector<GuildMember> > members;
     field<int> participant_count;

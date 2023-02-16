@@ -25,6 +25,7 @@ class Button: public Component{
         url(url),
         disabled(disabled)
     {}
+    Button(const json &j) { from_json(j, *this); }
     
     field<int> style;
     omittable_field<std::string> label;
@@ -77,6 +78,7 @@ class SelectMenu: public Component{
         max_values(max_values),
         disabled(disabled)
     {}
+    SelectMenu(const json &j) { from_json(j, *this); }
     
     field<std::string> custom_id;
     omittable_field<std::vector<SelectOption> > options;
@@ -133,6 +135,7 @@ class TextInput: public Component{
         value(value),
         placeholder(placeholder)
     {}
+    TextInput(const json &j) { from_json(j, *this); }
     
     field<std::string> custom_id;
     field<int> style;
@@ -178,6 +181,7 @@ class ActionRow: public Component{
         ),
         components(components)
     {}
+    ActionRow(const json &j) { from_json(j, *this); }
     
     field<std::vector<Component> > components;
 
@@ -209,6 +213,7 @@ class ThreadMemberUpdateEvent: public ThreadMember{
         ),
         guild_id(guild_id)
     {}
+    ThreadMemberUpdateEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> guild_id;
 
@@ -332,6 +337,7 @@ class GuildCreateEvent: public Guild{
         stage_instances(stage_instances),
         guild_scheduled_events(guild_scheduled_events)
     {}
+    GuildCreateEvent(const json &j) { from_json(j, *this); }
     
     field<Timestamp> joined_at;
     field<bool> large;
@@ -406,6 +412,7 @@ class GuildMemberAddEvent: public GuildMember{
         ),
         guild_id(guild_id)
     {}
+    GuildMemberAddEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> guild_id;
 
@@ -491,6 +498,7 @@ class MessageCreateEvent: public Message{
         guild_id(guild_id),
         member(member)
     {}
+    MessageCreateEvent(const json &j) { from_json(j, *this); }
     
     omittable_field<Snowflake> guild_id;
     omittable_field<GuildMember> member;

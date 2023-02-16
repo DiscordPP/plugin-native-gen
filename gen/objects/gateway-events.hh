@@ -18,6 +18,7 @@ class Payload{
         s(s),
         t(t)
     {}
+    Payload(const json &j) { from_json(j, *this); }
     
     field<int> op;
     nullable_field<json> d;
@@ -58,6 +59,7 @@ class Identify{
         presence(presence),
         intents(intents)
     {}
+    Identify(const json &j) { from_json(j, *this); }
     
     field<std::string> token;
     field<IdentifyConnectionProperties> properties;
@@ -99,6 +101,7 @@ class IdentifyConnectionProperties{
         browser(browser),
         device(device)
     {}
+    IdentifyConnectionProperties(const json &j) { from_json(j, *this); }
     
     field<std::string> os;
     field<std::string> browser;
@@ -128,6 +131,7 @@ class Resume{
         session_id(session_id),
         seq(seq)
     {}
+    Resume(const json &j) { from_json(j, *this); }
     
     field<std::string> token;
     field<std::string> session_id;
@@ -163,6 +167,7 @@ class GuildRequestMembers{
         user_ids(user_ids),
         nonce(nonce)
     {}
+    GuildRequestMembers(const json &j) { from_json(j, *this); }
     
     field<Snowflake> guild_id;
     omittable_field<std::string> query;
@@ -203,6 +208,7 @@ class GatewayVoiceStateUpdate{
         self_mute(self_mute),
         self_deaf(self_deaf)
     {}
+    GatewayVoiceStateUpdate(const json &j) { from_json(j, *this); }
     
     field<Snowflake> guild_id;
     nullable_field<Snowflake> channel_id;
@@ -237,6 +243,7 @@ class GatewayPresenceUpdate{
         status(status),
         afk(afk)
     {}
+    GatewayPresenceUpdate(const json &j) { from_json(j, *this); }
     
     nullable_field<int> since;
     field<std::vector<Activity> > activities;
@@ -265,6 +272,7 @@ class Hello{
     ):
         heartbeat_interval(heartbeat_interval)
     {}
+    Hello(const json &j) { from_json(j, *this); }
     
     field<int> heartbeat_interval;
 
@@ -296,6 +304,7 @@ class ReadyEvent{
         shard(shard),
         application(application)
     {}
+    ReadyEvent(const json &j) { from_json(j, *this); }
     
     field<int> v;
     field<User> user;
@@ -353,6 +362,7 @@ class AutoModerationActionExecutionEvent{
         matched_keyword(matched_keyword),
         matched_content(matched_content)
     {}
+    AutoModerationActionExecutionEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> guild_id;
     field<AutoModerationAction> action;
@@ -408,6 +418,7 @@ class ThreadListSyncEvent{
         threads(threads),
         members(members)
     {}
+    ThreadListSyncEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> guild_id;
     omittable_field<std::vector<Snowflake> > channel_ids;
@@ -444,6 +455,7 @@ class ThreadMembersUpdateEvent{
         added_members(added_members),
         removed_member_ids(removed_member_ids)
     {}
+    ThreadMembersUpdateEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<Snowflake> guild_id;
@@ -479,6 +491,7 @@ class ChannelPinsUpdateEvent{
         channel_id(channel_id),
         last_pin_timestamp(last_pin_timestamp)
     {}
+    ChannelPinsUpdateEvent(const json &j) { from_json(j, *this); }
     
     omittable_field<Snowflake> guild_id;
     field<Snowflake> channel_id;
@@ -506,6 +519,7 @@ class GuildBanAddEvent{
         guild_id(guild_id),
         user(user)
     {}
+    GuildBanAddEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> guild_id;
     field<User> user;
@@ -530,6 +544,7 @@ class GuildBanRemoveEvent{
         guild_id(guild_id),
         user(user)
     {}
+    GuildBanRemoveEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> guild_id;
     field<User> user;
@@ -554,6 +569,7 @@ class GuildEmojisUpdateEvent{
         guild_id(guild_id),
         emojis(emojis)
     {}
+    GuildEmojisUpdateEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> guild_id;
     field<std::vector<Emoji> > emojis;
@@ -578,6 +594,7 @@ class GuildStickersUpdateEvent{
         guild_id(guild_id),
         stickers(stickers)
     {}
+    GuildStickersUpdateEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> guild_id;
     field<std::vector<Sticker> > stickers;
@@ -600,6 +617,7 @@ class GuildIntegrationsUpdateEvent{
     ):
         guild_id(guild_id)
     {}
+    GuildIntegrationsUpdateEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> guild_id;
 
@@ -621,6 +639,7 @@ class GuildMemberRemoveEvent{
         guild_id(guild_id),
         user(user)
     {}
+    GuildMemberRemoveEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> guild_id;
     field<User> user;
@@ -663,6 +682,7 @@ class GuildMemberUpdateEvent{
         pending(pending),
         communication_disabled_until(communication_disabled_until)
     {}
+    GuildMemberUpdateEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> guild_id;
     field<std::vector<Snowflake> > roles;
@@ -725,6 +745,7 @@ class GuildMembersChunkEvent{
         presences(presences),
         nonce(nonce)
     {}
+    GuildMembersChunkEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> guild_id;
     field<std::vector<GuildMember> > members;
@@ -764,6 +785,7 @@ class GuildRoleCreateEvent{
         guild_id(guild_id),
         role(role)
     {}
+    GuildRoleCreateEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> guild_id;
     field<Role> role;
@@ -788,6 +810,7 @@ class GuildRoleUpdateEvent{
         guild_id(guild_id),
         role(role)
     {}
+    GuildRoleUpdateEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> guild_id;
     field<Role> role;
@@ -812,6 +835,7 @@ class GuildRoleDeleteEvent{
         guild_id(guild_id),
         role_id(role_id)
     {}
+    GuildRoleDeleteEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> guild_id;
     field<Snowflake> role_id;
@@ -838,6 +862,7 @@ class GuildScheduledEventUserAddEvent{
         user_id(user_id),
         guild_id(guild_id)
     {}
+    GuildScheduledEventUserAddEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> guild_scheduled_event_id;
     field<Snowflake> user_id;
@@ -867,6 +892,7 @@ class GuildScheduledEventUserRemoveEvent{
         user_id(user_id),
         guild_id(guild_id)
     {}
+    GuildScheduledEventUserRemoveEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> guild_scheduled_event_id;
     field<Snowflake> user_id;
@@ -892,6 +918,7 @@ class IntegrationCreateEventAdditional{
     ):
         guild_id(guild_id)
     {}
+    IntegrationCreateEventAdditional(const json &j) { from_json(j, *this); }
     
     field<Snowflake> guild_id;
 
@@ -911,6 +938,7 @@ class IntegrationUpdateEventAdditional{
     ):
         guild_id(guild_id)
     {}
+    IntegrationUpdateEventAdditional(const json &j) { from_json(j, *this); }
     
     field<Snowflake> guild_id;
 
@@ -934,6 +962,7 @@ class IntegrationDeleteEvent{
         guild_id(guild_id),
         application_id(application_id)
     {}
+    IntegrationDeleteEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<Snowflake> guild_id;
@@ -981,6 +1010,7 @@ class InviteCreateEvent{
         temporary(temporary),
         uses(uses)
     {}
+    InviteCreateEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> channel_id;
     field<std::string> code;
@@ -1037,6 +1067,7 @@ class InviteDeleteEvent{
         guild_id(guild_id),
         code(code)
     {}
+    InviteDeleteEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> channel_id;
     omittable_field<Snowflake> guild_id;
@@ -1066,6 +1097,7 @@ class MessageDeleteEvent{
         channel_id(channel_id),
         guild_id(guild_id)
     {}
+    MessageDeleteEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<Snowflake> channel_id;
@@ -1095,6 +1127,7 @@ class MessageDeleteBulkEvent{
         channel_id(channel_id),
         guild_id(guild_id)
     {}
+    MessageDeleteBulkEvent(const json &j) { from_json(j, *this); }
     
     field<std::vector<Snowflake> > ids;
     field<Snowflake> channel_id;
@@ -1130,6 +1163,7 @@ class MessageReactionAddEvent{
         member(member),
         emoji(emoji)
     {}
+    MessageReactionAddEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> user_id;
     field<Snowflake> channel_id;
@@ -1172,6 +1206,7 @@ class MessageReactionRemoveEvent{
         guild_id(guild_id),
         emoji(emoji)
     {}
+    MessageReactionRemoveEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> user_id;
     field<Snowflake> channel_id;
@@ -1207,6 +1242,7 @@ class MessageReactionRemoveAllEvent{
         message_id(message_id),
         guild_id(guild_id)
     {}
+    MessageReactionRemoveAllEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> channel_id;
     field<Snowflake> message_id;
@@ -1238,6 +1274,7 @@ class MessageReactionRemoveEmojiEvent{
         message_id(message_id),
         emoji(emoji)
     {}
+    MessageReactionRemoveEmojiEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> channel_id;
     omittable_field<Snowflake> guild_id;
@@ -1274,6 +1311,7 @@ class Presence{
         activities(activities),
         client_status(client_status)
     {}
+    Presence(const json &j) { from_json(j, *this); }
     
     field<User> user;
     field<Snowflake> guild_id;
@@ -1311,6 +1349,7 @@ class ClientStatus{
         mobile(mobile),
         web(web)
     {}
+    ClientStatus(const json &j) { from_json(j, *this); }
     
     omittable_field<std::string> desktop;
     omittable_field<std::string> mobile;
@@ -1364,6 +1403,7 @@ class Activity{
         flags(flags),
         buttons(buttons)
     {}
+    Activity(const json &j) { from_json(j, *this); }
     
     field<std::string> name;
     field<int> type;
@@ -1427,6 +1467,7 @@ class ActivityTimestamps{
         start(start),
         end(end)
     {}
+    ActivityTimestamps(const json &j) { from_json(j, *this); }
     
     omittable_field<int> start;
     omittable_field<int> end;
@@ -1453,6 +1494,7 @@ class ActivityEmoji{
         id(id),
         animated(animated)
     {}
+    ActivityEmoji(const json &j) { from_json(j, *this); }
     
     field<std::string> name;
     omittable_field<Snowflake> id;
@@ -1480,6 +1522,7 @@ class ActivityParty{
         id(id),
         size(size)
     {}
+    ActivityParty(const json &j) { from_json(j, *this); }
     
     omittable_field<std::string> id;
     omittable_field<std::array<int, 2>> size;
@@ -1508,6 +1551,7 @@ class ActivityAssets{
         small_image(small_image),
         small_text(small_text)
     {}
+    ActivityAssets(const json &j) { from_json(j, *this); }
     
     omittable_field<std::string> large_image;
     omittable_field<std::string> large_text;
@@ -1540,6 +1584,7 @@ class ActivitySecrets{
         spectate(spectate),
         match(match)
     {}
+    ActivitySecrets(const json &j) { from_json(j, *this); }
     
     omittable_field<std::string> join;
     omittable_field<std::string> spectate;
@@ -1567,6 +1612,7 @@ class ActivityButtons{
         label(label),
         url(url)
     {}
+    ActivityButtons(const json &j) { from_json(j, *this); }
     
     field<std::string> label;
     field<std::string> url;
@@ -1597,6 +1643,7 @@ class TypingStartEvent{
         timestamp(timestamp),
         member(member)
     {}
+    TypingStartEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> channel_id;
     omittable_field<Snowflake> guild_id;
@@ -1632,6 +1679,7 @@ class VoiceServerUpdateEvent{
         guild_id(guild_id),
         endpoint(endpoint)
     {}
+    VoiceServerUpdateEvent(const json &j) { from_json(j, *this); }
     
     field<std::string> token;
     field<Snowflake> guild_id;
@@ -1659,6 +1707,7 @@ class WebhooksUpdateEvent{
         guild_id(guild_id),
         channel_id(channel_id)
     {}
+    WebhooksUpdateEvent(const json &j) { from_json(j, *this); }
     
     field<Snowflake> guild_id;
     field<Snowflake> channel_id;

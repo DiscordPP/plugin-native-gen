@@ -34,6 +34,7 @@ class Sticker{
         user(user),
         sort_value(sort_value)
     {}
+    Sticker(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     omittable_field<Snowflake> pack_id;
@@ -90,6 +91,7 @@ class StickerItem{
         name(name),
         format_type(format_type)
     {}
+    StickerItem(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<std::string> name;
@@ -127,6 +129,7 @@ class StickerPack{
         description(description),
         banner_asset_id(banner_asset_id)
     {}
+    StickerPack(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<std::vector<Sticker> > stickers;
@@ -164,6 +167,7 @@ class ListNitroStickerPacksResponse{
     ):
         sticker_packs(sticker_packs)
     {}
+    ListNitroStickerPacksResponse(const json &j) { from_json(j, *this); }
     
     field<std::vector<StickerPack> > sticker_packs;
 

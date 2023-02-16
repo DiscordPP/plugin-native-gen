@@ -20,6 +20,7 @@ class Team{
         name(name),
         owner_user_id(owner_user_id)
     {}
+    Team(const json &j) { from_json(j, *this); }
     
     nullable_field<std::string> icon;
     field<Snowflake> id;
@@ -57,6 +58,7 @@ class TeamMember{
         team_id(team_id),
         user(user)
     {}
+    TeamMember(const json &j) { from_json(j, *this); }
     
     field<int> membership_state;
     field<std::vector<std::string> > permissions;

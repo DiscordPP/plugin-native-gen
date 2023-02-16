@@ -18,6 +18,7 @@ class RateLimitResponse{
         global(global),
         code(code)
     {}
+    RateLimitResponse(const json &j) { from_json(j, *this); }
     
     field<std::string> message;
     field<float> retry_after;

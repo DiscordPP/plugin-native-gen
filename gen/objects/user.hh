@@ -40,6 +40,7 @@ class User{
         premium_type(premium_type),
         public_flags(public_flags)
     {}
+    User(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<std::string> username;
@@ -119,6 +120,7 @@ class Connection{
         two_way_link(two_way_link),
         visibility(visibility)
     {}
+    Connection(const json &j) { from_json(j, *this); }
     
     field<std::string> id;
     field<std::string> name;
@@ -169,6 +171,7 @@ class ApplicationRoleConnection{
         platform_username(platform_username),
         metadata(metadata)
     {}
+    ApplicationRoleConnection(const json &j) { from_json(j, *this); }
     
     nullable_field<std::string> platform_name;
     nullable_field<std::string> platform_username;

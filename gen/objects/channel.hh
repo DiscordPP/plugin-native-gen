@@ -78,6 +78,7 @@ class Channel{
         default_sort_order(default_sort_order),
         default_forum_layout(default_forum_layout)
     {}
+    Channel(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<int> type;
@@ -256,6 +257,7 @@ class Message{
         position(position),
         role_subscription_data(role_subscription_data)
     {}
+    Message(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<Snowflake> channel_id;
@@ -367,6 +369,7 @@ class MessageActivity{
         type(type),
         party_id(party_id)
     {}
+    MessageActivity(const json &j) { from_json(j, *this); }
     
     field<int> type;
     omittable_field<std::string> party_id;
@@ -395,6 +398,7 @@ class MessageReference{
         guild_id(guild_id),
         fail_if_not_exists(fail_if_not_exists)
     {}
+    MessageReference(const json &j) { from_json(j, *this); }
     
     omittable_field<Snowflake> message_id;
     omittable_field<Snowflake> channel_id;
@@ -425,6 +429,7 @@ class FollowedChannel{
         channel_id(channel_id),
         webhook_id(webhook_id)
     {}
+    FollowedChannel(const json &j) { from_json(j, *this); }
     
     field<Snowflake> channel_id;
     field<Snowflake> webhook_id;
@@ -451,6 +456,7 @@ class Reaction{
         me(me),
         emoji(emoji)
     {}
+    Reaction(const json &j) { from_json(j, *this); }
     
     field<int> count;
     field<bool> me;
@@ -482,6 +488,7 @@ class Overwrite{
         allow(allow),
         deny(deny)
     {}
+    Overwrite(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<int> type;
@@ -520,6 +527,7 @@ class ThreadMetadata{
         invitable(invitable),
         create_timestamp(create_timestamp)
     {}
+    ThreadMetadata(const json &j) { from_json(j, *this); }
     
     field<bool> archived;
     field<int> auto_archive_duration;
@@ -562,6 +570,7 @@ class ThreadMember{
         flags(flags),
         member(member)
     {}
+    ThreadMember(const json &j) { from_json(j, *this); }
     
     omittable_field<Snowflake> id;
     omittable_field<Snowflake> user_id;
@@ -595,6 +604,7 @@ class DefaultReaction{
         emoji_id(emoji_id),
         emoji_name(emoji_name)
     {}
+    DefaultReaction(const json &j) { from_json(j, *this); }
     
     nullable_field<Snowflake> emoji_id;
     nullable_field<std::string> emoji_name;
@@ -625,6 +635,7 @@ class ForumTag{
         emoji_id(emoji_id),
         emoji_name(emoji_name)
     {}
+    ForumTag(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<std::string> name;
@@ -680,6 +691,7 @@ class Embed{
         author(author),
         fields(fields)
     {}
+    Embed(const json &j) { from_json(j, *this); }
     
     omittable_field<std::string> title;
     omittable_field<std::string> type;
@@ -741,6 +753,7 @@ class EmbedThumbnail{
         height(height),
         width(width)
     {}
+    EmbedThumbnail(const json &j) { from_json(j, *this); }
     
     field<std::string> url;
     omittable_field<std::string> proxy_url;
@@ -775,6 +788,7 @@ class EmbedVideo{
         height(height),
         width(width)
     {}
+    EmbedVideo(const json &j) { from_json(j, *this); }
     
     omittable_field<std::string> url;
     omittable_field<std::string> proxy_url;
@@ -809,6 +823,7 @@ class EmbedImage{
         height(height),
         width(width)
     {}
+    EmbedImage(const json &j) { from_json(j, *this); }
     
     field<std::string> url;
     omittable_field<std::string> proxy_url;
@@ -839,6 +854,7 @@ class EmbedProvider{
         name(name),
         url(url)
     {}
+    EmbedProvider(const json &j) { from_json(j, *this); }
     
     omittable_field<std::string> name;
     omittable_field<std::string> url;
@@ -867,6 +883,7 @@ class EmbedAuthor{
         icon_url(icon_url),
         proxy_icon_url(proxy_icon_url)
     {}
+    EmbedAuthor(const json &j) { from_json(j, *this); }
     
     field<std::string> name;
     omittable_field<std::string> url;
@@ -899,6 +916,7 @@ class EmbedFooter{
         icon_url(icon_url),
         proxy_icon_url(proxy_icon_url)
     {}
+    EmbedFooter(const json &j) { from_json(j, *this); }
     
     field<std::string> text;
     omittable_field<std::string> icon_url;
@@ -928,6 +946,7 @@ class EmbedField{
         value(value),
         display_inline(display_inline)
     {}
+    EmbedField(const json &j) { from_json(j, *this); }
     
     field<std::string> name;
     field<std::string> value;
@@ -971,6 +990,7 @@ class Attachment{
         width(width),
         ephemeral(ephemeral)
     {}
+    Attachment(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<std::string> filename;
@@ -1023,6 +1043,7 @@ class ChannelMention{
         type(type),
         name(name)
     {}
+    ChannelMention(const json &j) { from_json(j, *this); }
     
     field<Snowflake> id;
     field<Snowflake> guild_id;
@@ -1057,6 +1078,7 @@ class AllowedMentions{
         users(users),
         replied_user(replied_user)
     {}
+    AllowedMentions(const json &j) { from_json(j, *this); }
     
     field<std::vector<AllowedMentionType> > parse;
     field<std::vector<Snowflake> > roles;
@@ -1091,6 +1113,7 @@ class RoleSubscriptionData{
         total_months_subscribed(total_months_subscribed),
         is_renewal(is_renewal)
     {}
+    RoleSubscriptionData(const json &j) { from_json(j, *this); }
     
     field<Snowflake> role_subscription_listing_id;
     field<std::string> tier_name;
@@ -1123,6 +1146,7 @@ class ListPublicArchivedThreadsResponse{
         members(members),
         has_more(has_more)
     {}
+    ListPublicArchivedThreadsResponse(const json &j) { from_json(j, *this); }
     
     field<std::vector<Channel> > threads;
     field<std::vector<ThreadMember> > members;
@@ -1152,6 +1176,7 @@ class ListPrivateArchivedThreadsResponse{
         members(members),
         has_more(has_more)
     {}
+    ListPrivateArchivedThreadsResponse(const json &j) { from_json(j, *this); }
     
     field<std::vector<Channel> > threads;
     field<std::vector<ThreadMember> > members;
@@ -1181,6 +1206,7 @@ class ListJoinedPrivateArchivedThreadsResponse{
         members(members),
         has_more(has_more)
     {}
+    ListJoinedPrivateArchivedThreadsResponse(const json &j) { from_json(j, *this); }
     
     field<std::vector<Channel> > threads;
     field<std::vector<ThreadMember> > members;
