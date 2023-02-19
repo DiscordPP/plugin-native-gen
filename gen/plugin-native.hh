@@ -45,61 +45,10 @@ using InteractionCallbackData = json;
 
 #define OBJECT_BREAKOUTS
 /* This space intentionally left blank */
-#include "objects_fwd/application-commands_fwd.hh"
-#include "objects_fwd/message-components_fwd.hh"
-#include "objects_fwd/receiving-and-responding_fwd.hh"
-#include "objects_fwd/application_fwd.hh"
-#include "objects_fwd/application-role-connection-metadata_fwd.hh"
-#include "objects_fwd/audit-log_fwd.hh"
-#include "objects_fwd/auto-moderation_fwd.hh"
-#include "objects_fwd/channel_fwd.hh"
-#include "objects_fwd/emoji_fwd.hh"
-#include "objects_fwd/guild_fwd.hh"
-#include "objects_fwd/guild-scheduled-event_fwd.hh"
-#include "objects_fwd/guild-template_fwd.hh"
-#include "objects_fwd/invite_fwd.hh"
-#include "objects_fwd/stage-instance_fwd.hh"
-#include "objects_fwd/sticker_fwd.hh"
-#include "objects_fwd/user_fwd.hh"
-#include "objects_fwd/voice_fwd.hh"
-#include "objects_fwd/webhook_fwd.hh"
-#include "objects_fwd/gateway-events_fwd.hh"
-#include "objects_fwd/oauth2_fwd.hh"
-#include "objects_fwd/permissions_fwd.hh"
-#include "objects_fwd/rate-limits_fwd.hh"
-#include "objects_fwd/teams_fwd.hh"
+#include "objects-fwd.hh"
 /* This space intentionally left blank */
-#include "objects_fwd/gateway_fwd.hh"
+#include "objects.hh"
 /* This space intentionally left blank */
-#include "objects_fwd/children.hh"
-/* This space intentionally left blank */
-#include "objects/application-commands.hh"
-#include "objects/message-components.hh"
-#include "objects/application.hh"
-#include "objects/application-role-connection-metadata.hh"
-#include "objects/audit-log.hh"
-#include "objects/auto-moderation.hh"
-#include "objects/channel.hh"
-#include "objects/emoji.hh"
-#include "objects/guild.hh"
-#include "objects/guild-scheduled-event.hh"
-#include "objects/guild-template.hh"
-#include "objects/invite.hh"
-#include "objects/stage-instance.hh"
-#include "objects/sticker.hh"
-#include "objects/user.hh"
-#include "objects/voice.hh"
-#include "objects/webhook.hh"
-#include "objects/gateway.hh"
-#include "objects/gateway-events.hh"
-#include "objects/oauth2.hh"
-#include "objects/permissions.hh"
-#include "objects/rate-limits.hh"
-#include "objects/teams.hh"
-/* This space intentionally left blank */
-#include "objects/receiving-and-responding.hh"
-/* This space intentionally left blank */
-#include "objects/children.hh"
 #undef OBJECT_BREAKOUTS
 
 using ApplicationCommandPermission = GuildApplicationCommandPermissions;

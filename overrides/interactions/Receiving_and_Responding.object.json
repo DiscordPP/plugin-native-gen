@@ -1,7 +1,7 @@
 {
   "Interaction": {
     "parser-data": {
-      "requeue": 1
+      "delay": 2
     },
     "data": {
       "type": "++std::variant<ApplicationCommandData, MessageComponentData, ModalSubmitData, ResolvedData>",

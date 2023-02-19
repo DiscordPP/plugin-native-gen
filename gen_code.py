@@ -212,21 +212,32 @@ def parse_type(src: str):
 
 
 def run():
-    object_includes = []
-    object_final_includes = []
-    object_fwd_includes = []
-    object_fwd_final_includes = []
     target = Path(TARGET_PATH)
     target.mkdir(parents=True, exist_ok=True)
     target.joinpath('endpoints').mkdir(exist_ok=True)
-    target.joinpath('objects').mkdir(exist_ok=True)
-    target.joinpath('objects_fwd').mkdir(exist_ok=True)
+    #target.joinpath('objects').mkdir(exist_ok=True)
+    #target.joinpath('objects_fwd').mkdir(exist_ok=True)
     for filepath in Path(PARSED_PATH).rglob("*.enum.json"):
         if "game_sdk" in str(filepath):
             continue
         print(filepath)
     print()
 
+    # @formatter:off
+    render_objects = '''\
+#ifndef OBJECT_BREAKOUTS
+#error This header should only be included in plugin-native.hh
+#endif
+
+#include "field.hh"
+'''
+    render_objects_fwd = '''\
+#ifndef OBJECT_BREAKOUTS
+#error This header should only be included in plugin-native.hh
+#endif
+
+'''
+    # @formatter:on
     all_objects: OrderedDict[str, Dict[str, Dict[str, Dict[str, Any]]]] = collections.OrderedDict()
     all_objects['children'] = {}
     for filepath in Path(PARSED_PATH).rglob("*.object.json"):
@@ -249,37 +260,34 @@ def run():
                         objects[name] = fields
             all_objects[stem] = {}
             for name, object in objects.items():
-                all_objects['children' if 'parent' in object['parser-data'] else stem][name] = object
-    all_objects.move_to_end('children')
-    for stem, objects in all_objects.items():
-        # @formatter:off
-        render = '''\
-#ifndef OBJECT_BREAKOUTS
-#error This header should only be included in plugin-native.hh
-#endif
-
-#include "../field.hh"
-'''
-        render_fwd = '''\
-#ifndef OBJECT_BREAKOUTS
-#error This header should only be included in plugin-native.hh
-#endif
-
-'''
-        # @formatter:on
+                all_objects['children' if False and 'parent' in object['parser-data'] else stem][name] = object
+    # all_objects.move_to_end('children')
+    all_objects_index = 0
+    while all_objects_index < len(all_objects.items()):
+        stem, objects = list(all_objects.items())[all_objects_index]
+        all_objects_index += 1
         i = 0
         while i < len(objects):
             name, fields = list(objects.items())[i]
             metadata = fields.get("parser-data")
             if metadata:
-                skip = metadata.get("skip")
-                if skip:
+                if metadata.get("skip"):
                     objects.pop(name)
                     continue
-                requeue = metadata.get("requeue")
-                if requeue:
-                    metadata["requeue"] -= 1
-                    objects[name] = objects.pop(name)
+                delay = metadata.get("delay", 0)
+                depth = int(stem.split('-')[1]) if stem.startswith('delay') else 0
+                if name == "Resolved Data":
+                    pass
+                if depth == 0:
+                    if "parent" in metadata:
+                        delay += 1
+                    if stem == "receiving-and-responding":
+                        delay += 1
+                if delay:
+                    print(f'Delay {name}')
+                    metadata["delay"] = delay - 1
+                    all_objects[f'delay-{depth + 1}'] = all_objects.get(f'delay-{depth + 1}', {})
+                    all_objects[f'delay-{depth + 1}'][name] = objects.pop(name)
                     continue
             i += 1
         for name, fields in copy.deepcopy(objects).items():
@@ -361,7 +369,7 @@ def run():
                 "alts": ''.join(f'{NL}using {alt} = {name};' for alt in metadata.get('alts', []))
             }
             # @formatter:off
-            render += f'''{render_parts["predeclare"]}
+            render_objects += f'''{render_parts["predeclare"]}
 // {metadata.get('docs_url')}
 class {name}{f': public {parent_name}' if parent else ''}{{
   public:
@@ -382,24 +390,13 @@ class {name}{f': public {parent_name}' if parent else ''}{{
     }}
 }};{render_parts["alts"]}
 '''
-            render_fwd += f'''\
+            render_objects_fwd += f'''\
 class {name};
 '''
             # @formatter:on
             print()
-        target.joinpath('objects', stem + '.hh').write_text(render)
-        target.joinpath('objects_fwd', stem + '_fwd.hh').write_text(render_fwd)
-        if stem != 'children':
-            (
-                object_includes
-                if stem not in DELAY_OBJECTS else
-                object_final_includes
-            ).append(f'objects/{stem}.hh')
-            (
-                object_fwd_includes
-                if stem not in DELAY_OBJECTS_FWD else
-                object_fwd_final_includes
-            ).append(f'objects_fwd/{stem}_fwd.hh')
+    target.joinpath('objects.hh').write_text(render_objects)
+    target.joinpath('objects-fwd.hh').write_text(render_objects_fwd)
     # print(object_fwd_includes, object_fwd_final_includes, object_includes, object_final_includes)
 
     print()
@@ -543,18 +540,10 @@ using InteractionCallbackData = json;
 
 #define OBJECT_BREAKOUTS
 /* This space intentionally left blank */
-{f'{NL}/* This space intentionally left blank */{NL}'.join([
-    NL.join([f'#include "{include}"' for include in includes])
-    for includes in
-    [
-        object_fwd_includes,
-        object_fwd_final_includes,
-        ['objects_fwd/children_fwd.hh'],
-        object_includes,
-        object_final_includes,
-        ['objects/children.hh']
-    ]
-])}
+#include "objects-fwd.hh"
+/* This space intentionally left blank */
+#include "objects.hh"
+/* This space intentionally left blank */
 #undef OBJECT_BREAKOUTS
 
 using ApplicationCommandPermission = GuildApplicationCommandPermissions;
