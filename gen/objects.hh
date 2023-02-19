@@ -909,6 +909,7 @@ class Channel{
         nullable_omittable_field<std::string> icon = omitted,
         omittable_field<Snowflake> owner_id = omitted,
         omittable_field<Snowflake> application_id = omitted,
+        omittable_field<bool> managed = omitted,
         nullable_omittable_field<Snowflake> parent_id = omitted,
         nullable_omittable_field<Timestamp> last_pin_timestamp = omitted,
         nullable_omittable_field<std::string> rtc_region = omitted,
@@ -944,6 +945,7 @@ class Channel{
         icon(icon),
         owner_id(owner_id),
         application_id(application_id),
+        managed(managed),
         parent_id(parent_id),
         last_pin_timestamp(last_pin_timestamp),
         rtc_region(rtc_region),
@@ -981,6 +983,7 @@ class Channel{
     nullable_omittable_field<std::string> icon;
     omittable_field<Snowflake> owner_id;
     omittable_field<Snowflake> application_id;
+    omittable_field<bool> managed;
     nullable_omittable_field<Snowflake> parent_id;
     nullable_omittable_field<Timestamp> last_pin_timestamp;
     nullable_omittable_field<std::string> rtc_region;
@@ -1017,6 +1020,7 @@ class Channel{
         if(!t.icon.is_omitted()) {j["icon"] = t.icon;}
         if(!t.owner_id.is_omitted()) {j["owner_id"] = t.owner_id;}
         if(!t.application_id.is_omitted()) {j["application_id"] = t.application_id;}
+        if(!t.managed.is_omitted()) {j["managed"] = t.managed;}
         if(!t.parent_id.is_omitted()) {j["parent_id"] = t.parent_id;}
         if(!t.last_pin_timestamp.is_omitted()) {j["last_pin_timestamp"] = t.last_pin_timestamp;}
         if(!t.rtc_region.is_omitted()) {j["rtc_region"] = t.rtc_region;}
@@ -1053,6 +1057,7 @@ class Channel{
         if(j.contains("icon")){j.at("icon").get_to(t.icon);}
         if(j.contains("owner_id")){j.at("owner_id").get_to(t.owner_id);}
         if(j.contains("application_id")){j.at("application_id").get_to(t.application_id);}
+        if(j.contains("managed")){j.at("managed").get_to(t.managed);}
         if(j.contains("parent_id")){j.at("parent_id").get_to(t.parent_id);}
         if(j.contains("last_pin_timestamp")){j.at("last_pin_timestamp").get_to(t.last_pin_timestamp);}
         if(j.contains("rtc_region")){j.at("rtc_region").get_to(t.rtc_region);}

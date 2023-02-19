@@ -249,6 +249,10 @@ enum class MessageType : int {
     AUTO_MODERATION_ACTION = 24,
     ROLE_SUBSCRIPTION_PURCHASE = 25,
     INTERACTION_PREMIUM_UPSELL = 26,
+    STAGE_START = 27,
+    STAGE_END = 28,
+    STAGE_SPEAKER = 29,
+    STAGE_TOPIC = 31,
     GUILD_APPLICATION_PREMIUM_SUBSCRIPTION = 32
 };
 
@@ -538,6 +542,7 @@ enum class Service {
     Epic_Games,
     Facebook,
     GitHub,
+    Instagram,
     League_of_Legends,
     PayPal,
     PlayStation_Network,
@@ -560,6 +565,7 @@ NLOHMANN_JSON_SERIALIZE_ENUM(
         {Service::Epic_Games, "epicgames"},
         {Service::Facebook, "facebook"},
         {Service::GitHub, "github"},
+        {Service::Instagram, "instagram"},
         {Service::League_of_Legends, "leagueoflegends"},
         {Service::PayPal, "paypal"},
         {Service::PlayStation_Network, "playstation"},
