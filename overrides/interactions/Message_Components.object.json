@@ -17,7 +17,7 @@
       "docs_url": "https://discord.com/developers/docs/interactions/message-components#action-rows",
       "parent": "Component",
       "static": {
-        "type": 1
+        "type": "field<int>(1)"
       }
     },
     "components": {
@@ -33,7 +33,7 @@
     "parser-data": {
       "parent": "Component",
       "static": {
-        "type": 2
+        "type": "field<int>(2)"
       }
     }
   },
@@ -51,7 +51,7 @@
     "parser-data": {
       "parent": "Component",
       "static": {
-        "type": 4
+        "type": "field<int>(4)"
       }
     }
   }

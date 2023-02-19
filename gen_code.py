@@ -389,16 +389,17 @@ class {name};
             print()
         target.joinpath('objects', stem + '.hh').write_text(render)
         target.joinpath('objects_fwd', stem + '_fwd.hh').write_text(render_fwd)
-        (
-            object_includes
-            if stem not in DELAY_OBJECTS else
-            object_final_includes
-        ).append(f'objects/{stem}.hh')
-        (
-            object_fwd_includes
-            if stem not in DELAY_OBJECTS_FWD else
-            object_fwd_final_includes
-        ).append(f'objects_fwd/{stem}_fwd.hh')
+        if stem != 'children':
+            (
+                object_includes
+                if stem not in DELAY_OBJECTS else
+                object_final_includes
+            ).append(f'objects/{stem}.hh')
+            (
+                object_fwd_includes
+                if stem not in DELAY_OBJECTS_FWD else
+                object_fwd_final_includes
+            ).append(f'objects_fwd/{stem}_fwd.hh')
     # print(object_fwd_includes, object_fwd_final_includes, object_includes, object_final_includes)
 
     print()
@@ -545,7 +546,14 @@ using InteractionCallbackData = json;
 {f'{NL}/* This space intentionally left blank */{NL}'.join([
     NL.join([f'#include "{include}"' for include in includes])
     for includes in
-    [object_fwd_includes, object_fwd_final_includes, object_includes, object_final_includes]
+    [
+        object_fwd_includes,
+        object_fwd_final_includes,
+        ['objects_fwd/children_fwd.hh'],
+        object_includes,
+        object_final_includes,
+        ['objects/children.hh']
+    ]
 ])}
 #undef OBJECT_BREAKOUTS
 

@@ -4,10 +4,25 @@
       "requeue": 1
     },
     "data": {
-      "type": "++std::variant<ApplicationCommandData, MessageComponentData, ModalSubmitData, ResolvedData>"
+      "type": "++std::variant<ApplicationCommandData, MessageComponentData, ModalSubmitData, ResolvedData>",
+      "from_json": "        if(j.contains(\"data\")){\n            switch(t.type) {\n            case (int)InteractionType::APPLICATION_COMMAND:\n            case (int)InteractionType::APPLICATION_COMMAND_AUTOCOMPLETE:\n                j.at(\"data\").get<ApplicationCommandData>();\n            case (int)InteractionType::MESSAGE_COMPONENT:\n                j.at(\"data\").get<MessageComponentData>();\n            case (int)InteractionType::MODAL_SUBMIT:\n                j.at(\"data\").get<ModalSubmitData>();\n            default:\n                throw std::runtime_error(\"Unknown interaction type\");\n            }\n        }"
+
+    }
+  },
+  "Application Command Data": {
+    "parser-data": {
+      "parent": "Resolved Data"
+    }
+  },
+  "Message Component Data": {
+    "parser-data": {
+      "parent": "Resolved Data"
     }
   },
   "Modal Submit Data": {
+    "parser-data": {
+      "parent": "Resolved Data"
+    },
     "components": {
       "type": "++std::vector<Component>"
     }

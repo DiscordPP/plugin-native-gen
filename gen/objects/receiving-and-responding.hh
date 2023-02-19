@@ -4,111 +4,6 @@
 
 #include "../field.hh"
 
-// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-application-command-data-structure
-class ApplicationCommandData{
-  public:
-    ApplicationCommandData(
-        field<Snowflake> id = uninitialized,
-        field<std::string> name = uninitialized,
-        field<int> type = uninitialized,
-        omittable_field<ResolvedData> resolved = omitted,
-        omittable_field<std::vector<ApplicationCommandInteractionDataOption> > options = omitted,
-        omittable_field<Snowflake> guild_id = omitted,
-        omittable_field<Snowflake> target_id = omitted
-    ):
-        id(id),
-        name(name),
-        type(type),
-        resolved(resolved),
-        options(options),
-        guild_id(guild_id),
-        target_id(target_id)
-    {}
-    ApplicationCommandData(const json &j) { from_json(j, *this); }
-    
-    field<Snowflake> id;
-    field<std::string> name;
-    field<int> type;
-    omittable_field<ResolvedData> resolved;
-    omittable_field<std::vector<ApplicationCommandInteractionDataOption> > options;
-    omittable_field<Snowflake> guild_id;
-    omittable_field<Snowflake> target_id;
-
-    friend void to_json(nlohmann::json &j, const ApplicationCommandData &t) {
-        if(!t.id.is_omitted()) {j["id"] = t.id;}
-        if(!t.name.is_omitted()) {j["name"] = t.name;}
-        if(!t.type.is_omitted()) {j["type"] = t.type;}
-        if(!t.resolved.is_omitted()) {j["resolved"] = t.resolved;}
-        if(!t.options.is_omitted()) {j["options"] = t.options;}
-        if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
-        if(!t.target_id.is_omitted()) {j["target_id"] = t.target_id;}
-    }
-    friend void from_json(const nlohmann::json &j, ApplicationCommandData &t) {
-        if(j.contains("id")){j.at("id").get_to(t.id);}
-        if(j.contains("name")){j.at("name").get_to(t.name);}
-        if(j.contains("type")){j.at("type").get_to(t.type);}
-        if(j.contains("resolved")){j.at("resolved").get_to(t.resolved);}
-        if(j.contains("options")){j.at("options").get_to(t.options);}
-        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
-        if(j.contains("target_id")){j.at("target_id").get_to(t.target_id);}
-    }
-};
-
-// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-message-component-data-structure
-class MessageComponentData{
-  public:
-    MessageComponentData(
-        field<std::string> custom_id = uninitialized,
-        field<int> component_type = uninitialized,
-        omittable_field<std::vector<SelectOption> > values = omitted
-    ):
-        custom_id(custom_id),
-        component_type(component_type),
-        values(values)
-    {}
-    MessageComponentData(const json &j) { from_json(j, *this); }
-    
-    field<std::string> custom_id;
-    field<int> component_type;
-    omittable_field<std::vector<SelectOption> > values;
-
-    friend void to_json(nlohmann::json &j, const MessageComponentData &t) {
-        if(!t.custom_id.is_omitted()) {j["custom_id"] = t.custom_id;}
-        if(!t.component_type.is_omitted()) {j["component_type"] = t.component_type;}
-        if(!t.values.is_omitted()) {j["values"] = t.values;}
-    }
-    friend void from_json(const nlohmann::json &j, MessageComponentData &t) {
-        if(j.contains("custom_id")){j.at("custom_id").get_to(t.custom_id);}
-        if(j.contains("component_type")){j.at("component_type").get_to(t.component_type);}
-        if(j.contains("values")){j.at("values").get_to(t.values);}
-    }
-};
-
-// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-modal-submit-data-structure
-class ModalSubmitData{
-  public:
-    ModalSubmitData(
-        field<std::string> custom_id = uninitialized,
-        field<std::vector<Component> > components = uninitialized
-    ):
-        custom_id(custom_id),
-        components(components)
-    {}
-    ModalSubmitData(const json &j) { from_json(j, *this); }
-    
-    field<std::string> custom_id;
-    field<std::vector<Component> > components;
-
-    friend void to_json(nlohmann::json &j, const ModalSubmitData &t) {
-        if(!t.custom_id.is_omitted()) {j["custom_id"] = t.custom_id;}
-        if(!t.components.is_omitted()) {j["components"] = t.components;}
-    }
-    friend void from_json(const nlohmann::json &j, ModalSubmitData &t) {
-        if(j.contains("custom_id")){j.at("custom_id").get_to(t.custom_id);}
-        if(j.contains("components")){j.at("components").get_to(t.components);}
-    }
-};
-
 // https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-resolved-data-structure
 class ResolvedData{
   public:
@@ -430,7 +325,19 @@ class Interaction{
         if(j.contains("id")){j.at("id").get_to(t.id);}
         if(j.contains("application_id")){j.at("application_id").get_to(t.application_id);}
         if(j.contains("type")){j.at("type").get_to(t.type);}
-        if(j.contains("data")){j.at("data").get_to(t.data);}
+        if(j.contains("data")){
+            switch(t.type) {
+            case (int)InteractionType::APPLICATION_COMMAND:
+            case (int)InteractionType::APPLICATION_COMMAND_AUTOCOMPLETE:
+                j.at("data").get<ApplicationCommandData>();
+            case (int)InteractionType::MESSAGE_COMPONENT:
+                j.at("data").get<MessageComponentData>();
+            case (int)InteractionType::MODAL_SUBMIT:
+                j.at("data").get<ModalSubmitData>();
+            default:
+                throw std::runtime_error("Unknown interaction type");
+            }
+        }
         if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
         if(j.contains("channel_id")){j.at("channel_id").get_to(t.channel_id);}
         if(j.contains("member")){j.at("member").get_to(t.member);}

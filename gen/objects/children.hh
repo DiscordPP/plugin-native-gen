@@ -16,7 +16,7 @@ class Button: public Component{
         omittable_field<bool> disabled = omitted
     ):
         Component(
-            2
+            field<int>(2)
         ),
         style(style),
         label(label),
@@ -124,7 +124,7 @@ class TextInput: public Component{
         omittable_field<std::string> placeholder = omitted
     ):
         Component(
-            4
+            field<int>(4)
         ),
         custom_id(custom_id),
         style(style),
@@ -177,7 +177,7 @@ class ActionRow: public Component{
         field<std::vector<Component> > components = uninitialized
     ):
         Component(
-            1
+            field<int>(1)
         ),
         components(components)
     {}
@@ -189,6 +189,153 @@ class ActionRow: public Component{
         if(!t.components.is_omitted()) {j["components"] = t.components;}
     }
     friend void from_json(const nlohmann::json &j, ActionRow &t) {
+        if(j.contains("components")){j.at("components").get_to(t.components);}
+    }
+};
+
+// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-application-command-data-structure
+class ApplicationCommandData: public ResolvedData{
+  public:
+    ApplicationCommandData(
+        omittable_field<std::map<Snowflake, User> > users = omitted,
+        omittable_field<std::map<Snowflake, GuildMember> > members = omitted,
+        omittable_field<std::map<Snowflake, Role> > roles = omitted,
+        omittable_field<std::map<Snowflake, Channel> > channels = omitted,
+        omittable_field<std::map<Snowflake, Message> > messages = omitted,
+        omittable_field<std::map<Snowflake, Attachment> > attachments = omitted,
+        field<Snowflake> id = uninitialized,
+        field<std::string> name = uninitialized,
+        field<int> type = uninitialized,
+        omittable_field<ResolvedData> resolved = omitted,
+        omittable_field<std::vector<ApplicationCommandInteractionDataOption> > options = omitted,
+        omittable_field<Snowflake> guild_id = omitted,
+        omittable_field<Snowflake> target_id = omitted
+    ):
+        ResolvedData(
+            users,
+            members,
+            roles,
+            channels,
+            messages,
+            attachments
+        ),
+        id(id),
+        name(name),
+        type(type),
+        resolved(resolved),
+        options(options),
+        guild_id(guild_id),
+        target_id(target_id)
+    {}
+    ApplicationCommandData(const json &j) { from_json(j, *this); }
+    
+    field<Snowflake> id;
+    field<std::string> name;
+    field<int> type;
+    omittable_field<ResolvedData> resolved;
+    omittable_field<std::vector<ApplicationCommandInteractionDataOption> > options;
+    omittable_field<Snowflake> guild_id;
+    omittable_field<Snowflake> target_id;
+
+    friend void to_json(nlohmann::json &j, const ApplicationCommandData &t) {
+        if(!t.id.is_omitted()) {j["id"] = t.id;}
+        if(!t.name.is_omitted()) {j["name"] = t.name;}
+        if(!t.type.is_omitted()) {j["type"] = t.type;}
+        if(!t.resolved.is_omitted()) {j["resolved"] = t.resolved;}
+        if(!t.options.is_omitted()) {j["options"] = t.options;}
+        if(!t.guild_id.is_omitted()) {j["guild_id"] = t.guild_id;}
+        if(!t.target_id.is_omitted()) {j["target_id"] = t.target_id;}
+    }
+    friend void from_json(const nlohmann::json &j, ApplicationCommandData &t) {
+        if(j.contains("id")){j.at("id").get_to(t.id);}
+        if(j.contains("name")){j.at("name").get_to(t.name);}
+        if(j.contains("type")){j.at("type").get_to(t.type);}
+        if(j.contains("resolved")){j.at("resolved").get_to(t.resolved);}
+        if(j.contains("options")){j.at("options").get_to(t.options);}
+        if(j.contains("guild_id")){j.at("guild_id").get_to(t.guild_id);}
+        if(j.contains("target_id")){j.at("target_id").get_to(t.target_id);}
+    }
+};
+
+// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-message-component-data-structure
+class MessageComponentData: public ResolvedData{
+  public:
+    MessageComponentData(
+        omittable_field<std::map<Snowflake, User> > users = omitted,
+        omittable_field<std::map<Snowflake, GuildMember> > members = omitted,
+        omittable_field<std::map<Snowflake, Role> > roles = omitted,
+        omittable_field<std::map<Snowflake, Channel> > channels = omitted,
+        omittable_field<std::map<Snowflake, Message> > messages = omitted,
+        omittable_field<std::map<Snowflake, Attachment> > attachments = omitted,
+        field<std::string> custom_id = uninitialized,
+        field<int> component_type = uninitialized,
+        omittable_field<std::vector<SelectOption> > values = omitted
+    ):
+        ResolvedData(
+            users,
+            members,
+            roles,
+            channels,
+            messages,
+            attachments
+        ),
+        custom_id(custom_id),
+        component_type(component_type),
+        values(values)
+    {}
+    MessageComponentData(const json &j) { from_json(j, *this); }
+    
+    field<std::string> custom_id;
+    field<int> component_type;
+    omittable_field<std::vector<SelectOption> > values;
+
+    friend void to_json(nlohmann::json &j, const MessageComponentData &t) {
+        if(!t.custom_id.is_omitted()) {j["custom_id"] = t.custom_id;}
+        if(!t.component_type.is_omitted()) {j["component_type"] = t.component_type;}
+        if(!t.values.is_omitted()) {j["values"] = t.values;}
+    }
+    friend void from_json(const nlohmann::json &j, MessageComponentData &t) {
+        if(j.contains("custom_id")){j.at("custom_id").get_to(t.custom_id);}
+        if(j.contains("component_type")){j.at("component_type").get_to(t.component_type);}
+        if(j.contains("values")){j.at("values").get_to(t.values);}
+    }
+};
+
+// https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-modal-submit-data-structure
+class ModalSubmitData: public ResolvedData{
+  public:
+    ModalSubmitData(
+        omittable_field<std::map<Snowflake, User> > users = omitted,
+        omittable_field<std::map<Snowflake, GuildMember> > members = omitted,
+        omittable_field<std::map<Snowflake, Role> > roles = omitted,
+        omittable_field<std::map<Snowflake, Channel> > channels = omitted,
+        omittable_field<std::map<Snowflake, Message> > messages = omitted,
+        omittable_field<std::map<Snowflake, Attachment> > attachments = omitted,
+        field<std::string> custom_id = uninitialized,
+        field<std::vector<Component> > components = uninitialized
+    ):
+        ResolvedData(
+            users,
+            members,
+            roles,
+            channels,
+            messages,
+            attachments
+        ),
+        custom_id(custom_id),
+        components(components)
+    {}
+    ModalSubmitData(const json &j) { from_json(j, *this); }
+    
+    field<std::string> custom_id;
+    field<std::vector<Component> > components;
+
+    friend void to_json(nlohmann::json &j, const ModalSubmitData &t) {
+        if(!t.custom_id.is_omitted()) {j["custom_id"] = t.custom_id;}
+        if(!t.components.is_omitted()) {j["components"] = t.components;}
+    }
+    friend void from_json(const nlohmann::json &j, ModalSubmitData &t) {
+        if(j.contains("custom_id")){j.at("custom_id").get_to(t.custom_id);}
         if(j.contains("components")){j.at("components").get_to(t.components);}
     }
 };

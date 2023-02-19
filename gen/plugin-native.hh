@@ -68,9 +68,10 @@ using InteractionCallbackData = json;
 #include "objects_fwd/permissions_fwd.hh"
 #include "objects_fwd/rate-limits_fwd.hh"
 #include "objects_fwd/teams_fwd.hh"
-#include "objects_fwd/children_fwd.hh"
 /* This space intentionally left blank */
 #include "objects_fwd/gateway_fwd.hh"
+/* This space intentionally left blank */
+#include "objects_fwd/children.hh"
 /* This space intentionally left blank */
 #include "objects/application-commands.hh"
 #include "objects/message-components.hh"
@@ -95,9 +96,10 @@ using InteractionCallbackData = json;
 #include "objects/permissions.hh"
 #include "objects/rate-limits.hh"
 #include "objects/teams.hh"
-#include "objects/children.hh"
 /* This space intentionally left blank */
 #include "objects/receiving-and-responding.hh"
+/* This space intentionally left blank */
+#include "objects/children.hh"
 #undef OBJECT_BREAKOUTS
 
 using ApplicationCommandPermission = GuildApplicationCommandPermissions;
