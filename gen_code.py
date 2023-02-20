@@ -515,6 +515,8 @@ NLOHMANN_JSON_SERIALIZE_ENUM(
 
     # @formatter:off
     TARGET_PATH.joinpath('plugin-native.hh').write_text(f'''\
+{comment_header}
+
 #pragma once
 
 #include <fmt/format.h>
