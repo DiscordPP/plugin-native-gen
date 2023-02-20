@@ -5,7 +5,7 @@
     },
     "data": {
       "type": "++std::variant<ApplicationCommandData, MessageComponentData, ModalSubmitData, ResolvedData>",
-      "from_json": "        if(j.contains(\"data\")){\n            switch(t.type) {\n            case (int)InteractionType::APPLICATION_COMMAND:\n            case (int)InteractionType::APPLICATION_COMMAND_AUTOCOMPLETE:\n                j.at(\"data\").get<ApplicationCommandData>();\n            case (int)InteractionType::MESSAGE_COMPONENT:\n                j.at(\"data\").get<MessageComponentData>();\n            case (int)InteractionType::MODAL_SUBMIT:\n                j.at(\"data\").get<ModalSubmitData>();\n            default:\n                throw std::runtime_error(\"Unknown interaction type\");\n            }\n        }"
+      "from_json": "        if(j.contains(\"data\")){\n            switch(t.type) {\n            case (int)InteractionType::APPLICATION_COMMAND:\n            case (int)InteractionType::APPLICATION_COMMAND_AUTOCOMPLETE:\n                j.at(\"data\").get<ApplicationCommandData>();\n                break;\n            case (int)InteractionType::MESSAGE_COMPONENT:\n                j.at(\"data\").get<MessageComponentData>();\n                break;\n            case (int)InteractionType::MODAL_SUBMIT:\n                j.at(\"data\").get<ModalSubmitData>();\n                break;\n            default:\n                throw std::runtime_error(\"Unknown interaction type\");\n            }\n        }"
 
     }
   },
@@ -33,13 +33,17 @@
     }
   },
   "Interaction Response": {
+    "parser-data": {
+      "delay": 2
+    },
     "data": {
-      "Xtype": "json"
+      "type": "++std::variant<MessageCallback, AutocompleteCallback, ModalCallback>",
+      "from_json": "        if(j.contains(\"data\")){\n            switch(t.type) {\n            case (int)InteractionCallbackType::PONG:\n            case (int)InteractionCallbackType::DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE:\n            case (int)InteractionCallbackType::DEFERRED_UPDATE_MESSAGE:\n                break;\n            case (int)InteractionCallbackType::CHANNEL_MESSAGE_WITH_SOURCE:\n            case (int)InteractionCallbackType::UPDATE_MESSAGE:\n                j.at(\"data\").get<MessageCallback>();\n                break;\n            case (int)InteractionCallbackType::APPLICATION_COMMAND_AUTOCOMPLETE_RESULT:\n                j.at(\"data\").get<AutocompleteCallback>();\n                break;\n            case (int)InteractionCallbackType::MODAL:\n                j.at(\"data\").get<ModalCallback>();\n                break;\n            default:\n                throw std::runtime_error(\"Unknown interaction type\");\n            }\n        }"
     }
   },
   "Messages": {
     "parser-data": {
-      "name": "MessagesCallback"
+      "name": "MessageCallback"
     }
   },
   "Autocomplete": {
