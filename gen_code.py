@@ -376,12 +376,14 @@ def run():
                     for field_name, field in fields.items() if not parent or field_name not in parent
                 ]),
                 "to_json": {
+                    "parent": f'\n        to_json(j, (const {parent_name}&)t);' if parent else '',
                     "assignments": '\n'.join([field.get("to_json",
                         f'        if(!t.{field.get("name", field_name)}.is_omitted()) '
                         f'{{j["{field.get("field_name", field_name)}"] = t.{field.get("name", field_name)};}}'
                     ) for field_name, field in fields.items()])
                 },
                 "from_json": {
+                    "parent": f'\n        from_json(j, ({parent_name}&)t);' if parent else '',
                     "assignments": '\n'.join([field.get("from_json",
                         f'        if(j.contains(\"{field.get("field_name", field_name)}\")){{'
                         f'j.at(\"{field.get("field_name", field_name)}\").get_to(t.{field.get("name", field_name)});}}'
@@ -403,10 +405,10 @@ class {name}{f': public {parent_name}' if parent else ''}{{
     
 {render_parts["variables"]}
 
-    friend void to_json(nlohmann::json &j, const {name} &t) {{
+    friend void to_json(nlohmann::json &j, const {name} &t) {{{render_parts["to_json"]["parent"]}
 {render_parts["to_json"]["assignments"]}
     }}
-    friend void from_json(const nlohmann::json &j, {name} &t) {{
+    friend void from_json(const nlohmann::json &j, {name} &t) {{{render_parts["from_json"]["parent"]}
 {render_parts["from_json"]["assignments"]}
     }}
 }};{render_parts["alts"]}
