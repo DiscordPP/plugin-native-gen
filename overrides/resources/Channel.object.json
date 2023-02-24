@@ -16,25 +16,5 @@
     "inline": {
       "name": "display_inline"
     }
-  },
-  "JSON Params (Group DM)":{
-    "parser-data": {
-      "skip": true
-    }
-  },
-  "JSON Params (Guild channel)":{
-    "parser-data": {
-      "skip": true
-    }
-  },
-  "JSON Params (Thread)":{
-    "parser-data": {
-      "skip": true
-    }
-  },
-  "Forum Thread Message Params": {
-    "parser-data": {
-      "skip": true
-    }
   }
 }
