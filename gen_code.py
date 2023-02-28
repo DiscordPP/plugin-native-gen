@@ -328,6 +328,8 @@ def run():
                         parent_name = parent_metadata.get('name') or \
                                       make_pascal_case(metadata['parent'])
                     i += 1
+            fields = {field_name: field for field_name, field in fields.items() if not field.get('skip')}
+            parent = {field_name: field for field_name, field in parent.items() if not field.get('skip')}
             for field_name, field in itertools.chain(fields.items(), parent.items()):
                 if '(' in field.get("name", field_name):
                     field["name"] = field.get("name", field_name).split('(', 1)[0].rstrip()

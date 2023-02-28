@@ -16,5 +16,10 @@
     "inline": {
       "name": "display_inline"
     }
+  },
+  "Forum Thread Message Params": {
+    "files[n]": {
+      "skip": true
+    }
   }
 }
