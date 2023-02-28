@@ -297,8 +297,6 @@ def run():
                     continue
                 delay = metadata.get("delay", 0)
                 depth = int(stem.split('-')[1]) if stem.startswith('delay') else 0
-                if name == "Resolved Data":
-                    pass
                 if depth == 0:
                     if "parent" in metadata:
                         delay += 1
